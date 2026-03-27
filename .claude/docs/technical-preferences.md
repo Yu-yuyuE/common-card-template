@@ -5,32 +5,32 @@
 
 ## Engine & Language
 
-- **Engine**: [TO BE CONFIGURED — run /setup-engine]
-- **Language**: [TO BE CONFIGURED]
-- **Rendering**: [TO BE CONFIGURED]
-- **Physics**: [TO BE CONFIGURED]
+- **Engine**: Godot 4.6.1
+- **Language**: C# (primary), GDScript (utilities)
+- **Rendering**: 2D (Godot's dedicated 2D engine)
+- **Physics**: Godot Physics (Jolt optional for 3D, not needed for 2D)
 
 ## Naming Conventions
 
-- **Classes**: [TO BE CONFIGURED]
-- **Variables**: [TO BE CONFIGURED]
-- **Signals/Events**: [TO BE CONFIGURED]
-- **Files**: [TO BE CONFIGURED]
-- **Scenes/Prefabs**: [TO BE CONFIGURED]
-- **Constants**: [TO BE CONFIGURED]
+- **Classes**: PascalCase (e.g., `CardController`, `BattleManager`)
+- **Variables**: camelCase (e.g., `currentHealth`, `cardCost`)
+- **Signals/Events**: camelCase past tense (e.g., `healthChanged`, `cardPlayed`)
+- **Files**: snake_case matching class (e.g., `card_controller.cs`)
+- **Scenes/Prefabs**: PascalCase matching root node (e.g., `Card.tscn`)
+- **Constants**: PascalCase or UPPER_SNAKE_CASE
 
 ## Performance Budgets
 
-- **Target Framerate**: [TO BE CONFIGURED]
-- **Frame Budget**: [TO BE CONFIGURED]
+- **Target Framerate**: 60 fps
+- **Frame Budget**: 16.6ms
 - **Draw Calls**: [TO BE CONFIGURED]
-- **Memory Ceiling**: [TO BE CONFIGURED]
+- **Memory Ceiling**: [TO BE CONFIGURED - typical 512MB for 2D game]
 
 ## Testing
 
-- **Framework**: [TO BE CONFIGURED]
-- **Minimum Coverage**: [TO BE CONFIGURED]
-- **Required Tests**: Balance formulas, gameplay systems, networking (if applicable)
+- **Framework**: GUT (Godot Unit Test) for GDScript, or NUnit for C#
+- **Minimum Coverage**: Core game systems, balance formulas
+- **Required Tests**: Balance formulas, gameplay systems
 
 ## Forbidden Patterns
 
