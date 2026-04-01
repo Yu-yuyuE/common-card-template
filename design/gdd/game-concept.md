@@ -235,6 +235,33 @@ v5关键更新：
 
 ---
 
+## 结构化数据文件（CSV）依赖说明
+
+本项目设计数据分布在四个 CSV 文件中，供引擎实现直接读取。**所有 CSV 均为 GDD 设计的结构化镜像，修改 GDD 时必须同步更新对应 CSV。**
+
+| CSV 文件 | 路径 | 内容概述 | 依赖的 GDD 文档 |
+|---------|------|---------|--------------|
+| **cards_001_330_cleaned.csv** | `design/detail/cards_001_330_cleaned.csv` | 全局通用卡牌池（编号 001–330），含卡名、职业/阵营、类型、稀有度、费用、LV1/LV2 效果、是否移除、连击标签 | `cards-design.md` |
+| **heroes_passive_skills.csv** | `design/detail/heroes_passive_skills.csv` | 所有武将的被动技能结构化数据（武将名、阵营、被动名称、被动效果），供引擎实现被动触发逻辑 | `heroes-design.md` |
+| **heroes_exclusive_decks.csv** | `design/detail/heroes_exclusive_decks.csv` | 所有武将的专属卡组数据（卡名、费用、LV1/LV2 效果、使用后是否移除），含 Lv2 升级与离场机制 | `heroes-design.md` |
+| **troop_cards.csv** | `design/detail/troop_cards.csv` | 全部 30 种兵种卡数据（大类、卡名、费用、LV1/LV2 效果、地形联动、核心定位、历史原型），5 大类：步兵/骑兵/弓兵/谋士/盾兵 | `troop-cards-design.md` |
+
+### 各 CSV 的引擎使用场景
+
+- **cards_001_330_cleaned.csv**：卡牌工厂/卡牌库初始化，战斗中卡牌实例化与效果解析
+- **heroes_passive_skills.csv**：武将选择界面属性展示；战斗中被动触发器注册
+- **heroes_exclusive_decks.csv**：武将初始卡组构建；Lv2 升级逻辑；离场卡特殊规则
+- **troop_cards.csv**：军营节点兵种卡池展示；统帅上限验证（兵种卡总数 ≤ 武将统帅值）；地形/天气联动效果解析
+
+### 数据一致性强制规则
+
+1. **修改 GDD 时**：对应 CSV 必须在同一次提交中同步更新
+2. **修改 CSV 时**：只能反映 GDD 中已批准的设计，不得在 CSV 中自行发明新机制
+3. **新增兵种卡**：先写入 `troop-cards-design.md`，审批后再同步至 `troop_cards.csv`
+4. **武将数值变更**：`heroes-design.md`、`heroes_passive_skills.csv`、`heroes_exclusive_decks.csv` 三者必须同步
+
+---
+
 ## Next Steps
 
 - [ ] 对 `game-concept.md` 执行 `/design-review`
