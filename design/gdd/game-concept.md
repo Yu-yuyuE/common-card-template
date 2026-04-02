@@ -249,7 +249,7 @@ v5关键更新：
 
 ## 结构化数据文件（CSV）依赖说明
 
-本项目设计数据分布在**五个** CSV 文件中，供引擎实现直接读取。**所有 CSV 均为 GDD 设计的结构化镜像，修改 GDD 时必须同步更新对应 CSV。**
+本项目设计数据分布在**七个** CSV 文件中，供引擎实现直接读取。**所有 CSV 均为 GDD 设计的结构化镜像，修改 GDD 时必须同步更新对应 CSV。**
 
 | CSV 文件 | 路径 | 内容概述 | 依赖的 GDD 文档 |
 |---------|------|---------|--------------|
@@ -258,6 +258,8 @@ v5关键更新：
 | **heroes_exclusive_decks.csv** | `design/detail/heroes_exclusive_decks.csv` | 所有武将的专属卡组数据（卡名、费用、LV1/LV2 效果、使用后是否移除），含 Lv2 升级与离场机制 | `heroes-design.md` |
 | **troop_cards.csv** | `design/detail/troop_cards.csv` | 全部 30 种兵种卡数据（大类、卡名、费用、LV1/LV2 效果、地形联动、核心定位、历史原型），5 大类：步兵/骑兵/弓兵/谋士/盾兵 | `troop-cards-design.md` |
 | **hero_campaign_maps.csv** | `design/detail/hero_campaign_maps.csv` | 所有武将的战役地图数据（序号、武将、阵营、战役名、所属州、地形、默认天气、历史背景），114条记录 | `map-design.md`、`heroes-design.md` |
+| **enemies.csv** | `design/detail/enemies.csv` | 全部55名敌人的完整属性数据（编号、名称、级别、HP、护甲、兵种层、行动序列、速度、地形偏好），3级：普通/精英/强力 | `enemies-design.md` |
+| **enemy_actions.csv** | `design/detail/enemy_actions.csv` | 全部54种敌人行动库（编号、行动名、级别、效果、目标、数值参考、冷却回合、条件触发） | `enemies-design.md` |
 
 ### 各 CSV 的引擎使用场景
 
@@ -266,6 +268,8 @@ v5关键更新：
 - **heroes_exclusive_decks.csv**：武将初始卡组构建；Lv2 升级逻辑；离场卡特殊规则
 - **troop_cards.csv**：军营节点兵种卡池展示；统帅上限验证（兵种卡总数 ≤ 武将统帅值）；地形/天气联动效果解析
 - **hero_campaign_maps.csv**：武将战役地图初始化；节点地形/天气标签读取；十三州地图场景配置
+- **enemies.csv**：战斗节点敌人实例化；地图难度配置；地域出现权重查找
+- **enemy_actions.csv**：敌人行动执行器初始化；行动序列解析；冷却计时器注册；条件触发判断
 
 ### 数据一致性强制规则
 
@@ -273,6 +277,8 @@ v5关键更新：
 2. **修改 CSV 时**：只能反映 GDD 中已批准的设计，不得在 CSV 中自行发明新机制
 3. **新增兵种卡**：先写入 `troop-cards-design.md`，审批后再同步至 `troop_cards.csv`
 4. **武将数值变更**：`heroes-design.md`、`heroes_passive_skills.csv`、`heroes_exclusive_decks.csv` 三者必须同步
+5. **敌人数值变更**：`enemies-design.md`、`enemies.csv`、`enemy_actions.csv` 三者必须同步
+6. **新增敌人行动**：先写入 `enemies-design.md` 行动库章节，审批后再同步至 `enemy_actions.csv`
 
 ---
 
@@ -283,3 +289,6 @@ v5关键更新：
 - [ ] 对 `heroes-design.md` 进行武将平衡首轮评审
 - [ ] 对 `cards-design.md` 继续扩展到完整330张可配置条目
 - [ ] 原型验证：双排可读性、统帅压力、诅咒流强度
+- [ ] 对 `enemies-design.md` 执行 `/design-review`，验证行动序列平衡性
+- [ ] 敌人AI实现：行动公示系统、行动序列执行器、条件触发判断
+- [ ] 地域出现权重系统：根据 enemies.csv 地形偏好字段配置各地图敌人池
