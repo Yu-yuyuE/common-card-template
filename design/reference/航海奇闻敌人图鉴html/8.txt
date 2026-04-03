@@ -1,0 +1,221 @@
+<div id="read-article-holder" class="normal-article-holder read-article-holder"><p>咳咳，竞技场图鉴终于做出来了，顺便做做和竞技场相关的攻略。</p><p>（总算是搞定这难办的差事了……）</p><p>闲话还是少说，咱步入正题要紧。</p><p><span class="color-pink-02">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;镇楼图</span><br></p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/71bf2cd56882a2e97f8b3477c9256f8b09f361d3.png" class="cut-off-3" src="//i0.hdslb.com/bfs/article/71bf2cd56882a2e97f8b3477c9256f8b09f361d3.png@progressive.webp"></figure><figure class="img-box loaded" contenteditable="false" style="min-width: 628px; min-height: 444px;">
+      <div class="n-img-mask" style="width: 100%;height: 444px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/931f95cf9f5df0e301df2415c495ce1645e313ef.jpg@1256w_888h_!web-article-pic.avif" width="791" height="558" data-size="198593" class="normal-img" data-index="0" data-type="preview" src="//i0.hdslb.com/bfs/article/931f95cf9f5df0e301df2415c495ce1645e313ef.jpg@1256w_888h_!web-article-pic.avif" style="width: 628px; height: 444px;"><figcaption class="caption" contenteditable="false">可爱的天线宝宝.jpg</figcaption></figure><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p>竞技场有10个专属boss以及四个专属小怪，每十层一个专属boss。</p><p>大于30层后几乎每10层中都会有一两个航海的boss，有些boss没有（例如海怪）具体其他的我还不知道，基本航海见到的都差不多见过了。</p><p>竞技场过50层后会有三个强化选择。一共有五个，随机三个供选择。</p><p><span class="color-pink-02">收藏家：解锁所有遗物栏</span></p><p><span class="color-pink-02">战士：+2攻击力</span><br></p><p><span class="color-pink-02">守卫者：每次战斗开始获得15点护甲</span></p><p><span class="color-pink-02">铁匠：升级所有卡</span><br></p><p><span class="color-pink-02">巨人：+10点最大生命值，竞技场商人打折25％</span></p><p><span class="color-pink-02"><span class="color-default">（图我就不填充了，竞技场打着忒难受）</span><br></span></p><p><span class="color-pink-02">大副版本新增选项:</span><br></p><p><span class="color-pink-02">混血儿：每使用一张攻击卡-1点生命值。你的生命值小于50%时，+4攻击伤害。</span></p><figure class="img-box loaded" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/c623c32f93a49bc941cfc4180879b726c6f93003.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="1003160" class="normal-img" data-index="1" data-type="preview" src="//i0.hdslb.com/bfs/article/c623c32f93a49bc941cfc4180879b726c6f93003.jpg@1256w_580h_!web-article-pic.avif" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false"></figcaption></figure><p><span class="color-pink-02"></span><span class="color-pink-02">炮手：战斗开始时弹药上限+1，如果生命值低于50%则弹药上限+2。（最大值9）</span></p><figure class="img-box loaded" contenteditable="false" style="min-width: 628px; min-height: 283px;">
+      <div class="n-img-mask" style="width: 100%;height: 283px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/cade00fb919cbafc91aeefea456d1dcdc5c7eb08.jpg@1256w_566h_!web-article-pic.avif" width="1280" height="576" data-size="261358" class="normal-img" data-index="2" data-type="preview" style="width: 628px; height: 283px;" src="//i0.hdslb.com/bfs/article/cade00fb919cbafc91aeefea456d1dcdc5c7eb08.jpg@1256w_566h_!web-article-pic.avif"><figcaption class="caption" contenteditable="false"></figcaption></figure><p><span class="color-pink-02"></span><span class="color-pink-02">盗贼：获得一张战利品。（卡牌效果如图所示）</span></p><figure class="img-box loaded" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/2cbff0029146341ccc3a7d26142c8ee82bcd9d2d.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="1011032" class="normal-img" data-index="3" data-type="preview" style="width: 628px; height: 290px;" src="//i0.hdslb.com/bfs/article/2cbff0029146341ccc3a7d26142c8ee82bcd9d2d.jpg@1256w_580h_!web-article-pic.avif"><figcaption class="caption" contenteditable="false"></figcaption></figure><figure class="img-box loaded" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/10dfcff9f262e20be1cd615d5eaa93973f83247a.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="1010088" class="normal-img" data-index="4" data-type="preview" style="width: 628px; height: 290px;" src="//i0.hdslb.com/bfs/article/10dfcff9f262e20be1cd615d5eaa93973f83247a.jpg@1256w_580h_!web-article-pic.avif"><figcaption class="caption" contenteditable="false">竞技场专属卡</figcaption></figure><p><span class="color-pink-02"></span><br></p><p><span class="color-pink-02"><span class="color-default">竞技场还被禁了一部分卡，例如事件的卡或者在竞技场比较超模的卡……（例如老旧的钥匙 必杀技 等……）</span></span></p><p><span class="color-pink-02"><span class="color-default">具体我就不细说了。（实际上是忘了）</span></span></p><p><span class="color-pink-02"><span class="color-default"></span></span></p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p><span class="color-pink-02">boss部分：</span><span class="color-yellow-02"></span></p><p>十层boss：无名囚徒</p><figure class="img-box loaded" contenteditable="false" style="min-width: 273px; min-height: 307px;">
+      <div class="n-img-mask" style="width: 100%;height: 307px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/32fcde22d2df460a4f97b77e6d486234a5f242c5.jpg@!web-article-pic.avif" width="273" height="307" data-size="61993" class="normal-img" data-index="5" data-type="preview" style="width: 273px; height: 307px;" src="//i0.hdslb.com/bfs/article/32fcde22d2df460a4f97b77e6d486234a5f242c5.jpg@!web-article-pic.avif"><figcaption class="caption" contenteditable="false">无名囚徒（10层boss）</figcaption></figure><p>HP:180点</p><p>种族：人类种族。</p><p>明显特点：会扔诅咒。</p><p>简介：行动规律；获得三层愤怒→造成12点伤害→扔一张锁链到抽牌堆→增加10点护甲→造成8X2点伤害→施加两层脆弱→造成12点伤害→获得三层愤怒……</p><figure class="img-box" contenteditable="false" style="min-width: 279px; min-height: 309px;">
+      <div class="n-img-mask" style="width: 100%;height: 309px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/6685366bc5b8fea8b4af0faec4e1eea09fa76222.jpg@!web-article-pic.avif" width="279" height="309" data-size="62767" class="normal-img" data-index="6" data-type="preview" style="width: 279px; height: 309px;"><figcaption class="caption" contenteditable="false">这个样子说明要扔诅咒</figcaption></figure><p>（锁链，竞技场专属卡）</p><figure class="img-box" contenteditable="false" style="min-width: 375px; min-height: 301px;">
+      <div class="n-img-mask" style="width: 100%;height: 301px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/f52efd899f110257fcc9e5dc5c8cdd0e5636f490.jpg@!web-article-pic.avif" width="375" height="301" data-size="78436" class="normal-img" data-index="7" data-type="preview" style="width: 375px; height: 301px;"><figcaption class="caption" contenteditable="false">锁链</figcaption></figure><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p>二十层boss：露西·韦斯顿</p><figure class="img-box" contenteditable="false" style="min-width: 238px; min-height: 313px;">
+      <div class="n-img-mask" style="width: 100%;height: 313px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/901bf0e32d75ab2ed6a0b0d5e5fce15b8d9f3078.jpg@!web-article-pic.avif" width="238" height="313" data-size="56680" class="normal-img" data-index="8" data-type="preview" style="width: 238px; height: 313px;"><figcaption class="caption" contenteditable="false">露西·韦斯顿（20层boss）</figcaption></figure><p>HP：120点</p><p>种族：人类种族。</p><p>明显特点：自带一层闪避，回合开始获得一层闪避，会吸血。</p><p>简介：行动规律；造成10点伤害→造成1X5点伤害（并附带一层重伤）→造成5X3点伤害→造成10点……</p><figure class="img-box" contenteditable="false" style="min-width: 231px; min-height: 306px;">
+      <div class="n-img-mask" style="width: 100%;height: 306px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/9feddeb0d5e48e157fee3f4e87f5c70ce3214e98.jpg@!web-article-pic.avif" width="231" height="306" data-size="53364" class="normal-img" data-index="9" data-type="preview" style="width: 231px; height: 306px;"><figcaption class="caption" contenteditable="false">这个样子是代表要吸血</figcaption></figure><p>生命值低于25％时攻击附带50％生命偷取，并每回合造成15点伤害。（直到生命值大于25％）</p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p>三十层boss：冒牌冠军</p><figure class="img-box" contenteditable="false" style="min-width: 432px; min-height: 311px;">
+      <div class="n-img-mask" style="width: 100%;height: 311px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/b97b42be9fb8a55df0af5f60fa95ca1ecc9c1d9e.jpg@!web-article-pic.avif" width="432" height="311" data-size="94984" class="normal-img" data-index="10" data-type="preview" style="width: 432px; height: 311px;"><figcaption class="caption" contenteditable="false">冒牌冠军（30层boss）</figcaption></figure><p>HP：300点</p><p>种族：人类种族。</p><p>明显特点：出场自带一小弟，会扔诅咒。</p><p>简介：行动规律；扔一张破败到抽牌堆→造成15点伤害→施加三层虚弱→造成15点伤害→扔一张鱼骨到抽牌堆→造成15点伤害→施加三层脆弱→造成15点……</p><figure class="img-box" contenteditable="false" style="min-width: 361px; min-height: 323px;">
+      <div class="n-img-mask" style="width: 100%;height: 323px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/119a62b83d991849bbc988970c405ee069cea82e.jpg@!web-article-pic.avif" width="361" height="323" data-size="89006" class="normal-img" data-index="11" data-type="preview" style="width: 361px; height: 323px;"><figcaption class="caption" contenteditable="false">变身后的冒牌冠军</figcaption></figure><p>生命值低于50％后“变身”，（并破坏你所有护甲）获得100点护甲（持续一回合）。行动规律；</p><p>回复50点生命值→扔一张腐朽到抽牌堆一造成15点伤害→造成20点伤害→造成25点伤害→回复50点……</p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p>四十层boss：灵魂歌王</p><figure class="img-box" contenteditable="false" style="min-width: 582px; min-height: 302px;">
+      <div class="n-img-mask" style="width: 100%;height: 302px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/4b5481863a3b826acdbb8e5b1ac423a0e5f964e6.jpg@!web-article-pic.avif" width="582" height="302" data-size="122937" class="normal-img" data-index="12" data-type="preview" style="width: 582px; height: 302px;"><figcaption class="caption" contenteditable="false">灵魂歌王（40层boss，截图的时候有炽热戒指加成。原本是5）</figcaption></figure><p>HP：250点</p><p>种族：不死族。（骷髅）</p><p>明显特点：会减少你的生命上限，出场自带两小弟。（可召回）</p><p>简介：奇数减少你当前生命上限的50％，偶数回合造成两点伤害。（循环）</p><figure class="img-box" contenteditable="false" style="min-width: 254px; min-height: 364px;">
+      <div class="n-img-mask" style="width: 100%;height: 364px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/aecafbdff6b11e3cc493f9c8015fe5db1be8d313.jpg@!web-article-pic.avif" width="254" height="364" data-size="57197" class="normal-img" data-index="13" data-type="preview" style="width: 254px; height: 364px;"><figcaption class="caption" contenteditable="false">骷髅狗（竞技场专属小怪1）</figcaption></figure><p>HP：45点。</p><p>种族：不死族。</p><p>明显特点：死亡后被歌王召回时造成伤害+1增加护甲+1。</p><p>简介：回合开始随机执行一个行为；造成5点伤害/增加5点护甲。</p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p>五十层boss：诺恩</p><figure class="img-box" contenteditable="false" style="min-width: 479px; min-height: 244px;">
+      <div class="n-img-mask" style="width: 100%;height: 244px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/ce31ffb139efb0a9763c306f4dba55782bafa91f.jpg@!web-article-pic.avif" width="479" height="244" data-size="101352" class="normal-img" data-index="14" data-type="preview" style="width: 479px; height: 244px;"><figcaption class="caption" contenteditable="false">诺恩（50层boss）</figcaption></figure><p>HP：300点</p><p>种族：人类种族。</p><p>明显特点：出场自带俩小弟，（全部死亡时可召回，仅此一次）会扔诅咒。不会造成物理伤害。（进来时会有寒冷，不是永久天气会变）</p><p>简介：行动规律；造成12点法伤→扔一张冰封到抽牌堆→造成12点法伤→获得两层免疫并增加6点法术伤害→造成18点法伤→扔一张冰封……</p><p>（这个增伤我没测懂，我测了好几次并没有发现规律。只是大致知道他的增伤顺序；+6→+8→+12→+12→+12…）</p><figure class="img-box" contenteditable="false" style="min-width: 214px; min-height: 324px;">
+      <div class="n-img-mask" style="width: 100%;height: 324px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/285d9fc56c804666973295ce11cc4a8d9a80921b.jpg@!web-article-pic.avif" width="214" height="324" data-size="48916" class="normal-img" data-index="15" data-type="preview" style="width: 214px; height: 324px;"><figcaption class="caption" contenteditable="false">长柄斧骷髅（竞技场专属怪2）</figcaption></figure><p>HP：50点</p><p>种族：不死族。</p><p>明显特点：无。</p><p>简介：奇数回合造成16点伤害，偶数回合增加4点攻击力。（循环）</p><figure class="img-box" contenteditable="false" style="min-width: 208px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/d1aa6b7fe3815e541971ffaa2726b466a31cbfcb.jpg@!web-article-pic.avif" width="208" height="290" data-size="50924" class="normal-img" data-index="16" data-type="preview" style="width: 208px; height: 290px;"><figcaption class="caption" contenteditable="false">骷髅锤哥（竞技场专属怪3）</figcaption></figure><p>HP：30点</p><p>种族：不死族。</p><p>明显特点：每次攻击伤害翻倍。</p><p>简介：造成4点伤害，每次攻击后下回合伤害翻倍。（最高可达128）伤害达到128后伤害变为4的翻倍数。（循环）</p><p>每次循环结束减少一个最低值。（最高保留128）</p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p><span class="color-pink-02">重点考题：</span></p><p><span class="color-pink-02"><span class="color-default">竞技场一共有<span class="color-pink-02">11</span>个事件（没图见谅）分别是：</span></span><br></p><p><span class="color-pink-02"><span class="color-default">（每个十层里都会随机触发一个，有些仅会触发一次）</span></span></p><p><span class="color-pink-02">观众打赏：选择一张升级过的宝石。（红宝石 绿宝石 蓝宝石）<span class="color-default">（仅触发一次）</span></span></p><p><span class="color-pink-02">对手受伤：你的下一场战斗敌人出场时附带一层虚弱。</span></p><p><span class="color-pink-02">储存罐：+100银币。<span class="color-default">（仅触发一次）</span></span></p><p><span class="color-pink-02">大雾事件：下一场战斗开始时所有单位获得两层致盲。</span><br></p><p><span class="color-pink-02">旧伤复发：失去30％生命值。</span></p><p><span class="color-pink-02">喝多了：获得一个遗物，空酒瓶。<span class="color-default">（仅触发一次）</span></span></p><figure class="img-box" contenteditable="false" style="min-width: 400px; min-height: 303px;">
+      <div class="n-img-mask" style="width: 100%;height: 303px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/266eab9844369b5210fd798f155c8cdd48770b9d.jpg@!web-article-pic.avif" width="400" height="303" data-size="69008" class="normal-img" data-index="17" data-type="preview" style="width: 400px; height: 303px;"><figcaption class="caption" contenteditable="false">竞技场专属遗物，新版本的酒瓶无法移除。</figcaption></figure><p><span class="color-pink-02"></span>拿到后结束战斗后售价会变为0（消耗遗物共有特性并且本身他售价就不高），每场战斗开始时获得一张升级过的<span class="color-pink-02"></span><span class="color-pink-02"></span><span class="color-pink-02"></span><span class="color-pink-02"></span><span class="color-pink-02">醉酒上阵</span>到手牌。</p><p><span class="color-pink-02">死刑宣判：获得一张同名诅咒，死刑宣判。<span class="color-default">（仅触发一次）</span></span><br></p><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/c58f6a4e1c7b4668a100ae4a5be924452b527afc.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="645210" class="normal-img" data-index="18" data-type="preview" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false"></figcaption></figure><p><span class="color-pink-02"><span class="color-default"></span></span></p><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/4b24d0e4d747ffe8b641b5c002f978f8de203548.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="662601" class="normal-img" data-index="19" data-type="preview" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false"></figcaption></figure><p></p><p><span class="color-pink-02">30层必出事件：</span></p><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/b14db06e2bbdbd878a772b1b2e7e8ce9a94904fb.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="658618" class="normal-img" data-index="20" data-type="preview" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false"></figcaption></figure><p><span class="color-pink-02"></span>使用后需要解决连续三层的机械敌人。</p><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/2303c5303e49e9fcda33f50547c63e31d7c81e7b.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="939969" class="normal-img" data-index="21" data-type="preview" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false">类似于这种组合，就不一一展示了</figcaption></figure><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/f7c6deed64b356597fb5f139334b1c4cf3b21687.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="598139" class="normal-img" data-index="22" data-type="preview" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false"></figcaption></figure><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/d037224d012191d186766116023634b86be6f860.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="641241" class="normal-img" data-index="23" data-type="preview" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false">竞技场专属</figcaption></figure><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/d76e51a77457132c7f644b465420f941768ce722.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="598027" class="normal-img" data-index="24" data-type="preview" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false">竞技场专属</figcaption></figure><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/fac919b734ef972e4630d318402d9c5af7b074f8.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="889597" class="normal-img" data-index="25" data-type="preview" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false">竞技场专属</figcaption></figure><p><span class="color-pink-02">可</span><span class="color-pink-02">以获得以上三个奖励，结果可以通过sl来改变。</span><br></p><p><span class="color-pink-02"><span class="color-default">以下4个是50层后才可遇到的事件：</span></span></p><p></p><p><span class="color-pink-02"><span class="color-default">（全部都是仅触发一次的事件）</span></span></p><p><span class="color-pink-02">卑鄙的对手给你的饭菜里下毒：获得一张中毒。</span></p><p><span class="color-pink-02">寒冷事件：你的下一场战斗会有寒冷。（天气会变不是永久）</span></p><p><span class="color-pink-02">激动的观众冲了进来：解决两批双刀，各个地图的双刀都有一个。</span></p><p><span class="color-pink-02">60层必出事件：</span></p><p><span class="color-pink-02"></span></p><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/05767ef4103e51f0c09aa604e38fa289ba40f531.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="691385" class="normal-img" data-index="26" data-type="preview" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false">接上一个事件</figcaption></figure><p><span class="color-pink-02"></span></p><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/1474abbabb345467767ad296608352b362154d93.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="931675" class="normal-img" data-index="27" data-type="preview" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false"></figcaption></figure><p>这次要连续打败五层的机械敌人。</p><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/949dbfe06dc007dbcf5610cf727e6cff155e63ed.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="627089" class="normal-img" data-index="28" data-type="preview" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false"></figcaption></figure><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/620603a3cedbff2afd74e784c22bad9b467b016f.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="631509" class="normal-img" data-index="29" data-type="preview" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false">竞技场专属</figcaption></figure><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/889f955eb8f13a471b4b79ee8f603c270b925911.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="881715" class="normal-img" data-index="30" data-type="preview" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false">竞技场专属</figcaption></figure><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/5d39873cc36c80fdbd68b18b95c8a5090fb03223.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="887419" class="normal-img" data-index="31" data-type="preview" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false">竞技场专属</figcaption></figure><p><span class="color-pink-02">打完后获得以上三个遗物，也是可以通过sl来进行改变的。</span><br></p><p>（附加阅读：竞技场分别大于50层或70层后所有敌人出场自带5点/10点护甲并增加1点/3点攻击力）</p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p>六十层boss：宝藏猎人</p><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 354px;">
+      <div class="n-img-mask" style="width: 100%;height: 354px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/e026ef10db8209822b2639b57bd82f47b2c9fb4c.jpg@1256w_708h_!web-article-pic.avif" width="960" height="540" data-size="306122" class="normal-img" data-index="32" data-type="preview" style="width: 628px; height: 354px;"><figcaption class="caption" contenteditable="false">宝藏猎人（60层boss）</figcaption></figure><p>HP：444点</p><p>种族：人类种族。</p><p>明显特点：有一回合会穿透并具有25％的生命偷取。</p><p>简介：行动规律；造成当前同等生命值90％的穿透伤害并附带25％的生命偷取（由于四舍五入生命值低于5时会造成当前生命值同等伤害）→获得三层愤怒→造成30点伤害→破坏你所有护甲→造成30点伤害→造成当前同等生命值90％的穿透……</p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p>七十层boss：猴子兄弟</p><figure class="img-box" contenteditable="false" style="min-width: 613px; min-height: 309px;">
+      <div class="n-img-mask" style="width: 100%;height: 309px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/e14e9202c37bd267d5bd5a78fcaf7a9c3017a177.jpg@!web-article-pic.avif" width="613" height="309" data-size="153638" class="normal-img" data-index="33" data-type="preview" style="width: 613px; height: 309px;"><figcaption class="caption" contenteditable="false">猴子兄弟（70层boss）</figcaption></figure><p>HP：60/400/120。</p><p>种族：怪兽种族。</p><p>明显特点：中间那个有特殊行为~（沉重）小个猴子会扔诅咒。（都具有野性本能）</p><p>简介：</p><p>（就不单独拎出来一个个说了，一起说。行为规律会划分的清楚一点……）</p><p><span class="color-pink-02">小猴子行动规律</span>；扔一张失窃到抽牌堆→造成8点伤害→增加10点护甲→造成8点伤害→扔一张失窃……</p><p>野性本能：给自己回满血并扔一张失窃。</p><p><span class="color-pink-02">大猴子行动规律<span class="color-default"></span><span class="color-default">；造成13点伤害→塞满香蕉到手牌→造成13点伤害→群体增加12点护甲并获得两层愤怒→造成13点伤害→群体恢复12点生命值并增加3点攻击力→造成16点……（沉重）</span></span><br></p><p><span class="color-pink-02"><span class="color-default">野性本能：塞满毒香蕉</span></span>到手牌。</p><p><span class="color-pink-02"><span class="color-default"><span class="color-pink-02">香蕉船长行动规律<span class="color-default"></span><span class="color-default"></span><span class="color-default"><span class="color-default">；施加一层醉酒→造成9点伤害→造成9X2点伤害→造成9X3点伤害→施加一层醉酒……（他才是boss哦！）</span></span></span><br></span></span></p><p><span class="color-pink-02"><span class="color-default"><span class="color-pink-02"><span class="color-default"><span class="color-default">野性本能：群体增加四层愤怒。</span></span></span></span></span></p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p>八十层boss：断头</p><figure class="img-box" contenteditable="false" style="min-width: 252px; min-height: 309px;">
+      <div class="n-img-mask" style="width: 100%;height: 309px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/a40c0c831d0374633caf6ebcbdd5c48ecb0fbf14.jpg@!web-article-pic.avif" width="252" height="309" data-size="61769" class="normal-img" data-index="34" data-type="preview" style="width: 252px; height: 309px;"><figcaption class="caption" contenteditable="false">断头（80层boss）</figcaption></figure><p>HP：500点</p><p>种族：不死族。（虽然他有蟹爪但还是骷髅）</p><p>明显特点：在你的回合使用技能卡boss本回合伤害+1。</p><p>简介：行动规律；造成8X2点伤害→造成6X3点伤害→造成5X4点伤害→获得20点护甲并增加一点攻击力→造成9X2点……</p><p>（好像从70层后所有敌人护甲又增加了5，这个我没注意不太清楚）</p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p>九十层boss：炼魂女巫</p><figure class="img-box" contenteditable="false" style="min-width: 610px; min-height: 312px;">
+      <div class="n-img-mask" style="width: 100%;height: 312px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/dd888eb67b515ca72a51a1212a8aa03c4e28c446.jpg@!web-article-pic.avif" width="610" height="312" data-size="135938" class="normal-img" data-index="35" data-type="preview" style="width: 610px; height: 312px;"><figcaption class="caption" contenteditable="false">炼魂女巫（90层boss）</figcaption></figure><p>HP：250点（统一）</p><p>种族：幽灵种族。</p><p>明显特点：会塞诅咒，攻击方式特殊。</p><p>（造成50伤害时掉血减少伤害，造成0伤害时掉血增加伤害）</p><p>如果分不清可以看她的动作。</p><p>张开双臂的是进攻，双手叉腰的是防守，弓背双手放在腰间的是增益/扔诅咒。</p><p>简介：</p><p><span class="color-pink-02">一号女巫行动规律</span>；造成50点伤害→获得两层免疫→造成0点伤害→造成50点伤害→扔一张中毒到抽牌堆→造成50……</p><p><span class="color-pink-02">二号女巫行动规律<span class="color-default">；造成0点伤害→造成50点伤害→扔一张中毒到抽牌堆→造成50点伤害→造成0……<span class="color-default"></span></span></span><br></p><p><span class="color-pink-02"><span class="color-default"><span class="color-default"><span class="color-pink-02">三号女巫行动规律<span class="color-default"></span><span class="color-default"></span><span class="color-default"></span><span class="color-default">；扔一张中毒到抽牌堆→造成0点伤害→造成50点伤害→获得两层免疫→<span class="color-default">造成50点伤害→扔一张中毒……</span></span></span></span></span></span></p><p><span class="color-pink-02"><span class="color-default"><span class="color-default"><span class="color-pink-02"><span class="color-default"><span class="color-default">（中毒，竞技场专属卡）</span></span></span></span></span></span></p><figure class="img-box" contenteditable="false" style="min-width: 355px; min-height: 316px;">
+      <div class="n-img-mask" style="width: 100%;height: 316px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/a8c06837eb3f4828e347f617de652fb6b867ed42.jpg@!web-article-pic.avif" width="355" height="316" data-size="67015" class="normal-img" data-index="36" data-type="preview" style="width: 355px; height: 316px;"><figcaption class="caption" contenteditable="false">中毒</figcaption></figure><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p><br></p><p><span class="color-pink-02"><span class="color-default"><span class="color-default">一百层boss：</span></span></span></p><figure class="img-box" contenteditable="false" style="min-width: 419px; min-height: 312px;">
+      <div class="n-img-mask" style="width: 100%;height: 312px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/849110d59d3500d278842cba92abd01e2d3b2875.jpg@!web-article-pic.avif" width="419" height="312" data-size="100374" class="normal-img" data-index="37" data-type="preview" style="width: 419px; height: 312px;"><figcaption class="caption" contenteditable="false">巨人（100层boss）</figcaption></figure><p><span class="color-pink-02"><span class="color-default"><span class="color-default"></span></span></span>HP：800点<br></p><p>种族：人类种族。</p><p>明显特点：出场自带300点护甲，被<span class="color-pink-02"></span><span class="color-pink-02"></span><span class="color-pink-02">眩晕<span class="color-default"></span><span class="color-default"></span><span class="color-default">时增加50点护甲。（沉重）</span></span></p><p>破甲后（必须是被打爆的，失去护甲的卡不会跳回合）强制结束你的回合，半血后也会强制结束回合。（如果同事击败护甲和一半生命值仅跳一次）</p><figure class="img-box" contenteditable="false" style="min-width: 377px; min-height: 307px;">
+      <div class="n-img-mask" style="width: 100%;height: 307px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/c6f16fdeec1b7d6085e3f3707ac5d67ec4dfbd5c.jpg@!web-article-pic.avif" width="377" height="307" data-size="92274" class="normal-img" data-index="38" data-type="preview" style="width: 377px; height: 307px;"><figcaption class="caption" contenteditable="false">破甲后的巨人</figcaption></figure><p>半血后巨人背上的小个子会跳下来，巨人死亡时小个子下回合会逃跑。（这个是达成成就的办法）</p><figure class="img-box" contenteditable="false" style="min-width: 606px; min-height: 303px;">
+      <div class="n-img-mask" style="width: 100%;height: 303px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/5c7086f598c6069bb82c96dbbbdefce68403d2f4.jpg@!web-article-pic.avif" width="606" height="303" data-size="132779" class="normal-img" data-index="39" data-type="preview" style="width: 606px; height: 303px;"><figcaption class="caption" contenteditable="false">半血后的巨人以及小个子</figcaption></figure><p>（关于竞技场成就我会找时间做成专栏发布）</p><p>简介：</p><p><span class="color-pink-02">正常巨人的行动规律<span class="color-default">；造成8X2点伤害→扔两张背叛堆到抽牌堆→造成8X2点伤害→增加20点护甲→造成8X2点……（每回合开始获得一层免疫）</span></span></p><p><span class="color-pink-02"><span class="color-default"><span class="color-pink-02">破甲后巨人的行动规律<span class="color-default">；造成9X2点伤害→造成9X2点伤害→造成9X2点伤害→恢复20点生命值并获得两层愤怒→造成11X2点……（破甲后伤害+1，每隔三回合增加3点攻击力。攻击附带一层虚弱）</span></span><br></span></span></p><p><span class="color-pink-02"><span class="color-default"><span class="color-pink-02"><span class="color-default"><span class="color-pink-02">半血后巨人的行动规律<span class="color-default">；造成16点伤害→造成13X2点伤害→造成9X4点伤害→造成18点伤害→恢复20点生命值获得两层愤怒并增加2点攻击力→造成15X2点……</span></span></span></span></span></span></p><figure class="img-box" contenteditable="false" style="min-width: 303px; min-height: 424px;">
+      <div class="n-img-mask" style="width: 100%;height: 424px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/8483bbdcf9e4af15114f085e46e8cb8a78fd4acb.jpg@!web-article-pic.avif" width="303" height="424" data-size="71797" class="normal-img" data-index="40" data-type="preview" style="width: 303px; height: 424px;"><figcaption class="caption" contenteditable="false">小个子（也算半个boss）</figcaption></figure><p><span class="color-pink-02"><span class="color-default"><span class="color-pink-02"><span class="color-default"><span class="color-pink-02"><span class="color-default"></span></span></span></span></span></span>HP：100点</p><p>种族：人类种族。</p><p>明显特点：每次回合开始时获得一层闪避，会扔诅咒。每受到一次伤害巨人增加1点攻击力。</p><p>简介：行动规律；扔一张背叛到抽牌堆→破坏你所有护甲→施加一层脆弱→群体增加2层愤怒扔一张背叛……</p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p>50层以后出现的竞技场专属怪：自爆骷髅</p><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 354px;">
+      <div class="n-img-mask" style="width: 100%;height: 354px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/7e258df67aebabb8d6d5d1901d792a68ea856787.jpg@1256w_708h_!web-article-pic.avif" width="960" height="540" data-size="324222" class="normal-img" data-index="41" data-type="preview" style="width: 628px; height: 354px;"><figcaption class="caption" contenteditable="false">自爆骷髅（竞技场专属怪4）</figcaption></figure><p>HP：40</p><p>种族：不死族。</p><p>明显特点：自带10点护甲以及三层免疫，物理伤害免疫。</p><p>简介：前两回合会偷你两张卡，第三回合造成同等于当前生命值一样的伤害并死亡。（自爆后被偷走的卡会回到手牌）</p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p>竞技场事件新增加的两个竞技场专属敌人：</p><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 290px;">
+      <div class="n-img-mask" style="width: 100%;height: 290px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/1474abbabb345467767ad296608352b362154d93.jpg@1256w_580h_!web-article-pic.avif" width="2340" height="1080" data-size="931675" class="normal-img" data-index="42" data-type="preview" style="width: 628px; height: 290px;"><figcaption class="caption" contenteditable="false">最后面那个怪</figcaption></figure><p>位于末尾的敌人，小要塞。</p><p>种族：机械族。</p><p>特点：倒计时结束后造成15点伤害。（竞技场后50敌人+1攻击力所以实际是16）</p><p>行动规律：</p><p>造成10点伤害→获得10点护甲 循环</p><figure class="img-box" contenteditable="false" style="min-width: 628px; min-height: 354px;">
+      <div class="n-img-mask" style="width: 100%;height: 354px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/04d5d3f84dd1c63ff92317b1cdbc20185d2b5524.jpg@1256w_708h_!web-article-pic.avif" width="960" height="540" data-size="245442" class="normal-img" data-index="43" data-type="preview" style="width: 628px; height: 354px;"><figcaption class="caption" contenteditable="false">事件专属敌人</figcaption></figure><p>海胆寄居蟹</p><p>种族：怪兽。</p><p>能力：收到攻击对目标施加三层重伤。</p><p>行为：无。</p><p>野性本能：无。（没有任何效果）</p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/db75225feabec8d8b64ee7d3c7165cd639554cbc.png" class="cut-off-4" src="//i0.hdslb.com/bfs/article/db75225feabec8d8b64ee7d3c7165cd639554cbc.png@progressive.webp"></figure><p>基本上都说完了，关于推荐卡组或者怎么活的更久之类的……</p><p>我就不多说了，各有各的玩法。注意事项嘛……</p><p>建议带1~2张左右状态卡。</p><p>卡组大于20张弹药至少3~5张。</p><p>得有足够的法术伤害，以及回血保命手段。</p><p>尽量一个流派走到底，卡组别太杂。</p><p>后面别玩消耗战，敌人越强越不适合拖拖拉拉。</p><p>（当然，以上仅为参考。小伙伴如果有更好的方案或者套路可以在评论区分享哦！）</p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/db75225feabec8d8b64ee7d3c7165cd639554cbc.png" class="cut-off-4" src="//i0.hdslb.com/bfs/article/db75225feabec8d8b64ee7d3c7165cd639554cbc.png@progressive.webp"></figure><p>感谢观看，</p><p>我是咸鱼小偷，一条不会游泳的鱼……</p><p>我们下期再见，拜( •̥́ ˍ •̀ू )</p><p>官方QQ群：832659107</p><p>（下一期专栏讲竞技场成就攻略）</p><p>尽请期待吧！</p></div>

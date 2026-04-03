@@ -1,0 +1,136 @@
+<div id="read-article-holder" class="normal-article-holder read-article-holder"><p>想了想，还是在下次大更新之前做了吧。</p><p>好歹得有五期，起码能在更新前做一半出来……</p><p>事先声明：本图典只是娱乐，内不含有攻略。只是单纯提出特点，并非详细内容。</p><p>（现在成纯攻略了，开始重做了。）</p><p><span class="color-default"></span></p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p><span class="color-pink-02">港湾小怪篇（叫啥随便起反正小怪没名字）：</span></p><p><span class="color-pink-02"><span class="color-default"></span></span></p><figure class="img-box loaded" contenteditable="false" style="min-width: 228px; min-height: 322px;">
+      <div class="n-img-mask" style="width: 100%;height: 322px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/4ffc37b3d6d47e319fcade964ca8114bc44f68fb.jpg@!web-article-pic.avif" width="228" height="322" data-size="39814" class="normal-img" data-index="0" data-type="preview" src="//i0.hdslb.com/bfs/article/4ffc37b3d6d47e319fcade964ca8114bc44f68fb.jpg@!web-article-pic.avif" style="width: 228px; height: 322px;"><figcaption class="caption" contenteditable="false">酒瓶哥</figcaption></figure><p>种族：人类。</p><p>特点：无。</p><p>行动规律：</p><p>回合开始时随机执行其一 造成5点伤害/获得5点护甲/造成8点伤害。</p><figure class="img-box loaded" contenteditable="false" style="min-width: 226px; min-height: 310px;">
+      <div class="n-img-mask" style="width: 100%;height: 310px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/3728e4bd5df575f9010eea30a6cdf7ed5aeae501.jpg@!web-article-pic.avif" width="226" height="310" data-size="40301" class="normal-img" data-index="1" data-type="preview" src="//i0.hdslb.com/bfs/article/3728e4bd5df575f9010eea30a6cdf7ed5aeae501.jpg@!web-article-pic.avif" style="width: 226px; height: 310px;"><figcaption class="caption" contenteditable="false">独眼小鬼头</figcaption></figure><p>种族：人类。</p><p>特点：无。</p><p>行动规律：</p><p>回合开始随机执行其一&nbsp;施加一层虚弱/造成4点伤害并施加一层虚弱/造成7点伤害。</p><figure class="img-box loaded" contenteditable="false" style="min-width: 191px; min-height: 302px;">
+      <div class="n-img-mask" style="width: 100%;height: 302px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/033182c7d066bc11024a42659bc7b6851e90697e.jpg@!web-article-pic.avif" width="191" height="302" data-size="38998" class="normal-img" data-index="2" data-type="preview" style="width: 191px; height: 302px;" src="//i0.hdslb.com/bfs/article/033182c7d066bc11024a42659bc7b6851e90697e.jpg@!web-article-pic.avif"><figcaption class="caption" contenteditable="false">炮哥</figcaption></figure><p>种族：人类。</p><p>特点：无。</p><p>行动规律：</p><p>每隔两回合造成一次25点伤害。</p><figure class="img-box loaded" contenteditable="false" style="min-width: 230px; min-height: 317px;">
+      <div class="n-img-mask" style="width: 100%;height: 317px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/b3a9aa8d5a1870a14817484de9e900fc16b1ab37.jpg@!web-article-pic.avif" width="230" height="317" data-size="43916" class="normal-img" data-index="3" data-type="preview" style="width: 230px; height: 317px;" src="//i0.hdslb.com/bfs/article/b3a9aa8d5a1870a14817484de9e900fc16b1ab37.jpg@!web-article-pic.avif"><figcaption class="caption" contenteditable="false">胖子</figcaption></figure><p>种族：人类。</p><p>特点：沉重。</p><p>行动规律：</p><p>回合开始时随机执行其一&nbsp;造成6点伤害/使随机敌人增加5点护甲。</p><figure class="img-box loaded" contenteditable="false" style="min-width: 197px; min-height: 319px;">
+      <div class="n-img-mask" style="width: 100%;height: 319px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/1afb0c8fe95496c83f7288e8dfaf0fc396b79f6c.jpg@!web-article-pic.avif" width="197" height="319" data-size="39563" class="normal-img" data-index="4" data-type="preview" style="width: 197px; height: 319px;" src="//i0.hdslb.com/bfs/article/1afb0c8fe95496c83f7288e8dfaf0fc396b79f6c.jpg@!web-article-pic.avif"><figcaption class="caption" contenteditable="false">奶妈小老头</figcaption></figure><p>种族：人类。</p><p>特点：无。</p><p>行动规律：</p><p>造成4点伤害并随机施加一层（虚弱/脆弱）→所有敌人回7血…… 循环</p><figure class="img-box loaded" contenteditable="false" style="min-width: 214px; min-height: 323px;">
+      <div class="n-img-mask" style="width: 100%;height: 323px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/0af784fbde62ab1c66b275e853fe64627479c8f8.jpg@!web-article-pic.avif" width="214" height="323" data-size="40031" class="normal-img" data-index="5" data-type="preview" style="width: 214px; height: 323px;" src="//i0.hdslb.com/bfs/article/0af784fbde62ab1c66b275e853fe64627479c8f8.jpg@!web-article-pic.avif"><figcaption class="caption" contenteditable="false">窃贼</figcaption></figure><p>种族：人类。</p><p>特点：每次造成伤害都会偷取10点银币，击败则还回所偷取的所有银币。会逃跑。</p><p>行动规律：</p><p>造成5点伤害→造成6点伤害→造成7点伤害→造成8点伤害→获得5点护甲→逃跑并失去被偷走的所有银币。</p><figure class="img-box loaded" contenteditable="false" style="min-width: 234px; min-height: 312px;">
+      <div class="n-img-mask" style="width: 100%;height: 312px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/989f6ba82239644847fefb39c85949fcc46d745f.jpg@!web-article-pic.avif" width="234" height="312" data-size="44476" class="normal-img" data-index="6" data-type="preview" style="width: 234px; height: 312px;" src="//i0.hdslb.com/bfs/article/989f6ba82239644847fefb39c85949fcc46d745f.jpg@!web-article-pic.avif"><figcaption class="caption" contenteditable="false">巨石墙森</figcaption></figure><p>种族：人类。</p><p>特点：无。</p><p>行动规律：</p><p>使所有敌人获得6点护甲→造成8点伤害→造成8点伤害…… 循环</p><figure class="img-box loaded" contenteditable="false" style="min-width: 209px; min-height: 306px;">
+      <div class="n-img-mask" style="width: 100%;height: 306px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/5f3cf3c305d3b4a4f2b197625ae85a6dee842d81.jpg@!web-article-pic.avif" width="209" height="306" data-size="41254" class="normal-img" data-index="7" data-type="preview" style="width: 209px; height: 306px;" src="//i0.hdslb.com/bfs/article/5f3cf3c305d3b4a4f2b197625ae85a6dee842d81.jpg@!web-article-pic.avif"><figcaption class="caption" contenteditable="false">厨子</figcaption></figure><p>种族：人类。</p><p>特点：无。</p><p>行动规律：</p><p>使随机一名敌人获得2层愤怒→造成6点伤害→给血量最少的敌人回复12点生命值…… 循环</p><figure class="img-box loaded" contenteditable="false" style="min-width: 226px; min-height: 313px;">
+      <div class="n-img-mask" style="width: 100%;height: 313px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/627cc2c8bccb016c07403ffe35e1ae8a860e8df4.jpg@!web-article-pic.avif" width="226" height="313" data-size="42857" class="normal-img" data-index="8" data-type="preview" style="width: 226px; height: 313px;" src="//i0.hdslb.com/bfs/article/627cc2c8bccb016c07403ffe35e1ae8a860e8df4.jpg@!web-article-pic.avif"><figcaption class="caption" contenteditable="false">打鱼船员</figcaption></figure><p>种族：人类。</p><p>特点：会扔诅咒。</p><p>行动规律：</p><p>造成10点伤害→塞一张朽木到手牌→造成10点伤害→造成10点伤害→塞一张朽木到手牌……&nbsp;循环</p><p>（最多塞一张到手牌，多个的时候多余的扔进抽牌堆）</p><figure class="img-box loaded" contenteditable="false" style="min-width: 219px; min-height: 339px;">
+      <div class="n-img-mask" style="width: 100%;height: 339px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/c347629be7aa53c9ffcdeb8cfc7dec4cf64252d6.jpg@!web-article-pic.avif" width="219" height="339" data-size="44234" class="normal-img" data-index="9" data-type="preview" style="width: 219px; height: 339px;" src="//i0.hdslb.com/bfs/article/c347629be7aa53c9ffcdeb8cfc7dec4cf64252d6.jpg@!web-article-pic.avif"><figcaption class="caption" contenteditable="false">短刀哥</figcaption></figure><p>种族：人类。</p><p>特点：自带20点护甲，有护甲时伤害+3。</p><p>行动规律：</p><p>造成4x2点伤害→获得15点护甲→造成4x3点伤害→获得10点护甲……&nbsp; 循环</p><figure class="img-box loaded" contenteditable="false" style="min-width: 224px; min-height: 317px;">
+      <div class="n-img-mask" style="width: 100%;height: 317px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/0391f5169eac134e11bcf2318513c33414039e71.jpg@!web-article-pic.avif" width="224" height="317" data-size="44778" class="normal-img" data-index="10" data-type="preview" style="width: 224px; height: 317px;" src="//i0.hdslb.com/bfs/article/0391f5169eac134e11bcf2318513c33414039e71.jpg@!web-article-pic.avif"><figcaption class="caption" contenteditable="false">酒桶兄</figcaption></figure><p>种族：人类。</p><p>特点：沉重。</p><p>行动规律：</p><p>获得10点护甲→并获得2层醉酒→造成6点伤害并施加一层醉酒→造成8点伤害……&nbsp;循环</p><figure class="img-box" contenteditable="false" style="min-width: 205px; min-height: 319px;">
+      <div class="n-img-mask" style="width: 100%;height: 319px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/f23e653a9ff02cd91b3bc5943592e352203a1acd.jpg@!web-article-pic.avif" width="205" height="319" data-size="39395" class="normal-img" data-index="11" data-type="preview" style="width: 205px; height: 319px;"><figcaption class="caption" contenteditable="false">双刀哥</figcaption></figure><p>种族：人类。</p><p>特点：每次攻击结束下次攻击伤害增加1点。</p><p>行动规律：</p><p>1x5…… 循环</p><figure class="img-box" contenteditable="false" style="min-width: 235px; min-height: 311px;">
+      <div class="n-img-mask" style="width: 100%;height: 311px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/11d9d4789249727ded6609c276b6bb00512ae6de.jpg@!web-article-pic.avif" width="235" height="311" data-size="39607" class="normal-img" data-index="12" data-type="preview" style="width: 235px; height: 311px;"><figcaption class="caption" contenteditable="false">黑人兄弟</figcaption></figure><p>种族：人类。</p><p>特点：无。</p><p>行动规律：</p><p>造成8点伤害→获得10点护甲并向前移动一格……（循环直至最前排）</p><p>然后行动规律改为：</p><p>&nbsp;造成8点伤害→造成8点伤害→获得10点护甲……&nbsp;循环</p><figure class="img-box" contenteditable="false" style="min-width: 266px; min-height: 286px;">
+      <div class="n-img-mask" style="width: 100%;height: 286px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/4b8bd4bfa414bf42e1f764953629b2810ddca22b.jpg@!web-article-pic.avif" width="266" height="286" data-size="39897" class="normal-img" data-index="13" data-type="preview" style="width: 266px; height: 286px;"><figcaption class="caption" contenteditable="false">穿透海盗</figcaption></figure><p>种族：人类。</p><p>特点：攻击具有穿透效果。</p><p>行动规律：</p><p>造成6点伤害造成&nbsp;5x2点伤害→获得两层愤怒……&nbsp;循环</p><figure class="img-box" contenteditable="false" style="min-width: 200px; min-height: 316px;">
+      <div class="n-img-mask" style="width: 100%;height: 316px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/d0fd7aff8f8ef80bad37b356aa237e1705d2067b.jpg@!web-article-pic.avif" width="200" height="316" data-size="37683" class="normal-img" data-index="14" data-type="preview" style="width: 200px; height: 316px;"><figcaption class="caption" contenteditable="false">琵琶哥</figcaption></figure><p>种族：人类</p><p>特点：会扔诅咒。</p><p>行动规律：</p><p>扔一张尖刺海胆到抽牌堆→使所有敌人回复5点生命值并获得1层愤怒……&nbsp; 循环</p><figure class="img-box" contenteditable="false" style="min-width: 197px; min-height: 311px;">
+      <div class="n-img-mask" style="width: 100%;height: 311px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/adb112de48820e9b013a564a876d76e042080757.jpg@!web-article-pic.avif" width="197" height="311" data-size="37002" class="normal-img" data-index="15" data-type="preview" style="width: 197px; height: 311px;"><figcaption class="caption" contenteditable="false">双枪老船长</figcaption></figure><p>种族：人类。</p><p>特点：每次被攻击时增加一点攻击力。</p><p>行动规律：</p><p>造成4点伤害→造成4x2点伤害→造成4x3点伤害…… 循环</p><figure class="img-box" contenteditable="false" style="min-width: 246px; min-height: 333px;">
+      <div class="n-img-mask" style="width: 100%;height: 333px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/15f5e22bf70640665ba5865eb43c2f956ebaee79.jpg@!web-article-pic.avif" width="246" height="333" data-size="44684" class="normal-img" data-index="16" data-type="preview" style="width: 246px; height: 333px;"><figcaption class="caption" contenteditable="false">捕捞人</figcaption></figure><p>种族：人类。</p><p>特点：每次攻击使目标失去所有护甲。</p><p>行动规律：</p><p>造成1点伤害并施加一层虚弱→造成1点伤害并施加一层致盲→造成1x4并增加一点攻击力…… 循环</p><figure class="img-box" contenteditable="false" style="min-width: 261px; min-height: 310px;">
+      <div class="n-img-mask" style="width: 100%;height: 310px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/eaf2207f7a6a233fa20124e3da210a86bbf6339a.jpg@!web-article-pic.avif" width="261" height="310" data-size="48302" class="normal-img" data-index="17" data-type="preview" style="width: 261px; height: 310px;"><figcaption class="caption" contenteditable="false">尖刺护甲</figcaption></figure><p>种族：人类。</p><p>特点：自带10点护甲，有护甲的时候受到物理伤害反伤5点伤害。</p><p>行动规律：</p><p>获得15点护甲→造成6点伤害→造成7点伤害→造成8点伤害……&nbsp;循环（每造成一次伤害，下次攻击加1点攻击力。）</p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p><span class="color-pink-02">港湾boss篇：</span><br></p><p><span class="color-pink-02"><span class="color-default">图一boss；</span></span></p><figure class="img-box" contenteditable="false" style="min-width: 491px; min-height: 358px;">
+      <div class="n-img-mask" style="width: 100%;height: 358px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/94be4b1699675b8a546a5f105c764e95b5d0874b.jpg@!web-article-pic.avif" width="491" height="358" data-size="104890" class="normal-img" data-index="18" data-type="preview" style="width: 491px; height: 358px;"><figcaption class="caption" contenteditable="false">胖胖</figcaption></figure><p>HP：100点。</p><p>种族：人类。</p><p>特点：自带30点护甲和一个小弟。</p><p>行动规律：</p><p>造成8点伤害→造成2x3点伤害→造成8点伤害→增加2点攻击力……&nbsp;循环（没盾的时候下回合增加20盾和2点攻击力并获得一层免疫）</p><figure class="img-box" contenteditable="false" style="min-width: 398px; min-height: 317px;">
+      <div class="n-img-mask" style="width: 100%;height: 317px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/c194e4322ddf6a3d199d24a0f4dfa1cdebfd4733.jpg@!web-article-pic.avif" width="398" height="317" data-size="80921" class="normal-img" data-index="19" data-type="preview" style="width: 398px; height: 317px;"><figcaption class="caption" contenteditable="false">贝尔</figcaption></figure><p>HP：180点。</p><p>种族：人类。</p><p>特点：自带一个小弟，半血后狂暴。</p><p>行动规律：</p><p>造成5点伤害→造成3x2点伤害→获得15点护甲→增加2点攻击力……&nbsp; 循环</p><p>狂暴前一回合：使你失去所有护甲。</p><p>狂暴：</p><p>造成7点伤害并施加2层虚弱→造成4x2点伤害→获得一层愤怒……&nbsp; 循环</p><p>（每次受到伤害时增加一点攻击力。）</p><figure class="img-box" contenteditable="false" style="min-width: 327px; min-height: 326px;">
+      <div class="n-img-mask" style="width: 100%;height: 326px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/42e055f2486d8957651bc4b6d1327d1b3356d088.jpg@!web-article-pic.avif" width="327" height="326" data-size="68382" class="normal-img" data-index="20" data-type="preview" style="width: 327px; height: 326px;"><figcaption class="caption" contenteditable="false">巨锚汉克</figcaption></figure><p>HP：180点。</p><p>种族：人类</p><p>特点：沉重。</p><p>行动规律：</p><p>施加三层脆弱→空一回合→造成30点伤害→造成5点伤害→获得10护甲并增加5点攻击力…… 循环</p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p>图二boss；</p><figure class="img-box" contenteditable="false" style="min-width: 328px; min-height: 309px;">
+      <div class="n-img-mask" style="width: 100%;height: 309px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/f1fec316cbffc4967dad932ae90ca42bb9a04e48.jpg@!web-article-pic.avif" width="328" height="309" data-size="67181" class="normal-img" data-index="21" data-type="preview" style="width: 328px; height: 309px;"><figcaption class="caption" contenteditable="false">巴拉克</figcaption></figure><p>HP：210点。</p><p>种族：人类。</p><p>特点：自带25点护甲和5层免疫。每次造成同等于当前护甲值的伤害。</p><p>行动规律：</p><p>造成同等于当前护甲伤害→获得30点护甲……&nbsp;循环（每次获得护甲下一次额外+5）</p><figure class="img-box" contenteditable="false" style="min-width: 305px; min-height: 319px;">
+      <div class="n-img-mask" style="width: 100%;height: 319px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/f35ded5884021659b167362904bdd914be3ab70f.jpg@!web-article-pic.avif" width="305" height="319" data-size="70737" class="normal-img" data-index="22" data-type="preview" style="width: 305px; height: 319px;"><figcaption class="caption" contenteditable="false">尖刺豪猪</figcaption></figure><p>HP：180点。</p><p>种族：人类。</p><p>特点：自带50点护甲。每次对他造成物理伤害时都会被施加一层重伤。</p><p>行动规律：</p><p>造成5x2点伤害→获得5点护甲→施加5层重伤→获得10点护甲并获得一层标记……循环</p><figure class="img-box" contenteditable="false" style="min-width: 432px; min-height: 310px;">
+      <div class="n-img-mask" style="width: 100%;height: 310px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/2e3be8790688d44cf0cd33e0502d8daaeade8d0f.jpg@!web-article-pic.avif" width="432" height="310" data-size="91059" class="normal-img" data-index="23" data-type="preview" style="width: 432px; height: 310px;"><figcaption class="caption" contenteditable="false">霍达兄弟</figcaption></figure><p><span class="color-pink-02">前排弟弟：</span><br></p><p>HP：150点。</p><p>种族：人类。</p><p>特点：另一位死亡时狂暴。</p><p>行动规律：</p><p>造成10点伤害→造成10点伤害→造成15点伤害→造成15点伤害……&nbsp;循环</p><p>狂暴前一回合：回复50点生命值。</p><p>狂暴：</p><p>造成14x2点伤害造成→14x2点伤害→空一回合→造成29点伤害并施加2层脆弱…… 循环</p><p><span class="color-pink-02">后排哥哥：</span><br></p><p><span class="color-pink-02"><span class="color-default">HP：80点。</span><br></span></p><p><span class="color-pink-02"><span class="color-default">种族：人类。</span></span></p><p><span class="color-pink-02"><span class="color-default">特点：无。</span></span></p><p><span class="color-pink-02"><span class="color-default">行动规律：</span></span></p><p>所有敌人获得2层愤怒→所有敌人增加3点攻击力→所有敌人获得2层免疫并回复20点生命值→施加2层标记…… 循环</p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p><span class="color-default"><span class="color-default">图三boss；</span></span><br></p><p><span class="color-default"><span class="color-default"></span></span></p><figure class="img-box" contenteditable="false" style="min-width: 417px; min-height: 310px;">
+      <div class="n-img-mask" style="width: 100%;height: 310px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/fd414ffedb74a8ca34e9138c5659de8de86bf9cf.jpg@!web-article-pic.avif" width="417" height="310" data-size="80708" class="normal-img" data-index="24" data-type="preview" style="width: 417px; height: 310px;"><figcaption class="caption" contenteditable="false">传奇盗贼</figcaption></figure><p><span class="color-pink-02">前排白男</span>：</p><p>HP：200点。</p><p>特点：当另一位死亡时狂暴。每次攻击会偷取一发弹药，若没有弹药则施加2层标记。（狂暴偷2）</p><p>行动规律：</p><p>所有敌人获得10点护甲→造成15点伤害……&nbsp;循环</p><p>狂暴：和上述一样。</p><p><span class="color-pink-02">后排黑女</span>：</p><p>HP：200点。</p><p>特点：当另一位死亡时狂暴。</p><p>行动规律：</p><p>造成10点伤害→所有敌人获得一层愤怒→造成15点伤害→所有敌人获得一层愤怒……&nbsp;循环</p><p>狂暴：</p><p>造成15点伤害→增加15点护甲并获得一层愤怒→造成20点伤害→增加15先护甲并获得一层愤怒……循环</p><p>（每次攻击命中时施加1层标记）</p><figure class="img-box" contenteditable="false" style="min-width: 579px; min-height: 340px;">
+      <div class="n-img-mask" style="width: 100%;height: 340px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/530c3896906e485402e1953e2e6c76c9ee0de529.jpg@!web-article-pic.avif" width="579" height="340" data-size="125043" class="normal-img" data-index="25" data-type="preview" style="width: 579px; height: 340px;"><figcaption class="caption" contenteditable="false">指挥官</figcaption></figure><p>HP：240点。</p><p>种族：人类。</p><p>特点：出场自带2个小弟，有小弟在场时物理攻击免疫。</p><p>行动规律：</p><p>所有敌人获得两层愤怒→造成15点伤害→造成6x3点伤害……循环（当小弟死亡时下回合召回）</p><figure class="img-box" contenteditable="false" style="min-width: 406px; min-height: 319px;">
+      <div class="n-img-mask" style="width: 100%;height: 319px;">
+        <i class="iconfont icon--default-cover default-cover"></i>
+        <div class="n-img-reload" data-type="reload"></div>
+      </div>
+    <img data-src="//i0.hdslb.com/bfs/article/66789d5766b657ff38e1999fac7deb52f37eb679.jpg@!web-article-pic.avif" width="406" height="319" data-size="86617" class="normal-img" data-index="26" data-type="preview" style="width: 406px; height: 319px;"><figcaption class="caption" contenteditable="false">黑胡子罗杰斯</figcaption></figure><p>HP：300点。</p><p>种族：人类</p><p>特点：自带一宝箱。击败宝箱获得三张升级后的宝石。（红绿蓝）</p><p>行动规律：</p><p>造成10点伤害→施加3层愤怒→造成10点伤害获得一层免疫回复100点生命值并增加5点攻击力……&nbsp;循环 （箱子被击败时狂暴）</p><p>狂暴前一回合：获得4层愤怒。</p><p>狂暴：</p><p>造成20点伤害→造成15点伤害并施加2层脆弱冫造成25点伤害→获得30点护甲……&nbsp;循环</p><figure class="img-box loaded" contenteditable="false"><img data-src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png" class="cut-off-5" src="//i0.hdslb.com/bfs/article/4adb9255ada5b97061e610b682b8636764fe50ed.png@progressive.webp"></figure><p>这就是第一期的全部内容了。</p><p>港湾所有的小怪以及boss全部都在这里了……</p><p>后续会继续更新骷髅群岛等其他地图的图典。</p><p>以下是往期图鉴cv：</p><p>海盗港湾：本期</p><p>骷髅群岛：<a class="article-link" target="_blank" href="//www.bilibili.com/read/CV4330854?from=articleDetail">CV4330854</a></p><p>灵魂裂隙：<a class="article-link" target="_blank" href="//www.bilibili.com/read/CV4414393?from=articleDetail">CV4414393</a></p><p>失落之地：<a class="article-link" target="_blank" href="//www.bilibili.com/read/CV4546658?from=articleDetail">CV4546658</a></p><p>冰封北境：<a class="article-link" target="_blank" href="//www.bilibili.com/read/CV4805157?from=articleDetail">CV4805157</a></p><p>东方海域（人）：<a class="article-link" target="_blank" href="//www.bilibili.com/read/CV5731238?from=articleDetail">CV5731238</a></p><p>东方海域（幽）：<a class="article-link" target="_blank" href="//www.bilibili.com/read/cv5970285?from=articleDetail">CV5970285</a></p><p>如果还有什么不会的加入</p><p>《枪与香蕉》的官方QQ群：832659107</p><p>喜欢的朋友们点个赞。</p><p>我是咸鱼小偷，一条不会游泳的鱼……我们下期再见~</p></div>
