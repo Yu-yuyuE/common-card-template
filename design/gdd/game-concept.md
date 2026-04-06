@@ -112,19 +112,19 @@ v5关键更新：
 | **森林** | 灼烧伤害 +50% ；每回合结束对所有单位施加 1 层中毒（瘴气）                | 荆州、青州                            |
 | **水域** | 战斗开始时，所有单位获得 1 层滑倒                                        | 扬州、荆州、交州                      |
 | **沙漠** | 骑兵卡费用 -1（行军加速）；每回合结束对所有单位施加 1 层灼烧（烈日炙烤） | 凉州、幽州北部                        |
-| **关隘** | 守城方战斗开始获得 10 点护甲 + 2 层破甲                                  | 司州（虎牢/潼关）、益州（剑阁）、并州 |
-| **雪地** | 全体攻击伤害 -20%；灼烧每回合额外消减 1 层（严寒克制）                   | 幽州、并州（冬季战役）                |
+| **关隘** | 守城方战斗开始获得 10 点护甲 + 2 层坚守                                  | 司州（虎牢/潼关）、益州（剑阁）、并州 |
+| **雪地** | 战斗开始时，玩家获得 2 层冻伤；灼烧伤害 -50%                             | 幽州、并州（冬季战役）                |
 
 #### 天气类型
 
 > v2新增：雾
 
-| 天气   | 效果                                                                                                         |
-| ------ | ------------------------------------------------------------------------------------------------------------ |
-| **晴** | 无额外效果                                                                                                   |
-| **风** | 处于灼烧状态的单位，灼烧层数每两回合自然减少 1 层；同时每两回合对该单位周围未处于灼烧状态的单位施加 1 层灼烧 |
-| **雨** | 灼烧伤害 -50%                                                                                                |
-| **雾** | 所有单位初始获得 2 层盲目；弓兵卡伤害 -50%；近战攻击必定暴击（能见度低，肉搏混战）                           |
+| 天气   | 效果                                                                    |
+| ------ | ----------------------------------------------------------------------- |
+| **晴** | 无额外效果                                                              |
+| **风** | 处于灼烧状态的单位，每回合对该单位周围未处于灼烧状态的单位施加 1 层灼烧 |
+| **雨** | 灼烧每回合额外消减 1 层                                                 |
+| **雾** | 所有单位初始获得 2 层盲目                                               |
 
 ### 5) 卡牌升级与离场机制
 
@@ -251,17 +251,17 @@ v5关键更新：
 
 本项目设计数据分布在**八个** CSV 文件中，供引擎实现直接读取。**所有 CSV 均为 GDD 设计的结构化镜像，修改 GDD 时必须同步更新对应 CSV。**
 
-| CSV 文件                       | 路径                                       | 内容概述                                                                                                               | 依赖的 GDD 文档                     |
-| ------------------------------ | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| **attack_cards.csv**           | `design/detail/all_cards/attack_cards.csv` | 近战+远程攻击卡，编号 AC0001–AC0107（107张），含卡名、类型、费用、LV1/LV2 效果、特殊属性、是否移除、图鉴归属           | `cards-design.md`                   |
-| **skill_cards.csv**            | `design/detail/all_cards/skill_cards.csv`  | 技能卡，编号 SC0001–SC0080（80张），含护盾/抽牌/控制/诅咒/地形天气/兵种联动等功能类卡                                  | `cards-design.md`                   |
-| **troop_cards.csv**            | `design/detail/all_cards/troop_cards.csv`  | 兵种卡，编号 TC0001–TC0030（30张），5大类：步兵/骑兵/弓兵/谋士/盾兵，含地形联动、历史原型                              | `troop-cards-design.md`、`cards-design.md` |
-| **curse_cards.csv**            | `design/detail/all_cards/curse_cards.csv`  | 诅咒卡，编号 CC0001–（待创建），三种类型：抽到触发型/常驻牌库型/常驻手牌型                                             | `cards-design.md`                   |
-| **heroes_passive_skills.csv**  | `design/detail/heroes_passive_skills.csv`  | 所有武将的被动技能结构化数据（武将名、阵营、被动名称、被动效果），供引擎实现被动触发逻辑                               | `heroes-design.md`                  |
-| **heroes_exclusive_decks.csv** | `design/detail/heroes_exclusive_decks.csv` | 所有武将的专属卡组数据（卡名、费用、LV1/LV2 效果、使用后是否移除），含 Lv2 升级与离场机制                              | `heroes-design.md`                  |
-| **hero_campaign_maps.csv**     | `design/detail/hero_campaign_maps.csv`     | 所有武将的战役地图数据（序号、武将、阵营、战役名、所属州、地形、默认天气、历史背景），114条记录                        | `map-design.md`、`heroes-design.md` |
-| **enemies.csv**                | `design/detail/enemies.csv`                | 全部55名敌人的完整属性数据（编号、名称、级别、HP、护甲、兵种层、行动序列、速度、地形偏好），3级：普通/精英/强力        | `enemies-design.md`                 |
-| **enemy_actions.csv**          | `design/detail/enemy_actions.csv`          | 全部54种敌人行动库（编号、行动名、级别、效果、目标、数值参考、冷却回合、条件触发）                                     | `enemies-design.md`                 |
+| CSV 文件                       | 路径                                       | 内容概述                                                                                                        | 依赖的 GDD 文档                            |
+| ------------------------------ | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| **attack_cards.csv**           | `design/detail/all_cards/attack_cards.csv` | 近战+远程攻击卡，编号 AC0001–AC0107（107张），含卡名、类型、费用、LV1/LV2 效果、特殊属性、是否移除、图鉴归属    | `cards-design.md`                          |
+| **skill_cards.csv**            | `design/detail/all_cards/skill_cards.csv`  | 技能卡，编号 SC0001–SC0080（80张），含护盾/抽牌/控制/诅咒/地形天气/兵种联动等功能类卡                           | `cards-design.md`                          |
+| **troop_cards.csv**            | `design/detail/all_cards/troop_cards.csv`  | 兵种卡，编号 TC0001–TC0030（30张），5大类：步兵/骑兵/弓兵/谋士/盾兵，含地形联动、历史原型                       | `troop-cards-design.md`、`cards-design.md` |
+| **curse_cards.csv**            | `design/detail/all_cards/curse_cards.csv`  | 诅咒卡，编号 CC0001–（待创建），三种类型：抽到触发型/常驻牌库型/常驻手牌型                                      | `cards-design.md`                          |
+| **heroes_passive_skills.csv**  | `design/detail/heroes_passive_skills.csv`  | 所有武将的被动技能结构化数据（武将名、阵营、被动名称、被动效果），供引擎实现被动触发逻辑                        | `heroes-design.md`                         |
+| **heroes_exclusive_decks.csv** | `design/detail/heroes_exclusive_decks.csv` | 所有武将的专属卡组数据（卡名、费用、LV1/LV2 效果、使用后是否移除），含 Lv2 升级与离场机制                       | `heroes-design.md`                         |
+| **hero_campaign_maps.csv**     | `design/detail/hero_campaign_maps.csv`     | 所有武将的战役地图数据（序号、武将、阵营、战役名、所属州、地形、默认天气、历史背景），114条记录                 | `map-design.md`、`heroes-design.md`        |
+| **enemies.csv**                | `design/detail/enemies.csv`                | 全部55名敌人的完整属性数据（编号、名称、级别、HP、护甲、兵种层、行动序列、速度、地形偏好），3级：普通/精英/强力 | `enemies-design.md`                        |
+| **enemy_actions.csv**          | `design/detail/enemy_actions.csv`          | 全部54种敌人行动库（编号、行动名、级别、效果、目标、数值参考、冷却回合、条件触发）                              | `enemies-design.md`                        |
 
 ### 各 CSV 的引擎使用场景
 
