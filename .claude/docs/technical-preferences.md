@@ -6,7 +6,7 @@
 ## Engine & Language
 
 - **Engine**: Godot 4.6.1
-- **Language**: C# (primary), GDScript (utilities)
+- **Language**: GDScript (primary), C# (utilities)
 - **Rendering**: 2D (Godot's dedicated 2D engine)
 - **Physics**: Godot Physics (Jolt optional for 3D, not needed for 2D)
 
