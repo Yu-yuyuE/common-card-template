@@ -2,7 +2,7 @@
 
 > **最后更新**：2026-04-07
 > **状态**：有效
-> **进度**：15 个系统中，9 个已完成 GDD，4 个部分完成，2 个未开始
+> **进度**：15 个系统中，10 个已完成 GDD，3 个部分完成，2 个未开始
 
 ---
 
@@ -51,7 +51,7 @@
 | 7 | D2 | 兵种卡系统（troop-card-system） | 功能层 | ✅ 已完成 GDD |
 | 8 | D4 | 诅咒系统（curse-system） | 功能层 | ✅ 已完成 GDD |
 | 9 | M1 | 地图节点系统（map-node-system） | 元游戏层 | ✅ 已完成 GDD |
-| 10 | M5 | 卡牌升级系统（card-upgrade-system） | 元游戏层 | ⚠️ 部分（在 cards-design.md 中） |
+| 10 | M5 | 卡牌升级系统（card-upgrade-system） | 元游戏层 | ✅ 已完成 GDD |
 | 11 | M2 | 商店系统（shop-system） | 元游戏层 | ⚠️ 部分（在 map-design.md 中） |
 | 12 | M3 | 装备系统（equipment-system） | 元游戏层 | ⚠️ 部分 GDD 已存在 |
 | 13 | D5 | 卡牌解锁系统（card-unlock-system） | 元游戏层 | ⚠️ 部分 GDD 已存在 |
