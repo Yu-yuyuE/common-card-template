@@ -1,10 +1,12 @@
 # Design Directory
 
 When authoring or editing files in this directory, follow these standards.
+语言：中文.
 
 ## GDD Files (`design/gdd/`)
 
 Every GDD must include all **8 required sections** in this order:
+
 1. Overview — one-paragraph summary
 2. Player Fantasy — intended feeling and experience
 3. Detailed Rules — unambiguous mechanics

@@ -30,7 +30,7 @@
 #   Superseded entries:     Grep pattern="status: superseded"
 
 version: 1
-last_updated: ""
+last_updated: "2026-04-08"
 
 # ─── STATE OWNERSHIP ─────────────────────────────────────────────────────────
 # Who is the authoritative owner of each piece of shared game state.
@@ -43,24 +43,62 @@ last_updated: ""
 # interface: how other systems access this state (read-only property, method call,
 #   signal, shared resource, etc.) — this is the contract other ADRs depend on.
 
-state_ownership: []
+state_ownership:
+  - state: game_state
+    status: active
+    owner_system: scene-management
+    adr: docs/architecture/adr-0001-scene-management.md
+    interface: "GameState node under Main (read via dependency injection or get_parent())"
+    write_access: scene-management-only
+    referenced_by:
+      - docs/architecture/adr-0001-scene-management.md
+    added: 2026-04-08
+    revised: ""
 
-# Example:
-#
-# state_ownership:
-#   - state: player_health
-#     status: active           # active | superseded_by: ADR-NNNN
-#     owner_system: health-system
-#     adr: docs/architecture/adr-0001-health-system.md
-#     interface: "HealthComponent.current_health (read-only float, range 0–max_health)"
-#     write_access: health-system-only   # only owner can write; others read
-#     referenced_by:
-#       - docs/architecture/adr-0001-health-system.md
-#       - docs/architecture/adr-0003-combat-system.md   # reads to apply damage
-#       - docs/architecture/adr-0007-ui-system.md       # reads to display HUD
-#     added: 2026-03-26
-#     revised: ""
+  - state: resource_data
+    status: active
+    owner_system: resource-management
+    adr: docs/architecture/adr-0001-scene-management.md
+    interface: "ResourceManager.get_resource() / set_resource()"
+    write_access: resource-management-only
+    referenced_by:
+      - docs/architecture/adr-0001-scene-management.md
+    added: 2026-04-08
+    revised: ""
 
+  - state: deck_data
+    status: active
+    owner_system: deck-management
+    adr: docs/architecture/adr-0001-scene-management.md
+    interface: "DeckManager.get_deck() / add_card() / remove_card()"
+    write_access: deck-management-only
+    referenced_by:
+      - docs/architecture/adr-0001-scene-management.md
+    added: 2026-04-08
+    revised: ""
+
+  - state: hero_data
+    status: active
+    owner_system: hero-management
+    adr: docs/architecture/adr-0001-scene-management.md
+    interface: "HeroManager.get_hero() / get_exclusive_deck()"
+    write_access: hero-management-only
+    referenced_by:
+      - docs/architecture/adr-0001-scene-management.md
+    added: 2026-04-08
+    revised: ""
+
+  - state: event_bus
+    status: active
+    owner_system: global-event-system
+    adr: docs/architecture/adr-0002-system-communication.md
+    interface: "EventBus (Autoload singleton)"
+    write_access: any-system-can-emit
+    referenced_by:
+      - docs/architecture/adr-0001-scene-management.md
+      - docs/architecture/adr-0002-system-communication.md
+    added: 2026-04-08
+    revised: ""
 
 # ─── INTERFACE CONTRACTS ──────────────────────────────────────────────────────
 # How systems are required to communicate with each other.
@@ -71,27 +109,37 @@ state_ownership: []
 #
 # pattern options: signal | direct_call | event_bus | shared_resource | rpc | none
 
-interfaces: []
+interfaces:
+  - contract: scene_transition
+    status: active
+    pattern: direct_call
+    producer: scene-management
+    consumers:
+      - map-system
+      - battle-system
+      - shop-system
+      - barracks-system
+      - inn-system
+    adr: docs/architecture/adr-0001-scene-management.md
+    signal_signature: "Main.show_battle(enemies, terrain, weather), Main.show_shop(), Main.show_barracks(), Main.show_inn(), Main.show_map()"
+    referenced_by:
+      - docs/architecture/adr-0001-scene-management.md
+    added: 2026-04-08
+    revised: ""
 
-# Example:
-#
-# interfaces:
-#   - contract: damage_delivery
-#     status: active
-#     pattern: signal          # how the producer notifies consumers
-#     producer: combat-system
-#     consumers:
-#       - health-system        # receives damage_dealt signal, applies to health
-#       - ui-system            # receives damage_dealt signal, shows damage number
-#       - audio-system         # receives damage_dealt signal, plays SFX
-#     adr: docs/architecture/adr-0003-combat-system.md
-#     signal_signature: "damage_dealt(amount: float, target: Node, is_crit: bool)"
-#     referenced_by:
-#       - docs/architecture/adr-0003-combat-system.md
-#       - docs/architecture/adr-0001-health-system.md
-#     added: 2026-03-26
-#     revised: ""
-
+  - contract: system_communication
+    status: active
+    pattern: signal
+    producer: multiple-systems
+    consumers:
+      - ui-system
+      - multiple-systems
+    adr: docs/architecture/adr-0002-system-communication.md
+    signal_signature: "Node Signal: [subject]_[action]_[past_tense]; EventBus: resource_changed, scene_changed, game_paused"
+    referenced_by:
+      - docs/architecture/adr-0002-system-communication.md
+    added: 2026-04-08
+    revised: ""
 
 # ─── PERFORMANCE BUDGETS ──────────────────────────────────────────────────────
 # Frame time allocations per system, against a defined total frame budget.
@@ -102,27 +150,6 @@ interfaces: []
 
 performance_budgets: []
 
-# Example:
-#
-# performance_budgets:
-#   - target_fps: 60
-#     total_frame_budget_ms: 16.6
-#     platform: PC             # PC | Console | Mobile | All
-#     adr: docs/architecture/adr-0000-performance-targets.md
-#     added: 2026-03-26
-#     revised: ""
-#
-#   - system: combat
-#     status: active
-#     budget_ms: 2.0
-#     adr: docs/architecture/adr-0003-combat-system.md
-#     notes: "Includes physics queries, hitbox evaluation, and damage calculation"
-#     referenced_by:
-#       - docs/architecture/adr-0003-combat-system.md
-#     added: 2026-03-26
-#     revised: ""
-
-
 # ─── API DECISIONS ───────────────────────────────────────────────────────────
 # Which engine APIs are chosen for which purpose across the project.
 # Conflicts: two ADRs using different APIs for the same purpose = inconsistent
@@ -131,23 +158,28 @@ performance_budgets: []
 # Register an API decision when the choice is non-obvious and other ADRs might
 # make a different choice for the same purpose without knowing this was decided.
 
-api_decisions: []
+api_decisions:
+  - purpose: scene_instantiation
+    status: active
+    api: PackedScene.instantiate()
+    not: SceneTree.change_scene_to_file()
+    adr: docs/architecture/adr-0001-scene-management.md
+    reason: "instantiate() 保持主场景常驻，通过 visible 控制子场景显隐，数据天然共享"
+    referenced_by:
+      - docs/architecture/adr-0001-scene-management.md
+    added: 2026-04-08
+    revised: ""
 
-# Example:
-#
-# api_decisions:
-#   - purpose: physics_raycast
-#     status: active
-#     api: PhysicsServer3D.space_get_direct_state()
-#     not: RayCast3D node     # explicitly banned for this purpose
-#     adr: docs/architecture/adr-0002-physics-architecture.md
-#     reason: "Direct server calls avoid per-frame node overhead; 3× faster in profiling"
-#     referenced_by:
-#       - docs/architecture/adr-0002-physics-architecture.md
-#       - docs/architecture/adr-0003-combat-system.md
-#     added: 2026-03-26
-#     revised: ""
-
+  - purpose: layer_visibility
+    status: active
+    api: Node.visible
+    not: queue_free() + reinstantiate
+    adr: docs/architecture/adr-0001-scene-management.md
+    reason: "visible 切换速度快，无需重新加载资源"
+    referenced_by:
+      - docs/architecture/adr-0001-scene-management.md
+    added: 2026-04-08
+    revised: ""
 
 # ─── FORBIDDEN PATTERNS ──────────────────────────────────────────────────────
 # Architecture anti-patterns explicitly banned by accepted ADRs.
@@ -157,25 +189,24 @@ api_decisions: []
 # Register a pattern when an ADR explicitly bans it AND other ADRs might
 # unknowingly use it (i.e., it's a tempting but wrong approach for this project).
 
-forbidden_patterns: []
+forbidden_patterns:
+  - pattern: change_scene_to_file
+    status: active
+    description: "禁止使用 SceneTree.change_scene_to_file() 进行场景切换，应使用 PackedScene.instantiate() + visible 控制"
+    why: "change_scene_to_file 会销毁当前场景树，导致全局状态丢失；本项目使用图层实例化模式保持状态连续"
+    adr: docs/architecture/adr-0001-scene-management.md
+    added: 2026-04-08
 
-# Example:
-#
-# forbidden_patterns:
-#   - pattern: autoload_singleton_coupling
-#     status: active
-#     description: "Systems must not directly reference Autoload singletons by name.
-#       Use dependency injection or signals instead."
-#     why: "Tight coupling to Autoloads makes systems untestable in isolation and
-#       creates hidden dependencies that break when Autoload load order changes."
-#     adr: docs/architecture/adr-0001-health-system.md
-#     added: 2026-03-26
-#
-#   - pattern: direct_cross_system_state_write
-#     status: active
-#     description: "A system must never write to state owned by another system.
-#       Use signals or method calls on the owner instead."
-#     why: "Direct state writes create race conditions and break the state
-#       ownership model. The owning system must be the sole writer."
-#     adr: docs/architecture/adr-0000-architecture-principles.md
-#     added: 2026-03-26
+  - pattern: direct_subscene_state_write
+    status: active
+    description: "子场景禁止直接修改 GameState 下的全局状态，必须通过对应的 Manager 接口方法"
+    why: "直接修改会破坏状态所有权模型，造成数据竞争"
+    adr: docs/architecture/adr-0001-scene-management.md
+    added: 2026-04-08
+
+  - pattern: direct_method_coupling
+    status: active
+    description: "禁止系统间直接持有节点引用并调用方法，应使用 Signal 进行通信"
+    why: "直接引用造成强耦合，难以单独测试各系统"
+    adr: docs/architecture/adr-0002-system-communication.md
+    added: 2026-04-08
