@@ -1,0 +1,10 @@
+[gd_resource type="Translation" format=3]
+
+[resource]
+strings = {
+"ui.main.title": "三国志ストラテジー",
+"ui.button.start": "ゲーム開始",
+"ui.button.settings": "設定",
+"card.swordmaster.name": "剣豪",
+"card.swordmaster.desc": "単体の敵に{0}ダメージを与える"
+}
