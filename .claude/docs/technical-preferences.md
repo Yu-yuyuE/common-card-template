@@ -15,12 +15,12 @@
 <!-- Written by /setup-engine. Read by /ux-design, /ux-review, /test-setup, /team-ui, and /dev-story -->
 <!-- to scope interaction specs, test helpers, and implementation to the correct input methods. -->
 
-- **Target Platforms**: [TO BE CONFIGURED — e.g., PC, Console, Mobile, Web]
-- **Input Methods**: [TO BE CONFIGURED — e.g., Keyboard/Mouse, Gamepad, Touch, Mixed]
-- **Primary Input**: [TO BE CONFIGURED — the dominant input for this game]
-- **Gamepad Support**: [TO BE CONFIGURED — Full / Partial / None]
-- **Touch Support**: [TO BE CONFIGURED — Full / Partial / None]
-- **Platform Notes**: [TO BE CONFIGURED — any platform-specific UX constraints]
+- **Target Platforms**: PC (Windows/macOS) and Mobile (iOS/Android)
+- **Input Methods**: Keyboard/Mouse, Touch
+- **Primary Input**: Keyboard/Mouse
+- **Gamepad Support**: None
+- **Touch Support**: Full
+- **Platform Notes**: UI must support both precise mouse clicks and larger touch targets. UI scaling must accommodate small mobile screens.
 
 ## Naming Conventions
 
@@ -35,8 +35,8 @@
 
 - **Target Framerate**: 60 fps
 - **Frame Budget**: 16.6ms
-- **Draw Calls**: [TO BE CONFIGURED]
-- **Memory Ceiling**: [TO BE CONFIGURED - typical 512MB for 2D game]
+- **Draw Calls**: 2000 maximum
+- **Memory Ceiling**: 512MB RAM
 
 ## Testing
 

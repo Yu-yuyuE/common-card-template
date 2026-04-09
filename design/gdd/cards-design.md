@@ -225,7 +225,7 @@ _Status: Draft v3.2（武器·工事·装备参考库新增；卡牌素材库与
 | ---- | -------- | -------- | ----------------- | --------------------------- |
 | `AC` | 攻击卡   | `AC0001` | AC0001–AC0107     | `attack_cards.csv`          |
 | `SC` | 技能卡   | `SC0001` | SC0001–SC0090     | `skill_cards.csv`           |
-| `TC` | 兵种卡   | `TC0001` | TC0001–TC0030     | `troop_cards.csv`           |
+| `TC` | 兵种卡   | `TC0001` | TC0001–TC0041     | `troop_cards.csv`           |
 | `CC` | 诅咒卡   | `CC0001` | CC0001–CC0025     | `curse_cards.csv`           |
 
 **编号规则**：

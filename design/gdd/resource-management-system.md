@@ -32,7 +32,7 @@
 | -------- | -------------------------------------------------------------------- |
 | 范围     | 0 – 武将 HP 上限（武将个体差异：40–60）                              |
 | 归零     | 战斗失败，本局结束                                                   |
-| 跨战斗   | **持久化**——战斗结束后 HP 保留当前值进入下一节点，每次击败BOSS加满HP |
+| 跨战斗   | **持久化**——战斗结束后 HP 保留当前值进入下一节点，**不自动恢复** |
 | 恢复来源 | 酒馆节点、卡牌效果、部分奇遇事件                                     |
 
 #### 2. 护盾（Armor / Shield）
@@ -140,13 +140,18 @@ NewHP  = CurrentHP - HPCost
 
 若 `NewHP ≤ 0`，触发游戏结束。
 
-### F6. 持续伤害（DoT，常规经护盾，除非特殊说明）
+### F6. 持续伤害（DoT）
 
 ```
 DoTDamage = StatusLayers × DamagePerLayer
+// 对于走护盾的 DoT（如灼烧）：
 DamageToHP = max(0, DoTDamage - CurrentArmor)
 NewArmor   = max(0, CurrentArmor - DoTDamage)
 NewHP      = CurrentHP - DamageToHP
+
+// 对于穿透护盾的 DoT（如中毒、瘟疫）：
+NewHP      = CurrentHP - DoTDamage
+// 护盾值不变
 ```
 
 参见 `status-design.md` 各状态的 `DamagePerLayer` 定义值。
@@ -225,7 +230,7 @@ NewHP      = CurrentHP - DamageToHP
 7. 粮草归零时，HP 替代粮草支付移动代价；HP 耗尽则游戏结束
 8. Boss 战胜后恢复 50 粮草，上限 150
 9. 大地图切换时粮草重置为 150
-10. 持续伤害（DoT）除特殊说明外，也是先用护盾抵扣
+10. 持续伤害（DoT）根据类型不同，分为穿透护盾（中毒等）和走护盾（灼烧等），详见 `status-design.md`
 11. HP 恢复来源（酒馆/卡牌/事件）不超过武将 HP 上限
 
 ---
