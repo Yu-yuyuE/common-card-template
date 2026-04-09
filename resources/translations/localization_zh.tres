@@ -1,0 +1,10 @@
+[gd_resource type="Translation" format=3]
+
+[resource]
+strings = {
+"ui.main.title": "三国战略",
+"ui.button.start": "开始游戏",
+"ui.button.settings": "设置",
+"card.swordmaster.name": "剑豪",
+"card.swordmaster.desc": "对单个敌人造成{0}点伤害"
+}

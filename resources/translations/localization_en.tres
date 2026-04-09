@@ -1,0 +1,10 @@
+[gd_resource type="Translation" format=3]
+
+[resource]
+strings = {
+"ui.main.title": "Three Kingdoms Strategy",
+"ui.button.start": "Start Game",
+"ui.button.settings": "Settings",
+"card.swordmaster.name": "Swordsman",
+"card.swordmaster.desc": "Deal {0} damage to a single enemy"
+}
