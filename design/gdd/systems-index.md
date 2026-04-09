@@ -49,15 +49,15 @@
 | 5 | D1 | 地形天气系统（terrain-weather-system） | 功能层 | ✅ 已完成 GDD |
 | 6 | D3 | 武将系统（hero-system） | 功能层 | ✅ 已完成 GDD（已修订） |
 | 7 | D2 | 兵种卡系统（troop-card-system） | 功能层 | Needs Revision |
-| 8 | D4 | 诅咒系统（curse-system） | 功能层 | Needs Revision |
-| 9 | M1 | 地图节点系统（map-node-system） | 元游戏层 | ✅ 已完成 GDD（已修订） |
+| 8 | D4 | 诅咒系统（curse-system） | 功能层 | ✅ 已完成 GDD（已修订） |
+| 9 | M1 | 地图节点系统（map-node-system） | 元游戏层 | ✅ 已完成 GDD（无冲突） |
 | 10 | M5 | 卡牌升级系统（card-upgrade-system） | 元游戏层 | ✅ 已完成 GDD |
 | 11 | M2 | 商店系统（shop-system） | 元游戏层 | Needs Revision |
 | 12 | M3 | 装备系统（equipment-system） | 元游戏层 | ✅ 已完成 GDD |
 | 13 | D5 | 卡牌解锁系统（card-unlock-system） | 元游戏层 | ⚠️ 部分 GDD 已存在 |
 | 14 | M4 | 事件系统（event-system） | 元游戏层 | ✅ 已完成 GDD |
-| 15 | F1 | 存档持久化系统（save-persistence-system） | 基础层 | Needs Revision |
-| 16 | D6 | 军营系统（barracks-system） | 功能层 | Needs Revision |
+| 15 | F1 | 存档持久化系统（save-persistence-system） | 基础层 | ✅ 已完成 GDD（无冲突） |
+| 16 | D6 | 军营系统（barracks-system） | 功能层 | ✅ 已完成 GDD（无冲突） |
 | 17 | D7 | 酒馆系统（inn-system） | 功能层 | ✅ 已完成 GDD |
 
 ---
