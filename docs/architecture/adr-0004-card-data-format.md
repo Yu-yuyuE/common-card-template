@@ -1,7 +1,7 @@
 # ADR-0004: 卡牌数据配置格式
 
 ## Status
-Proposed
+Accepted
 
 ## Date
 2026-04-08

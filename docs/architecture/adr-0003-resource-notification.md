@@ -1,7 +1,7 @@
 # ADR-0003: 资源变更通知机制
 
 ## Status
-Proposed
+Accepted
 
 ## Date
 2026-04-08

@@ -1,7 +1,7 @@
 # ADR-0005: 存档序列化方案
 
 ## Status
-Proposed
+Accepted
 
 ## Date
 2026-04-08

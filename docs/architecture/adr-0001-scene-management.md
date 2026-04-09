@@ -1,7 +1,7 @@
 # ADR-0001: 场景管理策略
 
 ## Status
-Proposed
+Accepted
 
 ## Date
 2026-04-08

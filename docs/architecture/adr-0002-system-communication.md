@@ -1,7 +1,7 @@
 # ADR-0002: 系统间通信模式
 
 ## Status
-Proposed
+Accepted
 
 ## Date
 2026-04-08
@@ -21,7 +21,7 @@ Proposed
 
 | Field | Value |
 |-------|-------|
-| **Depends On** | ADR-0001 (场景管理策略) — 已 Accepted |
+| **Depends On** | ADR-0001 (场景管理策略) — 本ADR依赖场景管理框架来定义系统层级 |
 | **Enables** | 所有需要跨系统通信的 ADRs |
 | **Blocks** | 无直接阻塞 |
 | **Ordering Note** | 本 ADR 是 Core 层通信基础，其他系统 ADRs 应在本 ADR 后编写 |
