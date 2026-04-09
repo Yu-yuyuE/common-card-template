@@ -34,9 +34,27 @@ v5关键更新：
 | **Platform**        | PC (Steam)                                  |
 | **Target Audience** | 策略卡牌玩家、三国题材爱好者、Roguelike玩家 |
 | **Player Count**    | 单人                                        |
-| **Session Length**  | 35-70分钟/单局                              |
+| **Session Length**  | 35-70分钟/单局 (每场战役包含3张小地图)     |
 | **Monetization**    | 付费买断制                                  |
 | **Estimated Scope** | Medium (6-12个月)                           |
+
+---
+
+## Localization Support
+
+### Supported Languages
+- **Primary**: Chinese (Simplified) - 简体中文
+- **Secondary**: English - English
+- **Tertiary**: Japanese - 日本語
+
+### Localization Considerations
+- **Text Direction**: All supported languages use left-to-right text flow
+- **Character Sets**: Game will support full Unicode including CJK characters
+- **Font Requirements**: Need to support both complex Chinese/Japanese characters and Latin alphabet
+- **Text Expansion**: Japanese text may require up to 30% more space than Chinese equivalents
+- **Cultural Sensitivity**: All三国题材 content will be reviewed for cultural appropriateness in target markets
+- **Asset Management**: Text assets will be organized in language-specific directories for easy management
+- **Steam Integration**: Full Steam localization features will be utilized for language switching
 
 ---
 
@@ -257,7 +275,7 @@ v5关键更新：
 | **heroes_passive_skills.csv**  | `design/detail/heroes_passive_skills.csv`  | 所有武将的被动技能结构化数据（武将名、阵营、被动名称、被动效果），供引擎实现被动触发逻辑                        | `heroes-design.md`                         |
 | **heroes_exclusive_decks.csv** | `design/detail/heroes_exclusive_decks.csv` | 所有武将的专属卡组数据（卡名、费用、LV1/LV2 效果、使用后是否移除），含 Lv2 升级与离场机制                       | `heroes-design.md`                         |
 | **hero_campaign_maps.csv**     | `design/detail/hero_campaign_maps.csv`     | 所有武将的战役地图数据（序号、武将、阵营、战役名、所属州、地形、默认天气、历史背景），114条记录                 | `map-design.md`、`heroes-design.md`        |
-| **enemies.csv**                | `design/detail/enemies.csv`                | 全部55名敌人的完整属性数据（编号、名称、级别、HP、护甲、行动序列、速度、地形偏好），3级：普通/精英/强力 | `enemies-design.md`                        |
+| **enemies.csv**                | `design/detail/enemies.csv`                | 全部100名敌人的完整属性数据（编号、名称、级别、HP、护甲、行动序列、速度、地形偏好），3级：普通/精英/强力 | `enemies-design.md`                        |
 | **enemy_actions.csv**          | `design/detail/enemy_actions.csv`          | 全部54种敌人行动库（编号、行动名、级别、效果、目标、数值参考、冷却回合、条件触发）                              | `enemies-design.md`                        |
 
 ### 各 CSV 的引擎使用场景
