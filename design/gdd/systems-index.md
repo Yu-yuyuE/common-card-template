@@ -47,7 +47,7 @@
 | 3 | C2 | 卡牌战斗系统（card-battle-system） | 核心层 | ✅ 已完成 GDD（已修订） |
 | 4 | C3 | 敌人系统（enemy-system） | 核心层 | ✅ 已完成 GDD |
 | 5 | D1 | 地形天气系统（terrain-weather-system） | 功能层 | ✅ 已完成 GDD |
-| 6 | D3 | 武将系统（hero-system） | 功能层 | Needs Revision |
+| 6 | D3 | 武将系统（hero-system） | 功能层 | ✅ 已完成 GDD（已修订） |
 | 7 | D2 | 兵种卡系统（troop-card-system） | 功能层 | Needs Revision |
 | 8 | D4 | 诅咒系统（curse-system） | 功能层 | Needs Revision |
 | 9 | M1 | 地图节点系统（map-node-system） | 元游戏层 | Needs Revision |
