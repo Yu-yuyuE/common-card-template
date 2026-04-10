@@ -4,7 +4,19 @@
 > **GDD**: design/gdd/enemies-design.md
 > **Architecture Module**: EnemySystem
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories enemy-system`
+> **Stories**: 7 stories created (see below)
+
+## Stories
+
+| # | Story | Type | Status | ADR |
+|---|-------|------|--------|-----|
+| 001 | 敌人数据结构与配置加载 | Logic | Ready | ADR-0008 |
+| 002 | 敌人行动库与解析 | Logic | Ready | ADR-0015 |
+| 003 | 固定行动序列循环与公示 | Logic | Ready | ADR-0008 |
+| 004 | 决策树与相变条件触发 | Logic | Ready | ADR-0015 |
+| 005 | 敌人行动队列执行器 | Logic | Ready | ADR-0015 |
+| 006 | 诅咒投递与特殊效果执行 | Logic | Ready | ADR-0008, ADR-0015 |
+| 007 | 敌人意图与状态UI绑定 | UI | Ready | ADR-0008 |
 
 ## Overview
 
