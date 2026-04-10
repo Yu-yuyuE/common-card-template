@@ -9,6 +9,7 @@ signal turn_started(is_player: bool)
 # 为了测试 C3 未实现时的敌人行动
 signal enemy_action_mock_triggered(enemy_id: String)
 signal battle_victory() # 测试桩：全灭时触发
+signal card_played(card_id: String, target_position: int) # 当卡牌被成功打出时发射
 
 enum BattlePhase {
 	NONE,
@@ -118,6 +119,54 @@ func end_player_turn() -> void:
 
 	is_player_turn = false
 	_start_enemy_turn()
+
+# ---------------------------------------------------------------------------
+# 出牌逻辑 (Story 004)
+# ---------------------------------------------------------------------------
+
+## 玩家尝试打出卡牌
+## 参数：
+##   card_id: 要打出的卡牌实例的 ID
+##   target_position: 目标槽位 (-1 为自身/全场，0-2 为敌人)
+## 返回：
+##   true = 打出成功，false = 费用不足或不在手牌等原因
+func play_card(card_id: String, target_position: int) -> bool:
+	if current_phase != BattlePhase.PLAYER_PLAY:
+		return false
+
+	# 1. 查找手牌
+	var card_to_play: Card = null
+	for c in card_manager.hand_cards:
+		if c.get_id() == card_id:
+			card_to_play = c
+			break
+
+	if card_to_play == null:
+		return false # 没这张牌
+
+	# 2. 费用检查
+	var cost = card_to_play.current_cost
+	if player_entity.action_points < cost:
+		return false # 费用不足
+
+	# 3. 扣除费用
+	player_entity.action_points -= cost
+	# (如果接入 ResourceManager，需要在这里同步 ResourceManager，当前使用 player_entity 同步状态)
+
+	# 4. 结算效果 (Story 005)
+	_resolve_card_effect(card_to_play, target_position)
+
+	# 5. 卡牌流转入弃牌/消耗/移除区
+	card_manager.exhaust_or_discard_played_card(card_to_play)
+
+	# 6. 通知 UI 等监听者
+	card_played.emit(card_id, target_position)
+
+	return true
+
+func _resolve_card_effect(card: Card, target_position: int) -> void:
+	# TODO: Story 005 具体路由和伤害结算
+	pass
 
 func _start_enemy_turn() -> void:
 	_set_phase(BattlePhase.ENEMY_TURN)

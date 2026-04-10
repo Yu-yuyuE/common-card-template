@@ -78,6 +78,20 @@ func discard_card(card: Card) -> void:
 		discard_pile.append(card)
 		card_discarded.emit(card)
 
+## 卡牌打出后的流转：根据其属性决定进入弃牌、消耗还是移除区
+func exhaust_or_discard_played_card(card: Card) -> void:
+	var index = hand_cards.find(card)
+	if index != -1:
+		hand_cards.remove_at(index)
+		if card.data and card.data.remove_after_use:
+			removed_cards.append(card)
+		elif card.data and card.data.exhaust:
+			exhaust_cards.append(card)
+		else:
+			discard_pile.append(card)
+
+		# 此处也可以发射相应的 card_removed 等信号，视后续需求定
+
 ## 洗牌：将弃牌堆移入抽牌堆并打乱
 func _shuffle_discard_to_draw() -> void:
 	draw_pile.append_array(discard_pile)
