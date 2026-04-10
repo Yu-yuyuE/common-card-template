@@ -4,7 +4,18 @@
 > **GDD**: design/gdd/terrain-weather-system.md
 > **Architecture Module**: TerrainWeatherSystem
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories terrain-weather-system`
+> **Stories**: 6 stories created (see below)
+
+## Stories
+
+| # | Story | Type | Status | ADR |
+|---|-------|------|--------|-----|
+| 001 | 地形天气数据结构与初始化接口 | Logic | Ready | ADR-0009 |
+| 002 | 地形天气一次性初始化效果 | Logic | Ready | ADR-0009 |
+| 003 | 伤害修正系数与费用调整接口 | Logic | Ready | ADR-0009 |
+| 004 | 每回合结束的持续环境效果 | Logic | Ready | ADR-0009 |
+| 005 | 动态天气切换机制 | Logic | Ready | ADR-0009 |
+| 006 | 地形天气UI标识与提示 | UI | Ready | ADR-0009 |
 
 ## Overview
 
