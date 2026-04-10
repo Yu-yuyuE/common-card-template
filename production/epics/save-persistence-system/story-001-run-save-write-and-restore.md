@@ -5,6 +5,7 @@
 > **Layer**: Foundation
 > **Type**: Integration
 > **Manifest Version**: 2026-04-09
+> **Estimate**: 8 hours
 
 ## Context
 

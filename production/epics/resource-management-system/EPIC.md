@@ -4,7 +4,19 @@
 > **GDD**: design/gdd/resource-management-system.md
 > **Architecture Module**: ResourceManager
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories resource-management-system`
+> **Stories**: 7 stories created (see below)
+
+## Stories
+
+| # | Story | Type | Status | ADR |
+|---|-------|------|--------|-----|
+| 001 | 资源数据结构初始化 | Logic | Ready | ADR-0003 |
+| 002 | HP/护盾修改与Signal通知 | Logic | Ready | ADR-0003 |
+| 003 | 护盾生命周期管理 | Logic | Ready | ADR-0003 |
+| 004 | 行动点累积与消耗 | Logic | Ready | ADR-0003 |
+| 005 | 粮草消耗与归零惩罚 | Logic | Ready | ADR-0003 |
+| 006 | 资源恢复机制 | Logic | Ready | ADR-0003 |
+| 007 | 资源变化UI响应 | UI | Ready | ADR-0002 |
 
 ## Overview
 
