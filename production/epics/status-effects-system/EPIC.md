@@ -4,7 +4,19 @@
 > **GDD**: design/gdd/status-design.md
 > **Architecture Module**: StatusSystem
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories status-effects-system`
+> **Stories**: 7 stories created (see below)
+
+## Stories
+
+| # | Story | Type | Status | ADR |
+|---|-------|------|--------|-----|
+| 001 | 状态数据结构与基础增删改 | Logic | Ready | ADR-0006 |
+| 002 | 状态叠加与互斥规则 | Logic | Ready | ADR-0006 |
+| 003 | 状态回合结束结算机制 | Logic | Ready | ADR-0006 |
+| 004 | 状态持续伤害计算（DoT） | Logic | Ready | ADR-0006 |
+| 005 | 状态伤害修正系数（Modifiers） | Logic | Ready | ADR-0006 |
+| 006 | 特殊交互规则（免疫/穿透/瘟疫） | Logic | Ready | ADR-0006 |
+| 007 | 状态变化UI响应机制 | UI | Ready | ADR-0006 |
 
 ## Overview
 

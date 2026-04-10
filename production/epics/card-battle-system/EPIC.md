@@ -4,7 +4,19 @@
 > **GDD**: design/gdd/card-battle-system.md
 > **Architecture Module**: CardBattleSystem
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories card-battle-system`
+> **Stories**: 7 stories created (see below)
+
+## Stories
+
+| # | Story | Type | Status | ADR |
+|---|-------|------|--------|-----|
+| 001 | 战斗数据结构与实体初始化 | Logic | Ready | ADR-0007 |
+| 002 | 战斗状态机与回合流程控制 | Logic | Ready | ADR-0007 |
+| 003 | 卡牌生命周期与抽牌堆管理 | Logic | Ready | ADR-0007 |
+| 004 | 出牌验证与卡牌结算框架 | Logic | Ready | ADR-0007 |
+| 005 | 伤害计算管线 | Logic | Ready | ADR-0014, ADR-0007 |
+| 006 | 多阶段战斗与胜负判定 | Logic | Ready | ADR-0007 |
+| 007 | 战斗HUD与手牌UI绑定 | UI | Ready | ADR-0007 |
 
 ## Overview
 
