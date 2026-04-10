@@ -4,8 +4,8 @@
 |-------|-------|
 | **Engine Version** | Godot 4.6.1 (stable) |
 | **Release Date** | February 2026 |
-| **Project Pinned** | 2026-03-27 |
-| **Last Docs Verified** | 2026-03-27 |
+| **Project Pinned** | 2026-04-10 |
+| **Last Docs Verified** | 2026-04-10 |
 | **LLM Knowledge Cutoff** | May 2025 |
 
 ## Knowledge Gap Warning
@@ -22,10 +22,4 @@ Always cross-reference this directory before suggesting Godot API calls.
 | 4.5 | ~Late 2025 | HIGH | Accessibility (AccessKit), variadic args, @abstract, shader baker, SMAA |
 | 4.6 | Jan 2026 | HIGH | Jolt default, glow rework, D3D12 default on Windows, IK restored |
 
-## Verified Sources
-
-- Official docs: https://docs.godotengine.org/en/stable/
-- 4.5→4.6 migration: https://docs.godotengine.org/en/stable/tutorials/migrating/upgrading_to_godot_4.6.html
-- 4.4→4.5 migration: https://docs.godotengine.org/en/stable/tutorials/migrating/upgrading_to_godot_4.5.html
-- Changelog: https://github.com/godotengine/godot/blob/master/CHANGELOG.md
-- Release notes: https://godotengine.org/releases/4.6/
+**Last verified**: 2026-04-10

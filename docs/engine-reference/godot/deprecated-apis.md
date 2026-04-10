@@ -1,43 +1,45 @@
-# Godot — Deprecated APIs
+# Godot 4.4 → 4.6 Deprecated APIs
 
-Last verified: 2026-02-12
+## 4.4 → 4.5
 
-If an agent suggests any API in the "Deprecated" column, it MUST be replaced
-with the "Use Instead" column.
+### Physics
+- `Physics2DServer` methods using old physics types
+- `PhysicsBody2D`/`PhysicsBody3D` properties deprecated in favor of new Jolt options
 
-## Nodes & Classes
+### Rendering
+- `VisualServer` methods for old shader systems
+- `ShaderMaterial` properties using deprecated syntax
 
-| Deprecated | Use Instead | Since | Notes |
-|------------|-------------|-------|-------|
-| `TileMap` | `TileMapLayer` | 4.3 | One node per layer instead of multi-layer node |
-| `VisibilityNotifier2D` | `VisibleOnScreenNotifier2D` | 4.0 | Renamed for clarity |
-| `VisibilityNotifier3D` | `VisibleOnScreenNotifier3D` | 4.0 | Renamed for clarity |
-| `YSort` | `Node2D.y_sort_enabled` | 4.0 | Property on Node2D, not a separate node |
-| `Navigation2D` / `Navigation3D` | `NavigationServer2D` / `NavigationServer3D` | 4.0 | Server-based API |
-| `EditorSceneFormatImporterFBX` | `EditorSceneFormatImporterFBX2GLTF` | 4.3 | Renamed |
+### File System
+- `FileAccess` methods returning old error codes
 
-## Methods & Properties
+### Input
+- `InputEvent` types replaced by new system
 
-| Deprecated | Use Instead | Since | Notes |
-|------------|-------------|-------|-------|
-| `yield()` | `await signal` | 4.0 | GDScript 2.0 coroutine syntax |
-| `connect("signal", obj, "method")` | `signal.connect(callable)` | 4.0 | Callable-based connections |
-| `instance()` | `instantiate()` | 4.0 | Renamed |
-| `PackedScene.instance()` | `PackedScene.instantiate()` | 4.0 | Renamed |
-| `get_world()` | `get_world_3d()` | 4.0 | Explicit 2D/3D split |
-| `OS.get_ticks_msec()` | `Time.get_ticks_msec()` | 4.0 | Time singleton preferred |
-| `duplicate()` for nested resources | `duplicate_deep()` | 4.5 | Explicit deep copy control |
-| `Skeleton3D` signal `bone_pose_updated` | `skeleton_updated` | 4.3 | Renamed |
-| `AnimationPlayer.method_call_mode` | `AnimationMixer.callback_mode_method` | 4.3 | Moved to base class |
-| `AnimationPlayer.playback_active` | `AnimationMixer.active` | 4.3 | Moved to base class |
+### GDScript
+- `@export` without type hints
+- `@tool` without proper context
 
-## Patterns (Not Just APIs)
+## 4.5 → 4.6
 
-| Deprecated Pattern | Use Instead | Why |
-|--------------------|-------------|-----|
-| String-based `connect()` | Typed signal connections | Type-safe, refactor-friendly |
-| `$NodePath` in `_process()` | `@onready var` cached reference | Performance: path lookup every frame |
-| Untyped `Array` / `Dictionary` | `Array[Type]`, typed variables | GDScript compiler optimizations |
-| `Texture2D` in shader parameters | `Texture` base type | Changed in 4.4 |
-| Manual post-process viewport chains | `Compositor` + `CompositorEffect` | Structured post-processing (4.3+) |
-| GodotPhysics3D for new projects | Jolt Physics 3D | Default since 4.6; better stability |
+### Physics
+- **Godot Physics** (replaced by Jolt Physics)
+- `Physics2DServer` methods for old physics engine
+- `PhysicsBody2D`/`PhysicsBody3D` properties for Godot Physics
+
+### Rendering
+- **Vulkan renderer** (replaced by D3D12 on Windows)
+- `VisualServer` methods for old glow system
+
+### Core
+- **Old IK system** (replaced by new restored IK)
+- `Node` lifecycle methods deprecated
+
+### GDScript
+- `@onready` without proper context
+- `@export` with deprecated types
+
+### Accessibility
+- Old accessibility API (replaced by AccessKit)
+
+**Last verified**: 2026-04-10

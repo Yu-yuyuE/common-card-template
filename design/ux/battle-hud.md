@@ -2,6 +2,7 @@
 
 _Created: 2026-04-09_
 _Status: Draft_
+_Accessibility Tier: Standard (WCAG 2.1 AA contrast, focus order documented, colorblind support via shape coding)_
 
 ---
 

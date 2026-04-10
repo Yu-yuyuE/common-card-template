@@ -35,7 +35,7 @@
 
 ## Testing
 
-- **Framework**: GUT (Godot Unit Test)
+- **Framework**: GdUnit4
 - **Minimum Coverage**: Core game systems, balance formulas
 - **Required Tests**: Balance formulas, gameplay systems
 

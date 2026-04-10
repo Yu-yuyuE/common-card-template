@@ -3,6 +3,7 @@
 > **Status**: Draft
 > **Author**: UX Designer
 > **Last Updated**: 2026-04-09
+> **Accessibility Tier**: Standard (WCAG 2.1 AA contrast, focus order documented, colorblind support via shape coding)
 > **Linked Documents**: `design/ux/battle-hud.md`, `design/gdd/systems-index.md`
 
 ---
