@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://1b8be5y8roxx"
+
+[deps]
+
+files=["res://design/reference/sailing_tales_cards_from_bahamut.card.translation", "res://design/reference/sailing_tales_cards_from_bahamut.en.translation", "res://design/reference/sailing_tales_cards_from_bahamut.effect.translation"]
+
+source_file="res://design/reference/sailing_tales_cards_from_bahamut.csv"
+dest_files=["res://design/reference/sailing_tales_cards_from_bahamut.card.translation", "res://design/reference/sailing_tales_cards_from_bahamut.en.translation", "res://design/reference/sailing_tales_cards_from_bahamut.effect.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

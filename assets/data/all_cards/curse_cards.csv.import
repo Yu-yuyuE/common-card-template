@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bhddh2mbg42rj"
+
+[deps]
+
+files=["res://assets/data/all_cards/curse_cards.卡名.translation", "res://assets/data/all_cards/curse_cards.类型.translation", "res://assets/data/all_cards/curse_cards.费用.translation", "res://assets/data/all_cards/curse_cards.效果.translation", "res://assets/data/all_cards/curse_cards.特殊属性.translation", "res://assets/data/all_cards/curse_cards.图鉴归属.translation"]
+
+source_file="res://assets/data/all_cards/curse_cards.csv"
+dest_files=["res://assets/data/all_cards/curse_cards.卡名.translation", "res://assets/data/all_cards/curse_cards.类型.translation", "res://assets/data/all_cards/curse_cards.费用.translation", "res://assets/data/all_cards/curse_cards.效果.translation", "res://assets/data/all_cards/curse_cards.特殊属性.translation", "res://assets/data/all_cards/curse_cards.图鉴归属.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

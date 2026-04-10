@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bvn6g46qjop5b"
+
+[deps]
+
+files=["res://design/reference/slay_the_spire_cards_from_local_html.character.translation", "res://design/reference/slay_the_spire_cards_from_local_html.rarity.translation", "res://design/reference/slay_the_spire_cards_from_local_html.card.translation", "res://design/reference/slay_the_spire_cards_from_local_html.cost.translation", "res://design/reference/slay_the_spire_cards_from_local_html.description.translation", "res://design/reference/slay_the_spire_cards_from_local_html.upgrade.translation", "res://design/reference/slay_the_spire_cards_from_local_html.exhaust.translation", "res://design/reference/slay_the_spire_cards_from_local_html.ethereal.translation", "res://design/reference/slay_the_spire_cards_from_local_html.innate.translation", "res://design/reference/slay_the_spire_cards_from_local_html.x.translation", "res://design/reference/slay_the_spire_cards_from_local_html.source.translation"]
+
+source_file="res://design/reference/slay_the_spire_cards_from_local_html.csv"
+dest_files=["res://design/reference/slay_the_spire_cards_from_local_html.character.translation", "res://design/reference/slay_the_spire_cards_from_local_html.rarity.translation", "res://design/reference/slay_the_spire_cards_from_local_html.card.translation", "res://design/reference/slay_the_spire_cards_from_local_html.cost.translation", "res://design/reference/slay_the_spire_cards_from_local_html.description.translation", "res://design/reference/slay_the_spire_cards_from_local_html.upgrade.translation", "res://design/reference/slay_the_spire_cards_from_local_html.exhaust.translation", "res://design/reference/slay_the_spire_cards_from_local_html.ethereal.translation", "res://design/reference/slay_the_spire_cards_from_local_html.innate.translation", "res://design/reference/slay_the_spire_cards_from_local_html.x.translation", "res://design/reference/slay_the_spire_cards_from_local_html.source.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

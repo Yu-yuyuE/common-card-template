@@ -4,7 +4,19 @@
 > **GDD**: design/gdd/localization-system.md
 > **Architecture Module**: LocalizationManager
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories localization-system`
+> **Stories**: 7 stories created (see below)
+
+## Stories
+
+| # | Story | Type | Status | ADR |
+|---|-------|------|--------|-----|
+| 001 | 本地化框架基础架构 | Logic | Ready | ADR-0017 |
+| 002 | 翻译资源加载与管理 | Logic | Ready | ADR-0017 |
+| 003 | 语言切换机制 | Logic | Ready | ADR-0017, ADR-0016 |
+| 004 | 字体管理系统 | Logic | Ready | ADR-0017 |
+| 005 | 文本绑定系统 | Logic | Ready | ADR-0016, ADR-0017 |
+| 006 | 参数化文本替换 | Logic | Ready | ADR-0017 |
+| 007 | 语言选择UI | UI | Ready | ADR-0016, ADR-0017 |
 
 ## Overview
 

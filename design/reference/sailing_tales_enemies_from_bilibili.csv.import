@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://big2y2royduth"
+
+[deps]
+
+files=["res://design/reference/sailing_tales_enemies_from_bilibili.region.translation", "res://design/reference/sailing_tales_enemies_from_bilibili.hp.translation", "res://design/reference/sailing_tales_enemies_from_bilibili.race.translation", "res://design/reference/sailing_tales_enemies_from_bilibili.traits.translation", "res://design/reference/sailing_tales_enemies_from_bilibili.action.translation", "res://design/reference/sailing_tales_enemies_from_bilibili.image.translation", "res://design/reference/sailing_tales_enemies_from_bilibili.source.translation", "res://design/reference/sailing_tales_enemies_from_bilibili.extraction.translation"]
+
+source_file="res://design/reference/sailing_tales_enemies_from_bilibili.csv"
+dest_files=["res://design/reference/sailing_tales_enemies_from_bilibili.region.translation", "res://design/reference/sailing_tales_enemies_from_bilibili.hp.translation", "res://design/reference/sailing_tales_enemies_from_bilibili.race.translation", "res://design/reference/sailing_tales_enemies_from_bilibili.traits.translation", "res://design/reference/sailing_tales_enemies_from_bilibili.action.translation", "res://design/reference/sailing_tales_enemies_from_bilibili.image.translation", "res://design/reference/sailing_tales_enemies_from_bilibili.source.translation", "res://design/reference/sailing_tales_enemies_from_bilibili.extraction.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

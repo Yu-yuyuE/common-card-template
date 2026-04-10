@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dv0yyglagxnqj"
+
+[deps]
+
+files=["res://assets/data/all_cards/troop_cards.大类.translation", "res://assets/data/all_cards/troop_cards.卡名.translation", "res://assets/data/all_cards/troop_cards.类型.translation", "res://assets/data/all_cards/troop_cards.费用(LV1/LV2).translation", "res://assets/data/all_cards/troop_cards.LV1效果.translation", "res://assets/data/all_cards/troop_cards.LV2效果.translation", "res://assets/data/all_cards/troop_cards.地形联动.translation", "res://assets/data/all_cards/troop_cards.核心定位.translation", "res://assets/data/all_cards/troop_cards.历史原型.translation"]
+
+source_file="res://assets/data/all_cards/troop_cards.csv"
+dest_files=["res://assets/data/all_cards/troop_cards.大类.translation", "res://assets/data/all_cards/troop_cards.卡名.translation", "res://assets/data/all_cards/troop_cards.类型.translation", "res://assets/data/all_cards/troop_cards.费用(LV1/LV2).translation", "res://assets/data/all_cards/troop_cards.LV1效果.translation", "res://assets/data/all_cards/troop_cards.LV2效果.translation", "res://assets/data/all_cards/troop_cards.地形联动.translation", "res://assets/data/all_cards/troop_cards.核心定位.translation", "res://assets/data/all_cards/troop_cards.历史原型.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

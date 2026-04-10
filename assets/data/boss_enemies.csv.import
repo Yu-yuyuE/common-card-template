@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://clnj845ydd5v8"
+
+[deps]
+
+files=["res://assets/data/boss_enemies.名称.translation", "res://assets/data/boss_enemies.级别.translation", "res://assets/data/boss_enemies.职业.translation", "res://assets/data/boss_enemies.历史职业背景.translation", "res://assets/data/boss_enemies.主要州郡.translation", "res://assets/data/boss_enemies.HP.translation", "res://assets/data/boss_enemies.护甲.translation", "res://assets/data/boss_enemies.行动序列（主）.translation", "res://assets/data/boss_enemies.相变触发.translation", "res://assets/data/boss_enemies.地形联动.translation", "res://assets/data/boss_enemies.速度.translation"]
+
+source_file="res://assets/data/boss_enemies.csv"
+dest_files=["res://assets/data/boss_enemies.名称.translation", "res://assets/data/boss_enemies.级别.translation", "res://assets/data/boss_enemies.职业.translation", "res://assets/data/boss_enemies.历史职业背景.translation", "res://assets/data/boss_enemies.主要州郡.translation", "res://assets/data/boss_enemies.HP.translation", "res://assets/data/boss_enemies.护甲.translation", "res://assets/data/boss_enemies.行动序列（主）.translation", "res://assets/data/boss_enemies.相变触发.translation", "res://assets/data/boss_enemies.地形联动.translation", "res://assets/data/boss_enemies.速度.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

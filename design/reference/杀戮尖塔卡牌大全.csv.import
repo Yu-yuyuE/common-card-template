@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dqojxi3euf0p1"
+
+[deps]
+
+files=["res://design/reference/杀戮尖塔卡牌大全.Name of the card.translation", "res://design/reference/杀戮尖塔卡牌大全.Card description..translation", "res://design/reference/杀戮尖塔卡牌大全.How often you'll find it.translation", "res://design/reference/杀戮尖塔卡牌大全.Energy cost.translation", "res://design/reference/杀戮尖塔卡牌大全.Does the effect apply to multiple enemies?.translation", "res://design/reference/杀戮尖塔卡牌大全.Used for damage.translation", "res://design/reference/杀戮尖塔卡牌大全.Used to reduce damage intake.translation", "res://design/reference/杀戮尖塔卡牌大全.Gives or plays around with Energy.translation", "res://design/reference/杀戮尖塔卡牌大全.Cost in terms of cards equal to 0 or less.translation", "res://design/reference/杀戮尖塔卡牌大全.Benefits from or contributes towards the archetype.translation", "res://design/reference/杀戮尖塔卡牌大全.Cards that usually take a central place in the deck.translation", "res://design/reference/杀戮尖塔卡牌大全.Card counts toward Perfected Stike.translation", "res://design/reference/杀戮尖塔卡牌大全.Benefits from or contributes towards the archetype.translation", "res://design/reference/杀戮尖塔卡牌大全.Benefits from or contributes towards the archetype.translation", "res://design/reference/杀戮尖塔卡牌大全.What debuff or status it brings into play.translation", "res://design/reference/杀戮尖塔卡牌大全.How much HP loss.translation", "res://design/reference/杀戮尖塔卡牌大全.How much it draws.translation", "res://design/reference/杀戮尖塔卡牌大全.General theme of the card. Sometimes a little loose.translation", "res://design/reference/杀戮尖塔卡牌大全.To count.translation", "res://design/reference/杀戮尖塔卡牌大全.Things to add.translation"]
+
+source_file="res://design/reference/杀戮尖塔卡牌大全.csv"
+dest_files=["res://design/reference/杀戮尖塔卡牌大全.Name of the card.translation", "res://design/reference/杀戮尖塔卡牌大全.Card description..translation", "res://design/reference/杀戮尖塔卡牌大全.How often you'll find it.translation", "res://design/reference/杀戮尖塔卡牌大全.Energy cost.translation", "res://design/reference/杀戮尖塔卡牌大全.Does the effect apply to multiple enemies?.translation", "res://design/reference/杀戮尖塔卡牌大全.Used for damage.translation", "res://design/reference/杀戮尖塔卡牌大全.Used to reduce damage intake.translation", "res://design/reference/杀戮尖塔卡牌大全.Gives or plays around with Energy.translation", "res://design/reference/杀戮尖塔卡牌大全.Cost in terms of cards equal to 0 or less.translation", "res://design/reference/杀戮尖塔卡牌大全.Benefits from or contributes towards the archetype.translation", "res://design/reference/杀戮尖塔卡牌大全.Cards that usually take a central place in the deck.translation", "res://design/reference/杀戮尖塔卡牌大全.Card counts toward Perfected Stike.translation", "res://design/reference/杀戮尖塔卡牌大全.Benefits from or contributes towards the archetype.translation", "res://design/reference/杀戮尖塔卡牌大全.Benefits from or contributes towards the archetype.translation", "res://design/reference/杀戮尖塔卡牌大全.What debuff or status it brings into play.translation", "res://design/reference/杀戮尖塔卡牌大全.How much HP loss.translation", "res://design/reference/杀戮尖塔卡牌大全.How much it draws.translation", "res://design/reference/杀戮尖塔卡牌大全.General theme of the card. Sometimes a little loose.translation", "res://design/reference/杀戮尖塔卡牌大全.To count.translation", "res://design/reference/杀戮尖塔卡牌大全.Things to add.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

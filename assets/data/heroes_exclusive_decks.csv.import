@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dgobyhwwpksls"
+
+[deps]
+
+files=["res://assets/data/heroes_exclusive_decks.武将.translation", "res://assets/data/heroes_exclusive_decks.阵营.translation", "res://assets/data/heroes_exclusive_decks.类型.translation", "res://assets/data/heroes_exclusive_decks.卡名.translation", "res://assets/data/heroes_exclusive_decks.费用(LV1/LV2).translation", "res://assets/data/heroes_exclusive_decks.LV1效果.translation", "res://assets/data/heroes_exclusive_decks.LV2效果.translation", "res://assets/data/heroes_exclusive_decks.使用后是否移除(LV1/LV2).translation"]
+
+source_file="res://assets/data/heroes_exclusive_decks.csv"
+dest_files=["res://assets/data/heroes_exclusive_decks.武将.translation", "res://assets/data/heroes_exclusive_decks.阵营.translation", "res://assets/data/heroes_exclusive_decks.类型.translation", "res://assets/data/heroes_exclusive_decks.卡名.translation", "res://assets/data/heroes_exclusive_decks.费用(LV1/LV2).translation", "res://assets/data/heroes_exclusive_decks.LV1效果.translation", "res://assets/data/heroes_exclusive_decks.LV2效果.translation", "res://assets/data/heroes_exclusive_decks.使用后是否移除(LV1/LV2).translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

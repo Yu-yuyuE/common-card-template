@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dgdpiqmjsjy5t"
+
+[deps]
+
+files=["res://design/reference/slay_the_spire_2_cards_from_ali213.hero.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.card.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.cost.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.rarity.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.effect.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.upgrade.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.image.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.upgrade.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.source.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.extraction.translation"]
+
+source_file="res://design/reference/slay_the_spire_2_cards_from_ali213.csv"
+dest_files=["res://design/reference/slay_the_spire_2_cards_from_ali213.hero.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.card.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.cost.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.rarity.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.effect.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.upgrade.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.image.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.upgrade.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.source.translation", "res://design/reference/slay_the_spire_2_cards_from_ali213.extraction.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true
