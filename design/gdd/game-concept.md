@@ -34,7 +34,7 @@ v5关键更新：
 | **Platform**        | PC (Steam)                                  |
 | **Target Audience** | 策略卡牌玩家、三国题材爱好者、Roguelike玩家 |
 | **Player Count**    | 单人                                        |
-| **Session Length**  | 35-70分钟/单局 (每场战役包含3张小地图)     |
+| **Session Length**  | 35-70分钟/单局 (每场战役包含3张小地图)      |
 | **Monetization**    | 付费买断制                                  |
 | **Estimated Scope** | Medium (6-12个月)                           |
 
@@ -43,11 +43,13 @@ v5关键更新：
 ## Localization Support
 
 ### Supported Languages
+
 - **Primary**: Chinese (Simplified) - 简体中文
 - **Secondary**: English - English
 - **Tertiary**: Japanese - 日本語
 
 ### Localization Considerations
+
 - **Text Direction**: All supported languages use left-to-right text flow
 - **Character Sets**: Game will support full Unicode including CJK characters
 - **Font Requirements**: Need to support both complex Chinese/Japanese characters and Latin alphabet
@@ -86,20 +88,18 @@ v5关键更新：
 1. 武将是主输出/主决策核心。
 2. **兵种**：兵种以卡牌形式加入卡组，由玩家主动打出，按卡牌文本结算效果。
 
-
 ### 2.1) 单位效果作用范围规则（统一裁定）
 
 **”目标单位”= 一名敌将或我方角色，按效果类型分别结算。**
 
-| 效果类型                | 默认作用范围                                               | 例外说明                                 |
-| ----------------------- | ---------------------------------------------------------- | ---------------------------------------- |
-| 状态（Buff/Debuff）     | 作用于目标                                             | 无 |
-| 回复效果                | 作用于目标                                             | 同上                                     |
-| 持续伤害（中毒/灼烧等） | 每回合对目标主将结算                                       | 同上                                     |
-| 普通攻击伤害            | **优先减少护盾**；护盾归零后对敌将造成HP伤害 | 带”无视护甲”文本时无视护甲             |
-| “无视护甲”攻击          | 直接对目标造成HP伤害（不计算护甲）                       | —                                        |
-| 兵种卡效果              | 按卡牌文本指定目标，不依赖附属层逻辑                       | —                                        |
-
+| 效果类型                | 默认作用范围                                 | 例外说明                   |
+| ----------------------- | -------------------------------------------- | -------------------------- |
+| 状态（Buff/Debuff）     | 作用于目标                                   | 无                         |
+| 回复效果                | 作用于目标                                   | 同上                       |
+| 持续伤害（中毒/灼烧等） | 每回合对目标主将结算                         | 同上                       |
+| 普通攻击伤害            | **优先减少护盾**；护盾归零后对敌将造成HP伤害 | 带”无视护甲”文本时无视护甲 |
+| “无视护甲”攻击          | 直接对目标造成HP伤害（不计算护甲）           | —                          |
+| 兵种卡效果              | 按卡牌文本指定目标，不依赖附属层逻辑         | —                          |
 
 **”周围单位”**：在1v3战场模型中，指目标左右的其他敌方单位。
 
@@ -226,17 +226,17 @@ v5关键更新：
 
 ## Tuning Knobs
 
-| Knob             | Safe Range   | Affects              |
-| ---------------- | ------------ | -------------------- |
-| 地形修正         | 0.85~1.20    | 地形战略价值         |
-| 诅咒卡占比       | 10%~20%      | 风险/收益节奏        |
-| 统帅             | 3~6          | 可携带兵种卡数量     |
-| 升级收益系数     | 1.20~1.35    | 单卡成长幅度         |
-| 战斗移除卡占比   | 8%~18%       | 单战循环强度         |
-| 地图消耗卡占比   | 3%~8%        | 地图资源节奏         |
-| 关隘护甲初始值   | 4~8          | 防守方战斗优势强度   |
-| 沙漠烈日灼烧频率 | 每1~2回合    | 沙漠持续压力节奏     |
-| 雪地伤害折减率   | 15%~25%      | 严寒对战斗节奏的影响 |
+| Knob             | Safe Range | Affects              |
+| ---------------- | ---------- | -------------------- |
+| 地形修正         | 0.85~1.20  | 地形战略价值         |
+| 诅咒卡占比       | 10%~20%    | 风险/收益节奏        |
+| 统帅             | 3~6        | 可携带兵种卡数量     |
+| 升级收益系数     | 1.20~1.35  | 单卡成长幅度         |
+| 战斗移除卡占比   | 8%~18%     | 单战循环强度         |
+| 地图消耗卡占比   | 3%~8%      | 地图资源节奏         |
+| 关隘护甲初始值   | 4~8        | 防守方战斗优势强度   |
+| 沙漠烈日灼烧频率 | 每1~2回合  | 沙漠持续压力节奏     |
+| 雪地伤害折减率   | 15%~25%    | 严寒对战斗节奏的影响 |
 
 ---
 
@@ -266,17 +266,17 @@ v5关键更新：
 
 本项目设计数据分布在**九个** CSV 文件中，供引擎实现直接读取。**所有 CSV 均为 GDD 设计的结构化镜像，修改 GDD 时必须同步更新对应 CSV。**
 
-| CSV 文件                       | 路径                                       | 内容概述                                                                                                        | 依赖的 GDD 文档                            |
-| ------------------------------ | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| **attack_cards.csv**           | `design/detail/all_cards/attack_cards.csv` | 近战+远程攻击卡，编号 AC0001–AC0107（107张），含卡名、类型、费用、LV1/LV2 效果、特殊属性、是否移除、图鉴归属    | `cards-design.md`                          |
-| **skill_cards.csv**            | `design/detail/all_cards/skill_cards.csv`  | 技能卡，编号 SC0001–SC0080（80张），含护盾/抽牌/控制/诅咒/地形天气/兵种联动等功能类卡                           | `cards-design.md`                          |
-| **troop_cards.csv**            | `design/detail/all_cards/troop_cards.csv`  | 兵种卡，编号 TC0001–TC0041（41张），5大类：步兵/骑兵/弓兵/谋士/盾兵，含地形联动、历史原型                       | `troop-cards-design.md`、`cards-design.md` |
-| **curse_cards.csv**            | `design/detail/all_cards/curse_cards.csv`  | 诅咒卡，编号 CC0001–（待创建），三种类型：抽到触发型/常驻牌库型/常驻手牌型                                      | `cards-design.md`                          |
-| **heroes_passive_skills.csv**  | `design/detail/heroes_passive_skills.csv`  | 所有武将的被动技能结构化数据（武将名、阵营、被动名称、被动效果），供引擎实现被动触发逻辑                        | `heroes-design.md`                         |
-| **heroes_exclusive_decks.csv** | `design/detail/heroes_exclusive_decks.csv` | 所有武将的专属卡组数据（卡名、费用、LV1/LV2 效果、使用后是否移除），含 Lv2 升级与离场机制                       | `heroes-design.md`                         |
-| **hero_campaign_maps.csv**     | `design/detail/hero_campaign_maps.csv`     | 所有武将的战役地图数据（序号、武将、阵营、战役名、所属州、地形、默认天气、历史背景），114条记录                 | `map-design.md`、`heroes-design.md`        |
-| **enemies.csv**                | `design/detail/enemies.csv`                | 全部100名敌人的完整属性数据（编号、名称、级别、HP、护甲、行动序列、速度、地形偏好），3级：普通/精英/强力 | `enemies-design.md`                        |
-| **enemy_actions.csv**          | `design/detail/enemy_actions.csv`          | 全部54种敌人行动库（编号、行动名、级别、效果、目标、数值参考、冷却回合、条件触发）                              | `enemies-design.md`                        |
+| CSV 文件                       | 路径                                     | 内容概述                                                                                                     | 依赖的 GDD 文档                            |
+| ------------------------------ | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
+| **attack_cards.csv**           | `assets/data/all_cards/attack_cards.csv` | 近战+远程攻击卡，编号 AC0001–AC0107（107张），含卡名、类型、费用、LV1/LV2 效果、特殊属性、是否移除、图鉴归属 | `cards-design.md`                          |
+| **skill_cards.csv**            | `assets/data/all_cards/skill_cards.csv`  | 技能卡，编号 SC0001–SC0080（80张），含护盾/抽牌/控制/诅咒/地形天气/兵种联动等功能类卡                        | `cards-design.md`                          |
+| **troop_cards.csv**            | `assets/data/all_cards/troop_cards.csv`  | 兵种卡，编号 TC0001–TC0041（41张），5大类：步兵/骑兵/弓兵/谋士/盾兵，含地形联动、历史原型                    | `troop-cards-design.md`、`cards-design.md` |
+| **curse_cards.csv**            | `assets/data/all_cards/curse_cards.csv`  | 诅咒卡，编号 CC0001–（待创建），三种类型：抽到触发型/常驻牌库型/常驻手牌型                                   | `cards-design.md`                          |
+| **heroes_passive_skills.csv**  | `assets/data/heroes_passive_skills.csv`  | 所有武将的被动技能结构化数据（武将名、阵营、被动名称、被动效果），供引擎实现被动触发逻辑                     | `heroes-design.md`                         |
+| **heroes_exclusive_decks.csv** | `assets/data/heroes_exclusive_decks.csv` | 所有武将的专属卡组数据（卡名、费用、LV1/LV2 效果、使用后是否移除），含 Lv2 升级与离场机制                    | `heroes-design.md`                         |
+| **hero_campaign_maps.csv**     | `assets/data/hero_campaign_maps.csv`     | 所有武将的战役地图数据（序号、武将、阵营、战役名、所属州、地形、默认天气、历史背景），114条记录              | `map-design.md`、`heroes-design.md`        |
+| **enemies.csv**                | `assets/data/enemies.csv`                | 全部100名敌人的完整属性数据（编号、名称、级别、HP、护甲、行动序列、速度、地形偏好），3级：普通/精英/强力     | `enemies-design.md`                        |
+| **enemy_actions.csv**          | `assets/data/enemy_actions.csv`          | 全部54种敌人行动库（编号、行动名、级别、效果、目标、数值参考、冷却回合、条件触发）                           | `enemies-design.md`                        |
 
 ### 各 CSV 的引擎使用场景
 

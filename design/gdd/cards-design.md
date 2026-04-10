@@ -221,12 +221,12 @@ _Status: Draft v3.2（武器·工事·装备参考库新增；卡牌素材库与
 
 所有卡牌使用**类型前缀 + 4位流水号**的格式，各类型前缀如下：
 
-| 前缀 | 卡牌类型 | 示例     | 当前范围          | CSV 文件                    |
-| ---- | -------- | -------- | ----------------- | --------------------------- |
-| `AC` | 攻击卡   | `AC0001` | AC0001–AC0107     | `attack_cards.csv`          |
-| `SC` | 技能卡   | `SC0001` | SC0001–SC0090     | `skill_cards.csv`           |
-| `TC` | 兵种卡   | `TC0001` | TC0001–TC0041     | `troop_cards.csv`           |
-| `CC` | 诅咒卡   | `CC0001` | CC0001–CC0025     | `curse_cards.csv`           |
+| 前缀 | 卡牌类型 | 示例     | 当前范围      | CSV 文件           |
+| ---- | -------- | -------- | ------------- | ------------------ |
+| `AC` | 攻击卡   | `AC0001` | AC0001–AC0107 | `attack_cards.csv` |
+| `SC` | 技能卡   | `SC0001` | SC0001–SC0090 | `skill_cards.csv`  |
+| `TC` | 兵种卡   | `TC0001` | TC0001–TC0041 | `troop_cards.csv`  |
+| `CC` | 诅咒卡   | `CC0001` | CC0001–CC0025 | `curse_cards.csv`  |
 
 **编号规则**：
 
@@ -314,7 +314,7 @@ B. **消耗卡（地图一次）**
 | ------ | ---- | -------- | ----------------- | ----------------- | -------- |
 | 破阵斩 | 0    | —        | 对目标造成5点伤害 | 对目标造成8点伤害 | 初始通用 |
 
-- 详见 design\detail\all_cards\attack_cards.csv
+- 详见 assets\data\all_cards\attack_cards.csv
 
 **B. 远程攻击卡**
 
@@ -322,7 +322,7 @@ B. **消耗卡（地图一次）**
 | ------ | ---- | -------- | --------------------- | ---------------------- | -------- |
 | 穿云箭 | 1    | —        | 对任意目标造成8点伤害 | 对任意目标造成11点伤害 | 初始通用 |
 
-- 详见 design\detail\all_cards\attack_cards.csv
+- 详见 assets\data\all_cards\attack_cards.csv
 
 **C. 技能卡**
 
@@ -341,11 +341,11 @@ B. **消耗卡（地图一次）**
 | 地形转换·火 | 2    | —            | 将当前地形变为森林（灼烧+50%），持续3回合                                    | 持续5回合，变为森林并附1层灼烧给所有敌将                                            | 待开启通用·批次3 |
 | 粮草调度    | X    | **X费**      | 回复X×4点HP，并为卡组中X张随机卡升级                                         | 回复X×5点HP，并为卡组中X+1张随机卡升级                                              | 待开启通用·批次6 |
 
-- 详见 design\detail\all_cards\skill_cards.csv
+- 详见 assets\data\all_cards\skill_cards.csv
 
 诅咒卡分为三种类型：
 
-- 详见 design\detail\all_cards\curse_cards.csv
+- 详见 assets\data\all_cards\curse_cards.csv
 
 | 类型           | 触发时机                             | 持续方式                                     | 示例                              |
 | -------------- | ------------------------------------ | -------------------------------------------- | --------------------------------- |
@@ -816,8 +816,8 @@ B. **消耗卡（地图一次）**
 - `design/gdd/equipment-design.md`
 - `design/gdd/game-concept.md`（卡池架构、兵种卡规则来源）
 - `design/gdd/map-design.md`（地形/天气标签由地图系统提供，地形操控卡依赖此文档）
-- `design/detail/hero_campaign_maps.csv`（武将战役地图来源）
-- `design/detail/all_cards`（本文档的结构化镜像，修改必须同步）
+- `assets/data/hero_campaign_maps.csv`（武将战役地图来源）
+- `assets/data/all_cards`（本文档的结构化镜像，修改必须同步）
 
 ---
 

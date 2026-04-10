@@ -430,8 +430,8 @@ BaseCostPerTurn：
 
 | 文件                                       | 用途                                                 |
 | ------------------------------------------ | ---------------------------------------------------- |
-| `design/detail/heroes_passive_skills.csv`  | 被动技能结构化数据（引擎实现参考，与本文件保持同步） |
-| `design/detail/heroes_exclusive_decks.csv` | 专属卡组构成与升级数据                               |
+| `assets/data/heroes_passive_skills.csv`    | 被动技能结构化数据（引擎实现参考，与本文件保持同步） |
+| `assets/data/heroes_exclusive_decks.csv`   | 专属卡组构成与升级数据                               |
 | `design/gdd/card-battle-system.md`         | 战斗流程钩子、手牌上限、行动点规则                   |
 | `design/gdd/resource-management-system.md` | HP/护盾/行动点的基础定义                             |
 | `design/gdd/status-design.md`              | 被动触发的标准状态定义                               |
