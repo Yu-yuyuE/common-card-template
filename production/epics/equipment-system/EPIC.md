@@ -4,7 +4,12 @@
 > **GDD**: design/gdd/equipment-design.md
 > **Architecture Module**: EquipmentSystem
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories equipment-system`
+> **Stories**: 
+> - [x] `production/epics/equipment-system/story-001-equipment-data-structure.md`
+> - [x] `production/epics/equipment-system/story-002-equipment-acquisition.md`
+> - [x] `production/epics/equipment-system/story-003-equipment-equipping.md`
+> - [x] `production/epics/equipment-system/story-004-equipment-effects.md`
+> - [x] `production/epics/equipment-system/story-005-battle-integration.md`
 
 ## Overview
 

@@ -4,7 +4,12 @@
 > **GDD**: design/gdd/curse-system.md
 > **Architecture Module**: CurseSystem
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories curse-system`
+> **Stories**: 
+> - [x] `production/epics/curse-system/story-001-curse-types-and-data.md`
+> - [x] `production/epics/curse-system/story-002-curse-injection.md`
+> - [x] `production/epics/curse-system/story-003-curse-purification.md`
+> - [x] `production/epics/curse-system/story-004-battle-integration.md`
+> - [x] `production/epics/curse-system/story-005-event-hooks.md`
 
 ## Overview
 

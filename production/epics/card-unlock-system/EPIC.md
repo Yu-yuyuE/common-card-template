@@ -4,7 +4,17 @@
 > **GDD**: design/gdd/cards-design.md
 > **Architecture Module**: CardUnlockSystem
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories card-unlock-system`
+> **Stories**: 5 stories created (see below)
+
+## Stories
+
+| # | Story | Type | Status | ADR |
+|---|-------|------|--------|-----|
+| 001 | 图鉴解锁管理器核心逻辑 | Logic | Ready | ADR-0004 |
+| 002 | 解锁状态与Meta Save集成 | Integration | Ready | ADR-0005 |
+| 003 | 战役结算与新卡解锁规则 | Logic | Ready | ADR-0004 |
+| 004 | 掉落池与商店过滤集成 | Integration | Ready | ADR-0004 |
+| 005 | 游戏外图鉴展示界面(Compendium) | UI | Ready | ADR-0004 |
 
 ## Overview
 

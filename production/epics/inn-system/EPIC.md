@@ -4,7 +4,10 @@
 > **GDD**: design/gdd/inn-system.md
 > **Architecture Module**: InnSystem
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories inn-system`
+> **Stories**: 
+> - [x] `production/epics/inn-system/story-001-inn-services.md`
+> - [x] `production/epics/inn-system/story-002-inn-persistence.md`
+> - [x] `production/epics/inn-system/story-003-inn-ui.md`
 
 ## Overview
 

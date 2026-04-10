@@ -4,7 +4,11 @@
 > **GDD**: design/gdd/map-design.md
 > **Architecture Module**: MapNodeSystem
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories map-node-system`
+> **Stories**: 
+> - [x] `production/epics/map-node-system/story-001-map-data-structure.md`
+> - [x] `production/epics/map-node-system/story-002-node-navigation.md`
+> - [x] `production/epics/map-node-system/story-003-map-generation.md`
+> - [x] `production/epics/map-node-system/story-004-campaign-management.md`
 
 ## Overview
 

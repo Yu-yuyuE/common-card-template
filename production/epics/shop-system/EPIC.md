@@ -4,7 +4,12 @@
 > **GDD**: design/gdd/shop-system.md
 > **Architecture Module**: ShopSystem
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories shop-system`
+> **Stories**: 
+> - [x] `production/epics/shop-system/story-001-shop-shelf-generation.md`
+> - [x] `production/epics/shop-system/story-002-card-purchase.md`
+> - [x] `production/epics/shop-system/story-003-card-upgrade.md`
+> - [x] `production/epics/shop-system/story-004-equipment-purchase.md`
+> - [x] `production/epics/shop-system/story-005-shop-ui.md`
 
 ## Overview
 

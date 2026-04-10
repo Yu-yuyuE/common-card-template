@@ -4,7 +4,12 @@
 > **GDD**: design/gdd/event-system.md
 > **Architecture Module**: EventSystem
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories event-system`
+> **Stories**: 
+> - [x] `production/epics/event-system/story-001-event-data-structure.md`
+> - [x] `production/epics/event-system/story-002-event-selection.md`
+> - [x] `production/epics/event-system/story-003-event-consequences.md`
+> - [x] `production/epics/event-system/story-004-event-options.md`
+> - [x] `production/epics/event-system/story-005-map-integration.md`
 
 ## Overview
 

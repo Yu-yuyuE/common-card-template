@@ -4,7 +4,10 @@
 > **GDD**: design/gdd/card-upgrade-system.md
 > **Architecture Module**: CardUpgradeSystem
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories card-upgrade-system`
+> **Stories**: 
+> - [x] `production/epics/card-upgrade-system/story-001-core-logic.md`
+> - [x] `production/epics/card-upgrade-system/story-002-battle-integration.md`
+> - [x] `production/epics/card-upgrade-system/story-003-shop-ui.md`
 
 ## Overview
 

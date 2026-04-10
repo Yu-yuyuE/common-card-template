@@ -5,6 +5,19 @@
 ✅ 系统索引状态更新与纠正
 ✅ 所有 GDD 设计工作已完成
 ✅ 冲刺计划（Sprint 1）与 QA 计划已创建
+✅ 资源管理系统 Epic Story (008) 添加
+✅ 军营系统 Epic Stories (001-004) 创建
+✅ 状态效果系统 Epic Stories (001-006) 创建
+✅ 卡牌解锁系统 Epic Stories (001-005) 创建
+✅ 敌人系统、卡牌战斗系统 Epic Stories 确认已有
+✅ 卡牌升级系统 Epic Stories (001-003) 创建
+✅ 诅咒系统 Epic Stories (001-005) 创建
+✅ 装备系统 Epic Stories (001-005) 创建
+✅ 事件系统 Epic Stories (001-005) 创建
+✅ 酒馆系统 Epic Stories (001-003) 创建
+✅ 地图节点系统 Epic Stories (001-004) 创建
+✅ 商店系统 Epic Stories (001-005) 创建
+✅ 存档持久化系统 Epic Stories (001-005) 已存在
 
 ### 完成的工作
 1. ✅ 补充本地化系统 Visual/Audio Requirements 和 UI Requirements 章节
@@ -13,6 +26,7 @@
 4. ✅ 所有 18 个系统的 GDD 均已完成
 5. ✅ 初始化 `/sprint-plan` 生成 `sprint-1` 和 `sprint-status.yaml`
 6. ✅ 初始化 `qa-plan-sprint-1.md` 测试计划
+7. ✅ 为所有剩余8个Epic创建Story文件（card-upgrade-system, curse-system, equipment-system, event-system, inn-system, map-node-system, save-persistence-system, shop-system）
 
 ### 项目状态
 **实现阶段准备就绪** ✅
