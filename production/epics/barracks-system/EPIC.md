@@ -4,7 +4,16 @@
 > **GDD**: design/gdd/barracks-system.md
 > **Architecture Module**: BarracksSystem
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories barracks-system`
+> **Stories**: 4 stories created (see below)
+
+## Stories
+
+| # | Story | Type | Status | ADR |
+|---|-------|------|--------|-----|
+| 001 | 军营核心状态与权重算法 | Logic | Ready | ADR-0010 |
+| 002 | 军营流转与全局系统集成 | Integration | Ready | ADR-0010 |
+| 003 | 军营主场景及添加/移出面板 | UI | Ready | ADR-0010 |
+| 004 | 升级功能区与分支选择交互 | UI | Ready | ADR-0010, ADR-0014 |
 
 ## Overview
 
