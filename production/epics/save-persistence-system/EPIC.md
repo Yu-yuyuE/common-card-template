@@ -35,6 +35,16 @@ This epic is complete when:
 - All Logic and Integration stories have passing test files in `tests/`
 - All Visual/Feel and UI stories have evidence docs with sign-off in `production/qa/evidence/`
 
+## Stories
+
+| # | Story | Type | Status | ADR |
+|---|-------|------|--------|-----|
+| 001 | Run Save 自动写入与恢复 | Integration | Ready | ADR-0005 |
+| 002 | 战役结束删除 Run Save | Logic | Ready | ADR-0005 |
+| 003 | Meta Save 解锁与发现记录更新 | Logic | Ready | ADR-0005 |
+| 004 | Meta Save 通关与设置更新 | Logic | Ready | ADR-0005 |
+| 005 | 存档文件的原子写入与版本兼容 | Logic | Ready | ADR-0005 |
+
 ## Next Step
 
-Run `/create-stories save-persistence-system` to break this epic into implementable stories.
+Run `/story-readiness production/epics/save-persistence-system/story-001-run-save-write-and-restore.md` to validate the first story, then `/dev-story` to begin implementation.
