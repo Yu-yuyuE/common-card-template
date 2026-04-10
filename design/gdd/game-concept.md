@@ -176,23 +176,19 @@ v5关键更新：
 
 ### F1. 兵种最终伤害
 
-`FinalDamage = BaseDamage × CounterMod × TerrainMod × BuffMod`
+`FinalDamage = BaseDamage × TerrainMod × BuffMod`
 
-### F2. 兵种存活更新
-
-`TroopHP_next = TroopHP_now - IncomingDamage + Reinforce`
-
-### F3. 统帅约束
+### F2. 统帅约束
 
 `TroopCardCountInDeck ≤ CommanderLeadership`
 
-### F4. 卡牌升级收益
+### F3. 卡牌升级收益
 
 `UpgradeGain = Lv2Power / Lv1Power`
 
 - 建议区间：1.20~1.35
 
-### F5. 地图消耗卡可用性
+### F4. 地图消耗卡可用性
 
 `MapConsumableUsable = !UsedOnMap(cardId, mapId)`
 
@@ -245,9 +241,8 @@ v5关键更新：
 1. 战斗采用”我方1主将 vs 敌方最多3名”结构并稳定运行。
 2. 统帅规则可阻止卡组中兵种卡超限加入。
 3. 诅咒卡具备”惩罚+可利用”双属性玩法。
-4. 1v3场面下，玩家可清晰识别主将目标与附属兵种状态。
-5. 每种卡牌支持且仅支持一次升级（Lv1→Lv2）。
-6. “使用后移除”与”消耗卡”可被系统正确追踪并按规则重置。
+4. 每种卡牌支持且仅支持一次升级（Lv1→Lv2）。
+5. “使用后移除”与”消耗卡”可被系统正确追踪并按规则重置。
 
 ---
 
