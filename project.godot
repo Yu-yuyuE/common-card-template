@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="三国称雄"
+config/name="three-kingdoms-card"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.png"
 config/author="yuyi1"
