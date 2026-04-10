@@ -4,7 +4,19 @@
 > **GDD**: design/gdd/heroes-design.md
 > **Architecture Module**: HeroSystem
 > **Status**: Ready
-> **Stories**: Not yet created — run `/create-stories hero-system`
+> **Stories**: 7 stories created (see below)
+
+## Stories
+
+| # | Story | Type | Status | ADR |
+|---|-------|------|--------|-----|
+| 001 | 武将数据结构与CSV解析加载 | Logic | Ready | ADR-0010 |
+| 002 | 兵种倾向与出现权重算法 | Logic | Ready | ADR-0010 |
+| 003 | 被动技能框架与时机钩子注册 | Logic | Ready | ADR-0010 |
+| 004 | 专属卡组与生涯地图接口 | Logic | Ready | ADR-0010 |
+| 005 | 魏蜀阵营代表性被动技能实现 | Logic | Ready | ADR-0010 |
+| 006 | 吴群阵营及特殊机制被动实现 | Logic | Ready | ADR-0010 |
+| 007 | 武将选择UI绑定 | UI | Ready | ADR-0010 |
 
 ## Overview
 
