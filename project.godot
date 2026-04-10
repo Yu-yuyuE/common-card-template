@@ -20,6 +20,10 @@ config/author="yuyi1"
 width=1280
 height=720
 
+[dotnet]
+
+project/assembly_name="three-kingdoms-card"
+
 [rendering]
 
 quality/driver/driver_name="Vulkan"

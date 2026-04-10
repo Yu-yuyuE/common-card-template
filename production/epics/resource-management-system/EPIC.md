@@ -4,7 +4,7 @@
 > **GDD**: design/gdd/resource-management-system.md
 > **Architecture Module**: ResourceManager
 > **Status**: Ready
-> **Stories**: 7 stories created (see below)
+> **Stories**: 8 stories created (see below)
 
 ## Stories
 
@@ -17,6 +17,7 @@
 | 005 | 粮草消耗与归零惩罚 | Logic | Ready | ADR-0003 |
 | 006 | 资源恢复机制 | Logic | Ready | ADR-0003 |
 | 007 | 资源变化UI响应 | UI | Ready | ADR-0002 |
+| 008 | 资源系统综合集成 | Integration | Ready | ADR-0003 |
 
 ## Overview
 
