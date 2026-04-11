@@ -28,6 +28,9 @@ class MockHeroManager extends Node:
 			"armor_max_override": _armor_max_override
 		}
 
+	func get_armor_max() -> int:
+		return 0
+
 # ==================== 测试生命周期 ====================
 
 func before_test() -> void:

@@ -399,3 +399,7 @@ func _load_action_database() -> Dictionary:
 ## Related Decisions
 - ADR-0006 (已 Accepted): 状态效果系统
 - ADR-0007 (已 Accepted): 卡牌战斗系统
+
+## 速度字段说明
+
+> **速度字段已废弃**：敌人行动顺序统一按战场位置从左到右执行，不再使用速度字段。所有敌人速度值在CSV中保留为0以保持格式兼容，但不影响游戏逻辑。

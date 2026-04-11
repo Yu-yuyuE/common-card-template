@@ -5,7 +5,7 @@
 ## 作者: Claude Code
 ## 创建日期: 2026-04-11
 
-class_name ActionExecutor extends RefCounted
+class_name ActionExecutor extends Node
 
 ## 信号
 signal action_executed(action: EnemyAction)

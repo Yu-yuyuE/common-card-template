@@ -18,6 +18,12 @@ var queue: Array[EnemyAction] = []
 ## 执行器状态
 var is_executing: bool = false
 
+## 当前执行索引
+var _current_index: int = 0
+
+## 行动间隔时间
+var _interval: float = 0.8
+
 ## 添加行动到队列
 func add_action(action: EnemyAction) -> void:
 	queue.append(action)
@@ -28,37 +34,39 @@ func execute_all(interval: float = 0.8) -> void:
 		return  # 防止重复调用
 
 	is_executing = true
-	var index: int = 0
-
-	# 内部协程执行函数
-	func _execute_next() -> void:
-		if index >= queue.size():
-			all_actions_completed.emit()
-			is_executing = false
-			return
-
-		var action: EnemyAction = queue[index]
-		index += 1
-
-		# 检查敌人是否存活
-		var enemy: EnemyData = EnemyManager.get_enemy(action.source_enemy_id)
-		if enemy == null or not enemy.is_alive:
-			# 跳过死亡敌人，直接执行下一个
-			await get_tree().create_timer(interval).timeout
-			_execute_next()
-			return
-
-		# 激活动画和效果
-		action_started.emit(action)
-
-		# 执行单个行动（调用 Story 006 的效果派发器）
-		await _execute_single_action(action)
-
-		# 等待间隔后执行下一个行动
-		await get_tree().create_timer(interval).timeout
-		_execute_next()
+	_current_index = 0
+	_interval = interval
 
 	# 启动执行流程
+	_execute_next()
+
+## 内部协程执行函数（修复 Godot 4.6+ lambda 限制）
+func _execute_next() -> void:
+	if _current_index >= queue.size():
+		all_actions_completed.emit()
+		is_executing = false
+		_current_index = 0
+		return
+
+	var action: EnemyAction = queue[_current_index]
+	_current_index += 1
+
+	# 检查敌人是否存活
+	var enemy: EnemyData = EnemyManager.get_enemy(action.source_enemy_id)
+	if enemy == null or not enemy.is_alive:
+		# 跳过死亡敌人，直接执行下一个
+		await get_tree().create_timer(_interval).timeout
+		_execute_next()
+		return
+
+	# 激活动画和效果
+	action_started.emit(action)
+
+	# 执行单个行动（调用 Story 006 的效果派发器）
+	await _execute_single_action(action)
+
+	# 等待间隔后执行下一个行动
+	await get_tree().create_timer(_interval).timeout
 	_execute_next()
 
 ## 执行单个行动（调用效果派发器）

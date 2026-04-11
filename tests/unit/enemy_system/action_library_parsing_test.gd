@@ -27,14 +27,14 @@ func after_test() -> void:
 ## Then: _action_database 键值对总数为 71
 func test_action_library_count() -> void:
 	# Given: CSV 文件存在且格式正确
-	assert_true(FileAccess.file_exists("res://assets/csv_data/enemy_actions.csv"))
+	assert_bool(FileAccess.file_exists("res://assets/csv_data/enemy_actions.csv")).is_true()
 
 	# When: EnemyManager 初始化并加载行动库
 	_enemy_manager._ready()
 
 	# Then: 加载 71 种行动（或更多，包含示例数据）
 	var action_count = _enemy_manager._action_database.size()
-	assert_true(action_count >= 71, "Expected at least 71 actions, got %d" % action_count)
+	assert_bool(action_count >= 71).is_true()
 
 # ==================== AC-2: 复杂动作解析 ====================
 
@@ -44,7 +44,7 @@ func test_action_library_count() -> void:
 ## Then: 返回的对象能正确标识 damage=12，且附带 status="broken", layers=1
 func test_complex_action_parsing() -> void:
 	var action: EnemyAction = _enemy_manager._get_action_data("A07")  # 踢踹: 伤害4~6+盲目×1
-	assert_not_null(action, "Action A07 should exist")
+	assert_that(action).is_not_null()
 
 	# 验证基本属性
 	assert_str(action.id).is_equal("A07")
@@ -66,7 +66,7 @@ func test_complex_action_parsing() -> void:
 ## Then: 优雅返回 null 或默认空操作，不崩溃。
 func test_missing_action() -> void:
 	var action: EnemyAction = _enemy_manager._get_action_data("X99")
-	assert_null(action, "Non-existent action should return null")
+	assert_that(action).is_null()
 
 # ==================== 额外验证：行动类型和目标 ====================
 

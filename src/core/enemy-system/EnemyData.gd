@@ -28,9 +28,6 @@ var current_hp: int
 ## 护盾
 var armor: int
 
-## 速度（决定行动顺序）
-var speed: int
-
 ## 是否存活
 var is_alive: bool = true
 
@@ -59,8 +56,7 @@ func _init(
 	p_class: int,
 	p_tier: int,
 	p_hp: int,
-	p_armor: int = 0,
-	p_speed: int = 1
+	p_armor: int = 0
 ) -> void:
 	id = p_id
 	name = p_name
@@ -69,5 +65,4 @@ func _init(
 	max_hp = p_hp
 	current_hp = p_hp
 	armor = p_armor
-	speed = p_speed
 	is_alive = true

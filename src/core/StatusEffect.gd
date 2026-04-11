@@ -20,6 +20,8 @@ class_name StatusEffect extends RefCounted
 
 ## 全部状态枚举值
 enum Type {
+	NONE         = -1,  ## 无效状态（用于错误处理）
+
 	# ---- 正面状态（Buff） ----
 	FURY         = 0,   ## B1 怒气：攻击伤害 +25%
 	AGILITY      = 1,   ## B2 迅捷：50% 概率闪避

@@ -15,6 +15,8 @@ var _mock_hero_manager: Node
 class MockHeroManager extends Node:
 	var max_hp: int = 50
 	var base_ap: int = 4
+	func get_armor_max() -> int:
+		return 0
 
 # ==================== 测试生命周期 ====================
 
