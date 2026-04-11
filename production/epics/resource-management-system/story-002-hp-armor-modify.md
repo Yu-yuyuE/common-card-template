@@ -1,7 +1,7 @@
 # Story 002: HP/护盾修改与Signal通知
 
 > **Epic**: 资源管理系统
-> **Status**: Ready
+> **Status**: Done
 > **Layer**: Foundation
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
@@ -29,11 +29,11 @@
 
 *From GDD `design/gdd/resource-management-system.md`, scoped to this story:*
 
-- [ ] HP归零时立即触发战斗失败，不允许负值HP继续战斗
-- [ ] 护盾正确先于HP吸收伤害；超出部分溢出扣HP
-- [ ] HP恢复来源（酒馆/卡牌/事件）不超过武将HP上限
-- [ ] modify_resource()接口修改HP和护盾，触发resource_changed信号
-- [ ] Signal参数正确：resource_type, old_value, new_value, delta
+- [x] HP归零时立即触发战斗失败，不允许负值HP继续战斗
+- [x] 护盾正确先于HP吸收伤害；超出部分溢出扣HP
+- [x] HP恢复来源（酒馆/卡牌/事件）不超过武将HP上限
+- [x] modify_resource()接口修改HP和护盾，触发resource_changed信号
+- [x] Signal参数正确：resource_type, old_value, new_value, delta
 
 ---
 
@@ -117,7 +117,7 @@
 **Required evidence**:
 - Logic: `tests/unit/resource_management/hp_armor_modify_test.gd` — must exist and pass
 
-**Status**: [ ] Not yet created
+**Status**: [x] Implemented in tests/unit/resource_management/hp_armor_modify_test.gd
 
 ---
 

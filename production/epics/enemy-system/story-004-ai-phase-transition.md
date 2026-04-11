@@ -1,7 +1,7 @@
 # Story 004: 决策树与相变条件触发
 
 > **Epic**: 敌人系统
-> **Status**: Ready
+> **Status**: Done
 > **Layer**: Core
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09

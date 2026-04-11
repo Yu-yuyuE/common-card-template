@@ -39,7 +39,7 @@ enum Type {
 	ARMOR_BREAK  = 16,  ## D7 破甲：受到攻击伤害 +25%
 	WEAKEN       = 17,  ## D8 虚弱：攻击伤害 -25%
 	BURN         = 18,  ## D9 灼烧：每回合 5×层 走护盾伤害
-	PLAGUE       = 19,  ## D10 瘟疫：每回合 3×层 穿透伤害；回合末传播1层至相邻单位
+	PLAGUE       = 19,  ## D10 瘟疫：每回合 2×层 穿透伤害；回合末传播1层至相邻单位
 	STUN         = 20,  ## D11 眩晕：停止行动；受到攻击时消失
 	WOUND        = 21,  ## D12 重伤：每回合 1/层×层 穿透伤害（叠加型）
 	FROSTBITE    = 22,  ## D13 冻伤：每次出牌 HP -1
@@ -69,7 +69,7 @@ enum DecayMode {
 
 # ---------------------------------------------------------------------------
 # 状态元数据——每种 Type 对应一条只读记录
-# 通过 StatusEffect.get_meta(type) 查询
+# 通过 StatusEffect.get_status_meta(type) 查询
 # ---------------------------------------------------------------------------
 
 ## 单条状态元数据
@@ -79,8 +79,10 @@ class Meta:
 	var is_buff    : bool        ## true = 正面状态，false = 负面状态
 	var decay_mode : DecayMode   ## 衰减机制
 	var intensity  : Intensity   ## 强度等级
-	## 每层每回合基础伤害（无伤害型为 0）
-	var dot_per_layer  : int = 0
+	## 每回合基础伤害值（无伤害型为 0）
+	var dot_base_damage : int = 0
+	## true = 伤害随层数增长（重伤）；false = 固定伤害（中毒等）
+	var dot_layers_multiply : bool = false
 	## true = 走护盾（灼烧）；false = 穿透护盾（中毒等）
 	var dot_uses_armor : bool = false
 
@@ -91,15 +93,17 @@ class Meta:
 		p_decay: DecayMode,
 		p_intensity: Intensity,
 		p_dot: int = 0,
+		p_multiply: bool = false,
 		p_armor: bool = false
 	) -> void:
-		type           = p_type
-		label          = p_label
-		is_buff        = p_is_buff
-		decay_mode     = p_decay
-		intensity      = p_intensity
-		dot_per_layer  = p_dot
-		dot_uses_armor = p_armor
+		type                = p_type
+		label               = p_label
+		is_buff             = p_is_buff
+		decay_mode          = p_decay
+		intensity           = p_intensity
+		dot_base_damage     = p_dot
+		dot_layers_multiply = p_multiply
+		dot_uses_armor      = p_armor
 
 
 # 全局元数据表（静态只读，程序启动后不修改）
@@ -107,21 +111,20 @@ static var _META_TABLE: Dictionary = {}  # Type -> Meta
 
 ## 返回指定状态类型的元数据。
 ## 示例：
-##   var meta := StatusEffect.get_meta(StatusEffect.Type.POISON)
+##   var meta := StatusEffect.get_status_meta(StatusEffect.Type.POISON)
 ##   print(meta.label)  # => "中毒"
-static func get_meta(type: Type) -> Meta:
+static func get_status_meta(p_type: Type) -> Meta:
 	_ensure_meta_table()
-	return _META_TABLE[type] as Meta
+	return _META_TABLE[p_type] as Meta
 
 
 ## 返回该类型是否为正面状态（Buff）。
-static func is_buff(type: Type) -> bool:
-	return get_meta(type).is_buff
+static func is_buff(p_type: Type) -> bool:
+	return get_status_meta(p_type).is_buff
 
 
-## 返回该类型是否为负面状态（Debuff）。
-static func is_debuff(type: Type) -> bool:
-	return not get_meta(type).is_buff
+static func is_debuff(p_type: Type) -> bool:
+	return not get_status_meta(p_type).is_buff
 
 
 # ---------------------------------------------------------------------------
@@ -169,7 +172,7 @@ static func _ensure_meta_table() -> void:
 
 
 static func _build_meta_table() -> void:
-	# 格式：Meta.new(Type, 名称, is_buff, decay, intensity, dot_per_layer, dot_uses_armor)
+	# 格式：Meta.new(Type, 名称, is_buff, decay, intensity, dot_base_damage, dot_layers_multiply, dot_uses_armor)
 	var entries: Array[Meta] = [
 		# ---- Buff ----
 		Meta.new(Type.FURY,        "怒气", true,  DecayMode.PER_ROUND, Intensity.MEDIUM),
@@ -180,19 +183,19 @@ static func _build_meta_table() -> void:
 		Meta.new(Type.PIERCE,      "穿透", true,  DecayMode.CONSUME,   Intensity.MEDIUM),
 		Meta.new(Type.IMMUNE,      "免疫", true,  DecayMode.PER_ROUND, Intensity.STRONG),
 		# ---- Debuff ----
-		Meta.new(Type.POISON,      "中毒", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 4, false),
-		Meta.new(Type.TOXIC,       "剧毒", false, DecayMode.PER_ROUND, Intensity.STRONG, 7, false),
-		Meta.new(Type.FEAR,        "恐惧", false, DecayMode.PER_ROUND, Intensity.NORMAL),
-		Meta.new(Type.CONFUSION,   "混乱", false, DecayMode.CONSUME,   Intensity.STRONG),
-		Meta.new(Type.BLIND,       "盲目", false, DecayMode.PER_ROUND, Intensity.MEDIUM),
-		Meta.new(Type.SLIP,        "滑倒", false, DecayMode.PER_ROUND, Intensity.STRONG),
-		Meta.new(Type.ARMOR_BREAK, "破甲", false, DecayMode.PER_ROUND, Intensity.MEDIUM),
-		Meta.new(Type.WEAKEN,      "虚弱", false, DecayMode.PER_ROUND, Intensity.MEDIUM),
-		Meta.new(Type.BURN,        "灼烧", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 5, true),
-		Meta.new(Type.PLAGUE,      "瘟疫", false, DecayMode.PER_ROUND, Intensity.STRONG, 3, false),
-		Meta.new(Type.STUN,        "眩晕", false, DecayMode.PER_ROUND, Intensity.STRONG),
-		Meta.new(Type.WOUND,       "重伤", false, DecayMode.PER_ROUND, Intensity.NORMAL, 1, false),
-		Meta.new(Type.FROSTBITE,   "冻伤", false, DecayMode.PER_ROUND, Intensity.NORMAL),
+		Meta.new(Type.POISON,      "中毒", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 4, false, false),
+		Meta.new(Type.TOXIC,       "剧毒", false, DecayMode.PER_ROUND, Intensity.STRONG, 7, false, false),
+		Meta.new(Type.FEAR,        "恐惧", false, DecayMode.PER_ROUND, Intensity.NORMAL, 0, false, false),
+		Meta.new(Type.CONFUSION,   "混乱", false, DecayMode.CONSUME,   Intensity.STRONG, 0, false, false),
+		Meta.new(Type.BLIND,       "盲目", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 0, false, false),
+		Meta.new(Type.SLIP,        "滑倒", false, DecayMode.PER_ROUND, Intensity.STRONG, 0, false, false),
+		Meta.new(Type.ARMOR_BREAK, "破甲", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 0, false, false),
+		Meta.new(Type.WEAKEN,      "虚弱", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 0, false, false),
+		Meta.new(Type.BURN,        "灼烧", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 5, false, true),
+		Meta.new(Type.PLAGUE,      "瘟疫", false, DecayMode.PER_ROUND, Intensity.STRONG, 2, false, false),
+		Meta.new(Type.STUN,        "眩晕", false, DecayMode.PER_ROUND, Intensity.STRONG, 0, false, false),
+		Meta.new(Type.WOUND,       "重伤", false, DecayMode.PER_ROUND, Intensity.NORMAL, 1, true, false),
+		Meta.new(Type.FROSTBITE,   "冻伤", false, DecayMode.PER_ROUND, Intensity.NORMAL, 0, false, false),
 	]
 	for m: Meta in entries:
 		_META_TABLE[m.type] = m

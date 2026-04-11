@@ -7,10 +7,15 @@ signal card_discarded(card: Card)
 signal deck_shuffled()
 signal hand_full_discarded(card: Card)
 
+## 抽牌堆：待抽取的卡牌
 var draw_pile: Array[Card] = []
+## 手牌区：当前玩家持有的卡牌
 var hand_cards: Array[Card] = []
+## 弃牌堆：已使用并弃置的卡牌
 var discard_pile: Array[Card] = []
+## 移除区：永久移出游戏的卡牌（如某些诅咒/特殊效果）
 var removed_cards: Array[Card] = []
+## 消耗区：使用后进入消耗区，本回合无法再使用的卡牌
 var exhaust_cards: Array[Card] = []
 
 var battle_manager: Node # 引入BattleManager的引用以获取玩家信息

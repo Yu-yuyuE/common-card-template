@@ -15,7 +15,9 @@
       "Bash(py -c \":*)",
       "Bash(py \"d:\\\\develop\\\\godot\\\\common-card-template\\\\design\\\\detail\\\\fix_csv.py\")",
       "Bash(del \"d:\\\\develop\\\\godot\\\\common-card-template\\\\design\\\\detail\\\\fix_csv.py\")",
-      "Bash(\"/c/Users/于/AppData/Local/Programs/Python/Python311/python\")"
+      "Bash(\"/c/Users/于/AppData/Local/Programs/Python/Python311/python\")",
+      "Bash(godot *)",
+      "Bash(cd *)"
     ],
     "deny": [
       "Bash(rm -rf *)",

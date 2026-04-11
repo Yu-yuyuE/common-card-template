@@ -1,7 +1,7 @@
 # Story 001: 武将数据结构与CSV解析加载
 
 > **Epic**: 武将系统
-> **Status**: Ready
+> **Status**: Done
 > **Layer**: Feature
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
@@ -29,7 +29,7 @@
 *From GDD `design/gdd/heroes-design.md`, scoped to this story:*
 
 - [ ] 定义 `HeroData` 实体类，包含 `id, name, faction, max_hp, cost, leadership, primary_troops, secondary_troop, hand_limit` 等字段。
-- [ ] 定义 `Faction` 枚举 (WEI, SHU, WU, YUN)。
+- [ ] 定义 `Faction` 枚举 (WEI, SHU, WU, OTHERS)。
 - [ ] 实现 `_load_hero_data()` 从 `heroes.csv` 读取至少22个行数据，解析各字段。
 - [ ] 提供 `get_hero(id)` 和 `get_heroes_by_faction(faction)` 接口，验证数组大小和具体取值。
 - [ ] 正确处理特殊情况：袁绍 (`id="yuan_shao"`) 的 `hand_limit` 为 6，其他武将默认 5。
@@ -85,7 +85,7 @@
 **Required evidence**:
 - Logic: `tests/unit/hero_system/hero_data_loading_test.gd` — must exist and pass
 
-**Status**: [ ] Not yet created
+**Status**: [x] Passed
 
 ---
 

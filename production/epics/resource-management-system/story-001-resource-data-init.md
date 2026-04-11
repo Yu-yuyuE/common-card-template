@@ -1,7 +1,7 @@
 # Story 001: 资源数据结构初始化
 
 > **Epic**: 资源管理系统
-> **Status**: Ready
+> **Status**: Done
 > **Layer**: Foundation
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
@@ -29,11 +29,11 @@
 
 *From GDD `design/gdd/resource-management-system.md`, scoped to this story:*
 
-- [ ] 初始化HP范围40-60（武将个体差异），当前值=武将MaxHP
-- [ ] 初始化粮草上限150，当前值=150
-- [ ] 初始化金币为0，上限99999
-- [ ] 初始化行动点=武将基础行动点(3-4)，上限=武将基础行动点
-- [ ] ResourceManager作为GameState子节点，在_ready()中初始化所有资源
+- [x] 初始化HP范围40-60（武将个体差异），当前值=武将MaxHP
+- [x] 初始化粮草上限150，当前值=150
+- [x] 初始化金币为0，上限99999
+- [x] 初始化行动点=武将基础行动点(3-4)，上限=武将基础行动点
+- [x] ResourceManager作为GameState子节点，在_ready()中初始化所有资源
 
 ---
 
@@ -107,7 +107,7 @@
 **Required evidence**:
 - Logic: `tests/unit/resource_management/resource_data_init_test.gd` — must exist and pass
 
-**Status**: [ ] Not yet created
+**Status**: [x] All tests pass — `tests/unit/resource_management/resource_data_init_test.gd`
 
 ---
 

@@ -195,59 +195,59 @@ func test_multiple_buffs_can_coexist() -> void:
 # ===========================================================================
 
 func test_dot_poison_pierces_armor_and_deals_4_per_layer() -> void:
-	# Arrange：3 层中毒（每层 4 点穿透伤害 → 共 12）
+	# Arrange：3 层中毒（固定 4 点穿透伤害，不随层数变化）
 	var sm := _make_sm()
 	var rm := _make_rm(50, 3)
 	rm.add_armor(20)  # 护盾不应被扣减
 	sm.apply(StatusEffect.Type.POISON, 3, "毒箭卡")
 	# Act
 	sm.on_round_start_dot(rm)
-	# Assert：HP = 38，护盾不变
-	assert_int(rm.get_hp()).is_equal(38)
+	# Assert：HP = 46，护盾不变
+	assert_int(rm.get_hp()).is_equal(46)
 	assert_int(rm.get_armor()).is_equal(20)
 
 
 func test_dot_burn_uses_armor_and_deals_5_per_layer() -> void:
-	# Arrange：2 层灼烧（每层 5 点走护盾伤害 → 共 10）；护盾 15
+	# Arrange：2 层灼烧（固定 5 点走护盾伤害，不随层数变化）；护盾 15
 	var sm := _make_sm()
 	var rm := _make_rm(50, 3)
 	rm.add_armor(15)
 	sm.apply(StatusEffect.Type.BURN, 2, "火攻卡")
 	# Act
 	sm.on_round_start_dot(rm)
-	# Assert：护盾 15 - 10 = 5，HP 不变
-	assert_int(rm.get_armor()).is_equal(5)
+	# Assert：护盾 15 - 5 = 10，HP 不变
+	assert_int(rm.get_armor()).is_equal(10)
 	assert_int(rm.get_hp()).is_equal(50)
 
 
 func test_dot_burn_overflow_damages_hp() -> void:
-	# Arrange：3 层灼烧（15点走护盾）；护盾 10，HP 50
+	# Arrange：3 层灼烧（固定5点走护盾）；护盾 3，HP 50
 	var sm := _make_sm()
 	var rm := _make_rm(50, 3)
-	rm.add_armor(10)
+	rm.add_armor(3)
 	sm.apply(StatusEffect.Type.BURN, 3, "烈火卡")
 	# Act
 	sm.on_round_start_dot(rm)
-	# Assert：护盾归零，HP = 50 - 5 = 45
+	# Assert：护盾归零，HP = 50 - 2 = 48
 	assert_int(rm.get_armor()).is_equal(0)
-	assert_int(rm.get_hp()).is_equal(45)
+	assert_int(rm.get_hp()).is_equal(48)
 
 
 func test_dot_toxic_deals_7_per_layer_pierce() -> void:
-	# Arrange：2 层剧毒（7×2 = 14 穿透）；护盾 20
+	# Arrange：2 层剧毒（固定 7 点穿透伤害，不随层数变化）；护盾 20
 	var sm := _make_sm()
 	var rm := _make_rm(50, 3)
 	rm.add_armor(20)
 	sm.apply(StatusEffect.Type.TOXIC, 2, "剧毒卡")
 	# Act
 	sm.on_round_start_dot(rm)
-	# Assert：HP = 36，护盾不变
-	assert_int(rm.get_hp()).is_equal(36)
+	# Assert：HP = 43，护盾不变
+	assert_int(rm.get_hp()).is_equal(43)
 	assert_int(rm.get_armor()).is_equal(20)
 
 
 func test_dot_wound_deals_1_per_layer_pierce() -> void:
-	# Arrange：4 层重伤（1×4 = 4 穿透）
+	# Arrange：4 层重伤（伤害 = 层数 × 1 = 4 穿透）
 	var sm := _make_sm()
 	var rm := _make_rm(50, 3)
 	rm.add_armor(20)
@@ -273,15 +273,15 @@ func test_dot_plague_emits_spread_signal() -> void:
 
 
 func test_dot_plague_damage_is_3_per_layer_pierce() -> void:
-	# Arrange：2 层瘟疫（3×2 = 6 穿透）；护盾 10
+	# Arrange：2 层瘟疫（固定 3 点穿透伤害，不随层数变化）；护盾 10
 	var sm := _make_sm()
 	var rm := _make_rm(50, 3)
 	rm.add_armor(10)
 	sm.apply(StatusEffect.Type.PLAGUE, 2, "瘟疫卡")
 	# Act
 	sm.on_round_start_dot(rm)
-	# Assert：HP = 44，护盾不变
-	assert_int(rm.get_hp()).is_equal(44)
+	# Assert：HP = 47，护盾不变
+	assert_int(rm.get_hp()).is_equal(47)
 	assert_int(rm.get_armor()).is_equal(10)
 
 
@@ -298,8 +298,8 @@ func test_dot_emits_dot_dealt_signal() -> void:
 	)
 	# Act
 	sm.on_round_start_dot(rm)
-	# Assert：伤害量 = 8，穿透 = true
-	assert_int(dot_damage).is_equal(8)
+	# Assert：伤害量 = 4（固定），穿透 = true
+	assert_int(dot_damage).is_equal(4)
 	assert_bool(dot_pierced).is_true()
 
 

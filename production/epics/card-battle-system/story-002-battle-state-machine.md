@@ -1,7 +1,7 @@
 # Story 002: 战斗状态机与回合流程控制
 
 > **Epic**: 卡牌战斗系统
-> **Status**: Ready
+> **Status**: Done
 > **Layer**: Core
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
@@ -27,12 +27,12 @@
 
 *From GDD `design/gdd/card-battle-system.md`, scoped to this story:*
 
-- [ ] 定义 `BattlePhase` 枚举: `PLAYER_START`, `PLAYER_DRAW`, `PLAYER_PLAY`, `PLAYER_END`, `ENEMY_TURN`, `PHASE_CHECK`
-- [ ] 实现 `_start_player_turn()`: 设置玩家阶段，触发回合开始事件
-- [ ] 实现 `end_player_turn()`: 玩家主动调用结束出牌，切换到 `PLAYER_END`，然后进入 `ENEMY_TURN`
-- [ ] 实现 `_start_enemy_turn()`: 遍历存活的敌人执行行动，结束后进入 `PHASE_CHECK`
-- [ ] 实现阶段检查逻辑：所有存活敌人HP检查，如果敌人未死，调用 `_start_player_turn()` 开启下一轮。
-- [ ] 发射 `turn_started(is_player)` 和 `phase_changed(phase)` 信号
+- [x] 定义 `BattlePhase` 枚举: `PLAYER_START`, `PLAYER_DRAW`, `PLAYER_PLAY`, `PLAYER_END`, `ENEMY_TURN`, `PHASE_CHECK`
+- [x] 实现 `_start_player_turn()`: 设置玩家阶段，触发回合开始事件
+- [x] 实现 `end_player_turn()`: 玩家主动调用结束出牌，切换到 `PLAYER_END`，然后进入 `ENEMY_TURN`
+- [x] 实现 `_start_enemy_turn()`: 遍历存活的敌人执行行动，结束后进入 `PHASE_CHECK`
+- [x] 实现阶段检查逻辑：所有存活敌人HP检查，如果敌人未死，调用 `_start_player_turn()` 开启下一轮。
+- [x] 发射 `turn_started(is_player)` 和 `phase_changed(phase)` 信号
 
 ---
 
@@ -86,7 +86,7 @@
 **Required evidence**:
 - Logic: `tests/unit/battle_system/battle_state_machine_test.gd` — must exist and pass
 
-**Status**: [ ] Not yet created
+**Status**: [x] Implemented in BattleManager - tests in battle_state_machine_test.gd
 
 ---
 

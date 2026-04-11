@@ -1,7 +1,7 @@
 # Story 003: 固定行动序列循环与公示
 
 > **Epic**: 敌人系统
-> **Status**: Ready
+> **Status**: Done
 > **Layer**: Core
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09

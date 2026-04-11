@@ -1,7 +1,7 @@
 # Story 001: 战斗数据结构与实体初始化
 
 > **Epic**: 卡牌战斗系统
-> **Status**: Ready
+> **Status**: Done
 > **Layer**: Core
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
@@ -27,12 +27,12 @@
 
 *From GDD `design/gdd/card-battle-system.md`, scoped to this story:*
 
-- [ ] 定义 `BattleEntity` 数据类，包含：id, max_hp, current_hp, shield, max_shield, action_points, max_action_points, is_player, status_effects 字段。
-- [ ] 初始化 `BattleManager` (Autoload 或场景主节点)，包含玩家实体(1个)和敌人实体数组(最多3个)。
-- [ ] 实现 `setup_battle(stage_config: Dictionary)` 方法，能够解析节点传入的阶段配置。
-- [ ] 初始化时，玩家HP/MaxHP和行动点从 `ResourceManager` 获取。玩家初始护盾清零。
-- [ ] 初始化时，根据阶段配置生成敌人实体，默认生命值正确赋值。
-- [ ] 发射 `battle_started` 信号，携带阶段总数和敌方实体列表。
+- [x] 定义 `BattleEntity` 数据类，包含：id, max_hp, current_hp, shield, max_shield, action_points, max_action_points, is_player, status_effects 字段。
+- [x] 初始化 `BattleManager` (Autoload 或场景主节点)，包含玩家实体(1个)和敌人实体数组(最多3个)。
+- [x] 实现 `setup_battle(stage_config: Dictionary)` 方法，能够解析节点传入的阶段配置。
+- [x] 初始化时，玩家HP/MaxHP和行动点从 `ResourceManager` 获取。玩家初始护盾清零。
+- [x] 初始化时，根据阶段配置生成敌人实体，默认生命值正确赋值。
+- [x] 发射 `battle_started` 信号，携带阶段总数和敌方实体列表。
 
 ---
 
@@ -91,7 +91,7 @@
 **Required evidence**:
 - Logic: `tests/unit/battle_system/battle_init_test.gd` — must exist and pass
 
-**Status**: [ ] Not yet created
+**Status**: [x] Implemented in src/core/battle/BattleManager.gd and BattleEntity.gd
 
 ---
 

@@ -139,5 +139,10 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *.lnk
+*.uid
+*.import
 
-addons
+addons/
+
+reports/
+

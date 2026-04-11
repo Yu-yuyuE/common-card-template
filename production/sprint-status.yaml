@@ -6,102 +6,102 @@ goal: "实现核心战斗系统基础原型（F2 资源管理 + C1 状态效果 
 start: "2026-04-10"
 end: "2026-04-16"
 generated: "2026-04-10"
-updated: "2026-04-10"
+updated: "2026-04-11"
 
 stories:
   - id: "1-1"
     name: "资源管理系统 (F2) - 基础数据结构"
-    file: "production/stories/1-1-resource-data.md"
+    file: "production/epics/resource-management-system/story-001-resource-data-init.md"
     priority: must-have
-    status: in-progress
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 1
     blocker: ""
-    completed: ""
+    completed: "2026-04-11"
 
   - id: "1-2"
     name: "资源管理系统 (F2) - 资源变动逻辑"
-    file: "production/stories/1-2-resource-logic.md"
+    file: "production/epics/resource-management-system/story-002-hp-armor-modify.md"
     priority: must-have
-    status: ready-for-dev
-    owner: ""
+    status: done
+    owner: "gameplay-programmer"
     estimate_days: 1
     blocker: ""
-    completed: ""
+    completed: "2026-04-11"
 
   - id: "1-3"
-    name: "状态效果系统 (C1) - 状态数据结构与Buff"
-    file: "production/stories/1-3-status-buff.md"
+    name: "资源管理系统 (F2) - 护盾生命周期"
+    file: "production/epics/resource-management-system/story-003-armor-lifecycle.md"
     priority: must-have
-    status: ready-for-dev
-    owner: ""
+    status: done
+    owner: "gameplay-programmer"
     estimate_days: 1
     blocker: ""
-    completed: ""
+    completed: "2026-04-11"
 
   - id: "1-4"
-    name: "状态效果系统 (C1) - Debuff与结算"
-    file: "production/stories/1-4-status-debuff.md"
+    name: "状态效果系统 (C1) - 状态数据结构与Buff"
+    file: "production/epics/status-effects-system/story-001-status-data-structure.md"
     priority: must-have
-    status: ready-for-dev
-    owner: ""
+    status: done
+    owner: "gameplay-programmer"
     estimate_days: 1
     blocker: ""
-    completed: ""
+    completed: "2026-04-11"
 
   - id: "1-5"
-    name: "卡牌战斗系统 (C2) - 出牌与费用逻辑"
-    file: "production/stories/1-5-combat-cost.md"
+    name: "状态效果系统 (C1) - 状态持续伤害计算"
+    file: "production/epics/status-effects-system/story-004-status-dot-damage.md"
     priority: must-have
-    status: ready-for-dev
-    owner: ""
+    status: done
+    owner: "gameplay-programmer"
     estimate_days: 1
     blocker: ""
-    completed: ""
+    completed: "2026-04-11"
 
   - id: "1-6"
-    name: "卡牌战斗系统 (C2) - 1v3战场与目标选择"
-    file: "production/stories/1-6-combat-targeting.md"
+    name: "卡牌战斗系统 (C2) - 出牌与费用逻辑"
+    file: "production/epics/card-battle-system/story-001-battle-entity-init.md"
     priority: must-have
-    status: ready-for-dev
-    owner: ""
+    status: done
+    owner: "gameplay-programmer"
     estimate_days: 1
     blocker: ""
-    completed: ""
+    completed: "2026-04-11"
 
   - id: "1-7"
-    name: "敌人系统 (C3) - 敌人数据结构"
-    file: "production/stories/1-7-enemy-data.md"
+    name: "卡牌战斗系统 (C2) - 战斗状态机"
+    file: "production/epics/card-battle-system/story-002-battle-state-machine.md"
     priority: must-have
-    status: ready-for-dev
-    owner: ""
+    status: done
+    owner: "gameplay-programmer"
+    estimate_days: 1
+    blocker: ""
+    completed: "2026-04-11"
+
+  - id: "1-8"
+    name: "敌人系统 (C3) - 敌人数据结构"
+    file: "production/epics/enemy-system/story-001-enemy-data-loading.md"
+    priority: must-have
+    status: done
+    owner: "gameplay-programmer"
     estimate_days: 0.75
     blocker: ""
-    completed: ""
+    completed: "2026-04-11"
 
   - id: "1-8"
     name: "敌人系统 (C3) - 敌人AI与行动执行"
-    file: "production/stories/1-8-enemy-ai.md"
+    file: "production/epics/enemy-system/story-004-ai-phase-transition.md"
     priority: must-have
-    status: ready-for-dev
-    owner: ""
+    status: done
+    owner: "ai-programmer"
     estimate_days: 1
     blocker: ""
-    completed: ""
-
-  - id: "1-9"
-    name: "集成测试：F2+C1 资源与状态联动"
-    file: "production/stories/1-9-test-resource-status.md"
-    priority: should-have
-    status: backlog
-    owner: ""
-    estimate_days: 0.5
-    blocker: ""
-    completed: ""
+    completed: "2026-04-11"
 
   - id: "1-10"
-    name: "集成测试：C2+C3 战斗循环"
-    file: "production/stories/1-10-test-combat-loop.md"
+    name: "集成测试：F2+C1 资源与状态联动"
+    file: "production/epics/integration-tests/story-001-resource-status-integration.md"
     priority: should-have
     status: backlog
     owner: ""
@@ -110,8 +110,18 @@ stories:
     completed: ""
 
   - id: "1-11"
+    name: "集成测试：C2+C3 战斗循环"
+    file: "production/epics/integration-tests/story-002-combat-loop-integration.md"
+    priority: should-have
+    status: backlog
+    owner: ""
+    estimate_days: 0.5
+    blocker: ""
+    completed: ""
+
+  - id: "1-12"
     name: "本地化系统 (F3) - 中文/英文/日文基础支持"
-    file: "production/stories/1-11-localization-basic.md"
+    file: "production/epics/localization-system/story-001-basic-localization.md"
     priority: nice-to-have
     status: backlog
     owner: ""

@@ -1,7 +1,7 @@
 # Story 003: 护盾生命周期管理
 
 > **Epic**: 资源管理系统
-> **Status**: Ready
+> **Status**: Done
 > **Layer**: Foundation
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
@@ -29,10 +29,10 @@
 
 *From GDD `design/gdd/resource-management-system.md`, scoped to this story:*
 
-- [ ] 护盾跨回合保留（战斗内回合切换时护盾值不变）
-- [ ] 战斗结束后护盾值清零
-- [ ] 护盾上限按武将类型决定：默认=MaxHP，曹仁=MaxHP+30，张角无上限
-- [ ] 护盾值超出上限时丢弃超出部分
+- [x] 护盾跨回合保留（战斗内回合切换时护盾值不变）
+- [x] 战斗结束后护盾值清零
+- [x] 护盾上限按武将类型决定：默认=MaxHP，曹仁=MaxHP+30，张角无上限
+- [x] 护盾值超出上限时丢弃超出部分
 
 ---
 
@@ -119,7 +119,7 @@
 **Required evidence**:
 - Logic: `tests/unit/resource_management/armor_lifecycle_test.gd` — must exist and pass
 
-**Status**: [ ] Not yet created
+**Status**: [x] All 14 tests pass - tests/unit/resource_management/armor_lifecycle_test.gd
 
 ---
 

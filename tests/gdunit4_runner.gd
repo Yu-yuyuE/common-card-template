@@ -3,11 +3,5 @@
 extends SceneTree
 
 func _init() -> void:
-	var runner := load("res://addons/gdunit4/GdUnitRunner.gd")
-	if runner == null:
-		push_error("GdUnit4 not found. Install via AssetLib or addons/.")
-		quit(1)
-		return
-	var instance = runner.new()
-	instance.run_tests()
+	OS.execute(OS.get_executable_path(), ["--headless", "-s", "res://addons/gdUnit4/bin/GdUnitCmdTool.gd", "-a", "res://tests", "--ignoreHeadlessMode"])
 	quit(0)

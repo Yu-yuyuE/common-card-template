@@ -1,7 +1,7 @@
 # Story 004: 状态持续伤害计算（DoT）
 
 > **Epic**: 状态效果系统
-> **Status**: Ready
+> **Status**: Done
 > **Layer**: Core
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
@@ -27,11 +27,11 @@
 
 *From GDD `design/gdd/status-design.md`, scoped to this story:*
 
-- [ ] DoT伤害计算公式：`DotDamage = StatusLayers × DamagePerLayer`
-- [ ] 穿透护盾（中毒D1、剧毒D2、瘟疫D10、重伤D12、冻伤D13）：伤害直接通过ResourceManager调用扣减HP，护盾保持不变
-- [ ] 走护盾（灼烧D9）：伤害先扣护盾，若护盾不足则溢出扣除HP
-- [ ] 每造成一次状态伤害，需发射 `status_damage_dealt(target, damage, category)` 信号
-- [ ] 结算顺序：同一回合内，先结算DoT伤害，然后再执行层数-1消耗（已在Story 003规划）
+- [x] DoT伤害计算公式：`DotDamage = StatusLayers × DamagePerLayer`
+- [x] 穿透护盾（中毒D1、剧毒D2、瘟疫D10、重伤D12、冻伤D13）：伤害直接通过ResourceManager调用扣减HP，护盾保持不变
+- [x] 走护盾（灼烧D9）：伤害先扣护盾，若护盾不足则溢出扣除HP
+- [x] 每造成一次状态伤害，需发射 `status_damage_dealt(target, damage, category)` 信号
+- [x] 结算顺序：同一回合内，先结算DoT伤害，然后再执行层数-1消耗（已在Story 003规划）
 
 ---
 
@@ -96,7 +96,7 @@
 **Required evidence**:
 - Logic: `tests/unit/status_system/status_dot_damage_test.gd` — must exist and pass
 
-**Status**: [ ] Not yet created
+**Status**: [x] Implemented in StatusManager.on_round_start_dot() - tests in status_manager_test.gd
 
 ---
 

@@ -1,7 +1,7 @@
 # Story 001: 状态数据结构与基础增删改
 
 > **Epic**: 状态效果系统
-> **Status**: Ready
+> **Status**: Done
 > **Layer**: Core
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
@@ -30,12 +30,12 @@
 
 *From GDD `design/gdd/status-design.md`, scoped to this story:*
 
-- [ ] 定义 StatusType (Buff/Debuff) 和 StatusCategory (包含B1-B7和D1-D13共20种枚举)
-- [ ] 创建 StatusEffect 数据类，包含: category, type, layers, damage_per_layer, penetrates_shield, is_consumable 字段
-- [ ] 初始化 StatusManager Autoload（集中式管理节点）
-- [ ] 提供 apply_status(target, category, layers, source) 基础接口（暂不处理叠加/互斥规则，仅添加至字典）
-- [ ] 提供 get_status(target, category) 和 remove_status(target, category) 基础接口
-- [ ] 提供 status_applied 和 status_removed 信号并在对应操作时发射
+- [x] 定义 StatusType (Buff/Debuff) 和 StatusCategory (包含B1-B7和D1-D13共20种枚举)
+- [x] 创建 StatusEffect 数据类，包含: category, type, layers, damage_per_layer, penetrates_shield, is_consumable 字段
+- [x] 初始化 StatusManager Autoload（集中式管理节点）
+- [x] 提供 apply_status(target, category, layers, source) 基础接口（暂不处理叠加/互斥规则，仅添加至字典）
+- [x] 提供 get_status(target, category) 和 remove_status(target, category) 基础接口
+- [x] 提供 status_applied 和 status_removed 信号并在对应操作时发射
 
 ---
 
@@ -99,7 +99,7 @@
 **Required evidence**:
 - Logic: `tests/unit/status_system/status_data_structure_test.gd` — must exist and pass
 
-**Status**: [ ] Not yet created
+**Status**: [x] Implemented in src/core/StatusManager.gd and src/core/StatusEffect.gd
 
 ---
 

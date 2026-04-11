@@ -1,10 +1,11 @@
 # Story 001: 敌人数据结构与配置加载
 
 > **Epic**: 敌人系统
-> **Status**: Ready
+> **Status**: Done
 > **Layer**: Core
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
+> **Estimate**: 6 hours (0.75 days)
 
 ## Context
 
@@ -30,7 +31,7 @@
 - [ ] 定义 `EnemyClass` (步兵/骑兵/弓兵/谋士/盾兵) 和 `EnemyTier` (普通/精英/强力)。
 - [ ] 创建 `EnemyData` RefCounted 类，包含基本属性：id, name, hp, armor, speed, sequence, tier, class 等。
 - [ ] 实现 `EnemyManager` 内部的 `_load_enemy_data()`。
-- [ ] 能正确读取 `assets/data/enemies.csv` 并将 100 个敌人的数据存入内部字典 `_enemies`。
+- [ ] 能正确读取 `assets/csv_data/enemies.csv` 并将 100 个敌人的数据存入内部字典 `_enemies`。
 - [ ] 提供基于ID查询、按Tier查询、按Class查询的基础获取接口。
 
 ---

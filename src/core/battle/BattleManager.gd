@@ -34,8 +34,19 @@ var weather: String = "clear"
 
 var card_manager: CardManager
 
+# 敌人系统组件
+var enemy_turn_manager: EnemyTurnManager = null
+var enemy_manager: EnemyManager = null
+var status_manager: StatusManager = null
+
 func _init() -> void:
 	card_manager = CardManager.new(self)
+	enemy_manager = EnemyManager.new()
+	status_manager = StatusManager.new()
+	enemy_turn_manager = EnemyTurnManager.new()
+	add_child(enemy_turn_manager)
+	enemy_turn_manager.set_enemy_manager(enemy_manager)
+	enemy_turn_manager.set_battle_manager(self, status_manager)
 
 ## 初始化战场环境与实体
 ## 参数 stage_config 包含：
@@ -85,7 +96,11 @@ func setup_battle(stage_config: Dictionary, resource_manager: ResourceManager) -
 	# 5. 发送战斗开始信号
 	battle_started.emit(total_stages, enemy_entities)
 
-	# 6. 进入第一回合
+	# 6. 初始化敌人管理器数据
+	enemy_manager._load_enemy_data()  # 加载敌人配置
+	enemy_manager._load_action_library()  # 加载行动库
+
+	# 7. 进入第一回合
 	_start_player_turn()
 
 # ---------------------------------------------------------------------------
@@ -173,11 +188,16 @@ func _start_enemy_turn() -> void:
 	turn_started.emit(false)
 
 	# 遍历存活敌人执行回合
+	var alive_enemies: Array[EnemyData] = []
 	for enemy in enemy_entities:
 		if enemy.current_hp > 0:
-			# Mock 敌方行为
-			enemy_action_mock_triggered.emit(enemy.id)
-			# TODO: 交给 C3 敌人系统去调用该实体的 AI 决策逻辑
+			# 从 EnemyManager 获取原始数据
+			var enemy_data: EnemyData = enemy_manager.get_enemy(enemy.id)
+			if enemy_data != null:
+				alive_enemies.append(enemy_data)
+
+	# 交给 EnemyTurnManager 执行
+	enemy_turn_manager.execute_enemy_turn(alive_enemies)
 
 	_check_phase()
 

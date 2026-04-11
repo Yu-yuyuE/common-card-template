@@ -1,0 +1,1 @@
+根据assets\csv_data\heroes_passive_skills.csv更新design\gdd\heroes-design.md，以及所有相关adr、epic、story

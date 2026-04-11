@@ -1,7 +1,7 @@
 # Story 002: 敌人行动库与解析
 
 > **Epic**: 敌人系统
-> **Status**: Ready
+> **Status**: Done
 > **Layer**: Core
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09

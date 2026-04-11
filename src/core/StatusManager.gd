@@ -196,7 +196,7 @@ func consume(type: StatusEffect.Type) -> bool:
 		return false
 	var eff := _effects[int(type)] as StatusEffect
 	assert(
-		StatusEffect.get_meta(type).decay_mode == StatusEffect.DecayMode.CONSUME,
+		StatusEffect.get_status_meta(type).decay_mode == StatusEffect.DecayMode.CONSUME,
 		"consume() 只能用于消耗型状态"
 	)
 	eff.layers -= 1
@@ -230,10 +230,17 @@ func on_round_start_dot(resource_mgr: ResourceManager) -> void:
 
 	for key: int in sorted_keys:
 		var eff := _effects[key] as StatusEffect
-		var meta := StatusEffect.get_meta(eff.type)
-		if meta.dot_per_layer == 0:
+		var meta := StatusEffect.get_status_meta(eff.type)
+		if meta.dot_base_damage == 0:
 			continue
-		var damage: int = eff.layers * meta.dot_per_layer
+		# 计算伤害：固定伤害 vs 层数伤害
+		var damage: int
+		if meta.dot_layers_multiply:
+			# 重伤：伤害 = 层数 × 基础值
+			damage = eff.layers * meta.dot_base_damage
+		else:
+			# 中毒/剧毒/灼烧/瘟疫：固定伤害
+			damage = meta.dot_base_damage
 		if meta.dot_uses_armor:
 			# 走护盾（灼烧）
 			resource_mgr.apply_damage(damage, false)
@@ -258,7 +265,7 @@ func on_round_end() -> void:
 
 	for key: int in _effects:
 		var eff := _effects[key] as StatusEffect
-		var meta := StatusEffect.get_meta(eff.type)
+		var meta := StatusEffect.get_status_meta(eff.type)
 		if meta.decay_mode == StatusEffect.DecayMode.PER_ROUND:
 			eff.layers -= 1
 			if eff.layers <= 0:

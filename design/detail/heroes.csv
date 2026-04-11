@@ -1,0 +1,41 @@
+## 武将数据表（设计参考）
+## 来源：design/gdd/heroes-design.md
+## 字段说明：
+##   id           - 武将唯一标识（snake_case）
+##   name_zh      - 中文名
+##   faction      - 阵营：wei / shu / wu / others
+##   max_hp       - 最大生命值（40~60）
+##   base_cost    - 每回合基础行动点（2~4）
+##   leadership   - 统帅/兵种卡携带上限（3~6）
+##   affinity_primary_1 - 主修兵种1（infantry/cavalry/archer/strategist/shield）
+##   affinity_primary_2 - 主修兵种2
+##   affinity_secondary  - 次修兵种
+##   exclusive_cards  - 专属卡数量
+##   passive_id   - 被动技能标识（对应 heroes_passive_skills.csv）
+##   hand_limit   - 初始手牌上限（默认5，袁绍6）
+##   no_armor     - 是否禁止获得护甲（仅典韦=true）
+##   unlimited_armor - 护盾上限无上限（仅张角=true）
+id,name_zh,faction,max_hp,base_cost,leadership,affinity_primary_1,affinity_primary_2,affinity_secondary,exclusive_cards,passive_id,hand_limit,no_armor,unlimited_armor
+cao_cao,曹操,wei,51,3,6,infantry,cavalry,strategist,16,xie_ling_zhu_hou,5,false,false
+xiahou_dun,夏侯惇,wei,53,2,5,infantry,shield,cavalry,14,gang_lie,5,false,false
+zhang_liao,张辽,wei,52,3,5,cavalry,infantry,archer,15,wei_zhen_xiao_yao_jin,5,false,false
+sima_yi,司马懿,wei,48,3,5,strategist,archer,infantry,15,yin_ren,5,false,false
+dian_wei,典韦,wei,60,2,3,infantry,shield,cavalry,12,e_lai,5,true,false
+jia_xu,贾诩,wei,45,3,3,strategist,infantry,archer,12,du_shi,5,false,false
+cao_ren,曹仁,wei,57,3,5,shield,infantry,cavalry,12,tie_bi_jiang_jun,5,false,false
+liu_bei,刘备,shu,55,3,5,infantry,shield,archer,16,ren_de,5,false,false
+guan_yu,关羽,shu,59,3,5,shield,cavalry,infantry,15,wu_sheng,5,false,false
+zhang_fei,张飞,shu,59,2,5,infantry,shield,cavalry,14,yan_ren_pao_xiao,5,false,false
+zhuge_liang,诸葛亮,shu,45,4,6,strategist,archer,shield,18,wo_long,5,false,false
+zhao_yun,赵云,shu,54,3,4,cavalry,shield,infantry,15,long_dan,5,false,false
+ma_chao,马超,shu,55,3,5,cavalry,shield,infantry,13,xi_liang_tie_qi,5,false,false
+sun_quan,孙权,wu,49,3,4,infantry,archer,strategist,16,zhi_heng,5,false,false
+zhou_yu,周瑜,wu,45,3,6,strategist,archer,infantry,18,huo_mou,5,false,false
+lu_meng,吕蒙,wu,50,3,5,infantry,strategist,archer,12,bai_yi_du_jiang,5,false,false
+gan_ning,甘宁,wu,52,2,4,cavalry,archer,infantry,13,jin_fan_ye_xi,5,false,false
+lu_xun,陆逊,wu,46,3,5,strategist,infantry,archer,15,huo_shao_lian_ying,5,false,false
+lv_bu,吕布,others,60,2,5,cavalry,infantry,shield,14,ren_zhong_lv_bu,5,false,false
+diao_chan,貂蝉,others,40,3,3,strategist,archer,infantry,16,bi_yue_xiu_hua,5,false,false
+yuan_shao,袁绍,others,53,3,4,infantry,archer,cavalry,12,si_shi_san_gong,6,false,false
+dong_zhuo,董卓,others,53,2,4,infantry,cavalry,strategist,13,bao_zheng,5,false,false
+zhang_jue,张角,others,47,3,4,cavalry,shield,infantry,12,huang_tian_dang_li,5,false,true

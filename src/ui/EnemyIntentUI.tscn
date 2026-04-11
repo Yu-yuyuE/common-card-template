@@ -1,0 +1,69 @@
+# EnemyIntentUI.tscn
+# 敌人意图UI组件场景
+# 用于在敌人头顶显示行动意图和血量
+
+[gd_scene load_steps=2 format=2]
+
+[ext_resource type="Script" path="res://src/ui/EnemyIntentUI.gd" id=1]
+
+[node name="EnemyIntentUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[ext_resource type="Font" path="res://assets/fonts/default.ttf" id=2]
+
+[node name="HPLabel" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+position = Vector2(0, -30)
+size_flags_vertical = 3
+font = ExtResource( 2 )
+font_size = 14
+vertical_alignment = 1
+
+[node name="HPProgressBar" type="ProgressBar" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+position = Vector2(0, -15)
+size_flags_vertical = 3
+size_flags_horizontal = 3
+min_value = 0
+max_value = 100
+value = 100
+
+[node name="IntentLabel" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+position = Vector2(0, 5)
+size_flags_vertical = 3
+font = ExtResource( 2 )
+font_size = 14
+vertical_alignment = 1
+
+[node name="IntentIcon" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+position = Vector2(-10, 5)
+size_flags_vertical = 3
+size_flags_horizontal = 3
+size = Vector2(16, 16)
+expand = true
+
+[node name="CharingIndicator" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+position = Vector2(0, 25)
+size_flags_vertical = 3
+size_flags_horizontal = 3
+size = Vector2(24, 24)
+visible = false
+
+[node name="ChargingIcon" type="TextureRect" parent="CharingIndicator"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+position = Vector2(0, 0)
+size_flags_vertical = 3
+size_flags_horizontal = 3
+size = Vector2(24, 24)
+expand = true
+texture = preload("res://ui/icons/charging.png")
