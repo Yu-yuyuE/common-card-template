@@ -59,6 +59,7 @@ func execute_enemy_turn(enemies: Array[EnemyData], interval: float = 0.8) -> voi
 			action_data.get("condition", "")
 		)
 		action.source_enemy_id = enemy.id
+		action.enemy_manager = enemy_manager  # 设置敌人管理器引用
 		action.animation = action_data.get("animation", "")
 
 		# 加入队列

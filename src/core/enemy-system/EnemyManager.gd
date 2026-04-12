@@ -67,7 +67,7 @@ func _load_enemy_data() -> void:
 			continue
 
 		var fields: PackedStringArray = line.split(",")
-		if fields.size() < 9:
+		if fields.size() < 13:
 			push_warning("EnemyManager: 行字段数不足，跳过 — [%s]" % line)
 			continue
 
@@ -81,6 +81,11 @@ func _load_enemy_data() -> void:
 		var speed: int = fields[6].strip_edges().to_int()
 		var action_sequence_str: String = fields[7].strip_edges()
 		var phase_transition: String = fields[8].strip_edges()
+		var terrain_effect: String = fields[9].strip_edges()
+		var speed_val: int = fields[10].strip_edges().to_int()
+		var action_params_text: String = ""
+		if fields.size() > 12:  # 第13列（索引12）
+			action_params_text = fields[12].strip_edges()
 
 		# 解析职业
 		var enemy_class: int = -1
@@ -119,7 +124,8 @@ func _load_enemy_data() -> void:
 			max_hp,
 			armor,
 			action_sequence,
-			phase_transition
+			phase_transition,
+			action_params_text  # 新增参数
 		)
 
 		enemy_data.action_sequence = action_sequence
@@ -262,6 +268,7 @@ func get_next_action(enemy_id: String) -> Dictionary:
 	- 如果当前行动在冷却中，使用备用行动
 	- 无论是否使用备用行动，action_index 都要推进
 	- 如果敌人处于眩晕状态，跳过行动但推进计数器
+	- 支持从 action_params 中获取参数覆盖
 	"""
 	var enemy = _enemies.get(enemy_id)
 	if enemy == null or not enemy.is_alive:
@@ -290,8 +297,24 @@ func get_next_action(enemy_id: String) -> Dictionary:
 		# 冷却中，使用备用行动
 		current_action_id = _get_backup_action(enemy)
 
-	# 获取行动数据
+	# 获取行动基础数据
 	var action_data = _get_action_data(current_action_id)
+
+	# 应用参数覆盖（从 action_params）
+	if enemy.action_params.has(current_action_id):
+		var params = enemy.action_params[current_action_id]
+		if typeof(params) == TYPE_DICTIONARY:
+			# 合并参数覆盖到行动数据
+			for key in params.keys():
+				var value_str = params[key]
+				# 尝试转换为数字
+				if value_str.is_valid_integer():
+					action_data[key] = value_str.to_int()
+				elif value_str.is_valid_float():
+					action_data[key] = value_str.to_float()
+				else:
+					# 保持字符串，用于状态类型等
+					action_data[key] = value_str
 
 	return action_data
 

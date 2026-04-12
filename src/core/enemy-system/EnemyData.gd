@@ -49,6 +49,12 @@ var phase_transition: String = ""
 ## 相变后的新序列（从 phase_transition 解析）
 var phase2_sequence: Array[String] = []
 
+## 行动参数覆盖（文本格式：action_id:param1=value1;param2=value2）
+var action_params_text: String = ""
+
+## 解析后的行动参数字典 {action_id: {param: value}}
+var action_params: Dictionary = {}
+
 ## 初始化函数
 func _init(
 	p_id: String,
@@ -59,6 +65,7 @@ func _init(
 	p_armor: int = 0,
 	p_action_sequence: Array[String] = [],
 	p_phase_transition: String = "",
+	p_action_params_text: String = "",  # 新增参数
 ) -> void:
 	id = p_id
 	name = p_name
@@ -70,6 +77,11 @@ func _init(
 	is_alive = true
 	action_sequence = p_action_sequence.duplicate()
 	phase_transition = p_phase_transition
+
+	# 新增：解析行动参数文本
+	action_params_text = p_action_params_text
+	_parse_action_params()
+
 	# 解析相变规则，如果包含新序列，则提取
 	if phase_transition.contains(":"):
 		var colon_index = phase_transition.find(":")
@@ -100,6 +112,53 @@ func meets_phase_transition_condition() -> bool:
 
 	# 未来可扩展其他条件类型（如状态效果）
 	return false
+
+
+## 解析行动参数文本
+func _parse_action_params() -> void:
+	action_params.clear()
+
+	if action_params_text.is_empty() or action_params_text == "—" or action_params_text == "---":
+		return
+
+	# 格式：action_id1:param1=value1;action_id2:param2=value2
+	# 单个行动多个参数：action_id:param1=value1&param2=value2
+	# 无参数行动：action_id
+	# 例如：A04:damage=6;A00;B16:summon_count=1&summon_enemy_id=E001;B01:damage=10
+
+	var entries = action_params_text.split(";")
+	for entry in entries:
+		if entry.is_empty():
+			continue
+
+		# 分离 action_id 和参数字符串
+		var colon_index = entry.find(":")
+		if colon_index == -1:
+			# 无参数行动，直接使用action_id
+			action_params[entry.strip_edges()] = {}
+			continue
+
+		var action_id = entry.substr(0, colon_index).strip_edges()
+		var params_str = entry.substr(colon_index + 1).strip_edges()
+
+		if action_id.is_empty():
+			continue
+
+		# 解析参数：param1=value1&param2=value2
+		var param_dict = {}
+		var param_pairs = params_str.split("&")
+		for pair in param_pairs:
+			if pair.is_empty():
+				continue
+			var eq_index = pair.find("=")
+			if eq_index == -1:
+				continue
+			var key = pair.substr(0, eq_index).strip_edges()
+			var value_str = pair.substr(eq_index + 1).strip_edges()
+			param_dict[key] = value_str
+
+		# 存入字典
+		action_params[action_id] = param_dict
 
 ## 触发相变
 func trigger_phase_transition() -> void:

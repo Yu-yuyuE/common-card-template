@@ -1,4 +1,5 @@
 ## Session Extract — /dev-story 2026-04-11
+
 - Story: production/epics/resource-management-system/story-001-resource-data-init.md — 资源数据结构初始化
 - Files changed: src/core/ResourceManager.gd, tests/unit/resource_management/resource_data_init_test.gd
 - Test written: tests/unit/resource_management/resource_data_init_test.gd (15 test functions)
@@ -105,3 +106,31 @@
 - 更新: src/core/enemy-system/EnemyAction.gd (新增 source_enemy_id 和 animation 字段)
 
 ---
+
+## Session Extract — Enemy Action Parameters Implementation
+
+✅ **Action Parameters JSON System Implemented**
+
+- Added `action_params_json` column to `enemies.csv` with JSON format support
+- Implemented JSON parsing in `EnemyData.gd`
+- Updated `EnemyManager.gd` to load new column from CSV
+- Added parameter override logic in `EnemyAction.gd`
+- Enhanced `ActionExecutor.gd` to handle special parameters (gold_steal, card_steal)
+- Updated `EnemyTurnManager.gd` to pass enemy_data to ActionExecutor
+- Created unit test: `tests/unit/enemy_system/action_params_override_test.gd`
+- Updated `enemy_data_loading_test.gd` with new test cases
+- Updated `combat_loop_integration_test.gd` with integration verification
+
+All changes are backward compatible - existing enemies with empty action_params_json work unchanged.
+
+✅ Unit tests pass
+✅ Integration tests pass
+✅ Manual verification completed
+
+**Next**: Document implementation in ADR-0005 and prepare for sprint review
+
+<!-- STATUS -->
+Epic: Enemy System
+Feature: Action Parameter Overrides
+Task: Implementation complete
+<!-- /STATUS -->

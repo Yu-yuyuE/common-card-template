@@ -27,7 +27,7 @@ func initialize(battle_mgr: BattleManager, status_mgr: StatusManager, enemy_mgr:
 ## 执行敌人行动（主入口）
 ## action: EnemyAction - 要执行的行动
 ## source_enemy_id: String - 执行该行动的敌人ID
-func execute_action(action: EnemyAction, source_enemy_id: String) -> void:
+func execute_action(action: EnemyAction, source_enemy_id: String, enemy_data: EnemyData = null) -> void:
 	if action == null:
 		return
 
@@ -35,6 +35,11 @@ func execute_action(action: EnemyAction, source_enemy_id: String) -> void:
 	var source_enemy: EnemyData = enemy_manager.get_enemy(source_enemy_id)
 	if source_enemy == null or not source_enemy.is_alive:
 		return  # 死亡敌人不执行
+
+	# 设置行动的敌人ID和manager引用，以便访问action_params
+	action.source_enemy_id = source_enemy_id
+	action.enemy_manager = enemy_manager
+	action.enemy_data = source_enemy
 
 	# 根据行动类型路由
 	match action.type.to_lower():
@@ -191,23 +196,136 @@ func _execute_summon(action: EnemyAction, source_enemy_id: String) -> void:
 
 ## 特殊类行动执行（偷取金币/手牌等）
 func _execute_special(action: EnemyAction, source_enemy_id: String) -> void:
+	# 获取敌人数据以访问参数覆盖
+	var source_enemy: EnemyData = enemy_manager.get_enemy(source_enemy_id)
+	if source_enemy == null:
+		return
+
 	# 偷取金币
 	if "偷" in action.description and "金" in action.description:
-		var steal_amount: int = _extract_number_from_text(action.value_reference)
+		var steal_amount: int = 5  # 默认值
+		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("gold_steal"):
+			steal_amount = source_enemy.action_params[action.id]["gold_steal"]
+		else:
+			steal_amount = _extract_number_from_text(action.value_reference)
+
 		if steal_amount > 0 and battle_manager != null:
 			# TODO: 从玩家 ResourceManager 扣除金币
 			print("Enemy steals %d gold from player" % steal_amount)
 
 	# 偷取手牌
 	elif "偷" in action.description and "牌" in action.description:
+		var card_count: int = 1  # 默认值
+		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("card_steal"):
+			card_count = source_enemy.action_params[action.id]["card_steal"]
+		else:
+			card_count = _extract_number_from_text(action.value_reference)
+
 		if battle_manager != null and battle_manager.card_manager != null:
-			# 随机偷取一张手牌
+			# 随机偷取指定数量的手牌
 			var hand: Array = battle_manager.card_manager.hand_cards
 			if hand.size() > 0:
-				var stolen_card: Card = hand[randi() % hand.size()]
-				hand.erase(stolen_card)
-				print("Enemy steals card: %s" % stolen_card.card_name)
-				# TODO: 记录被偷卡牌ID，待敌人死后归还
+				for i in range(card_count):
+					if hand.size() == 0:
+						break
+					var stolen_card: Card = hand[randi() % hand.size()]
+					hand.erase(stolen_card)
+					print("Enemy steals card: %s" % stolen_card.card_name)
+					# TODO: 记录被偷卡牌ID，待敌人死后归还
+
+	# 施加诅咒卡
+	elif "诅咒" in action.description or action.type == "curse":
+		var curse_count: int = 1  # 默认值
+		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("curse_count"):
+			curse_count = source_enemy.action_params[action.id]["curse_count"]
+		else:
+			curse_count = _extract_number_from_text(action.value_reference)
+
+		var curse_card_id: String = ""  # 默认值
+		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("curse_card_id"):
+			curse_card_id = source_enemy.action_params[action.id]["curse_card_id"]
+		else:
+			curse_card_id = action.curse_id  # 使用默认诅咒ID
+
+		if curse_count > 0 and curse_card_id != "" and battle_manager != null and battle_manager.card_manager != null:
+			# 投递诅咒卡到随机位置
+			for i in range(curse_count):
+				_deliver_curse(curse_card_id, "draw_random")
+
+	# 召唤敌人
+	elif "召唤" in action.description or action.type == "summon":
+		var summon_count: int = 1  # 默认值
+		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("summon_count"):
+			summon_count = source_enemy.action_params[action.id]["summon_count"]
+		else:
+			summon_count = _extract_number_from_text(action.value_reference)
+
+		var summon_enemy_id: String = ""  # 默认值
+		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("summon_enemy_id"):
+			summon_enemy_id = source_enemy.action_params[action.id]["summon_enemy_id"]
+		else:
+			summon_enemy_id = action.summon_id  # 使用默认召唤敌人ID
+
+		if summon_count > 0 and summon_enemy_id != "" and battle_manager != null:
+			# 实例化新敌人并加入战场
+			var new_enemy_data: EnemyData = enemy_manager.get_enemy(summon_enemy_id)
+			if new_enemy_data == null:
+				push_warning("ActionExecutor: 召唤的敌人ID不存在 — %s" % summon_enemy_id)
+				return
+
+			for i in range(summon_count):
+				# 检查战场是否已满（最多3名敌人）
+				if battle_manager.enemy_entities.size() >= 3:
+					break  # 满场停止召唤
+
+				# 创建战斗实体并加入战场
+				var new_battle_entity := BattleEntity.new(new_enemy_data.id, false)
+				new_battle_entity.max_hp = new_enemy_data.max_hp
+				new_battle_entity.current_hp = new_enemy_data.current_hp
+				new_battle_entity.shield = new_enemy_data.armor
+				new_battle_entity.max_shield = new_enemy_data.max_hp
+				new_battle_entity.max_action_points = 1
+				new_battle_entity.action_points = 1
+
+				battle_manager.enemy_entities.append(new_battle_entity)
+				enemy_summoned.emit(summon_enemy_id)
+				print("Enemy summoned: %s" % summon_enemy_id)
+
+	# 移动方向
+	elif "移动" in action.description or action.type == "move":
+		var move_direction: String = ""  # 默认值
+		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("move_direction"):
+			move_direction = source_enemy.action_params[action.id]["move_direction"]
+
+		if move_direction != "":
+			# TODO: 实现移动逻辑，更新敌人位置
+			print("Enemy %s moves %s" % [source_enemy_id, move_direction])
+
+	# 改变天气
+	elif "天气" in action.description or action.type == "weather":
+		var weather: String = ""  # 默认值
+		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("weather"):
+			weather = source_enemy.action_params[action.id]["weather"]
+
+		if weather != "":
+			# TODO: 实现天气改变逻辑，更新BattleManager的天气状态
+			print("Weather changed to: %s" % weather)
+
+	# 应用状态效果
+	elif action.status_effect != "":
+		var status_layers: int = action.status_layers  # 默认值
+		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("status_layers"):
+			status_layers = source_enemy.action_params[action.id]["status_layers"]
+
+		var status_id: String = action.status_effect  # 默认值
+		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("status_id"):
+			status_id = source_enemy.action_params[action.id]["status_id"]
+
+		if status_manager != null and status_id != "":
+			var status_type: StatusEffect.Type = _parse_status_type(status_id)
+			if status_type != StatusEffect.Type.NONE:
+				status_manager.apply(status_type, status_layers, "敌人行动: " + action.name)
+				print("Applied status %s with %d layers" % [status_id, status_layers])
 
 
 ## ==================== 辅助方法 ====================

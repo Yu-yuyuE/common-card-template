@@ -299,3 +299,51 @@ func set_armor_max(new_max: int) -> void:
 		# 如果当前护盾超过新上限，裁剪
 		if get_armor() > new_max:
 			modify_resource(ResourceType.ARMOR, get_armor() - new_max)
+
+	# ---------------------------------------------------------------------------
+	# 资源恢复机制 (Story 2-6)
+	# ---------------------------------------------------------------------------
+
+	## Boss战胜利后恢复资源
+	## - HP完全恢复至上限
+	## - 粮草恢复50点，上限150
+	func on_boss_victory() -> void:
+		# HP完全恢复
+		var max_hp = get_max_hp()
+		var current_hp = get_hp()
+		if current_hp < max_hp:
+			modify_resource(ResourceType.HP, max_hp - current_hp)
+
+		# 粮草恢复50点，上限150
+		restore_provisions(50)
+
+
+	## 大地图切换时重置粮草
+	## - 粮草重置为150
+	func on_new_map() -> void:
+		# 粮草重置为上限150
+		var current_provisions = get_provisions()
+		var target = FOOD_MAX
+		if current_provisions != target:
+			# 直接设置为150
+			var delta = target - current_provisions
+			modify_resource(ResourceType.PROVISIONS, delta)
+
+
+	## 完全恢复HP至上限
+	## 用于酒馆、卡牌、事件等场景
+	func full_heal() -> void:
+		var max_hp = get_max_hp()
+		var current_hp = get_hp()
+		if current_hp < max_hp:
+			modify_resource(ResourceType.HP, max_hp - current_hp)
+
+
+	## 恢复HP（带上限检查）
+	## 参数：amount - 恢复量
+	## 返回：实际恢复量
+	func restore_hp(amount: int) -> int:
+		var max_hp = get_max_hp()
+		var current_hp = get_hp()
+		var actual_restore = mini(amount, max_hp - current_hp)
+		return modify_resource(ResourceType.HP, actual_restore)
