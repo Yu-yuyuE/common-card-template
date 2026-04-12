@@ -62,7 +62,7 @@ func before_test() -> void:
 	# 在真实测试中，会加载 assets/csv_data/enemies.csv
 	# 为简化测试，我们手动添加敌人数据
 	# 创建一个简单的敌人
-	var enemy_data := EnemyData.new("e1", "普通敌人", 0, 0, 100, 0, 1)
+	var enemy_data := EnemyData.new("e1", "普通敌人", 0, 0, 100, 0)
 	enemy_data.action_sequence = ["A01", "A02"]  # 简化行动序列
 	enemy_data.phase_transition = "HP<40%"  # 设置相变条件
 	_enemy_manager._enemies["e1"] = enemy_data
@@ -234,11 +234,16 @@ func test_no_phase_transition_above_threshold() -> void:
 	}
 	_battle_manager.setup_battle(stage_config, _resource_manager)
 
+	# 设置敌人有相变规则
+	_battle_manager.enemy_entities[0].phase_transition = "HP<40%"
+	_battle_manager.enemy_entities[0].has_transformed = false
+
 	# 手动设置敌人HP为41（高于40%阈值）
 	_battle_manager.enemy_entities[0].current_hp = 41
 
 	# 验证敌人数据
 	assert_int(_battle_manager.enemy_entities[0].current_hp).is_equal(41)
+	assert_bool(_battle_manager.enemy_entities[0].has_transformed).is_false()
 
 	# Act: 玩家出牌造成伤害，将敌人HP降至40
 	var success = _battle_manager.play_card("card1", 0)
@@ -329,7 +334,10 @@ func test_enemy_phase_transition() -> void:
 
 	# 验证行动序列是否被替换
 	# 在实际实现中，我们期望 action_sequence 变为 ["B01", "C01"]
-	# 由于简化实现，我们只检查 has_transformed 标志
+	# 由于简化实现，我们检查 has_transformed 标志
+	assert_array(_battle_manager.enemy_entities[0].phase2_sequence).contains_exactly(["B01", "C01"])
+	assert_array(_battle_manager.enemy_entities[0].action_sequence).contains_exactly(["B01", "C01"])
+	assert_int(_battle_manager.enemy_entities[0].action_index).is_equal(0)
 
 
 # ==================== AC-3: 资源联动 ====================

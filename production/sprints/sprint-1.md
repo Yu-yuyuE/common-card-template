@@ -23,12 +23,17 @@
 | 1-7 | 敌人系统 (C3) - 敌人数据结构 | ai-programmer | 6 | 1-2 | 敌人属性、行动队列、行动类型(A/B/C)定义完成 |
 | 1-8 | 敌人系统 (C3) - 敌人AI与行动执行 | ai-programmer | 8 | 1-7 | 行动选择逻辑、回合执行、玩家可见的行动队列完成 |
 
-### Should Have
+### Should Have (In Progress)
 
-| ID | Task | Agent/Owner | Est. Hours | Dependencies | Acceptance Criteria |
-|----|------|-------------|-----------|-------------|-------------------|
-| 1-9 | 集成测试：F2+C1 资源与状态联动 | qa-tester | 4 | 1-4 | 资源变动触发状态效果的集成测试通过 |
-| 1-10 | 集成测试：C2+C3 战斗循环 | qa-tester | 4 | 1-6, 1-8 | 玩家出牌→敌人响应→结算的完整循环测试通过 |
+| ID | Task | Agent/Owner | Est. Hours | Dependencies | Acceptance Criteria | Status |
+|----|------|-------------|-----------|-------------|-------------------|--------|
+| 1-9 | 集成测试：F2+C1 资源与状态联动 | qa-tester | 4 | 1-4 | 资源变动触发状态效果的集成测试通过 | 🔄 In Progress |
+| 1-10 | 集成测试：C2+C3 战斗循环 | qa-tester | 4 | 1-6, 1-8 | 玩家出牌→敌人响应→结算的完整循环测试通过 | 🔄 In Progress |
+
+### Should Have (Backlog)
+
+| ID | Task | Agent/Owner | Est. Hours | Dependencies | Acceptance Criteria | Status |
+|----|------|-------------|-----------|-------------|-------------------|--------|
 
 ### Nice to Have
 
@@ -52,7 +57,7 @@
 - **引擎版本**: Godot 4.6.1 (已配置在 CLAUDE.md)
 
 ## Definition of Done for this Sprint
-- [ ] 所有 Must Have 任务完成
+- [x] 所有 Must Have 任务完成
 - [ ] 所有任务通过验收标准
 - [ ] QA 计划存在 (`production/qa/qa-plan-sprint-1.md`)
 - [ ] 所有 Logic/Integration 故事有通过的单元/集成测试

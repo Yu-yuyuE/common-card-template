@@ -118,8 +118,10 @@ func _load_enemy_data() -> void:
 			tier,
 			max_hp,
 			armor,
-			speed
+			action_sequence,
+			phase_transition
 		)
+
 		enemy_data.action_sequence = action_sequence
 		enemy_data.phase_transition = phase_transition
 
@@ -265,30 +267,31 @@ func get_next_action(enemy_id: String) -> Dictionary:
 	if enemy == null or not enemy.is_alive:
 		return {}
 
+	# 检查相变条件 - 在获取行动前检查
+	if enemy.meets_phase_transition_condition() and not enemy.has_transformed:
+		enemy.trigger_phase_transition()
+
 	# 检查眩晕状态 - 由 StatusManager 提供
 	# 在实际实现中，需要调用 StatusManager.is_status_active(enemy_id, "stun")
 	# 这里为了简化，假设我们有这个功能
 	# 根据故事003，如果眩晕，跳过行动但推进计数器
 	if is_enemy_stunned(enemy_id):
 		# 眩晕状态：跳过行动，但推进计数器
-		enemy.action_index = (enemy.action_index + 1) % enemy.action_sequence.size()
+		enemy.action_index = (enemy.action_index + 1) % enemy.get_current_sequence().size()
 		return {}
 
-	# 获取当前行动ID
-	var current_action_id = enemy.action_sequence[enemy.action_index]
+	# 获取下一个行动并推进索引
+	var current_action_id = enemy.get_next_action()
+	if current_action_id.is_empty():
+		return {}
 
 	# 检查冷却
-	if enemy.cooldown_actions.has(current_action_id):
-		var remaining_cooldown = enemy.cooldown_actions[current_action_id]
-		if remaining_cooldown > 0:
-			# 冷却中，使用备用行动
-			current_action_id = _get_backup_action(enemy)
+	if enemy.is_action_on_cooldown(current_action_id):
+		# 冷却中，使用备用行动
+		current_action_id = _get_backup_action(enemy)
 
 	# 获取行动数据
 	var action_data = _get_action_data(current_action_id)
-
-	# 移动到序列下一位（即使在冷却时也要推进计数器）
-	enemy.action_index = (enemy.action_index + 1) % enemy.action_sequence.size()
 
 	return action_data
 
