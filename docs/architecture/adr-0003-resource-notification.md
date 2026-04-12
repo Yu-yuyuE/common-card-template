@@ -61,7 +61,7 @@ Accepted
 # ResourceManager.gd (GameState 子节点)
 extends Node
 
-signal resource_changed(resource_type: String, old_value: int, new_value: int, delta: int)
+signal resource_changed(resource_type: int, old_value: int, new_value: int, delta: int)
 
 enum ResourceType { HP, PROVISIONS, GOLD, ACTION_POINTS }
 
@@ -132,7 +132,7 @@ func _on_resource_changed(type, old_val, new_val, delta):
 
 | 参数 | 类型 | 说明 |
 |------|------|------|
-| `resource_type` | String/Enum | 资源类型 (HP/粮草/金币/行动点) |
+| `resource_type` | int | 资源类型枚举值 (ResourceType.HP/PROVISIONS/GOLD/ACTION_POINTS) |
 | `old_value` | int | 变化前数值 |
 | `new_value` | int | 变化后数值 |
 | `delta` | int | 变化量 (可正可负) |

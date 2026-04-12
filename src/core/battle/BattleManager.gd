@@ -159,22 +159,30 @@ func play_card(card_id: String, target_position: int) -> bool:
 	if card_to_play == null:
 		return false # 没这张牌
 
-	# 2. 费用检查
-	var cost = card_to_play.current_cost
-	if player_entity.action_points < cost:
+	# 2. 计算最终费用（考虑地形天气修正）
+	var final_cost = card_to_play.current_cost
+
+	# 特殊修正：骑兵在沙漠地形费用-1
+	if card_to_play.is_troop_card() and card_to_play.get_troop_type() == TroopCard.TroopType.CAVALRY:
+		if battle_manager.terrain_weather_manager != null:
+			var terrain_modifier = battle_manager.terrain_weather_manager.get_cavalry_cost_modifier()
+			final_cost = max(0, final_cost + terrain_modifier)
+
+	# 3. 费用检查
+	if player_entity.action_points < final_cost:
 		return false # 费用不足
 
-	# 3. 扣除费用
-	player_entity.action_points -= cost
+	# 4. 扣除费用
+	player_entity.action_points -= final_cost
 	# (如果接入 ResourceManager，需要在这里同步 ResourceManager，当前使用 player_entity 同步状态)
 
-	# 4. 结算效果 (Story 005)
+	# 5. 结算效果 (Story 005)
 	_resolve_card_effect(card_to_play, target_position)
 
-	# 5. 卡牌流转入弃牌/消耗/移除区
+	# 6. 卡牌流转入弃牌/消耗/移除区
 	card_manager.exhaust_or_discard_played_card(card_to_play)
 
-	# 6. 通知 UI 等监听者
+	# 7. 通知 UI 等监听者
 	card_played.emit(card_id, target_position)
 
 	return true

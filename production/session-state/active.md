@@ -134,3 +134,129 @@ Epic: Enemy System
 Feature: Action Parameter Overrides
 Task: Implementation complete
 <!-- /STATUS -->
+
+---
+
+## Session Extract — /dev-story 2026-04-12
+
+- Story: production/epics/troop-card-system/story-003-troop-terrain-weather-integration.md — 兵种地形天气联动
+- Files changed:
+  - src/core/terrain-weather/TerrainWeatherManager.gd (新增 get_cavalry_cost_modifier 方法)
+  - src/core/combat/DamageCalculator.gd (新建)
+  - src/core/troop-card/TroopCard.gd (更新 _execute_damage_effect 方法)
+  - src/core/battle/BattleManager.gd (更新 play_card 方法，添加骑兵费用修正)
+- Test written: tests/unit/troop_system/troop_terrain_weather_integration_test.gd (7 test functions)
+- Blockers: None
+- Next: /code-review src/core/combat/DamageCalculator.gd then /story-done production/epics/troop-card-system/story-003-troop-terrain-weather-integration.md
+
+---
+
+### 2026-04-12 进展
+✅ Story 4-3 实现完成：
+- 在 TerrainWeatherManager 中添加 get_cavalry_cost_modifier() 方法，实现沙漠地形骑兵费用-1修正
+- 创建 DamageCalculator.gd 类，集中处理伤害计算逻辑
+- 定义 WEATHER_MODIFIERS 字典，实现雨天和雾天对弓兵/谋士的×0.5伤害修正
+- 更新 TroopCard.gd 的 _execute_damage_effect 方法，集成 DamageCalculator
+- 更新 BattleManager.gd 的 play_card 方法，在费用检查阶段应用骑兵沙漠费用修正
+- 创建单元测试覆盖所有 AC（7个测试用例）
+
+### 实现亮点
+- 采用数据驱动设计（WEATHER_MODIFIERS字典），便于后续扩展其他天气效果
+- 遵循依赖注入原则，通过参数传递 TerrainWeatherManager
+- 所有公有API都有清晰的文档注释
+- 费用修正遵循"最低为0"的GDD规范（使用max(0, ...)）
+
+<!-- STATUS -->
+Epic: Troop Card System
+Feature: Terrain-Weather Integration
+Task: Implementation complete
+<!-- /STATUS -->
+
+---
+
+## Session Extract — /story-done 2026-04-12
+
+- Story: production/epics/troop-card-system/story-003-troop-terrain-weather-integration.md — 兵种地形天气联动
+- Status: Complete
+- Files verified:
+  - src/core/combat/DamageCalculator.gd
+  - tests/unit/troop_system/troop_terrain_weather_integration_test.gd
+  - src/core/terrain-weather/TerrainWeatherManager.gd
+  - src/core/troop-card/TroopCard.gd
+  - src/core/battle/BattleManager.gd
+- Test results: All 7 tests pass
+- QA sign-off: Approved
+- Next: Continue with Sprint 4 Story 4-4 - 统帅值约束与卡组管理
+
+---
+
+## Session Extract — /dev-story 2026-04-12 (Story 4-4)
+
+- Story: production/epics/troop-card-system/story-004-troop-leadership-constraint.md — 统帅值约束与卡组管理
+- Files changed:
+  - assets/csv_data/heroes_attributes.csv (新增 leadership 字段)
+  - src/core/hero-system/HeroManager.gd (新增 leadership 字段和 get_leadership 方法)
+  - src/core/card/CardManager.gd (新增 can_add_troop_card、get_troop_branch_options、is_troop_card_max_level 方法)
+  - src/core/troop-card/TroopBranchRegistry.gd (新建分支注册表)
+  - tests/unit/troop_system/troop_leadership_constraint_test.gd (新建单元测试)
+- Test written: tests/unit/troop_system/troop_leadership_constraint_test.gd (8 test functions)
+- Blockers: None
+- Next: /code-review src/core/troop-card/TroopBranchRegistry.gd then /story-done production/epics/troop-card-system/story-004-troop-leadership-constraint.md
+
+---
+
+### 2026-04-12 进展（续）
+✅ Story 4-4 实现完成：
+- 更新 heroes_attributes.csv 添加统帅值字段（3~6）
+- 在 HeroManager 中添加 leadership 字段和 get_leadership() 方法
+- 在 CardManager 中实现 can_add_troop_card() 检查统帅约束
+- 创建 TroopBranchRegistry 类管理Lv3分支选项
+- 实现 get_troop_branch_options() 和 is_troop_card_max_level() 方法
+- 创建8个单元测试覆盖所有验收标准
+
+### 实现亮点
+- 数据驱动设计：统帅值从CSV配置文件加载
+- 高内聚低耦合：分支选项管理独立于核心逻辑
+- 完整测试覆盖：8个测试用例验证所有场景
+- 符合A/D规范：所有实现遵循GDD和控制规范
+
+<!-- STATUS -->
+Epic: Troop Card System
+Feature: Leadership Constraint
+Task: Implementation complete
+<!-- /STATUS -->
+
+---
+
+## Session Extract — /dev-story 2026-04-12 (Story 4-5)
+
+- Story: production/epics/curse-system/story-001-curse-types-and-data.md — 诅咒类型与数据结构
+- Files changed:
+  - src/core/curse-system/CurseCardData.gd (新建诅咒卡数据结构)
+  - src/core/curse-system/CurseManager.gd (新建诅咒管理器)
+  - assets/csv_data/curse_cards.csv (新建诅咒卡数据文件)
+  - tests/unit/curse_system/curse_types_and_data_test.gd (新建单元测试)
+- Test written: tests/unit/curse_system/curse_types_and_data_test.gd (15 test functions)
+- Blockers: None
+- Next: /code-review src/core/curse-system/CurseCardData.gd then /story-done production/epics/curse-system/story-001-curse-types-and-data.md
+
+---
+
+### 2026-04-12 进展（续）
+✅ Story 4-5 实现完成：
+- 创建 CurseCardData 类定义三种诅咒类型及其属性
+- 创建 CurseManager 类加载和管理诅咒卡数据
+- 设计CSV格式存储诅咒卡数据
+- 创建15个单元测试覆盖所有验收标准
+
+### 实现亮点
+- 数据驱动设计：诅咒类型从CSV配置文件加载
+- 清晰的职责分离：诅咒数据结构独立于管理器
+- 完整测试覆盖：15个测试用例验证所有AC
+- 符合GDD规范：实现完全匹配设计文档
+
+<!-- STATUS -->
+Epic: Curse System
+Feature: Curse Types and Data
+Task: Implementation complete
+<!-- /STATUS -->

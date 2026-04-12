@@ -191,12 +191,21 @@ func _execute_damage_effect(battle_manager: Node, target_pos: int, base_damage: 
 
 	# 应用伤害
 	if target_entity != null:
-		# 这里需要集成DamageCalculator（待实现）
-		# 暂时直接应用基础伤害
-		var final_damage = base_damage
+		# 使用DamageCalculator计算最终伤害（集成地形天气修正）
+		var final_damage: int
 
-		# 检查是否考虑护甲
-		# 这里简化处理，实际应该通过DamageCalculator
+		if battle_manager.terrain_weather_manager != null:
+			var damage_calculator = DamageCalculator.new()
+			final_damage = damage_calculator.calculate_damage(
+				base_damage,
+				troop_type,
+				battle_manager.terrain_weather_manager
+			)
+		else:
+			# 如果没有地形天气管理器，使用基础伤害
+			final_damage = base_damage
+
+		# 应用伤害到目标
 		target_entity.current_hp -= final_damage
 		if target_entity.current_hp < 0:
 			target_entity.current_hp = 0

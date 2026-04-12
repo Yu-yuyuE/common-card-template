@@ -44,6 +44,68 @@ func get_hand_limit() -> int:
 			limit = 6
 	return limit
 
+
+## 检查是否可以添加兵种卡（统帅值约束）
+## 参数：deck_cards - 当前卡组中的所有卡牌
+## 返回：true=可以添加，false=已达到统帅上限
+func can_add_troop_card(deck_cards: Array) -> bool:
+	if battle_manager == null:
+		return true
+
+	# 获取当前武将的统帅值
+	var current_hero_name: String = battle_manager.player_entity.id
+	if current_hero_name == "":
+		push_warning("CardManager: 未设置当前武将，使用默认统帅值3")
+		current_hero_name = "曹操"  # 默认武将
+
+	var leadership: int = 3
+	if battle_manager.hero_manager != null:
+		leadership = battle_manager.hero_manager.get_leadership(current_hero_name)
+
+	# 统计当前卡组中兵种卡数量（只计算type == TROOP的卡）
+	var troop_count: int = 0
+	for card in deck_cards:
+		if card.is_troop_card():
+			troop_count += 1
+
+	# 检查是否超过统帅上限
+	return troop_count < leadership
+
+
+## 获取指定兵种的基础Lv3分支选项
+## 参数：base_card_id - 基础兵种卡ID（如"TroopCard"）
+## 返回：分支列表，每个元素为字典包含id、name、effect
+func get_troop_branch_options(base_card_id: String) -> Array[Dictionary]:
+	# 首先找到基础兵种类型
+	var troop_type: int = TroopCard.TroopType.INFANTRY  # 默认
+
+	# 根据卡ID映射到兵种类型（实际实现可能更复杂）
+	# 这里简化处理：假设卡ID对应兵种类型
+	match base_card_id:
+		"TroopCard":
+			# 这里需要从CardData中获取实际类型，但当前实现没有直接关联
+			# 为简化，返回所有兵种的分支选项
+			return TroopBranchRegistry.get_branch_options(TroopCard.TroopType.INFANTRY)
+		"CavalryCard":
+			troop_type = TroopCard.TroopType.CAVALRY
+		"ArcherCard":
+			troop_type = TroopCard.TroopType.ARCHER
+		"StrategistCard":
+			troop_type = TroopCard.TroopType.STRATEGIST
+		"ShieldCard":
+			troop_type = TroopCard.TroopType.SHIELD
+		_:
+			return []
+
+	return TroopBranchRegistry.get_branch_options(troop_type)
+
+
+## 检查兵种卡是否已达到最大等级（Lv3）
+## 参数：card - 兵种卡实例
+## 返回：true=已是Lv3，false=还可以升级
+func is_troop_card_max_level(card: TroopCard) -> bool:
+	return TroopBranchRegistry.is_max_level(card)
+
 ## 回合开始时补齐手牌至上限
 func fill_hand_to_limit() -> void:
 	var limit = get_hand_limit()

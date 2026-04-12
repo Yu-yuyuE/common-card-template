@@ -3,7 +3,8 @@
 > **Type**: Logic
 > **Epic**: curse-system
 > **ADR**: ADR-0006, ADR-0007
-> **Status**: Ready
+> **Status**: Complete
+> **Completed**: 2026-04-12
 
 ## Context
 

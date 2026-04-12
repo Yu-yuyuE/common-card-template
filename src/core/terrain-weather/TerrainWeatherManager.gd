@@ -411,3 +411,13 @@ func apply_terrain_weather_modifiers(attack_base: float) -> float:
 func get_max_participants_modifier() -> int:
 	# 默认无影响
 	return 3  # 标准支持3v3
+
+
+## 获取骑兵在沙漠地形的费用修正
+## 返回：费用修正值（负数表示减少，正数表示增加）
+func get_cavalry_cost_modifier() -> int:
+	match current_terrain:
+		Terrain.DESERT:
+			return -1  # 沙漠：骑兵费用-1（最低为0）
+		_:
+			return 0  # 其他地形无修正

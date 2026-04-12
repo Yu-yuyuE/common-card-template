@@ -1,322 +1,330 @@
-## HeroManager.gd
-## 武将系统（D3）——武将数据与属性管理核心
-##
-## 职责：加载和管理武将数据，提供武将属性查询接口
-## 位置：作为GameState的父节点
-##
-## 设计文档：design/gdd/heroes-design.md
-## 依赖：
-##   - ResourceManager（提供HP/行动点基础值）
-##
-## 使用示例：
-##   var hero_mgr := HeroManager.new()
-##   hero_mgr.load_hero_data()
-##   var max_hp := hero_mgr.get_max_hp("曹操")
-##   var base_ap := hero_mgr.get_base_ap("曹操")
-
+## 武将属性数据
+## 通过CSV加载 (design/detail/heroes.csv)
 class_name HeroManager extends Node
 
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# 枚举
+# ===========================================================================
+
+## 阵营
+enum Faction {
+	WEI = 0,      ## 魏
+	SHU = 1,      ## 蜀
+	WU = 2,       ## 吴
+	OTHERS = 3,   ## 群雄
+}
+
+## 兵种类型
+enum TroopType {
+	INFANTRY = 0,   ## 步兵
+	CAVALRY = 1,    ## 骑兵
+	ARCHER = 2,     ## 弓兵
+	STRATEGIST = 3, ## 谋士
+	SHIELD = 4,     ## 盾兵
+}
+
+# ===========================================================================
 # 武将数据结构
-# ---------------------------------------------------------------------------
+# ===========================================================================
 
 ## 武将属性数据
-## 通过CSV加载
-struct HeroData:
-	var id: int
-	var name: String
-	var faction: String
-	var max_hp: int
-	var base_ap: int
-	var armor_max: int
-	var special_attribute: String
+## 通过CSV加载 (design/detail/heroes.csv)
+class HeroData:
+	var id: String                    ## 唯一标识（snake_case）
+	var name_zh: String               ## 中文名
+	var faction: int                  ## Faction 枚举值
+	var max_hp: int                   ## 最大生命值
+	var base_cost: int                ## 每回合基础行动点
+	var leadership: int               ## 统帅（兵种卡携带上限）
+	var affinity_primary: Array[int]  ## 主修兵种 [TroopType, TroopType]
+	var affinity_secondary: int       ## 次修兵种 TroopType
+	var exclusive_cards: int          ## 专属卡数量
+	var passive_id: String            ## 被动技能 ID
+	var hand_limit: int               ## 手牌上限（默认 5，袁绍 6）
+	var no_armor: bool                ## 是否禁止获得护甲（仅典韦）
+	var unlimited_armor: bool         ## 护盾上限无上限（仅张角）
 
-# ---------------------------------------------------------------------------
-# 内部状态
-# ---------------------------------------------------------------------------
+	func _init() -> void:
+		affinity_primary = []
 
-## 武将数据字典
-var _heroes: Dictionary = {}  # name -> HeroData
+# ===========================================================================
+# 信号
+# ===========================================================================
 
-## 武将专属卡组数据字典
-var _exclusive_decks: Dictionary = {}  # hero_name -> Array[CardData]
+## 武将加载完成时发射（所有静态数据就绪）
+signal heroes_loaded(hero_count: int)
 
-## 武将被动技能数据字典
-var _passive_skills: Dictionary = {}  # hero_name -> Array[PassiveSkill]
+## 当前武将变更时发射
+signal hero_selected(hero_id: String)
 
-# ---------------------------------------------------------------------------
-# 初始化
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# 常量
+# ===========================================================================
 
-## 初始化时加载武将数据
+## 数据文件路径
+const DATA_PATH: String = "res://design/detail/heroes.csv"
+
+## 兵种倾向权重（F3）
+const WEIGHT_PRIMARY: float = 2.0    ## 主修
+const WEIGHT_SECONDARY: float = 1.0  ## 次修
+const WEIGHT_NON_AFFINITY: float = 0.5  ## 非倾向
+
+# ===========================================================================
+# 公共属性（由 ResourceManager._ready() 通过 get() 读取）
+# ===========================================================================
+
+## 当前武将最大 HP（供 ResourceManager 初始化用）
+var max_hp: int = 50
+
+## 当前武将基础行动点（供 ResourceManager 初始化用）
+var base_ap: int = 3
+
+# ===========================================================================
+# 私有成员
+# ===========================================================================
+
+## 全量武将数据表：id -> HeroData
+var _hero_table: Dictionary = {}
+
+## 当前选中武将 ID
+var _current_hero_id: String = ""
+
+## 当前武将数据缓存
+var _current_hero: HeroData = null
+
+# ===========================================================================
+# 生命周期
+# ===========================================================================
+
 func _ready() -> void:
-	_load_hero_attributes()
-	_load_exclusive_decks()
-	_load_passive_skills()
+	var count: int = _load_heroes_from_csv()
+	if count == 0:
+		push_error("HeroManager._ready: 武将数据加载失败，加载数量为 0")
 
+# ===========================================================================
+# 数据加载
+# ===========================================================================
 
-## 从CSV文件加载武将基础属性
-func _load_hero_attributes() -> void:
-	var file_path := "res://assets/csv_data/heroes_attributes.csv"
+## 从 CSV 加载全部武将数据。
+## 文件格式见 design/detail/heroes.csv 头部注释。
+## 返回：加载成功的武将数量（用于验证）
+func _load_heroes_from_csv() -> int:
+	_hero_table.clear()
 
-	if not FileAccess.file_exists(file_path):
-		push_error("HeroManager: 武将属性文件未找到 — %s" % file_path)
-		return
-
-	var file := FileAccess.open(file_path, FileAccess.READ)
-	if file == null:
-		push_error("HeroManager: 无法打开武将属性文件 — %s" % file_path)
-		return
-
-	# 跳过标题行
-	var header_line := file.get_line()
-
-	var loaded_count: int = 0
-
-	while not file.eof_reached():
-		var line: String = file.get_line().strip_edges()
-
-		# 跳过空行
-		if line.is_empty():
-			continue
-
-		var fields: PackedStringArray = line.split(",")
-		if fields.size() < 6:
-			push_warning("HeroManager: 武将属性行字段数不足，跳过 — [%s]" % line)
-			continue
-
-		# 解析字段
-		var id: int = fields[0].strip_edges().to_int()
-		var name: String = fields[1].strip_edges()
-		var faction: String = fields[2].strip_edges()
-		var max_hp: int = fields[3].strip_edges().to_int()
-		var base_ap: int = fields[4].strip_edges().to_int()
-		var armor_max: int = fields[5].strip_edges().to_int()
-		var special_attribute: String = fields[6].strip_edges()
-
-		# 创建武将数据
-		var hero_data := HeroData.new()
-		hero_data.id = id
-		hero_data.name = name
-		hero_data.faction = faction
-		hero_data.max_hp = max_hp
-		hero_data.base_ap = base_ap
-		hero_data.armor_max = armor_max
-		hero_data.special_attribute = special_attribute
-
-		# 存入字典
-		_heroes[name] = hero_data
-		loaded_count += 1
-
-	file.close()
-	print("HeroManager: 加载了 %d 个武将属性" % loaded_count)
-
-
-## 从CSV文件加载武将专属卡组
-func _load_exclusive_decks() -> void:
-	var file_path := "res://assets/csv_data/heroes_exclusive_decks.csv"
-
-	if not FileAccess.file_exists(file_path):
-		push_error("HeroManager: 武将专属卡组文件未找到 — %s" % file_path)
-		return
-
-	var file := FileAccess.open(file_path, FileAccess.READ)
-	if file == null:
-		push_error("HeroManager: 无法打开武将专属卡组文件 — %s" % file_path)
-		return
-
-	# 跳过标题行
-	var header_line := file.get_line()
-
-	var loaded_count: int = 0
-
-	while not file.eof_reached():
-		var line: String = file.get_line().strip_edges()
-
-		# 跳过空行
-		if line.is_empty():
-			continue
-
-		var fields: PackedStringArray = line.split(",")
-		if fields.size() < 8:
-			push_warning("HeroManager: 武将专属卡组行字段数不足，跳过 — [%s]" % line)
-			continue
-
-		# 解析字段
-		var id: int = fields[0].strip_edges().to_int()
-		var hero_name: String = fields[1].strip_edges()
-		var faction: String = fields[2].strip_edges()
-		var type: String = fields[3].strip_edges()
-		var card_name: String = fields[4].strip_edges()
-		var cost_lv1: int = fields[5].strip_edges().to_int()
-		var cost_lv2: int = fields[6].strip_edges().to_int()
-		var lv1_effect: String = fields[7].strip_edges()
-		var lv2_effect: String = ""
-		var remove_lv1: bool = false
-		var remove_lv2: bool = false
-
-		# 读取LV2效果
-		if fields.size() > 8:
-			lv2_effect = fields[8].strip_edges()
-
-		# 读取使用后是否移除
-		if fields.size() > 9:
-			var remove_str: String = fields[9].strip_edges()
-			var remove_parts: PackedStringArray = remove_str.split("/")
-			if remove_parts.size() >= 1:
-				remove_lv1 = remove_parts[0].to_lower() == "是"
-			if remove_parts.size() >= 2:
-				remove_lv2 = remove_parts[1].to_lower() == "是"
-
-		# 创建卡数据（这里简化，实际应创建CardData对象）
-		# 为简化，我们只记录信息，由CardManager处理具体卡牌
-		if not _exclusive_decks.has(hero_name):
-			_exclusive_decks[hero_name] = []
-
-		# 这里只是占位，实际实现需要创建CardData对象
-		# _exclusive_decks[hero_name].append(CardData.new(...))
-
-		loaded_count += 1
-
-	file.close()
-	print("HeroManager: 加载了 %d 张武将专属卡牌" % loaded_count)
-
-
-## 从CSV文件加载武将被动技能
-func _load_passive_skills() -> void:
-	var file_path := "res://assets/csv_data/heroes_passive_skills.csv"
-
-	if not FileAccess.file_exists(file_path):
-		push_error("HeroManager: 武将被动技能文件未找到 — %s" % file_path)
-		return
-
-	var file := FileAccess.open(file_path, FileAccess.READ)
-	if file == null:
-		push_error("HeroManager: 无法打开武将被动技能文件 — %s" % file_path)
-		return
-
-	# 跳过标题行
-	var header_line := file.get_line()
-
-	var loaded_count: int = 0
-
-	while not file.eof_reached():
-		var line: String = file.get_line().strip_edges()
-
-		# 跳过空行
-		if line.is_empty():
-			continue
-
-		var fields: PackedStringArray = line.split(",")
-		if fields.size() < 4:
-			push_warning("HeroManager: 武将被动技能行字段数不足，跳过 — [%s]" % line)
-			continue
-
-		# 解析字段
-		var id: int = fields[0].strip_edges().to_int()
-		var hero_name: String = fields[1].strip_edges()
-		var faction: String = fields[2].strip_edges()
-		var skill_name: String = fields[3].strip_edges()
-		var skill_effect: String = ""
-
-		if fields.size() > 4:
-			skill_effect = fields[4].strip_edges()
-
-		# 创建被动技能数据
-		if not _passive_skills.has(hero_name):
-			_passive_skills[hero_name] = []
-
-		# 这里只是占位，实际实现需要创建PassiveSkill对象
-		# _passive_skills[hero_name].append(PassiveSkill.new(skill_name, skill_effect))
-
-		loaded_count += 1
-
-	file.close()
-	print("HeroManager: 加载了 %d 个武将被动技能" % loaded_count)
-
-
-# ---------------------------------------------------------------------------
-# 查询接口
-# ---------------------------------------------------------------------------
-
-## 获取武将的最大HP
-func get_max_hp(hero_name: String) -> int:
-	if _heroes.has(hero_name):
-		return _heroes[hero_name].max_hp
-	else:
-		push_warning("HeroManager: 未找到武将 %s 的数据，返回默认值50" % hero_name)
-		return 50
-
-
-## 获取武将的基础行动点
-func get_base_ap(hero_name: String) -> int:
-	if _heroes.has(hero_name):
-		return _heroes[hero_name].base_ap
-	else:
-		push_warning("HeroManager: 未找到武将 %s 的数据，返回默认值4" % hero_name)
-		return 4
-
-
-## 获取武将的护盾上限
-func get_armor_max(hero_name: String) -> int:
-	if _heroes.has(hero_name):
-		return _heroes[hero_name].armor_max
-	else:
-		push_warning("HeroManager: 未找到武将 %s 的数据，返回默认值0" % hero_name)
+	if not FileAccess.file_exists(DATA_PATH):
+		push_error("HeroManager: 数据文件未找到 — %s" % DATA_PATH)
 		return 0
 
+	var file := FileAccess.open(DATA_PATH, FileAccess.READ)
+	if file == null:
+		push_error("HeroManager: 无法打开文件 — %s" % DATA_PATH)
+		return 0
 
-## 获取武将的阵营
-func get_faction(hero_name: String) -> String:
-	if _heroes.has(hero_name):
-		return _heroes[hero_name].faction
-	else:
-		push_warning("HeroManager: 未找到武将 %s 的数据，返回默认值" % hero_name)
-		return ""
+	var loaded_count: int = 0
 
+	while not file.eof_reached():
+		var line: String = file.get_line().strip_edges()
 
-## 获取武将的特殊属性
-func get_special_attribute(hero_name: String) -> String:
-	if _heroes.has(hero_name):
-		return _heroes[hero_name].special_attribute
-	else:
-		push_warning("HeroManager: 未找到武将 %s 的数据，返回空字符串" % hero_name)
-		return ""
+		# 跳过空行与注释行（以 ## 或 # 开头）
+		if line.is_empty() or line.begins_with("#"):
+			continue
 
+		# 跳过 CSV 标题行（以 "id," 开头）
+		if line.begins_with("id,"):
+			continue
 
-## 获取武将是否是袁绍（特殊处理）
-func is_yuan_shao(hero_name: String) -> bool:
-	return hero_name == "袁绍"
+		var fields: PackedStringArray = line.split(",")
+		if fields.size() < 14:
+			push_warning("HeroManager: 行字段数不足，跳过 — [%s]" % line)
+			continue
 
+		var data := HeroData.new()
+		data.id = fields[0].strip_edges()
+		data.name_zh = fields[1].strip_edges()
+		data.faction = _parse_faction(fields[2].strip_edges())
+		data.max_hp = fields[3].strip_edges().to_int()
+		data.base_cost = fields[4].strip_edges().to_int()
+		data.leadership = fields[5].strip_edges().to_int()
 
-## 获取所有武将名称
-func get_all_hero_names() -> Array:
-	return _heroes.keys()
+		# affinity_primary 长度安全检查
+		var primary_raw_0: String = fields[6].strip_edges()
+		var primary_raw_1: String = fields[7].strip_edges()
+		if not primary_raw_0.is_empty():
+			data.affinity_primary.append(_parse_troop_type(primary_raw_0))
+		if not primary_raw_1.is_empty():
+			data.affinity_primary.append(_parse_troop_type(primary_raw_1))
 
+		data.affinity_secondary = _parse_troop_type(fields[8].strip_edges())
+		data.exclusive_cards = fields[9].strip_edges().to_int()
+		data.passive_id = fields[10].strip_edges()
 
-## 获取指定阵营的所有武将
-func get_heroes_by_faction(faction: String) -> Array:
-	var result: Array = []
-	for name in _heroes.keys():
-		if _heroes[name].faction == faction:
-			result.append(name)
+		# hand_limit 安全回退：若解析结果 <= 0 则强制使用默认值 5
+		var parsed_hand_limit: int = fields[11].strip_edges().to_int()
+		data.hand_limit = parsed_hand_limit if parsed_hand_limit > 0 else 5
+
+		data.no_armor = fields[12].strip_edges().to_lower() == "true"
+		data.unlimited_armor = fields[13].strip_edges().to_lower() == "true"
+
+		if data.id.is_empty():
+			push_warning("HeroManager: id 为空，跳过一行")
+			continue
+
+		_hero_table[data.id] = data
+		loaded_count += 1
+
+	file.close()
+	heroes_loaded.emit(loaded_count)
+	return loaded_count
+
+# ===========================================================================
+# 武将选择
+# ===========================================================================
+
+## 选择当前战役使用的武将。
+## 必须在战斗初始化之前调用，ResourceManager 依赖此方法填充的 max_hp / base_ap。
+##
+## 参数：hero_id — 武将 ID（对应 heroes.csv 的 id 列）
+## 返回：true = 选择成功；false = hero_id 不存在
+func select_hero(hero_id: String) -> bool:
+	var found_id: String = ""
+	for key: String in _hero_table:
+		if key.strip_edges() == hero_id.strip_edges():
+			found_id = key
+			break
+
+	if found_id.is_empty():
+		push_error("HeroManager: 武将 ID 不存在 — %s" % hero_id)
+		return false
+
+	_current_hero_id = found_id
+	_current_hero = _hero_table[found_id]
+
+	# 更新 ResourceManager 读取的公共属性
+	max_hp = _current_hero.max_hp
+	base_ap = _current_hero.base_cost
+
+	hero_selected.emit(found_id)
+	return true
+
+# ===========================================================================
+# 查询接口
+# ===========================================================================
+
+## 获取当前武将数据（只读）
+func get_current_hero() -> HeroData:
+	return _current_hero
+
+## 按 ID 获取武将数据（只读）
+func get_hero_data(hero_id: String) -> HeroData:
+	return _hero_table.get(hero_id, null)
+
+## 获取全量武将 ID 列表
+func get_all_hero_ids() -> Array[String]:
+	var result: Array[String] = []
+	result.assign(_hero_table.keys())
 	return result
 
+## 获取指定阵营的武将 ID 列表
+func get_heroes_by_faction(faction: int) -> Array[String]:
+	var result: Array[String] = []
+	for hero_id: String in _hero_table:
+		if _hero_table[hero_id].faction == faction:
+			result.append(hero_id)
+	return result
 
-## 检查武将是否存在
-func has_hero(hero_name: String) -> bool:
-	return _heroes.has(hero_name)
+## 获取兵种倾向权重（F3）
+func get_troop_weight(troop_type: int) -> float:
+	if _current_hero == null:
+		push_warning("HeroManager.get_troop_weight: 尚未选择武将")
+		return WEIGHT_PRIMARY  # 返回基准权重
 
+	var ap: Array[int] = _current_hero.affinity_primary
+	if ap.size() > 0 and (troop_type == ap[0] or (ap.size() > 1 and troop_type == ap[1])):
+		return WEIGHT_PRIMARY
+	elif troop_type == _current_hero.affinity_secondary:
+		return WEIGHT_SECONDARY
+	else:
+		return WEIGHT_NON_AFFINITY
 
-## 获取武将的专属卡组
-func get_exclusive_deck(hero_name: String) -> Array:
-	if _exclusive_decks.has(hero_name):
-		return _exclusive_decks[hero_name]
-	return []
+## 验证兵种卡是否超出统帅上限
+func can_add_troop_card(current_troop_count: int) -> bool:
+	if _current_hero == null:
+		return false
+	return current_troop_count < _current_hero.leadership
 
+## 获取当前武将手牌上限
+func get_hand_limit() -> int:
+	if _current_hero == null:
+		return 5
+	return _current_hero.hand_limit
 
-## 获取武将的被动技能
-func get_passive_skills(hero_name: String) -> Array:
-	if _passive_skills.has(hero_name):
-		return _passive_skills[hero_name]
-	return []
+## 查询当前武将是否禁止获得护甲（典韦被动）
+func is_armor_disabled() -> bool:
+	if _current_hero == null:
+		return false
+	return _current_hero.no_armor
+
+## 查询当前武将是否护盾无上限（张角被动）
+func has_unlimited_armor() -> bool:
+	if _current_hero == null:
+		return false
+	return _current_hero.unlimited_armor
+
+## 获取当前武将的护盾上限（Story 003 AC3-AC5）
+func get_armor_max() -> int:
+	if _current_hero == null:
+		return 50  # 默认值
+
+	# 曹仁：护盾上限 = MaxHP + 30
+	if _current_hero_id == "cao_ren":
+		return _current_hero.max_hp + 30
+
+	# 典韦：禁止护甲
+	if _current_hero.no_armor:
+		return 0
+
+	# 张角：无上限（返回 -1 表示无上限）
+	if _current_hero.unlimited_armor:
+		return -1
+
+	# 默认：护盾上限 = MaxHP
+	return _current_hero.max_hp
+
+## 获取当前武将被动技能 ID
+func get_passive_id() -> String:
+	if _current_hero == null:
+		return ""
+	return _current_hero.passive_id
+
+## 获取当前武将中文名
+func get_hero_name_zh() -> String:
+	if _current_hero == null:
+		return ""
+	return _current_hero.name_zh
+
+# ===========================================================================
+# 私有工具方法
+# ===========================================================================
+
+## 将 CSV 字符串解析为 Faction 枚举值
+func _parse_faction(raw: String) -> int:
+	match raw.to_lower():
+		"wei":    return Faction.WEI
+		"shu":    return Faction.SHU
+		"wu":     return Faction.WU
+		"others": return Faction.OTHERS
+		_:
+			push_warning("HeroManager: 未知阵营 '%s'，默认 OTHERS" % raw)
+			return Faction.OTHERS
+
+## 将 CSV 字符串解析为 TroopType 枚举值
+func _parse_troop_type(raw: String) -> int:
+	match raw.to_lower():
+		"infantry":   return TroopType.INFANTRY
+		"cavalry":    return TroopType.CAVALRY
+		"archer":     return TroopType.ARCHER
+		"strategist": return TroopType.STRATEGIST
+		"shield":     return TroopType.SHIELD
+		_:
+			push_warning("HeroManager: 未知兵种 '%s'，默认 INFANTRY" % raw)
+			return TroopType.INFANTRY

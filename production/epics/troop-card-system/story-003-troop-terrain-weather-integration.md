@@ -1,10 +1,11 @@
 # Story 003: 兵种地形天气联动执行
 
 > **Epic**: 兵种卡系统
-> **Status**: Ready
+> **Status**: Complete
 > **Layer**: Feature
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
+> **Completed**: 2026-04-12
 
 ## Context
 

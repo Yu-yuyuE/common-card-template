@@ -5,7 +5,7 @@
 ##   name_zh      - 中文名
 ##   faction      - 阵营：wei / shu / wu / others
 ##   max_hp       - 最大生命值（40~60）
-##   base_cost    - 每回合基础行动点（2~4）
+##   base_ap    - 每回合基础行动点（2~4）
 ##   leadership   - 统帅/兵种卡携带上限（3~6）
 ##   affinity_primary_1 - 主修兵种1（infantry/cavalry/archer/strategist/shield）
 ##   affinity_primary_2 - 主修兵种2
@@ -15,7 +15,7 @@
 ##   hand_limit   - 初始手牌上限（默认5，袁绍6）
 ##   no_armor     - 是否禁止获得护甲（仅典韦=true）
 ##   unlimited_armor - 护盾上限无上限（仅张角=true）
-id,name_zh,faction,max_hp,base_cost,leadership,affinity_primary_1,affinity_primary_2,affinity_secondary,exclusive_cards,passive_id,hand_limit,no_armor,unlimited_armor
+id,name_zh,faction,max_hp,base_ap,leadership,affinity_primary_1,affinity_primary_2,affinity_secondary,exclusive_cards,passive_id,hand_limit,no_armor,unlimited_armor
 cao_cao,曹操,wei,51,3,6,infantry,cavalry,strategist,16,xie_ling_zhu_hou,5,false,false
 xiahou_dun,夏侯惇,wei,53,2,5,infantry,shield,cavalry,14,gang_lie,5,false,false
 zhang_liao,张辽,wei,52,3,5,cavalry,infantry,archer,15,wei_zhen_xiao_yao_jin,5,false,false

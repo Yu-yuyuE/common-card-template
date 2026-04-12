@@ -34,31 +34,31 @@ stories:
     name: "兵种卡系统 (D2) - 兵种地形天气联动"
     file: "production/epics/troop-card-system/story-003-troop-terrain-weather-integration.md"
     priority: must-have
-    status: backlog
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 1
     blocker: ""
-    completed: ""
+    completed: "2026-04-12"
 
   - id: "4-4"
     name: "兵种卡系统 (D2) - 统帅值约束与卡组管理"
     file: "production/epics/troop-card-system/story-004-troop-leadership-constraint.md"
     priority: must-have
-    status: backlog
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 1
     blocker: ""
-    completed: ""
+    completed: "2026-04-12"
 
   - id: "4-5"
     name: "诅咒系统 (D4) - 诅咒类型与数据结构"
     file: "production/epics/curse-system/story-001-curse-types-and-data.md"
     priority: must-have
-    status: backlog
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 1
     blocker: ""
-    completed: ""
+    completed: "2026-04-12"
 
   - id: "4-6"
     name: "诅咒系统 (D4) - 诅咒注入机制"

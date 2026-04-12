@@ -1,10 +1,11 @@
 # Story 004: 统帅值约束与卡组管理
 
 > **Epic**: 兵种卡系统
-> **Status**: Ready
+> **Status**: Complete
 > **Layer**: Feature
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
+> **Completed**: 2026-04-12
 
 ## Context
 

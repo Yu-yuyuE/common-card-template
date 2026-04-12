@@ -30,10 +30,11 @@ Accepted
 
 ### Problem Statement
 
-游戏需要管理20种状态效果（7种Buff + 13种Debuff），包括：
+游戏需要管理**24种状态效果**（7种Buff + 17种Debuff），包括：
 - 状态的施加、持续、消耗、覆盖、刷新机制
 - 同类状态叠加，不同类互斥
 - 状态伤害计算（穿透护盾 vs 走护盾）
+- **治疗与护盾修正**（新增：流血-50%治疗，生锈-50%护盾）
 - 状态与战斗、资源、地图等系统的集成
 
 ### Constraints
@@ -42,9 +43,10 @@ Accepted
 - **可调试**: 状态变化需可追踪
 
 ### Requirements
-- 必须支持20种状态（7 Buff + 13 Debuff）
+- 必须支持22种状态（7 Buff + 15 Debuff）
 - 必须支持同类叠加、不同类互斥
 - 必须支持状态伤害穿透/走护盾
+- 必须支持治疗/护盾修正（流血/生锈）
 - 必须支持回合结束时状态消耗
 
 ## Decision
@@ -84,6 +86,8 @@ enum StatusCategory {
     PLAGUE,      # 瘟疫 - 3伤害/层，传播
     STUN,        # 眩晕 - 停止行动
     BLEED,       # 重伤 - 1伤害/层
+    BLEEDING,    # 流血 - 治疗量-50%
+    RUST,        # 生锈 - 护盾量-50%
     FROSTBITE    # 冻伤 - 攻击HP-1
 }
 
@@ -302,6 +306,18 @@ func _create_status(category: StatusCategory, layers: int, source: String) -> St
             status.type = StatusType.DEBUFF
             status.damage_per_layer = 1
             status.penetrates_shield = true
+        StatusCategory.BLEEDING:
+            status.type = StatusType.DEBUFF
+            status.is_consumable = false
+            status.damage_per_layer = 0
+            status.penetrates_shield = false
+            # 治疗修正：-50%
+        StatusCategory.RUST:
+            status.type = StatusType.DEBUFF
+            status.is_consumable = false
+            status.damage_per_layer = 0
+            status.penetrates_shield = false
+            # 护盾修正：-50%
         StatusCategory.FROSTBITE:
             status.type = StatusType.DEBUFF
     
@@ -331,6 +347,34 @@ func _handle_exclusive(target: Node, new_status: StatusEffect) -> void:
     # 移除互斥状态
     for category in to_remove:
         remove_status(target, category)
+
+func calculate_heal_modifier(target: Node, base_heal: int) -> int:
+    """计算状态修正后的治疗量（考虑流血状态）"""
+    if not _status_map.has(target):
+        return base_heal
+    
+    var modifier = 1.0
+    var status_list = _status_map[target]
+    
+    # 流血状态：治疗量-50%
+    if get_status(target, StatusCategory.BLEEDING) > 0:
+        modifier *= 0.5
+    
+    return int(base_heal * modifier)
+
+func calculate_shield_modifier(target: Node, base_shield: int) -> int:
+    """计算状态修正后的护盾量（考虑生锈状态）"""
+    if not _status_map.has(target):
+        return base_shield
+    
+    var modifier = 1.0
+    var status_list = _status_map[target]
+    
+    # 生锈状态：护盾量-50%
+    if get_status(target, StatusCategory.RUST) > 0:
+        modifier *= 0.5
+    
+    return int(base_shield * modifier)
 
 func _apply_damage(target: Node, damage: int, status: StatusEffect) -> void:
     """应用状态伤害"""
@@ -377,6 +421,8 @@ func _apply_damage(target: Node, damage: int, status: StatusEffect) -> void:
 | 免疫 vs 正面 | 免疫状态下仍可施加 Buff |
 | 混乱目标无友军 | 攻击取消，混乱层数-1 |
 | 瘟疫传播 | 回合结束时，感染单位周围紧邻单位获得1层瘟疫 |
+| 流血修正治疗 | 流血状态存在时，所有治疗量-50% |
+| 生锈修正护盾 | 生锈状态存在时，所有获得的护盾量-50% |
 
 ## Alternatives Considered
 
@@ -419,11 +465,12 @@ func _apply_damage(target: Node, damage: int, status: StatusEffect) -> void:
 
 | GDD System | Requirement | How This ADR Addresses It |
 |------------|-------------|--------------------------|
-| status-design.md | 7种Buff + 13种Debuff | StatusCategory 枚举覆盖所有20种 |
+| status-design.md | 7种Buff + 15种Debuff | StatusCategory 枚举覆盖所有22种 |
 | status-design.md | 同类叠加/不同类互斥 | _handle_exclusive() 实现互斥逻辑 |
 | status-design.md | 状态伤害计算 | calculate_incoming_damage() + _apply_damage() |
 | status-design.md | 回合结束消耗 | tick_status() 每回合调用 |
 | status-design.md | 穿透护盾/走护盾 | penetrates_shield 字段区分 |
+| status-design.md | 治疗/护盾修正 | 新增 BLEEDING 和 RUST 状态，实现治疗量-50%和护盾量-50%修正 |
 
 ## Performance Implications
 - **CPU**: 状态查找 O(1)，每回合结算 < 1ms
@@ -438,13 +485,15 @@ func _apply_damage(target: Node, damage: int, status: StatusEffect) -> void:
 6. 与战斗系统集成
 
 ## Validation Criteria
-- [ ] 20种状态都可以正确施加
+- [ ] 24种状态都可以正确施加
 - [ ] 同类状态叠加层数
 - [ ] 不同类状态互斥覆盖
 - [ ] 回合结束时状态正确消耗
 - [ ] 穿透护盾和走护盾正确区分
 - [ ] 免疫状态阻止 Debuff
 - [ ] Signal 正确发出所有状态变化
+- [ ] 流血状态正确减少50%治疗量
+- [ ] 生锈状态正确减少50%护盾量
 
 ## Related Decisions
 - ADR-0001 (已 Accepted): 场景管理策略
