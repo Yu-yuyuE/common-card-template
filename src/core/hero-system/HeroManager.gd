@@ -57,6 +57,12 @@ signal heroes_loaded(hero_count: int)
 ## 当前武将变更时发射
 signal hero_selected(hero_id: String)
 
+## 被动技能触发时发射（Story 003）
+signal passive_triggered(hero_id: String, skill_name: String, effect_result: Dictionary)
+
+## 请求抽卡（Story 005 诸葛亮被动）
+signal request_draw_card(count: int)
+
 # ===========================================================================
 # 常量
 # ===========================================================================
@@ -92,6 +98,9 @@ var _current_hero_id: String = ""
 ## 当前武将数据缓存
 var _current_hero: HeroData = null
 
+## 被动技能映射：skill_id -> Callable (Story 003)
+var _passive_skills: Dictionary = {}
+
 # ===========================================================================
 # 生命周期
 # ===========================================================================
@@ -100,6 +109,8 @@ func _ready() -> void:
 	var count: int = _load_heroes_from_csv()
 	if count == 0:
 		push_error("HeroManager._ready: 武将数据加载失败，加载数量为 0")
+	else:
+		_register_passive_skills()  # Story 003
 
 # ===========================================================================
 # 数据加载
@@ -176,6 +187,149 @@ func _load_heroes_from_csv() -> int:
 	heroes_loaded.emit(loaded_count)
 	return loaded_count
 
+
+# ===========================================================================
+# 被动技能系统 (Story 003)
+# ===========================================================================
+
+## 注册所有被动技能效果
+func _register_passive_skills() -> void:
+	_passive_skills.clear()
+
+	# 曹操：挟令诸侯 - 使用兵种卡时施加虚弱
+	_passive_skills["xie_ling_zhu_hou"] = {"trigger": "on_troop_card_played", "func": Callable(self, "_effect_xie_ling_zhu_hou")}
+
+	# 夏侯惇：刚烈 - 受伤时累计伤害
+	_passive_skills["gang_lie"] = {"trigger": "on_damaged", "func": Callable(self, "_effect_gang_lie")}
+
+	# 司马懿：隐忍
+	_passive_skills["yin_ren"] = {"trigger": "on_curse_added", "func": Callable(self, "_effect_yin_ren")}
+
+	# 典韦：恶来
+	_passive_skills["e_lai"] = {"trigger": "on_damaged", "func": Callable(self, "_effect_e_lai")}
+
+	# 刘备：仁德
+	_passive_skills["ren_de"] = {"trigger": "on_troop_kill", "func": Callable(self, "_effect_ren_de")}
+
+	# 关羽：武圣
+	_passive_skills["wu_sheng"] = {"trigger": "on_attack", "func": Callable(self, "_effect_wu_sheng")}
+
+	# 张飞：燕人咆哮
+	_passive_skills["yan_ren_pao_xiao"] = {"trigger": "on_damaged", "func": Callable(self, "_effect_yan_ren_pao_xiao")}
+
+	# 诸葛亮：卧龙
+	_passive_skills["wo_long"] = {"trigger": "on_turn_start", "func": Callable(self, "_effect_wo_long")}
+	_passive_skills["wo_long_skill"] = {"trigger": "on_skill_card_played", "func": Callable(self, "_effect_wo_long_skill")}
+
+	# 赵云：龙胆
+	_passive_skills["long_dan"] = {"trigger": "on_dodge", "func": Callable(self, "_effect_long_dan")}
+
+	# 孙权：制衡
+	_passive_skills["zhi_heng"] = {"trigger": "on_card_draw", "func": Callable(self, "_effect_zhi_heng")}
+
+	# 周瑜：火谋
+	_passive_skills["huo_mou"] = {"trigger": "on_attack", "func": Callable(self, "_effect_huo_mou")}
+
+	# 吕布：人中吕布
+	_passive_skills["ren_zhong_lv_bu"] = {"trigger": "on_attack", "func": Callable(self, "_effect_ren_zhong_lv_bu")}
+
+	# 张角：黄天当立
+	_passive_skills["huang_tian_dang_li"] = {"trigger": "on_death", "func": Callable(self, "_effect_huang_tian_dang_li")}
+
+	# 贾诩：毒士
+	_passive_skills["du_shi"] = {"trigger": "on_status_apply", "func": Callable(self, "_effect_du_shi")}
+
+	print("HeroManager: 注册了 %d 个被动技能" % _passive_skills.size())
+
+
+## 触发被动技能（Story 003 AC-1）
+func trigger_passive(trigger_type: String, context: Dictionary) -> void:
+	if _current_hero == null or _current_hero.passive_id.is_empty():
+		return
+
+	# 尝试获取主被动技能
+	var skill_data = _passive_skills.get(_current_hero.passive_id, null)
+	var triggered: bool = false
+	var result: Dictionary = {}
+
+	if skill_data != null and skill_data.trigger == trigger_type:
+		result = skill_data.func.call(context)
+		triggered = true
+	else:
+		# 检查额外触发的被动（如诸葛亮）
+		var extra_skill_id = _current_hero.passive_id + "_skill"
+		var extra_skill_data = _passive_skills.get(extra_skill_id, null)
+		if extra_skill_data != null and extra_skill_data.trigger == trigger_type:
+			result = extra_skill_data.func.call(context)
+			triggered = true
+
+	if triggered:
+		passive_triggered.emit(_current_hero_id, _current_hero.passive_id, result)
+
+
+# ===========================================================================
+# 被动技能效果实现（Story 005/006）
+# ===========================================================================
+
+func _effect_xie_ling_zhu_hou(context: Dictionary) -> Dictionary:
+	return {"success": true, "effect": "apply_weak", "layers": 1}
+
+func _effect_gang_lie(context: Dictionary) -> Dictionary:
+	return {"success": true, "accumulated_damage": context.get("damage", 0)}
+
+func _effect_yin_ren(context: Dictionary) -> Dictionary:
+	return {"success": true, "curse_layers": 1}
+
+func _effect_e_lai(context: Dictionary) -> Dictionary:
+	return {"success": true, "crit_heal": 3}
+
+func _effect_ren_de(context: Dictionary) -> Dictionary:
+	return {"success": true, "heal": 8}
+
+func _effect_wu_sheng(context: Dictionary) -> Dictionary:
+	return {"success": true, "damage_boost": 0.5}
+
+func _effect_yan_ren_pao_xiao(context: Dictionary) -> Dictionary:
+	return {"success": true, "counter_damage": 3}
+
+func _effect_wo_long(context: Dictionary) -> Dictionary:
+	# 回合开始恢复1行动点
+	request_draw_card.emit(0)  # 通知恢复AP
+	return {"success": true, "restore_ap": 1}
+
+func _effect_wo_long_skill(context: Dictionary) -> Dictionary:
+	# 技能卡抽1张
+	request_draw_card.emit(1)
+	return {"success": true, "draw_cards": 1}
+
+func _effect_long_dan(context: Dictionary) -> Dictionary:
+	return {"success": true, "counter_attack": true}
+
+func _effect_zhi_heng(context: Dictionary) -> Dictionary:
+	return {"success": true, "discard_draw": 1}
+
+func _effect_huo_mou(context: Dictionary) -> Dictionary:
+	return {"success": true, "fire_damage": 2}
+
+func _effect_ren_zhong_lv_bu(context: Dictionary) -> Dictionary:
+	return {"success": true, "damage_boost": 0.5}
+
+func _effect_huang_tian_dang_li(context: Dictionary) -> Dictionary:
+	# 张角复活逻辑（Story 006）
+	var max_resurrect: int = 3
+	var current_resurrect: int = context.get("resurrect_count", 0)
+
+	if current_resurrect < max_resurrect:
+		return {"resurrected": true, "resurrect_count": current_resurrect + 1, "hp_ratio": 0.5}
+	return {"resurrected": false}
+
+func _effect_du_shi(context: Dictionary) -> Dictionary:
+	# 贾诩毒士：状态层数合并
+	var existing_layers: int = context.get("existing_layers", 0)
+	var new_layers: int = context.get("new_layers", 1)
+	return {"success": true, "merged_layers": existing_layers + new_layers}
+
+
 # ===========================================================================
 # 武将选择
 # ===========================================================================
@@ -246,6 +400,32 @@ func get_troop_weight(troop_type: int) -> float:
 	else:
 		return WEIGHT_NON_AFFINITY
 
+
+## 获取指定武将的兵种权重（Story 002 AC-1）
+func get_troop_weights(hero_id: String) -> Dictionary:
+	var weights: Dictionary = {
+		TroopType.INFANTRY: WEIGHT_NON_AFFINITY,
+		TroopType.CAVALRY: WEIGHT_NON_AFFINITY,
+		TroopType.ARCHER: WEIGHT_NON_AFFINITY,
+		TroopType.STRATEGIST: WEIGHT_NON_AFFINITY,
+		TroopType.SHIELD: WEIGHT_NON_AFFINITY
+	}
+
+	var hero: HeroData = _hero_table.get(hero_id, null)
+	if hero == null:
+		push_warning("HeroManager.get_troop_weights: 武将 ID 不存在 — %s" % hero_id)
+		return {}  # 返回空字典表示错误
+
+	# 次修权重为1.0
+	if hero.affinity_secondary >= 0:
+		weights[hero.affinity_secondary] = WEIGHT_SECONDARY
+
+	# 主修权重为2.0
+	for troop_type: int in hero.affinity_primary:
+		weights[troop_type] = WEIGHT_PRIMARY
+
+	return weights
+
 ## 验证兵种卡是否超出统帅上限
 func can_add_troop_card(current_troop_count: int) -> bool:
 	if _current_hero == null:
@@ -301,6 +481,36 @@ func get_hero_name_zh() -> String:
 	if _current_hero == null:
 		return ""
 	return _current_hero.name_zh
+
+
+# ===========================================================================
+# 专属卡组与生涯地图接口 (Story 004)
+# ===========================================================================
+
+## 获取武将的专属卡组（Story 004 AC-1）
+func get_exclusive_deck(hero_id: String) -> Array[String]:
+	var hero: HeroData = _hero_table.get(hero_id, null)
+	if hero == null:
+		push_warning("HeroManager.get_exclusive_deck: 武将 ID 不存在 — %s" % hero_id)
+		return []
+	return hero.exclusive_deck
+
+
+## 获取当前武将的专属卡组
+func get_current_exclusive_deck() -> Array[String]:
+	if _current_hero == null:
+		return []
+	return _current_hero.exclusive_deck
+
+
+## 获取武将的生涯地图（Story 004 AC-2）
+func get_career_maps(hero_id: String) -> Array[String]:
+	var hero: HeroData = _hero_table.get(hero_id, null)
+	if hero == null:
+		push_warning("HeroManager.get_career_maps: 武将 ID 不存在 — %s" % hero_id)
+		return []
+	return hero.career_maps
+
 
 # ===========================================================================
 # 私有工具方法
