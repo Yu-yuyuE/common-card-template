@@ -127,83 +127,83 @@ func _parse_value_reference() -> void:
 	if enemy_data != null and enemy_data.action_params.has(id):
 		var override = enemy_data.action_params[id]
 
-			# 应用目标覆盖
-			if override.has("target"):
-				target = override["target"]
+		# 应用目标覆盖
+		if override.has("target"):
+			target = override["target"]
 
-			# 应用伤害覆盖
-			if override.has("damage"):
-				damage = _to_int(override["damage"])
+		# 应用伤害覆盖
+		if override.has("damage"):
+			damage = _to_int(override["damage"])
 
-			# 应用伤害次数覆盖
-			if override.has("damage_count"):
-				# 在 ActionExecutor 中处理
-				pass
+		# 应用伤害次数覆盖
+		if override.has("damage_count"):
+			# 在 ActionExecutor 中处理
+			pass
 
-			# 应用护甲覆盖
-			if override.has("armor"):
-				armor = _to_int(override["armor"])
+		# 应用护甲覆盖
+		if override.has("armor"):
+			armor = _to_int(override["armor"])
 
-			# 应用治疗覆盖
-			if override.has("heal"):
-				heal = _to_int(override["heal"])
+		# 应用治疗覆盖
+		if override.has("heal"):
+			heal = _to_int(override["heal"])
 
-			# 应用状态层数覆盖
-			if override.has("status_layers"):
-				status_layers = _to_int(override["status_layers"])
+		# 应用状态层数覆盖
+		if override.has("status_layers"):
+			status_layers = _to_int(override["status_layers"])
 
-			# 应用状态ID覆盖
-			if override.has("status_id"):
-				# 在 ActionExecutor 中处理
-				pass
+		# 应用状态ID覆盖
+		if override.has("status_id"):
+			# 在 ActionExecutor 中处理
+			pass
 
-			# 应用冷却覆盖
-			if override.has("cooldown"):
-				cooldown = _to_int(override["cooldown"])
+		# 应用冷却覆盖
+		if override.has("cooldown"):
+			cooldown = _to_int(override["cooldown"])
 
-			# 应用偷取金币覆盖
-			if override.has("gold_steal"):
-				# 在 ActionExecutor 中处理
-				pass
+		# 应用偷取金币覆盖
+		if override.has("gold_steal"):
+			# 在 ActionExecutor 中处理
+			pass
 
-			# 应用偷取卡牌数量覆盖
-			if override.has("card_steal"):
-				# 在 ActionExecutor 中处理
-				pass
+		# 应用偷取卡牌数量覆盖
+		if override.has("card_steal"):
+			# 在 ActionExecutor 中处理
+			pass
 
-			# 应用诅咒卡数量覆盖
-			if override.has("curse_count"):
-				# 在 ActionExecutor 中处理
-				pass
+		# 应用诅咒卡数量覆盖
+		if override.has("curse_count"):
+			# 在 ActionExecutor 中处理
+			pass
 
-			# 应用诅咒卡ID覆盖
-			if override.has("curse_card_id"):
-				# 在 ActionExecutor 中处理
-				pass
+		# 应用诅咒卡ID覆盖
+		if override.has("curse_card_id"):
+			# 在 ActionExecutor 中处理
+			pass
 
-			# 应用召唤数量覆盖
-			if override.has("summon_count"):
-				# 在 ActionExecutor 中处理
-				pass
+		# 应用召唤数量覆盖
+		if override.has("summon_count"):
+			# 在 ActionExecutor 中处理
+			pass
 
-			# 应用召唤敌人ID覆盖
-			if override.has("summon_enemy_id"):
-				# 在 ActionExecutor 中处理
-				pass
+		# 应用召唤敌人ID覆盖
+		if override.has("summon_enemy_id"):
+			# 在 ActionExecutor 中处理
+			pass
 
-			# 应用移动方向覆盖
-			if override.has("move_direction"):
-				# 在 ActionExecutor 中处理
-				pass
+		# 应用移动方向覆盖
+		if override.has("move_direction"):
+			# 在 ActionExecutor 中处理
+			pass
 
-			# 应用天气改变覆盖
-			if override.has("weather"):
-				# 在 ActionExecutor 中处理
-				pass
+		# 应用天气改变覆盖
+		if override.has("weather"):
+			# 在 ActionExecutor 中处理
+			pass
 
-			# 如果有覆盖参数，跳过原始解析
-			if not override.is_empty():
-				return
+		# 如果有覆盖参数，跳过原始解析
+		if not override.is_empty():
+			return
 
 	# 示例值参考格式：
 	# - "6~10" → 伤害范围
@@ -247,7 +247,7 @@ func _parse_value_reference() -> void:
 			status_layers = layers_str.to_int()
 
 	# 检查是否蓄力
-	if "蓄力" in description or "蓄力" in value_reference:
+	if "charge" in type.to_lower() or "蓄力" in description or "蓄力" in value_reference or "charge" in value_reference.to_lower():
 		is_charging = true
 
 
@@ -291,11 +291,11 @@ func get_action_type() -> int:
 ## 获取目标类型枚举值
 func get_target_type() -> int:
 	match target.to_lower():
-		"player", "玩家主将": return TargetType.PLAYER
-		"self", "自身": return TargetType.SELF
-		"random_ally", "随机友军": return TargetType.RANDOM_ALLY
-		"all_allies", "所有友军": return TargetType.ALL_ALLIES
-		"player_card", "玩家卡牌": return TargetType.PLAYER_CARD
+		"player", "玩家主将", "tr_target_player": return TargetType.PLAYER
+		"self", "自身", "tr_target_self": return TargetType.SELF
+		"random_ally", "随机友军", "tr_target_random_ally": return TargetType.RANDOM_ALLY
+		"all_allies", "所有友军", "tr_target_all_allies": return TargetType.ALL_ALLIES
+		"player_card", "玩家卡牌", "tr_target_player_card": return TargetType.PLAYER_CARD
 		_: return TargetType.PLAYER
 
 

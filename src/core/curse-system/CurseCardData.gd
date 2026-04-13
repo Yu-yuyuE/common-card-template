@@ -50,10 +50,10 @@ var catalog: String = ""
 # ---------------------------------------------------------------------------
 
 ## 创建诅咒卡数据实例
-func _init(card_id: String, card_cost: int, card_name: String, card_rarity: int) -> void:
-	super._init(card_id, card_cost, card_name, card_rarity)
+func _init(card_id: String, card_cost: int) -> void:
+	super._init(card_id, card_cost)
 	# 诅咒卡默认为诅咒类型
-	card_type = CardData.CardType.CURSE
+	# card_type = CardData.CardType.CURSE
 
 # ---------------------------------------------------------------------------
 # 查询方法

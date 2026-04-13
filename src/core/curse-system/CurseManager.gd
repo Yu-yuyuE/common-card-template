@@ -80,13 +80,13 @@ func load_curse_data() -> void:
 			card_cost = cost_str.to_int()
 
 		# 创建诅咒卡数据（稀有度暂时为0，因为CSV中没有这个字段）
-		var curse_data = CurseCardData.new(card_id, card_cost, card_name, 0)
+		var curse_data = CurseCardData.new(card_id, card_cost)
 		curse_data.effect_text = effect
 		curse_data.special_attribute = special_attr
 		curse_data.catalog = catalog
 
 		# 根据效果描述推断诅咒类型
-		curse_data.curse_type = _infer_curse_type(effect)
+		curse_data.curse_type = _infer_curse_type(effect, special_attr)
 
 		# 如果是常驻手牌型且有费用，设置弃置费用
 		if curse_data.curse_type == CurseCardData.CurseType.PERSISTENT_HAND and card_cost > 0:
@@ -188,7 +188,7 @@ func has(card_id: String) -> bool:
 
 
 ## 根据效果文本推断诅咒类型
-func _infer_curse_type(effect_text: String) -> int:
+func _infer_curse_type(effect_text: String, special_attr: String) -> int:
 	# 常驻手牌型：包含"常驻手牌"、"持有时"、"在手牌中"、"无法使用"等关键词
 	if effect_text.contains("常驻手牌") or effect_text.contains("持有时") or effect_text.contains("在手牌中") or effect_text.contains("无法使用"):
 		return CurseCardData.CurseType.PERSISTENT_HAND

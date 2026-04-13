@@ -150,11 +150,11 @@ func _execute_curse(action: EnemyAction, source_enemy_id: String) -> void:
 
 	# 解析投递方式（hand, draw_top, draw_random, discard）
 	var delivery_method: String = "draw_random"  # 默认随机加入抽牌堆
-	if "手牌" in action.description or "hand" in action.target.to_lower():
+	if ("手牌" in action.description or "hand" in action.description) or "hand" in action.target.to_lower():
 		delivery_method = "hand"
-	elif "抽牌堆顶" in action.description or "draw_top" in action.target.to_lower():
+	elif ("抽牌堆顶" in action.description or "draw" in action.description) or "draw_top" in action.target.to_lower():
 		delivery_method = "draw_top"
-	elif "弃牌堆" in action.description or "discard" in action.target.to_lower():
+	elif ("弃牌堆" in action.description or "discard" in action.description) or "discard" in action.target.to_lower():
 		delivery_method = "discard"
 
 	# 投递诅咒卡
@@ -202,7 +202,7 @@ func _execute_special(action: EnemyAction, source_enemy_id: String) -> void:
 		return
 
 	# 偷取金币
-	if "偷" in action.description and "金" in action.description:
+	if ("偷" in action.description and "金" in action.description) or "steal_gold" in action.type:
 		var steal_amount: int = 5  # 默认值
 		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("gold_steal"):
 			steal_amount = source_enemy.action_params[action.id]["gold_steal"]
@@ -214,7 +214,7 @@ func _execute_special(action: EnemyAction, source_enemy_id: String) -> void:
 			print("Enemy steals %d gold from player" % steal_amount)
 
 	# 偷取手牌
-	elif "偷" in action.description and "牌" in action.description:
+	elif ("偷" in action.description and "牌" in action.description) or "steal_card" in action.type:
 		var card_count: int = 1  # 默认值
 		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("card_steal"):
 			card_count = source_enemy.action_params[action.id]["card_steal"]
@@ -234,7 +234,7 @@ func _execute_special(action: EnemyAction, source_enemy_id: String) -> void:
 					# TODO: 记录被偷卡牌ID，待敌人死后归还
 
 	# 施加诅咒卡
-	elif "诅咒" in action.description or action.type == "curse":
+	elif action.type == "curse" or "curse" in action.description or "诅咒" in action.description:
 		var curse_count: int = 1  # 默认值
 		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("curse_count"):
 			curse_count = source_enemy.action_params[action.id]["curse_count"]
@@ -253,7 +253,7 @@ func _execute_special(action: EnemyAction, source_enemy_id: String) -> void:
 				_deliver_curse(curse_card_id, "draw_random")
 
 	# 召唤敌人
-	elif "召唤" in action.description or action.type == "summon":
+	elif action.type == "summon" or "summon" in action.description or "召唤" in action.description:
 		var summon_count: int = 1  # 默认值
 		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("summon_count"):
 			summon_count = source_enemy.action_params[action.id]["summon_count"]
@@ -292,7 +292,7 @@ func _execute_special(action: EnemyAction, source_enemy_id: String) -> void:
 				print("Enemy summoned: %s" % summon_enemy_id)
 
 	# 移动方向
-	elif "移动" in action.description or action.type == "move":
+	elif action.type == "move" or "move" in action.description or "移动" in action.description:
 		var move_direction: String = ""  # 默认值
 		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("move_direction"):
 			move_direction = source_enemy.action_params[action.id]["move_direction"]
@@ -302,7 +302,7 @@ func _execute_special(action: EnemyAction, source_enemy_id: String) -> void:
 			print("Enemy %s moves %s" % [source_enemy_id, move_direction])
 
 	# 改变天气
-	elif "天气" in action.description or action.type == "weather":
+	elif action.type == "weather" or "weather" in action.description or "天气" in action.description:
 		var weather: String = ""  # 默认值
 		if source_enemy.action_params.has(action.id) and source_enemy.action_params[action.id].has("weather"):
 			weather = source_enemy.action_params[action.id]["weather"]
