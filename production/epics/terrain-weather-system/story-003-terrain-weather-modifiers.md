@@ -1,10 +1,11 @@
 # Story 003: 伤害修正系数与费用调整接口
 
-> **Epic**: 地形天气系统
-> **Status**: Ready
-> **Layer**: Feature
-> **Type**: Logic
-> **Manifest Version**: 2026-04-09
+Epic: 地形天气系统
+Estimate: 1 day
+Status: Ready
+Layer: Feature
+Type: Logic
+Manifest Version: 2026-04-09
 
 ## Context
 

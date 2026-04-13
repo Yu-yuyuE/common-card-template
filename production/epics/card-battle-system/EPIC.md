@@ -3,6 +3,7 @@
 > **Layer**: Core
 > **GDD**: design/gdd/card-battle-system.md
 > **Architecture Module**: CardBattleSystem
+> **Estimate**: 4 hours
 > **Status**: Ready
 > **Stories**: 7 stories created (see below)
 

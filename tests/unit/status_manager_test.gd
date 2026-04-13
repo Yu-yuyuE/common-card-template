@@ -541,3 +541,47 @@ func test_get_fear_bonus_damage_equals_fear_layers() -> void:
 	sm.apply(StatusEffect.Type.FEAR, 3, "恐惧卡")
 	# Act / Assert
 	assert_int(sm.get_fear_bonus_damage()).is_equal(3)
+
+func test_get_healing_multiplier() -> void:
+	# Arrange
+	var sm := _make_sm()
+	# Assert base multiplier
+	assert_float(sm.get_healing_multiplier()).is_equal(1.0)
+	
+	# Apply BLEEDING (D14)
+	sm.apply(StatusEffect.Type.BLEEDING, 1, "流血卡")
+	# Assert reduced multiplier
+	assert_float(sm.get_healing_multiplier()).is_equal(0.5)
+
+func test_get_shield_multiplier() -> void:
+	# Arrange
+	var sm := _make_sm()
+	# Assert base multiplier
+	assert_float(sm.get_shield_multiplier()).is_equal(1.0)
+	
+	# Apply RUSTY (D15)
+	sm.apply(StatusEffect.Type.RUSTY, 1, "生锈卡")
+	# Assert reduced multiplier
+	assert_float(sm.get_shield_multiplier()).is_equal(0.5)
+
+func test_get_healing_multiplier() -> void:
+	# Arrange
+	var sm := _make_sm()
+	# Assert base multiplier
+	assert_float(sm.get_healing_multiplier()).is_equal(1.0)
+	
+	# Apply BLEEDING (D14)
+	sm.apply(StatusEffect.Type.BLEEDING, 1, "流血卡")
+	# Assert reduced multiplier
+	assert_float(sm.get_healing_multiplier()).is_equal(0.5)
+
+func test_get_shield_multiplier() -> void:
+	# Arrange
+	var sm := _make_sm()
+	# Assert base multiplier
+	assert_float(sm.get_shield_multiplier()).is_equal(1.0)
+	
+	# Apply RUSTY (D15)
+	sm.apply(StatusEffect.Type.RUSTY, 1, "生锈卡")
+	# Assert reduced multiplier
+	assert_float(sm.get_shield_multiplier()).is_equal(0.5)

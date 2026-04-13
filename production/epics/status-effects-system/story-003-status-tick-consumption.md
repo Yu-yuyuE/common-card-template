@@ -1,10 +1,11 @@
 # Story 003: 状态回合结束结算机制
 
-> **Epic**: 状态效果系统
-> **Status**: Ready
-> **Layer**: Core
-> **Type**: Logic
-> **Manifest Version**: 2026-04-09
+Epic: 状态效果系统
+Estimate: 1 day
+Status: Ready
+Layer: Core
+Type: Logic
+Manifest Version: 2026-04-09
 
 ## Context
 

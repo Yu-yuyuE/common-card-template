@@ -1,9 +1,10 @@
 # Story: 诅咒净化机制
 
-> **Type**: Logic
-> **Epic**: curse-system
+Type: Logic
+Epic: curse-system
 > **ADR**: ADR-0005, ADR-0012
-> **Status**: Ready
+Estimate: 1 day
+Status: Ready
 
 ## Context
 
@@ -62,3 +63,13 @@ func purify_curse_card(
 2. **test_persistent_library_purification_effect** - 净化常驻牌库型立即恢复属性
 3. **test_purification_event_hook** - 净化事件触发
 4. **test_purification_persistence** - 净化状态持久化
+
+## Out of Scope
+- 视觉特效与音效 (Visual/Audio FX)
+- UI 界面显示 (由后续独立 UI Story 负责)
+
+
+## Test Evidence
+- **位置**: `tests/unit/`
+- **要求**: 所有验收标准必须有对应的自动化单元测试覆盖。
+

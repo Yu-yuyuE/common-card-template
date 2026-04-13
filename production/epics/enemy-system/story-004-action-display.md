@@ -1,10 +1,11 @@
 # Story 004: 敌人意图公示机制
 
-> **Epic**: 敌人系统
-> **Status**: Ready
-> **Layer**: Core
-> **Type**: Logic
-> **Manifest Version**: 2026-04-13
+Epic: 敌人系统
+Estimate: 1 day
+Status: Ready
+Layer: Core
+Type: Logic
+Manifest Version: 2026-04-13
 
 ## Context
 

@@ -35,11 +35,16 @@ var weather: String = "clear"
 
 var card_manager: CardManager
 
+# 暂存的关卡配置，用于多阶段战斗
+var _stage_config: Dictionary = {}
+
 func _init() -> void:
 	card_manager = CardManager.new(self)
 
 ## 初始化战场环境与实体
 func setup_battle(stage_config: Dictionary, resource_manager: ResourceManager) -> void:
+	_stage_config = stage_config
+
 	# 1. 基础配置
 	total_stages = stage_config.get("stage_count", 1)
 	current_stage = 1
@@ -56,20 +61,7 @@ func setup_battle(stage_config: Dictionary, resource_manager: ResourceManager) -
 	player_entity.shield = 0 # 初始护盾清零
 
 	# 3. 初始化敌人实体（最多3个）
-	enemy_entities.clear()
-	var enemies_data: Array = stage_config.get("enemies", [])
-	var count := mini(enemies_data.size(), 3)
-
-	for i in range(count):
-		var ed: Dictionary = enemies_data[i]
-		var enemy := BattleEntity.new(ed.get("id", "enemy_%d" % i), false)
-		enemy.max_hp = ed.get("hp", 10)
-		enemy.current_hp = enemy.max_hp
-		enemy.shield = ed.get("shield", 0)
-		enemy.max_shield = ed.get("max_shield", enemy.max_hp)
-		enemy.max_action_points = ed.get("ap", 1)
-		enemy.action_points = enemy.max_action_points
-		enemy_entities.append(enemy)
+	_load_enemies_for_current_stage()
 
 	# 4. 初始化卡组（如果提供了配置，否则留空待外部注入）
 	var initial_deck: Array[CardData] = []
@@ -83,8 +75,42 @@ func setup_battle(stage_config: Dictionary, resource_manager: ResourceManager) -
 	# 6. 进入第一回合
 	_start_player_turn()
 
+## 为当前阶段加载敌人
+func _load_enemies_for_current_stage() -> void:
+	enemy_entities.clear()
+	var all_enemies_data: Array = _stage_config.get("enemies", [])
+
+	# 简单实现：如果是多阶段，假设 enemies 数组是一个二维数组或者平铺数组
+	# 这里假设平铺数组，每个阶段最多3个敌人
+	var start_idx = (current_stage - 1) * 3
+	var end_idx = mini(start_idx + 3, all_enemies_data.size())
+
+	if start_idx >= all_enemies_data.size():
+		# 防御性回退：如果没配置那么多敌人，至少生成一个默认的
+		var enemy := BattleEntity.new("enemy_default", false)
+		enemy.max_hp = 10
+		enemy.current_hp = 10
+		enemy.shield = 0
+		enemy.max_shield = 10
+		enemy.max_action_points = 1
+		enemy.action_points = 1
+		enemy_entities.append(enemy)
+		return
+
+	for i in range(start_idx, end_idx):
+		var ed: Dictionary = all_enemies_data[i]
+		var enemy := BattleEntity.new(ed.get("id", "enemy_%d" % i), false)
+		enemy.max_hp = ed.get("hp", 10)
+		enemy.current_hp = enemy.max_hp
+		enemy.shield = ed.get("shield", 0)
+		enemy.max_shield = ed.get("max_shield", enemy.max_hp)
+		enemy.max_action_points = ed.get("ap", 1)
+		enemy.action_points = enemy.max_action_points
+		enemy_entities.append(enemy)
+
 # ---------------------------------------------------------------------------
 # 阶段流转控制 (状态机)
+
 # ---------------------------------------------------------------------------
 
 func _set_phase(phase: BattlePhase) -> void:
@@ -189,13 +215,55 @@ func _start_enemy_turn() -> void:
 func _check_phase() -> void:
 	_set_phase(BattlePhase.PHASE_CHECK)
 
-	var any_enemy_alive := false
+	# 1. 检查玩家是否死亡
+	if player_entity.current_hp <= 0:
+		_end_battle(false)
+		return
+
+	# 2. 检查敌人是否全灭
+	var all_enemies_dead := true
 	for enemy in enemy_entities:
 		if enemy.current_hp > 0:
-			any_enemy_alive = true
+			all_enemies_dead = false
 			break
 
-	if any_enemy_alive:
+	if not all_enemies_dead:
+		# 还有敌人存活，开启下一轮
 		_start_player_turn()
 	else:
+		# 敌人全灭，检查是否有下一阶段
+		if current_stage < total_stages:
+			_start_next_stage()
+		else:
+			# 所有阶段完成，战斗胜利
+			_end_battle(true)
+
+## 开始下一阶段战斗
+func _start_next_stage() -> void:
+	current_stage += 1
+
+	# 阶段切换资源继承规则：保留HP和手牌，清空护盾，重置AP
+	player_entity.shield = 0
+	player_entity.action_points = player_entity.max_action_points
+
+	# 加载新敌人
+	_load_enemies_for_current_stage()
+
+	# 触发信号通知UI
+	battle_started.emit(total_stages, enemy_entities)
+
+	# 开启新一轮的玩家回合
+	_start_player_turn()
+
+## 结束战斗并结算
+func _end_battle(victory: bool) -> void:
+	_set_phase(BattlePhase.NONE)
+
+	if victory:
+		# 胜利结算：将移除区的卡牌放回牌库
+		card_manager.return_removed_cards_to_deck()
 		battle_victory.emit()
+	else:
+		# 失败结算
+		# 在完整系统中可能需要触发 Game Over 等逻辑，此处预留
+		pass

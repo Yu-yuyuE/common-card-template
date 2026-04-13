@@ -160,21 +160,21 @@ func _apply_weather_effects() -> void:
 			# 这里是占位
 			# if _status_manager != null:
 			#   _status_manager.apply(StatusEffect.Type.WET, 1, "雨天")
-			break
+			pass
 		Weather.FOG:
 			# 雾天：施加视野模糊状态（降低命中率）
 			# 需要StatusManager支持
 			# 这里是占位
 			# if _status_manager != null:
 			#   _status_manager.apply(StatusEffect.Type.BLIND, 1, "雾天")
-			break
+			pass
 		Weather.WIND:
 			# 大风：施加飘摇状态（影响远程攻击）
 			# 需要StatusManager支持
 			# 这里是占位
 			# if _status_manager != null:
 			#   _status_manager.apply(StatusEffect.Type.WINDY, 1, "大风")
-			break
+			pass
 		_:
 			# 晴朗：清除所有天气效果
 			# 需要StatusManager支持
@@ -183,7 +183,7 @@ func _apply_weather_effects() -> void:
 			#   _status_manager.force_remove(StatusEffect.Type.WET, "天气变化")
 			#   _status_manager.force_remove(StatusEffect.Type.BLIND, "天气变化")
 			#   _status_manager.force_remove(StatusEffect.Type.WINDY, "天气变化")
-			break
+			pass
 
 
 ## 每回合结束时更新天气冷却
@@ -254,15 +254,15 @@ func _apply_initial_effects() -> void:
 			# 这需要通过StatusManager来实现
 			# 这里是占位，实际实现需要依赖StatusManager
 			# status_manager.apply(StatusEffect.Type.SLIP, 1, "水域地形")
-			break
+			pass
 		Terrain.DESERT:
 			# 沙漠：初始施加疲劳效果（减少行动点）
 			# 这需要通过BattleManager和ResourceManager来实现
 			# 这里是占位
-			break
+			pass
 		_:
 			# 其他地形无初始效果
-			break
+			pass
 
 	# 根据天气应用初始效果
 	match current_weather:
@@ -271,16 +271,16 @@ func _apply_initial_effects() -> void:
 			# 这需要通过StatusManager来实现
 			# 这里是占位
 			# status_manager.apply(StatusEffect.Type.BLIND, 1, "雨天")
-			break
+			pass
 		Weather.FOG:
 			# 雾天：降低命中率
 			# 这需要通过StatusManager来实现
 			# 这里是占位
 			# status_manager.apply(StatusEffect.Type.BLIND, 1, "雾天")
-			break
+			pass
 		_:
 			# 其他天气无初始效果
-			break
+			pass
 
 
 ## 获取当前地形

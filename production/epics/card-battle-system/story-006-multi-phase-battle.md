@@ -1,10 +1,11 @@
 # Story 006: 多阶段战斗与胜负判定
 
-> **Epic**: 卡牌战斗系统
-> **Status**: Ready
-> **Layer**: Core
-> **Type**: Logic
-> **Manifest Version**: 2026-04-09
+Epic: 卡牌战斗系统
+Estimate: 4 hours
+Status: Ready
+Layer: Core
+Type: Logic
+Manifest Version: 2026-04-09
 
 ## Context
 

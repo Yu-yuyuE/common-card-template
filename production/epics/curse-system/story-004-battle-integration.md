@@ -1,9 +1,10 @@
 # Story: 诅咒卡战斗集成
 
-> **Type**: Integration
-> **Epic**: curse-system
+Type: Integration
+Epic: curse-system
 > **ADR**: ADR-0007
-> **Status**: Ready
+Estimate: 1 day
+Status: Ready
 
 ## Context
 
@@ -61,3 +62,13 @@ func calculate_persistent_effects() -> Dictionary:
 2. **test_persistent_library_effect_calculation** - 常驻牌库型效果计算
 3. **test_persistent_hand_slot_management** - 常驻手牌型占位
 4. **test_curse_card_cannot_be_played** - 诅咒卡不可打出
+
+## Out of Scope
+- 视觉特效与音效 (Visual/Audio FX)
+- UI 界面显示 (由后续独立 UI Story 负责)
+
+
+## Test Evidence
+- **位置**: `tests/unit/`
+- **要求**: 所有验收标准必须有对应的自动化单元测试覆盖。
+

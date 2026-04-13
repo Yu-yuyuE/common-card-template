@@ -1,10 +1,11 @@
 # Story 008: 资源系统综合集成
 
-> **Epic**: 资源管理系统
-> **Status**: Ready
-> **Layer**: Foundation
-> **Type**: Integration
-> **Manifest Version**: 2026-04-09
+Epic: 资源管理系统
+Estimate: 1 day
+Status: Ready
+Layer: Foundation
+Type: Integration
+Manifest Version: 2026-04-09
 
 ## Context
 

@@ -1,9 +1,10 @@
 # Story: 诅咒卡注入机制
 
-> **Type**: Logic
-> **Epic**: curse-system
+Type: Logic
+Epic: curse-system
 > **ADR**: ADR-0007, ADR-0008
-> **Status**: Ready
+Estimate: 1 day
+Status: Ready
 
 ## Context
 
@@ -66,3 +67,13 @@ func inject_curse_card(
 2. **test_map_event_injection** - 事件注入到牌库
 3. **test_hero_initial_curse_setup** - 司马懿初始2张韬晦
 4. **test_injection_event_hook** - 注入事件触发验证
+
+## Out of Scope
+- 视觉特效与音效 (Visual/Audio FX)
+- UI 界面显示 (由后续独立 UI Story 负责)
+
+
+## Test Evidence
+- **位置**: `tests/unit/`
+- **要求**: 所有验收标准必须有对应的自动化单元测试覆盖。
+

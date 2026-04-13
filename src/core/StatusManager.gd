@@ -342,6 +342,22 @@ func get_fear_bonus_damage() -> int:
 func get_frostbite_card_cost() -> int:
 	return 1 if has_status(StatusEffect.Type.FROSTBITE) else 0
 
+
+## 查询流血（D14）治疗量修正。
+## 返回：治疗量乘数（0.0-1.0）；有流血时为 0.5，否则为 1.0
+func get_healing_multiplier() -> float:
+	if has_status(StatusEffect.Type.BLEEDING):
+		return 0.5
+	return 1.0
+
+
+## 查询生锈（D15）护盾量修正。
+## 返回：护盾量乘数（0.0-1.0）；有生锈时为 0.5，否则为 1.0
+func get_shield_multiplier() -> float:
+	if has_status(StatusEffect.Type.RUSTY):
+		return 0.5
+	return 1.0
+
 # ---------------------------------------------------------------------------
 # 内部工具方法
 # ---------------------------------------------------------------------------

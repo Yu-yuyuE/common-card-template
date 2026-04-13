@@ -1,10 +1,11 @@
 # Story 002: 战斗状态机与回合流程控制
 
-> **Epic**: 卡牌战斗系统
-> **Status**: Done
-> **Layer**: Core
-> **Type**: Logic
-> **Manifest Version**: 2026-04-09
+Epic: 卡牌战斗系统
+Estimate: 4 hours
+Status: Done
+Layer: Core
+Type: Logic
+Manifest Version: 2026-04-09
 
 ## Context
 

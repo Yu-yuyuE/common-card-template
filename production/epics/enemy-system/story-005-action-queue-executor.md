@@ -1,10 +1,11 @@
 # Story 005: 敌人AI行动队列执行器
 
-> **Epic**: 敌人系统
-> **Status**: Ready
-> **Layer**: Core
-> **Type**: Logic
-> **Manifest Version**: 2026-04-13
+Epic: 敌人系统
+Estimate: 1 day
+Status: Ready
+Layer: Core
+Type: Logic
+Manifest Version: 2026-04-13
 
 ## Context
 

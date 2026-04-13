@@ -1,9 +1,10 @@
 # Story: 诅咒事件钩子
 
-> **Type**: Integration
-> **Epic**: curse-system
+Type: Integration
+Epic: curse-system
 > **ADR**: ADR-0002, ADR-0010
-> **Status**: Ready
+Estimate: 1 day
+Status: Ready
 
 ## Context
 
@@ -70,3 +71,13 @@ func _on_curse_card_drawn(card_id: String, curse_type: CurseType):
 3. **test_injection_signal_triggered** - 注入事件触发
 4. **test_purification_signal_triggered** - 净化事件触发
 5. **test_sima_yi_passive_integration** - 司马懿被动监听
+
+## Out of Scope
+- 视觉特效与音效 (Visual/Audio FX)
+- UI 界面显示 (由后续独立 UI Story 负责)
+
+
+## Test Evidence
+- **位置**: `tests/unit/`
+- **要求**: 所有验收标准必须有对应的自动化单元测试覆盖。
+

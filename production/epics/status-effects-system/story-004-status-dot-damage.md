@@ -1,10 +1,11 @@
 # Story 004: 状态持续伤害计算（DoT）
 
-> **Epic**: 状态效果系统
-> **Status**: Done
-> **Layer**: Core
-> **Type**: Logic
-> **Manifest Version**: 2026-04-09
+Epic: 状态效果系统
+Estimate: 1 day
+Status: Done
+Layer: Core
+Type: Logic
+Manifest Version: 2026-04-09
 
 ## Context
 

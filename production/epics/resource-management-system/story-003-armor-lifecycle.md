@@ -1,10 +1,11 @@
 # Story 003: 护盾生命周期管理
 
-> **Epic**: 资源管理系统
-> **Status**: Done
-> **Layer**: Foundation
-> **Type**: Logic
-> **Manifest Version**: 2026-04-09
+Epic: 资源管理系统
+Estimate: 1 day
+Status: Done
+Layer: Foundation
+Type: Logic
+Manifest Version: 2026-04-09
 
 ## Context
 

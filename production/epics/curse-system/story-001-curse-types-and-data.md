@@ -1,9 +1,10 @@
 # Story: 诅咒数据结构与类型定义
 
-> **Type**: Logic
-> **Epic**: curse-system
+Type: Logic
+Epic: curse-system
 > **ADR**: ADR-0006, ADR-0007
-> **Status**: Complete
+Estimate: 1 day
+Status: Complete
 > **Completed**: 2026-04-12
 
 ## Context
@@ -51,3 +52,13 @@ class CurseCardData extends CardData:
 1. **test_curse_type_enum_completeness** - 验证三种类型都被正确定义
 2. **test_curse_data_serialization** - 测试诅咒数据序列化
 3. **test_curse_identification** - 验证 can_identify_curse_card() 正确识别诅咒卡
+
+## Out of Scope
+- 视觉特效与音效 (Visual/Audio FX)
+- UI 界面显示 (由后续独立 UI Story 负责)
+
+
+## Test Evidence
+- **位置**: `tests/unit/`
+- **要求**: 所有验收标准必须有对应的自动化单元测试覆盖。
+

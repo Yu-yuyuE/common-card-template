@@ -1,10 +1,11 @@
 # Story 002: 兵种卡基础(Lv1)战斗效果结算
 
-> **Epic**: 兵种卡系统
-> **Status**: Ready
-> **Layer**: Feature
-> **Type**: Logic
-> **Manifest Version**: 2026-04-09
+Epic: 兵种卡系统
+Estimate: 1 day
+Status: Ready
+Layer: Feature
+Type: Logic
+Manifest Version: 2026-04-09
 
 ## Context
 

@@ -1,10 +1,11 @@
 # Story 001: 状态数据结构与基础增删改
 
-> **Epic**: 状态效果系统
-> **Status**: Done
-> **Layer**: Core
-> **Type**: Logic
-> **Manifest Version**: 2026-04-09
+Epic: 状态效果系统
+Estimate: 1 day
+Status: Done
+Layer: Core
+Type: Logic
+Manifest Version: 2026-04-09
 
 ## Context
 

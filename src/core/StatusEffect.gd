@@ -32,19 +32,21 @@ enum Type {
 	IMMUNE       = 6,   ## B7 免疫：免疫所有负面状态
 
 	# ---- 负面状态（Debuff） ----
-	POISON       = 10,  ## D1 中毒：每回合 4×层 穿透伤害
-	TOXIC        = 11,  ## D2 剧毒：每回合 7×层 穿透伤害；覆盖中毒时合并层数
+	POISON       = 10,  ## D1 中毒：每回合 4 穿透伤害
+	TOXIC        = 11,  ## D2 剧毒：每回合 7 穿透伤害；覆盖中毒时合并层数
 	FEAR         = 12,  ## D3 恐惧：受到额外攻击伤害 = 恐惧层数
 	CONFUSION    = 13,  ## D4 混乱：下次攻击命中友军（消耗型）
 	BLIND        = 14,  ## D5 盲目：攻击命中率 50%
 	SLIP         = 15,  ## D6 滑倒：无法使用攻击卡
 	ARMOR_BREAK  = 16,  ## D7 破甲：受到攻击伤害 +25%
 	WEAKEN       = 17,  ## D8 虚弱：攻击伤害 -25%
-	BURN         = 18,  ## D9 灼烧：每回合 5×层 走护盾伤害
-	PLAGUE       = 19,  ## D10 瘟疫：每回合 2×层 穿透伤害；回合末传播1层至相邻单位
+	BURN         = 18,  ## D9 灼烧：每回合 5 走护盾伤害
+	PLAGUE       = 19,  ## D10 瘟疫：每回合 2 穿透伤害；回合末传播1层至相邻单位
 	STUN         = 20,  ## D11 眩晕：停止行动；受到攻击时消失
-	WOUND        = 21,  ## D12 重伤：每回合 1/层×层 穿透伤害（叠加型）
+	WOUND        = 21,  ## D12 重伤：每回合 1×层 穿透伤害（叠加型）
 	FROSTBITE    = 22,  ## D13 冻伤：每次出牌 HP -1
+	BLEEDING     = 23,  ## D14 流血：受到治疗量 -50%
+	RUSTY        = 24,  ## D15 腐蚀：受到护盾值 -50%
 }
 
 # ---------------------------------------------------------------------------
@@ -198,6 +200,8 @@ static func _build_meta_table() -> void:
 		Meta.new(Type.STUN,        "眩晕", false, DecayMode.PER_ROUND, Intensity.STRONG, 0, false, false),
 		Meta.new(Type.WOUND,       "重伤", false, DecayMode.PER_ROUND, Intensity.NORMAL, 1, true, false),
 		Meta.new(Type.FROSTBITE,   "冻伤", false, DecayMode.PER_ROUND, Intensity.NORMAL, 0, false, false),
+		Meta.new(Type.BLEEDING,    "流血", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 0, false, false),
+		Meta.new(Type.RUSTY,       "生锈", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 0, false, false),
 	]
 	for m: Meta in entries:
 		_META_TABLE[m.type] = m

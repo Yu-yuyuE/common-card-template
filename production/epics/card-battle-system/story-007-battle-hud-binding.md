@@ -1,10 +1,11 @@
 # Story 007: 战斗HUD与手牌UI绑定
 
-> **Epic**: 卡牌战斗系统
-> **Status**: Ready
-> **Layer**: Core
-> **Type**: UI
-> **Manifest Version**: 2026-04-09
+Epic: 卡牌战斗系统
+Estimate: 4 hours
+Status: Ready
+Layer: Core
+Type: UI
+Manifest Version: 2026-04-09
 
 ## Context
 

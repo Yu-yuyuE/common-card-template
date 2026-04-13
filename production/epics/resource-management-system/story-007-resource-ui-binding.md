@@ -1,10 +1,11 @@
 # Story 007: 资源变化UI响应
 
-> **Epic**: 资源管理系统
-> **Status**: Ready
-> **Layer**: Foundation
-> **Type**: UI
-> **Manifest Version**: 2026-04-09
+Epic: 资源管理系统
+Estimate: 1 day
+Status: Ready
+Layer: Foundation
+Type: UI
+Manifest Version: 2026-04-09
 
 ## Context
 

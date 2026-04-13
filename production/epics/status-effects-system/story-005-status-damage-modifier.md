@@ -1,10 +1,11 @@
 # Story 005: 状态伤害修正系数（Modifiers）
 
-> **Epic**: 状态效果系统
-> **Status**: Ready
-> **Layer**: Core
-> **Type**: Logic
-> **Manifest Version**: 2026-04-09
+Epic: 状态效果系统
+Estimate: 1 day
+Status: Ready
+Layer: Core
+Type: Logic
+Manifest Version: 2026-04-09
 
 ## Context
 

@@ -1,10 +1,11 @@
 # Story 001: 地形天气数据结构与初始化接口
 
-> **Epic**: 地形天气系统
-> **Status**: Ready
-> **Layer**: Feature
-> **Type**: Logic
-> **Manifest Version**: 2026-04-09
+Epic: 地形天气系统
+Estimate: 1 day
+Status: Ready
+Layer: Feature
+Type: Logic
+Manifest Version: 2026-04-09
 
 ## Context
 

@@ -1,10 +1,11 @@
 # Story 006: 地形天气UI标识与提示
 
-> **Epic**: 地形天气系统
-> **Status**: Ready
-> **Layer**: Feature
-> **Type**: UI
-> **Manifest Version**: 2026-04-09
+Epic: 地形天气系统
+Estimate: 1 day
+Status: Ready
+Layer: Feature
+Type: UI
+Manifest Version: 2026-04-09
 
 ## Context
 
