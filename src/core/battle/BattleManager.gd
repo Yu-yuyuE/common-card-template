@@ -10,6 +10,7 @@ signal turn_started(is_player: bool)
 signal enemy_action_mock_triggered(enemy_id: String)
 signal battle_victory() # 测试桩：全灭时触发
 signal card_played(card_id: String, target_position: int) # 当卡牌被成功打出时发射
+signal damage_dealt(target_id: String, amount: int) # 造成伤害时发射 (Story 005)
 
 enum BattlePhase {
 	NONE,
@@ -34,27 +35,10 @@ var weather: String = "clear"
 
 var card_manager: CardManager
 
-# 敌人系统组件
-var enemy_turn_manager: EnemyTurnManager = null
-var enemy_manager: EnemyManager = null
-var status_manager: StatusManager = null
-
 func _init() -> void:
 	card_manager = CardManager.new(self)
-	enemy_manager = EnemyManager.new()
-	status_manager = StatusManager.new()
-	enemy_turn_manager = EnemyTurnManager.new()
-	add_child(enemy_turn_manager)
-	enemy_turn_manager.set_enemy_manager(enemy_manager)
-	enemy_turn_manager.set_battle_manager(self, status_manager)
 
 ## 初始化战场环境与实体
-## 参数 stage_config 包含：
-##   "stage_count": int (默认1)
-##   "terrain": String (默认"plain")
-##   "weather": String (默认"clear")
-##   "enemies": Array[Dictionary] (最多读取前3个)
-##   "deck": Array[CardData] (初始卡组配置，暂可选)
 func setup_battle(stage_config: Dictionary, resource_manager: ResourceManager) -> void:
 	# 1. 基础配置
 	total_stages = stage_config.get("stage_count", 1)
@@ -96,11 +80,7 @@ func setup_battle(stage_config: Dictionary, resource_manager: ResourceManager) -
 	# 5. 发送战斗开始信号
 	battle_started.emit(total_stages, enemy_entities)
 
-	# 6. 初始化敌人管理器数据
-	enemy_manager._load_enemy_data()  # 加载敌人配置
-	enemy_manager._load_action_library()  # 加载行动库
-
-	# 7. 进入第一回合
+	# 6. 进入第一回合
 	_start_player_turn()
 
 # ---------------------------------------------------------------------------
@@ -116,21 +96,16 @@ func _start_player_turn() -> void:
 	_set_phase(BattlePhase.PLAYER_START)
 	turn_started.emit(true)
 
-	# TODO: 结算回合开始的状态效果（毒、灼烧跳字等）
-
 	_set_phase(BattlePhase.PLAYER_DRAW)
 	card_manager.fill_hand_to_limit()
 
 	_set_phase(BattlePhase.PLAYER_PLAY)
-	# 等待玩家操作。玩家操作完后必须调用 end_player_turn()
 
-## 外部输入：玩家点击“结束回合”按钮
 func end_player_turn() -> void:
 	if current_phase != BattlePhase.PLAYER_PLAY:
 		return
 
 	_set_phase(BattlePhase.PLAYER_END)
-	# TODO: StatusManager.tick_status(player_entity)
 
 	is_player_turn = false
 	_start_enemy_turn()
@@ -139,12 +114,6 @@ func end_player_turn() -> void:
 # 出牌逻辑 (Story 004)
 # ---------------------------------------------------------------------------
 
-## 玩家尝试打出卡牌
-## 参数：
-##   card_id: 要打出的卡牌实例的 ID
-##   target_position: 目标槽位 (-1 为自身/全场，0-2 为敌人)
-## 返回：
-##   true = 打出成功，false = 费用不足或不在手牌等原因
 func play_card(card_id: String, target_position: int) -> bool:
 	if current_phase != BattlePhase.PLAYER_PLAY:
 		return false
@@ -159,53 +128,61 @@ func play_card(card_id: String, target_position: int) -> bool:
 	if card_to_play == null:
 		return false # 没这张牌
 
-	# 2. 计算最终费用（考虑地形天气修正）
+	# 2. 费用检查
 	var final_cost = card_to_play.current_cost
 
-	# 特殊修正：骑兵在沙漠地形费用-1
-	if card_to_play.is_troop_card() and card_to_play.get_troop_type() == TroopCard.TroopType.CAVALRY:
-		if battle_manager.terrain_weather_manager != null:
-			var terrain_modifier = battle_manager.terrain_weather_manager.get_cavalry_cost_modifier()
-			final_cost = max(0, final_cost + terrain_modifier)
-
-	# 3. 费用检查
 	if player_entity.action_points < final_cost:
 		return false # 费用不足
 
-	# 4. 扣除费用
+	# 3. 扣除费用
 	player_entity.action_points -= final_cost
-	# (如果接入 ResourceManager，需要在这里同步 ResourceManager，当前使用 player_entity 同步状态)
 
-	# 5. 结算效果 (Story 005)
+	# 4. 结算效果 (Story 005)
 	_resolve_card_effect(card_to_play, target_position)
 
-	# 6. 卡牌流转入弃牌/消耗/移除区
+	# 5. 卡牌流转入弃牌/消耗/移除区
 	card_manager.exhaust_or_discard_played_card(card_to_play)
 
-	# 7. 通知 UI 等监听者
+	# 6. 通知 UI 等监听者
 	card_played.emit(card_id, target_position)
 
 	return true
 
 func _resolve_card_effect(card: Card, target_position: int) -> void:
-	# TODO: Story 005 具体路由和伤害结算
-	pass
+	# 提取卡牌中的伤害信息 (使用Mock)
+	var base_damage = 10
+	var penetrate = false
+	if card.data and card.data.has_meta("base_damage"):
+		base_damage = card.data.get_meta("base_damage")
+	if card.data and card.data.has_meta("penetrate"):
+		penetrate = card.data.get_meta("penetrate")
+
+	if target_position >= 0 and target_position < enemy_entities.size():
+		var target = enemy_entities[target_position]
+		_resolve_attack(target, base_damage, penetrate)
+
+## 伤害计算管线 (Story 005)
+func _resolve_attack(target: BattleEntity, base_damage: int, penetrate: bool = false) -> void:
+	var calculator = DamageCalculator.new()
+	# Mock地形、天气、Buff、Debuff系数（均返回1.0）
+	var terrain_mod = 1.0
+	var weather_mod = 1.0
+	var buff_mod = 1.0
+	var debuff_mod = 1.0
+
+	var final_damage = calculator.calculate_pipeline_damage(base_damage, terrain_mod, weather_mod, buff_mod, debuff_mod)
+	var actual_damage = target.take_damage(final_damage, penetrate)
+
+	damage_dealt.emit(target.id, actual_damage)
 
 func _start_enemy_turn() -> void:
 	_set_phase(BattlePhase.ENEMY_TURN)
 	turn_started.emit(false)
 
-	# 遍历存活敌人执行回合
-	var alive_enemies: Array[EnemyData] = []
+	# 恢复用 mock 处理，待 C3 真正接入
 	for enemy in enemy_entities:
 		if enemy.current_hp > 0:
-			# 从 EnemyManager 获取原始数据
-			var enemy_data: EnemyData = enemy_manager.get_enemy(enemy.id)
-			if enemy_data != null:
-				alive_enemies.append(enemy_data)
-
-	# 交给 EnemyTurnManager 执行
-	enemy_turn_manager.execute_enemy_turn(alive_enemies)
+			enemy_action_mock_triggered.emit(enemy.id)
 
 	_check_phase()
 
@@ -219,8 +196,6 @@ func _check_phase() -> void:
 			break
 
 	if any_enemy_alive:
-		# 下一轮
 		_start_player_turn()
 	else:
-		# TODO: Story 006 (多阶段处理)，暂用 Mock 解决
 		battle_victory.emit()

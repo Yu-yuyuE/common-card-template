@@ -10,13 +10,13 @@
 
 | # | Story | Type | Status | ADR |
 |---|-------|------|--------|-----|
-| 001 | 敌人数据结构与配置加载 | Logic | Ready | ADR-0008 |
-| 002 | 敌人行动库与解析 | Logic | Ready | ADR-0015 |
-| 003 | 固定行动序列循环与公示 | Logic | Ready | ADR-0008 |
-| 004 | 决策树与相变条件触发 | Logic | Ready | ADR-0015 |
-| 005 | 敌人行动队列执行器 | Logic | Ready | ADR-0015 |
-| 006 | 诅咒投递与特殊效果执行 | Logic | Ready | ADR-0008, ADR-0015 |
-| 007 | 敌人意图与状态UI绑定 | UI | Ready | ADR-0008 |
+| 001 | 敌人数据模型与CSV加载 | Logic | Ready | ADR-0008 |
+| 002 | 敌人行动库(71种)数据加载 | Logic | Ready | ADR-0008 |
+| 003 | 敌人固定行动序列轮转机制 | Logic | Ready | ADR-0008 |
+| 004 | 敌人意图公示机制 | Logic | Ready | ADR-0008 |
+| 005 | 敌人AI行动队列执行器 | Logic | Ready | ADR-0015 |
+| 006 | 敌人具体行动结算路由 | Logic | Ready | ADR-0008, ADR-0015 |
+| 007 | 诅咒投递与特殊机制 | Integration | Ready | ADR-0008 |
 
 ## Overview
 

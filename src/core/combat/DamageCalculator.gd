@@ -40,7 +40,19 @@ const WEATHER_MODIFIERS: Dictionary = {
 # 核心计算方法
 # ---------------------------------------------------------------------------
 
-## 计算最终伤害值
+## 完整的伤害管线值计算 (Story 005)
+## 参数：
+##   base_damage: 基础伤害值
+##   terrain_mod: 地形修正系数
+##   weather_mod: 天气修正系数
+##   buff_mod: 攻击方Buff修正系数
+##   debuff_mod: 受击方Debuff修正系数
+## 返回：最终伤害值（最小为1）
+func calculate_pipeline_damage(base_damage: int, terrain_mod: float = 1.0, weather_mod: float = 1.0, buff_mod: float = 1.0, debuff_mod: float = 1.0) -> int:
+	var final_damage = float(base_damage) * terrain_mod * weather_mod * buff_mod * debuff_mod
+	return max(1, int(round(final_damage)))
+
+## 计算最终伤害值 (兵种卡地形天气集成)
 ## 参数：
 ##   base_damage: 基础伤害值
 ##   troop_type: 兵种类型（TroopCard.TroopType枚举）

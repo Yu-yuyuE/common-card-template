@@ -4,19 +4,18 @@
 > **GDD**: design/gdd/troop-cards-design.md
 > **Architecture Module**: TroopCardSystem
 > **Status**: Ready
-> **Stories**: 7 stories created (see below)
+> **Stories**: 6 stories created (see below)
 
 ## Stories
 
 | # | Story | Type | Status | ADR |
 |---|-------|------|--------|-----|
-| 001 | 基础兵种卡（Lv1）核心逻辑 | Logic | Ready | ADR-0014 |
-| 002 | 高级兵种卡（Lv2）升级机制与效果 | Logic | Ready | ADR-0014 |
-| 003 | 兵种地形天气联动执行 | Logic | Ready | ADR-0014 |
-| 004 | 统帅值约束与卡组管理 | Logic | Ready | N/A |
-| 005 | 扩展分支（Lv3）步骑弓效果实现 | Logic | Ready | ADR-0014 |
-| 006 | 扩展分支（Lv3）谋盾效果实现 | Logic | Ready | ADR-0014 |
-| 007 | 兵种卡UI联动显示 | UI | Ready | N/A |
+| 001 | 兵种卡数据加载与等级管理 | Logic | Ready | ADR-0014 |
+| 002 | 兵种卡基础(Lv1)战斗效果结算 | Logic | Ready | ADR-0014 |
+| 003 | 兵种卡升级(Lv2)与附加机制 | Logic | Ready | ADR-0014 |
+| 004 | 兵种卡地形天气联动 | Logic | Ready | ADR-0014 |
+| 005 | 军营节点统帅与选卡验证 | Logic | Ready | ADR-0014 |
+| 006 | 兵种卡Lv3分支选项查询与升级判定 | Logic | Ready | ADR-0014 |
 
 ## Overview
 

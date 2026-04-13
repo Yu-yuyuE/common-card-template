@@ -15,3 +15,18 @@ var status_effects: Dictionary = {}
 func _init(p_id: String, p_is_player: bool) -> void:
 	id = p_id
 	is_player = p_is_player
+
+## 受到伤害计算
+## @param damage: 基础伤害值
+## @param penetrate_shield: 是否无视护甲直接扣HP
+## @return 实际扣除的HP量
+func take_damage(damage: int, penetrate_shield: bool = false) -> int:
+	var actual = damage
+	if not penetrate_shield and shield > 0:
+		var blocked = min(shield, damage)
+		shield -= blocked
+		actual -= blocked
+	if actual > 0:
+		current_hp = max(0, current_hp - actual)
+	return actual
+
