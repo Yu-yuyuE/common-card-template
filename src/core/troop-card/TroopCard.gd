@@ -260,11 +260,11 @@ func _execute_knockback(battle_manager: Node, target_pos: int) -> bool:
 ## 获取兵种类型名称
 static func get_troop_type_name(type: TroopType) -> String:
 	match type:
-		TroopType.INFANTRY: return "步兵"
-		TroopType.CAVALRY: return "骑兵"
-		TroopType.ARCHER: return "弓兵"
-		TroopType.STRATEGIST: return "谋士"
-		TroopType.SHIELD: return "盾兵"
+		TroopType.INFANTRY: return TranslationServer.translate("TYPE_INFANTRY")
+		TroopType.CAVALRY: return TranslationServer.translate("TYPE_CAVALRY")
+		TroopType.ARCHER: return TranslationServer.translate("TYPE_ARCHER")
+		TroopType.STRATEGIST: return TranslationServer.translate("TYPE_STRATEGIST")
+		TroopType.SHIELD: return TranslationServer.translate("TYPE_SHIELD")
 		_: return "未知兵种"
 
 

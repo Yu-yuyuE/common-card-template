@@ -35,7 +35,7 @@ If no subcommand is provided, output usage and stop. Verdict: **FAIL** — missi
 
 Search `src/` for hardcoded user-facing strings:
 
-- String literals in UI code not wrapped in a localization function (`tr()`, `Tr()`, `NSLocalizedString`, `GetText`, etc.)
+- String literals in UI code not wrapped in a localization function (`TranslationServer.translate()`, `Tr()`, `NSLocalizedString`, `GetText`, etc.)
 - Concatenated strings that should be parameterized
 - Strings with positional placeholders (`%s`, `%d`) instead of named ones (`{playerName}`)
 - Format strings that mix locale-sensitive data (numbers, dates, currencies) without locale-aware formatting

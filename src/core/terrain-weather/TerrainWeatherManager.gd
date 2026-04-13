@@ -27,7 +27,7 @@ enum Terrain {
 	FOREST = 2,     ## 森林
 	WATER = 3,      ## 水域
 	DESERT = 4,     ## 沙漠
-	PASS = 5,       ## 通道
+	PASS = 5,       ## 关隘
 	SNOW = 6,       ## 雪地
 }
 
@@ -318,24 +318,24 @@ func get_weather_cooldowns() -> Dictionary:
 ## 获取地形名称
 static func get_terrain_name(t: Terrain) -> String:
 	match t:
-		Terrain.PLAIN: return "平原"
-		Terrain.MOUNTAIN: return "山地"
-		Terrain.FOREST: return "森林"
-		Terrain.WATER: return "水域"
-		Terrain.DESERT: return "沙漠"
-		Terrain.PASS: return "通道"
-		Terrain.SNOW: return "雪地"
-		_: return "未知地形"
+		Terrain.PLAIN: return TranslationServer.translate("TERRAIN_PLAIN")
+		Terrain.MOUNTAIN: return TranslationServer.translate("TERRAIN_MOUNTAIN")
+		Terrain.FOREST: return TranslationServer.translate("TERRAIN_FOREST")
+		Terrain.WATER: return TranslationServer.translate("TERRAIN_WATER")
+		Terrain.DESERT: return TranslationServer.translate("TERRAIN_DESERT")
+		Terrain.PASS: return TranslationServer.translate("TERRAIN_PASS")
+		Terrain.SNOW: return TranslationServer.translate("TERRAIN_SNOW")
+		_: return TranslationServer.translate("TERRAIN_UNKNOWN")
 
 
 ## 获取天气名称
 static func get_weather_name(w: Weather) -> String:
 	match w:
-		Weather.CLEAR: return "晴朗"
-		Weather.WIND: return "大风"
-		Weather.RAIN: return "雨天"
-		Weather.FOG: return "雾天"
-		_: return "未知天气"
+		Weather.CLEAR: return TranslationServer.translate("WEATHER_CLEAR")
+		Weather.WIND: return TranslationServer.translate("WEATHER_WIND")
+		Weather.RAIN: return TranslationServer.translate("WEATHER_RAIN")
+		Weather.FOG: return TranslationServer.translate("WEATHER_FOG")
+		_: return TranslationServer.translate("WEATHER_UNKNOWN")
 
 
 # ---------------------------------------------------------------------------

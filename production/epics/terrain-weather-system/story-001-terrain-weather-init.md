@@ -30,10 +30,11 @@ Manifest Version: 2026-04-09
 
 - [ ] 定义 `Terrain` 枚举：PLAIN, MOUNTAIN, FOREST, WATER, DESERT, PASS, SNOW
 - [ ] 定义 `Weather` 枚举：CLEAR, WIND, RAIN, FOG
-- [ ] 实现 `TerrainWeatherManager` 单例节点
-- [ ] 提供内部解析方法 `_parse_terrain(string) -> Terrain` 和 `_parse_weather(string) -> Weather`
-- [ ] 实现 `setup_battle(terrain_str: String, weather_str: String)` 接口设置当前状态，并重置天气切换记录和冷却。
-- [ ] 发射 `terrain_changed(new_terrain)` 和 `weather_changed(new_weather)` 信号
+- [ ] 实现 `TerrainWeatherManager` 单例节点（继承自 `Node`，配置为 AutoLoad 单例）。
+- [ ] 提供内部解析方法 `_parse_terrain(string) -> Terrain` 和 `_parse_weather(string) -> Weather`。要求忽略大小写，遇到未知字符串时分别返回默认值 `PLAIN` 和 `CLEAR` 并触发 `push_warning()`。
+- [ ] 实现公开的属性或 getter 以读取当前状态：`current_terrain: Terrain` 和 `current_weather: Weather`。
+- [ ] 实现 `setup_battle(terrain_str: String, weather_str: String)` 接口。该接口需设置当前状态，并将 `weather_cooldowns` (字典，值类型为 int) 清空，`weather_change_history` (Array) 清空为 `[]`。
+- [ ] 定义信号 `terrain_changed(new_terrain: Terrain)` 和 `weather_changed(new_weather: Weather)`。仅在 `setup_battle` 中值实际发生改变时（与原状态不一致时），才发射对应信号。
 
 ---
 
@@ -42,8 +43,8 @@ Manifest Version: 2026-04-09
 *Derived from ADR-0009 Implementation Guidelines:*
 
 1. 在 `TerrainWeatherManager.gd` 中定义所有基础结构。
-2. 添加 `current_terrain` 和 `current_weather` 属性。
-3. `setup_battle` 里清除 `weather_cooldowns` 字典和 `weather_change_history` 数组，然后赋值 current_terrain 和 current_weather。
+2. 添加 `current_terrain` 和 `current_weather` 作为只读公开属性。
+3. `setup_battle` 里先判断状态是否改变以决定信号发射，然后清除 `weather_cooldowns` 字典和 `weather_change_history` 数组，最后赋值 current_terrain 和 current_weather。
 4. 本故事不实现具体的效果，只建立可用的基础框架供战斗系统（C2）和状态系统（C1）互相联动。
 
 ---

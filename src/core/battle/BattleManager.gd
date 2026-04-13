@@ -30,8 +30,8 @@ var enemy_entities: Array[BattleEntity] = []
 
 var current_stage: int = 1
 var total_stages: int = 1
-var terrain: String = "plain"
-var weather: String = "clear"
+var terrain: TerrainWeatherManager.Terrain = TerrainWeatherManager.Terrain.PLAIN
+var weather: TerrainWeatherManager.Weather = TerrainWeatherManager.Weather.CLEAR
 
 var card_manager: CardManager
 
@@ -48,8 +48,8 @@ func setup_battle(stage_config: Dictionary, resource_manager: ResourceManager) -
 	# 1. 基础配置
 	total_stages = stage_config.get("stage_count", 1)
 	current_stage = 1
-	terrain = stage_config.get("terrain", "plain")
-	weather = stage_config.get("weather", "clear")
+	terrain = stage_config.get("terrain", TerrainWeatherManager.Terrain.PLAIN)
+	weather = stage_config.get("weather", TerrainWeatherManager.Weather.CLEAR)
 
 	# 2. 初始化玩家实体
 	player_entity = BattleEntity.new("player", true)

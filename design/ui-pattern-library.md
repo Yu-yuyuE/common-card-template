@@ -249,7 +249,7 @@ graphics without gameplay meaning.
 
 | Status Type | Background Color | Icon Examples |
 |-------------|------------------|---------------|
-| Buff (Positive) | Blue (#4A90D9, 40% opacity) | Shield (格挡), Attack Up (怒气), Dodge (迅捷) |
+| Buff (Positive) | Blue (#4A90D9, 40% opacity) | Shield (格挡), Attack Up (怒气), Dodge (闪避) |
 | Debuff (Negative) | Red (#D94A4A, 40% opacity) | Poison (中毒), Burn (灼烧), Weakness (虚弱) |
 | Neutral / Special | Purple (#9B4AD9, 40%) | Immune,reflect effects that don't fit above |
 

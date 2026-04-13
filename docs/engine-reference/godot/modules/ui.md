@@ -66,8 +66,8 @@ func _ready() -> void:
 
 ### Localization-Ready UI (best practice)
 ```gdscript
-# Use tr() for all visible strings
-label.text = tr("MENU_START_GAME")
+# Use TranslationServer.translate() for all visible strings
+label.text = TranslationServer.translate("MENU_START_GAME")
 
 # Use auto-wrap for labels (text length varies by language)
 label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -78,5 +78,5 @@ label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 ## Common Mistakes
 - Assuming `grab_focus()` affects mouse focus (keyboard/gamepad only in 4.6)
 - Not testing UI with both mouse and gamepad after upgrading to 4.6
-- Hardcoding strings instead of using `tr()` for localization
+- Hardcoding strings instead of using `TranslationServer.translate()` for localization
 - Not using `FoldableContainer` for collapsible UI (new in 4.5, cleaner than custom)

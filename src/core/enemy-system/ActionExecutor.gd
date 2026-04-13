@@ -436,31 +436,31 @@ func _create_curse_card(curse_id: String) -> Card:
 ## 解析状态类型
 func _parse_status_type(status_name: String) -> StatusEffect.Type:
 	match status_name.to_lower():
-		"中毒", "poison":
+		TranslationServer.translate("STATUS_POISON"), "poison":
 			return StatusEffect.Type.POISON
-		"剧毒", "toxic":
+		TranslationServer.translate("STATUS_TOXIC"), "toxic":
 			return StatusEffect.Type.TOXIC
-		"灼烧", "burn":
+		TranslationServer.translate("STATUS_BURN"), "burn":
 			return StatusEffect.Type.BURN
-		"瘟疫", "plague":
+		TranslationServer.translate("STATUS_PLAGUE"), "plague":
 			return StatusEffect.Type.PLAGUE
-		"重伤", "wound":
+		TranslationServer.translate("STATUS_WOUND"), "wound":
 			return StatusEffect.Type.WOUND
-		"恐惧", "fear":
+		TranslationServer.translate("STATUS_FEAR"), "fear":
 			return StatusEffect.Type.FEAR
-		"混乱", "confusion":
+		TranslationServer.translate("STATUS_CONFUSION"), "confusion":
 			return StatusEffect.Type.CONFUSION
-		"眩晕", "stun":
+		TranslationServer.translate("STATUS_STUN"), "stun":
 			return StatusEffect.Type.STUN
-		"盲目", "blind":
+		TranslationServer.translate("STATUS_BLIND"), "blind":
 			return StatusEffect.Type.BLIND
-		"虚弱", "weaken":
+		TranslationServer.translate("STATUS_WEAKEN"), "weaken":
 			return StatusEffect.Type.WEAKEN
-		"破甲", "armor_break":
+		TranslationServer.translate("STATUS_ARMOR_BREAK"), "armor_break":
 			return StatusEffect.Type.ARMOR_BREAK
-		"冻伤", "frostbite":
+		TranslationServer.translate("STATUS_FROSTBITE"), "frostbite":
 			return StatusEffect.Type.FROSTBITE
-		"滑倒", "slip":
+		TranslationServer.translate("STATUS_SLIP"), "slip":
 			return StatusEffect.Type.SLIP
 		_:
 			return StatusEffect.Type.NONE

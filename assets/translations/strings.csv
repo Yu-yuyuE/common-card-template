@@ -1,0 +1,66 @@
+keys,zh_CN,en,ja
+TERRAIN_PLAIN,平原,Plain,平原
+TERRAIN_MOUNTAIN,山地,Mountain,山地
+TERRAIN_FOREST,森林,Forest,森
+TERRAIN_WATER,水域,Water,水域
+TERRAIN_DESERT,沙漠,Desert,砂漠
+TERRAIN_PASS,关隘,Pass,関所
+TERRAIN_SNOW,雪地,Snow,雪原
+TERRAIN_UNKNOWN,未知地形,Unknown Terrain,未知の地形
+WEATHER_CLEAR,晴,Clear,晴れ
+WEATHER_WIND,风,Wind,風
+WEATHER_RAIN,雨,Rain,雨
+WEATHER_FOG,雾,Fog,霧
+WEATHER_UNKNOWN,未知天气,Unknown Weather,未知の天気
+STATUS_FURY,怒气,Fury,怒り
+STATUS_AGILITY,闪避,Dodge,回避
+STATUS_BLOCK,格挡,Block,ブロック
+STATUS_DEFEND,坚守,Defend,堅守
+STATUS_COUNTER,反击,Counter,反撃
+STATUS_PIERCE,穿透,Pierce,貫通
+STATUS_IMMUNE,免疫,Immune,免疫
+STATUS_POISON,中毒,Poison,毒
+STATUS_TOXIC,剧毒,Toxic,猛毒
+STATUS_FEAR,恐惧,Fear,恐怖
+STATUS_CONFUSION,混乱,Confusion,混乱
+STATUS_BLIND,盲目,Blind,盲目
+STATUS_SLIP,滑倒,Slip,転倒
+STATUS_ARMOR_BREAK,破甲,Armor Break,破甲
+STATUS_WEAKEN,虚弱,Weaken,弱体化
+STATUS_BURN,灼烧,Burn,燃焼
+STATUS_PLAGUE,瘟疫,Plague,疫病
+STATUS_STUN,眩晕,Stun,気絶
+STATUS_WOUND,重伤,Wound,重傷
+STATUS_FROSTBITE,冻伤,Frostbite,凍傷
+STATUS_BLEEDING,流血,Bleeding,出血
+STATUS_RUSTY,生锈,Rusty,錆
+TROOP_HEAVY_INFANTRY,重装步兵,Heavy Infantry,重装歩兵
+TROOP_SPEAR_INFANTRY,长枪步兵,Spear Infantry,長槍歩兵
+TROOP_DUAL_BLADE,双刃步兵,Dual Blade Infantry,双刃歩兵
+TROOP_SHIELD_BREAKER,破盾步兵,Shield Breaker,盾砕き
+TROOP_VETERAN,老兵步兵,Veteran Infantry,古参歩兵
+TROOP_HEAVY_CAVALRY,重装骑兵,Heavy Cavalry,重装騎兵
+TROOP_LIGHT_CAVALRY,轻骑兵,Light Cavalry,軽騎兵
+TROOP_SHOCK_CAVALRY,突击骑兵,Shock Cavalry,突撃騎兵
+TROOP_SCOUT_CAVALRY,侦察骑兵,Scout Cavalry,偵察騎兵
+TROOP_DESERT_CAVALRY,沙漠骑兵,Desert Cavalry,砂漠騎兵
+TROOP_CROSSBOW,连弩手,Crossbow Archer,連弩兵
+TROOP_FIRE_ARCHER,火箭手,Fire Archer,火矢兵
+TROOP_SIEGE_ARCHER,投石车,Siege Archer,投石車
+TROOP_BALLISTA,床弩车,Ballista Archer,床弩
+TROOP_HUNTER,猎人,Hunter,狩人
+TROOP_TACTICIAN,军师,Tactician,軍師
+TROOP_FIRE_STRATEGIST,火攻军师,Fire Strategist,火攻軍師
+TROOP_ICE_STRATEGIST,冰霜军师,Ice Strategist,氷霜軍師
+TROOP_WIND_STRATEGIST,狂风军师,Wind Strategist,狂風軍師
+TROOP_CURSE_STRATEGIST,诅咒军师,Curse Strategist,呪い軍師
+TROOP_IRON_SHIELD,铁甲盾兵,Iron Shield,鉄甲盾兵
+TROOP_HOLY_SHIELD,圣盾兵,Holy Shield,聖盾兵
+TROOP_DESERT_SHIELD,沙漠盾兵,Desert Shield,砂漠盾兵
+TROOP_PASS_SHIELD,关隘盾兵,Pass Shield,関所盾兵
+TROOP_GUARD_SHIELD,近卫盾兵,Guard Shield,近衛盾兵
+TYPE_INFANTRY,步兵,Infantry,歩兵
+TYPE_CAVALRY,骑兵,Cavalry,騎兵
+TYPE_ARCHER,弓兵,Archer,弓兵
+TYPE_STRATEGIST,谋士,Strategist,策士
+TYPE_SHIELD,盾兵,Shield,盾兵

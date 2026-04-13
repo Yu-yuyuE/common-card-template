@@ -49,7 +49,7 @@
            var res = effect.effect_function.call(context)
            passive_triggered.emit(_current_hero.id, _current_hero.passive_skill_name, res)
    ```
-3. 这个故事仅搭建平台和通道，具体复杂的魏蜀吴被动逻辑在 005 和 006 完善。
+3. 这个故事仅搭建平台和关隘，具体复杂的魏蜀吴被动逻辑在 005 和 006 完善。
 
 ---
 

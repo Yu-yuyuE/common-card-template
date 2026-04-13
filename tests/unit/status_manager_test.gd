@@ -11,7 +11,7 @@
 ##   - on_round_end：PER_ROUND 状态层数衰减与归零移除
 ##   - consume：消耗型状态（格挡）逐层消耗与移除
 ##   - force_remove：强制移除
-##   - 伤害修正查询（怒气/虚弱/坚守/破甲/盲目/迅捷）
+##   - 伤害修正查询（怒气/虚弱/坚守/破甲/盲目/闪避）
 ##
 ## 运行方式：GdUnit4（--headless）
 
@@ -508,7 +508,7 @@ func test_get_hit_chance_normal_returns_1_0() -> void:
 func test_get_dodge_chance_agility_returns_0_5() -> void:
 	# Arrange
 	var sm := _make_sm()
-	sm.apply(StatusEffect.Type.AGILITY, 1, "迅捷卡")
+	sm.apply(StatusEffect.Type.AGILITY, 1, "闪避卡")
 	# Act / Assert
 	assert_float(sm.get_dodge_chance()).is_equal_approx(0.5, 0.001)
 

@@ -24,7 +24,7 @@ enum Type {
 
 	# ---- 正面状态（Buff） ----
 	FURY         = 0,   ## B1 怒气：攻击伤害 +25%
-	AGILITY      = 1,   ## B2 迅捷：50% 概率闪避
+	AGILITY      = 1,   ## B2 闪避：50% 概率闪避
 	BLOCK        = 2,   ## B3 格挡：抵挡一次攻击（消耗型）
 	DEFEND       = 3,   ## B4 坚守：受到伤害 -25%
 	COUNTER      = 4,   ## B5 反击：受到攻击时反击50%（消耗型）
@@ -116,7 +116,7 @@ static var _META_TABLE: Dictionary = {}  # Type -> Meta
 ## 返回指定状态类型的元数据。
 ## 示例：
 ##   var meta := StatusEffect.get_status_meta(StatusEffect.Type.POISON)
-##   print(meta.label)  # => "中毒"
+##   print(meta.label)  # => TranslationServer.translate("STATUS_POISON")
 static func get_status_meta(p_type: Type) -> Meta:
 	_ensure_meta_table()
 	return _META_TABLE[p_type] as Meta
@@ -179,29 +179,29 @@ static func _build_meta_table() -> void:
 	# 格式：Meta.new(Type, 名称, is_buff, decay, intensity, dot_base_damage, dot_layers_multiply, dot_uses_armor)
 	var entries: Array[Meta] = [
 		# ---- Buff ----
-		Meta.new(Type.FURY,        "怒气", true,  DecayMode.PER_ROUND, Intensity.MEDIUM),
-		Meta.new(Type.AGILITY,     "迅捷", true,  DecayMode.PER_ROUND, Intensity.MEDIUM),
-		Meta.new(Type.BLOCK,       "格挡", true,  DecayMode.CONSUME,   Intensity.MEDIUM),
-		Meta.new(Type.DEFEND,      "坚守", true,  DecayMode.PER_ROUND, Intensity.STRONG),
-		Meta.new(Type.COUNTER,     "反击", true,  DecayMode.CONSUME,   Intensity.MEDIUM),
-		Meta.new(Type.PIERCE,      "穿透", true,  DecayMode.CONSUME,   Intensity.MEDIUM),
-		Meta.new(Type.IMMUNE,      "免疫", true,  DecayMode.PER_ROUND, Intensity.STRONG),
+		Meta.new(Type.FURY,        TranslationServer.translate("STATUS_FURY"), true,  DecayMode.PER_ROUND, Intensity.MEDIUM),
+		Meta.new(Type.AGILITY,     TranslationServer.translate("STATUS_AGILITY"), true,  DecayMode.PER_ROUND, Intensity.MEDIUM),
+		Meta.new(Type.BLOCK,       TranslationServer.translate("STATUS_BLOCK"), true,  DecayMode.CONSUME,   Intensity.MEDIUM),
+		Meta.new(Type.DEFEND,      TranslationServer.translate("STATUS_DEFEND"), true,  DecayMode.PER_ROUND, Intensity.STRONG),
+		Meta.new(Type.COUNTER,     TranslationServer.translate("STATUS_COUNTER"), true,  DecayMode.CONSUME,   Intensity.MEDIUM),
+		Meta.new(Type.PIERCE,      TranslationServer.translate("STATUS_PIERCE"), true,  DecayMode.CONSUME,   Intensity.MEDIUM),
+		Meta.new(Type.IMMUNE,      TranslationServer.translate("STATUS_IMMUNE"), true,  DecayMode.PER_ROUND, Intensity.STRONG),
 		# ---- Debuff ----
-		Meta.new(Type.POISON,      "中毒", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 4, false, false),
-		Meta.new(Type.TOXIC,       "剧毒", false, DecayMode.PER_ROUND, Intensity.STRONG, 7, false, false),
-		Meta.new(Type.FEAR,        "恐惧", false, DecayMode.PER_ROUND, Intensity.NORMAL, 0, false, false),
-		Meta.new(Type.CONFUSION,   "混乱", false, DecayMode.CONSUME,   Intensity.STRONG, 0, false, false),
-		Meta.new(Type.BLIND,       "盲目", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 0, false, false),
-		Meta.new(Type.SLIP,        "滑倒", false, DecayMode.PER_ROUND, Intensity.STRONG, 0, false, false),
-		Meta.new(Type.ARMOR_BREAK, "破甲", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 0, false, false),
-		Meta.new(Type.WEAKEN,      "虚弱", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 0, false, false),
-		Meta.new(Type.BURN,        "灼烧", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 5, false, true),
-		Meta.new(Type.PLAGUE,      "瘟疫", false, DecayMode.PER_ROUND, Intensity.STRONG, 2, false, false),
-		Meta.new(Type.STUN,        "眩晕", false, DecayMode.PER_ROUND, Intensity.STRONG, 0, false, false),
-		Meta.new(Type.WOUND,       "重伤", false, DecayMode.PER_ROUND, Intensity.NORMAL, 1, true, false),
-		Meta.new(Type.FROSTBITE,   "冻伤", false, DecayMode.PER_ROUND, Intensity.NORMAL, 0, false, false),
-		Meta.new(Type.BLEEDING,    "流血", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 0, false, false),
-		Meta.new(Type.RUSTY,       "生锈", false, DecayMode.PER_ROUND, Intensity.MEDIUM, 0, false, false),
+		Meta.new(Type.POISON,      TranslationServer.translate("STATUS_POISON"), false, DecayMode.PER_ROUND, Intensity.MEDIUM, 4, false, false),
+		Meta.new(Type.TOXIC,       TranslationServer.translate("STATUS_TOXIC"), false, DecayMode.PER_ROUND, Intensity.STRONG, 7, false, false),
+		Meta.new(Type.FEAR,        TranslationServer.translate("STATUS_FEAR"), false, DecayMode.PER_ROUND, Intensity.NORMAL, 0, false, false),
+		Meta.new(Type.CONFUSION,   TranslationServer.translate("STATUS_CONFUSION"), false, DecayMode.CONSUME,   Intensity.STRONG, 0, false, false),
+		Meta.new(Type.BLIND,       TranslationServer.translate("STATUS_BLIND"), false, DecayMode.PER_ROUND, Intensity.MEDIUM, 0, false, false),
+		Meta.new(Type.SLIP,        TranslationServer.translate("STATUS_SLIP"), false, DecayMode.PER_ROUND, Intensity.STRONG, 0, false, false),
+		Meta.new(Type.ARMOR_BREAK, TranslationServer.translate("STATUS_ARMOR_BREAK"), false, DecayMode.PER_ROUND, Intensity.MEDIUM, 0, false, false),
+		Meta.new(Type.WEAKEN,      TranslationServer.translate("STATUS_WEAKEN"), false, DecayMode.PER_ROUND, Intensity.MEDIUM, 0, false, false),
+		Meta.new(Type.BURN,        TranslationServer.translate("STATUS_BURN"), false, DecayMode.PER_ROUND, Intensity.MEDIUM, 5, false, true),
+		Meta.new(Type.PLAGUE,      TranslationServer.translate("STATUS_PLAGUE"), false, DecayMode.PER_ROUND, Intensity.STRONG, 2, false, false),
+		Meta.new(Type.STUN,        TranslationServer.translate("STATUS_STUN"), false, DecayMode.PER_ROUND, Intensity.STRONG, 0, false, false),
+		Meta.new(Type.WOUND,       TranslationServer.translate("STATUS_WOUND"), false, DecayMode.PER_ROUND, Intensity.NORMAL, 1, true, false),
+		Meta.new(Type.FROSTBITE,   TranslationServer.translate("STATUS_FROSTBITE"), false, DecayMode.PER_ROUND, Intensity.NORMAL, 0, false, false),
+		Meta.new(Type.BLEEDING,    TranslationServer.translate("STATUS_BLEEDING"), false, DecayMode.PER_ROUND, Intensity.MEDIUM, 0, false, false),
+		Meta.new(Type.RUSTY,       TranslationServer.translate("STATUS_RUSTY"), false, DecayMode.PER_ROUND, Intensity.MEDIUM, 0, false, false),
 	]
 	for m: Meta in entries:
 		_META_TABLE[m.type] = m

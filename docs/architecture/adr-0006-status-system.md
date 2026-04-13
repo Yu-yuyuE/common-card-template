@@ -66,7 +66,7 @@ enum StatusType { BUFF, DEBUFF }
 enum StatusCategory {
     # Buffs
     FURY,        # 怒气 - 攻击伤害+25%
-    SWIFT,       # 迅捷 - 50%闪避
+    SWIFT,       # 闪避 - 50%闪避
     BLOCK,       # 格挡 - 抵挡一次攻击
     DEFEND,      # 坚守 - 受到伤害-25%
     COUNTER,     # 反击 - 受击反击50%伤害

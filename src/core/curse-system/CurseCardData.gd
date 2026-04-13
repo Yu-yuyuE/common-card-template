@@ -84,7 +84,7 @@ static func get_curse_type_name(type: CurseType) -> String:
 		CurseType.PERSISTENT_HAND:
 			return "常驻手牌型"
 		_:
-			return "未知诅咒类型"
+			return TranslationServer.translate("CURSE_UNKNOWN")
 
 
 ## 获取效果描述

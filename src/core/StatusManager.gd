@@ -322,8 +322,8 @@ func get_hit_chance() -> float:
 	return 1.0
 
 
-## 查询迅捷（B2）闪避概率。
-## 返回：闪避概率（0.0–1.0）；有迅捷时为 0.5，否则为 0.0
+## 查询闪避（B2）闪避概率。
+## 返回：闪避概率（0.0–1.0）；有闪避时为 0.5，否则为 0.0
 func get_dodge_chance() -> float:
 	if has_status(StatusEffect.Type.AGILITY):
 		return 0.5
