@@ -1,10 +1,11 @@
 # Story 002: 兵种倾向与出现权重算法
 
-> **Epic**: 武将系统
-> **Status**: Ready
-> **Layer**: Feature
-> **Type**: Logic
-> **Manifest Version**: 2026-04-09
+Epic: 武将系统
+Estimate: 1 day
+Status: Ready
+Layer: Feature
+Type: Logic
+Manifest Version: 2026-04-09
 
 ## Context
 

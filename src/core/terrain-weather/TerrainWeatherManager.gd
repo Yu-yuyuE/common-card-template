@@ -344,80 +344,46 @@ static func get_weather_name(w: Weather) -> String:
 
 ## 计算攻击伤害的地形修正
 ## 返回：修正系数（如1.25表示+25%，0.75表示-25%）
-func get_attack_terrain_modifier() -> float:
+## 获取地形修正系数 (ADR-0009)
+func get_terrain_modifier(card_category: String) -> float:
 	match current_terrain:
+		Terrain.PLAIN:
+			if card_category == "cavalry": return 1.50
 		Terrain.MOUNTAIN:
-			return 1.10  # 山地：攻击+10%
-		Terrain.DESERT:
-			return 0.90  # 沙漠：攻击-10%
-		_:
-			return 1.0
+			if card_category == "cavalry": return 0.50
+		Terrain.FOREST:
+			if card_category == "burn": return 1.50
+		Terrain.SNOW:
+			if card_category == "burn": return 0.50
+	return 1.0
 
 
-## 计算防御的地形修正
-func get_defense_terrain_modifier() -> float:
+## 获取天气修正系数 (ADR-0009)
+func get_weather_modifier(card_category: String) -> float:
+	match current_weather:
+		Weather.WIND:
+			if card_category == "ranged": return 0.90
+		Weather.RAIN:
+			if card_category == "burn": return 0.50
+		Weather.FOG:
+			if card_category == "ranged": return 0.75
+	return 1.0
+
+
+## 执行每回合末的地形持续效果 (ADR-0009)
+func tick_terrain_effects() -> void:
+	if _status_manager == null:
+		return
+		
 	match current_terrain:
 		Terrain.FOREST:
-			return 0.85  # 森林：防御-15%（更容易受伤）
-		Terrain.SNOW:
-			return 0.90  # 雪地：防御-10%
-		_:
-			return 1.0
-
-
-## 计算行动点的天气修正
-func get_action_points_weather_modifier() -> float:
-	match current_weather:
-		Weather.WIND:
-			return 0.90  # 大风：行动点-10%
-		Weather.RAIN:
-			return 0.85  # 雨天：行动点-15%
-		Weather.FOG:
-			return 0.95  # 雾天：行动点-5%
-		_:
-			return 1.0
-
-
-## 计算命中率的天气修正
-func get_hit_chance_weather_modifier() -> float:
-	match current_weather:
-		Weather.RAIN:
-			return 0.90  # 雨天：命中率-10%
-		Weather.FOG:
-			return 0.75  # 雾天：命中率-25%
-		Weather.WIND:
-			return 0.95  # 大风：命中率-5%
-		_:
-			return 1.0
-
-
-## 应用地形天气修正到战斗实体
-## 返回：修正后的attack_damage_factor
-func apply_terrain_weather_modifiers(attack_base: float) -> float:
-	var terrain_factor = get_attack_terrain_modifier()
-	var weather_factor = get_action_points_weather_modifier()  # 天气对攻击也有轻微影响
-
-	# 综合修正
-	var final_factor = attack_base * terrain_factor * weather_factor
-
-	# 记录日志
-	# print("Attack: base=%.2f, terrain=%.2f, weather=%.2f, final=%.2f" % [attack_base, terrain_factor, weather_factor, final_factor])
-
-	return final_factor
-
-
-## 获取当前环境对人数的限制影响
-## 某些地形可能限制最大参战人数
-func get_max_participants_modifier() -> int:
-	# 默认无影响
-	return 3  # 标准支持3v3
-
-
-## 获取骑兵在沙漠地形的费用修正
-## 返回：费用修正值（负数表示减少，正数表示增加）
-func get_cavalry_cost_modifier() -> int:
-	match current_terrain:
+			_status_manager.apply_to_all(StatusEffect.Type.POISON, 1, "地形：森林")
 		Terrain.DESERT:
-			return -1  # 沙漠：骑兵费用-1（最低为0）
-		_:
-			return 0  # 其他地形无修正
+			_status_manager.apply_to_all(StatusEffect.Type.BURN, 1, "地形：沙漠")
+
+
+## 执行每回合末的天气持续效果 (ADR-0009)
+func tick_weather_effects() -> void:
+	if current_weather == Weather.WIND:
+		if _status_manager != null and _status_manager.has_method("spread_status"):
+			_status_manager.spread_status(StatusEffect.Type.BURN, 1, "天气：大风传播")

@@ -1,10 +1,11 @@
 # Story 002: C2+C3 战斗循环集成测试
 
-> **Epic**: 集成测试
-> **Status**: Backlog
-> **Layer**: Integration
-> **Type**: Integration
-> **Manifest Version**: 2026-04-11
+Epic: 集成测试
+Estimate: 1 day
+Status: Backlog
+Layer: Integration
+Type: Integration
+Manifest Version: 2026-04-11
 
 ## Context
 

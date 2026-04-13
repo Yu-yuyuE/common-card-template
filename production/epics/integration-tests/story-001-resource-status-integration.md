@@ -1,10 +1,11 @@
 # Story 001: F2+C1 资源与状态联动集成测试
 
-> **Epic**: 集成测试
-> **Status**: Backlog
-> **Layer**: Integration
-> **Type**: Integration
-> **Manifest Version**: 2026-04-11
+Epic: 集成测试
+Estimate: 1 day
+Status: Backlog
+Layer: Integration
+Type: Integration
+Manifest Version: 2026-04-11
 
 ## Context
 

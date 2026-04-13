@@ -1,10 +1,11 @@
 # Story 005: 魏蜀阵营代表性被动技能实现
 
-> **Epic**: 武将系统
-> **Status**: Ready
-> **Layer**: Feature
-> **Type**: Logic
-> **Manifest Version**: 2026-04-09
+Epic: 武将系统
+Estimate: 1 day
+Status: Ready
+Layer: Feature
+Type: Logic
+Manifest Version: 2026-04-09
 
 ## Context
 

@@ -1,10 +1,11 @@
 # Story 006: 吴群阵营及特殊机制被动实现
 
-> **Epic**: 武将系统
-> **Status**: Ready
-> **Layer**: Feature
-> **Type**: Logic
-> **Manifest Version**: 2026-04-09
+Epic: 武将系统
+Estimate: 1 day
+Status: Ready
+Layer: Feature
+Type: Logic
+Manifest Version: 2026-04-09
 
 ## Context
 

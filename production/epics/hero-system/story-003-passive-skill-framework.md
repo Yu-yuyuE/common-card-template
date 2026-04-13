@@ -1,10 +1,11 @@
 # Story 003: 被动技能框架与时机钩子注册
 
-> **Epic**: 武将系统
-> **Status**: Ready
-> **Layer**: Feature
-> **Type**: Logic
-> **Manifest Version**: 2026-04-09
+Epic: 武将系统
+Estimate: 1 day
+Status: Ready
+Layer: Feature
+Type: Logic
+Manifest Version: 2026-04-09
 
 ## Context
 

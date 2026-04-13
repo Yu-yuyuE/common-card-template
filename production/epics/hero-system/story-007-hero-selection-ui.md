@@ -1,10 +1,11 @@
 # Story 007: 武将选择UI绑定
 
-> **Epic**: 武将系统
-> **Status**: Ready
-> **Layer**: Feature
-> **Type**: UI
-> **Manifest Version**: 2026-04-09
+Epic: 武将系统
+Estimate: 1 day
+Status: Ready
+Layer: Feature
+Type: UI
+Manifest Version: 2026-04-09
 
 ## Context
 

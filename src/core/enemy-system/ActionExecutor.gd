@@ -336,7 +336,10 @@ func _apply_damage_to_player(damage: int) -> void:
 		return
 
 	# TODO: 考虑玩家的伤害修正系数（坚守、破甲等）
-	battle_manager.player_entity.current_hp -= damage
+	if battle_manager.has_method("apply_damage_to_player"):
+		battle_manager.apply_damage_to_player(damage)
+	else:
+		push_error("ActionExecutor: BattleManager missing apply_damage_to_player pipeline!")
 	if battle_manager.player_entity.current_hp < 0:
 		battle_manager.player_entity.current_hp = 0
 
@@ -435,38 +438,23 @@ func _create_curse_card(curse_id: String) -> Card:
 
 ## 解析状态类型
 func _parse_status_type(status_name: String) -> StatusEffect.Type:
-	match status_name.to_lower():
-		TranslationServer.translate("STATUS_POISON"), "poison":
-			return StatusEffect.Type.POISON
-		TranslationServer.translate("STATUS_TOXIC"), "toxic":
-			return StatusEffect.Type.TOXIC
-		TranslationServer.translate("STATUS_BURN"), "burn":
-			return StatusEffect.Type.BURN
-		TranslationServer.translate("STATUS_PLAGUE"), "plague":
-			return StatusEffect.Type.PLAGUE
-		TranslationServer.translate("STATUS_WOUND"), "wound":
-			return StatusEffect.Type.WOUND
-		TranslationServer.translate("STATUS_FEAR"), "fear":
-			return StatusEffect.Type.FEAR
-		TranslationServer.translate("STATUS_CONFUSION"), "confusion":
-			return StatusEffect.Type.CONFUSION
-		TranslationServer.translate("STATUS_STUN"), "stun":
-			return StatusEffect.Type.STUN
-		TranslationServer.translate("STATUS_BLIND"), "blind":
-			return StatusEffect.Type.BLIND
-		TranslationServer.translate("STATUS_WEAKEN"), "weaken":
-			return StatusEffect.Type.WEAKEN
-		TranslationServer.translate("STATUS_ARMOR_BREAK"), "armor_break":
-			return StatusEffect.Type.ARMOR_BREAK
-		TranslationServer.translate("STATUS_FROSTBITE"), "frostbite":
-			return StatusEffect.Type.FROSTBITE
-		TranslationServer.translate("STATUS_SLIP"), "slip":
-			return StatusEffect.Type.SLIP
-		_:
-			return StatusEffect.Type.NONE
+	var normalized = status_name.to_lower().strip_edges()
+	match normalized:
+		"poison", "中毒", "status_poison": return StatusEffect.Type.POISON
+		"toxic", "剧毒", "status_toxic": return StatusEffect.Type.TOXIC
+		"burn", "灼烧", "status_burn": return StatusEffect.Type.BURN
+		"plague", "瘟疫", "status_plague": return StatusEffect.Type.PLAGUE
+		"wound", "重伤", "status_wound": return StatusEffect.Type.WOUND
+		"fear", "恐惧", "status_fear": return StatusEffect.Type.FEAR
+		"confusion", "混乱", "status_confusion": return StatusEffect.Type.CONFUSION
+		"stun", "眩晕", "status_stun": return StatusEffect.Type.STUN
+		"blind", "盲目", "status_blind": return StatusEffect.Type.BLIND
+		"weaken", "虚弱", "status_weaken": return StatusEffect.Type.WEAKEN
+		"armor_break", "破甲", "status_armor_break": return StatusEffect.Type.ARMOR_BREAK
+		"frostbite", "冻伤", "status_frostbite": return StatusEffect.Type.FROSTBITE
+		"slip", "滑倒", "status_slip": return StatusEffect.Type.SLIP
+		_: return StatusEffect.Type.NONE
 
-
-## 从文本中提取数字
 func _extract_number_from_text(text: String) -> int:
 	var regex := RegEx.new()
 	regex.compile("\\d+")
