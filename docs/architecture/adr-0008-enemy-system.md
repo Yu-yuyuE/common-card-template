@@ -232,32 +232,18 @@ func _execute_heal(enemy: EnemyData, action: Dictionary) -> void:
 
 func _execute_special(enemy: EnemyData, action: Dictionary, bm: BattleManager) -> void:
     var special_type = action.get("special_type", "")
-    
+
     match special_type:
         "summon":
             # 召唤逻辑
             pass
-        "curse":
-            _deliver_curse(action, bm)
         "charge":
             # 蓄力：下回合高伤
             pass
 
-func _deliver_curse(action: Dictionary, bm: BattleManager) -> void:
-    """投递诅咒卡"""
-    var curse_id = action.get("curse_id", "")
-    var position = action.get("position", "hand")  # hand/draw_top/draw_random/discard
-    
-    match position:
-        "hand":
-            bm.hand_cards.append(curse_id)
-        "draw_top":
-            bm.draw_pile.push_front(curse_id)
-        "draw_random":
-            var idx = randi() % (bm.draw_pile.size() + 1)
-            bm.draw_pile.insert(idx, curse_id)
-        "discard":
-            bm.discard_pile.append(curse_id)
+# ⚠️ 已废弃：诅咒注入机制已删除
+# 原函数 `_deliver_curse()` 已移除
+# 诅咒卡现作为普通卡牌类型强制给与玩家，不再单列出注入
 
 # === 敌人管理 ===
 
@@ -375,7 +361,6 @@ func _load_action_database() -> Dictionary:
 | enemies-design.md | 100名敌人 | _enemies 字典存储 |
 | enemies-design.md | 行动序列循环 | action_sequence + action_index |
 | enemies-design.md | 行动公示 | get_displayed_action() |
-| enemies-design.md | 诅咒投递 | _deliver_curse() |
 
 ## Performance Implications
 - **CPU**: 行动查询 < 0.01ms

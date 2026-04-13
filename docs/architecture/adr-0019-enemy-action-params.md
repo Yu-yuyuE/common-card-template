@@ -37,8 +37,8 @@ action_id1:param1=value1&param2=value2;action_id2:param3=value3
   - `status_id`: 状态ID，来源 design\gdd\status-design.md
   - `gold_steal`: 偷取金币数量，按 assets\csv_data\enemy_actions.csv 中数值参考设计
   - `card_steal`: 偷取卡片数量，按 assets\csv_data\enemy_actions.csv 中数值参考设计
-  - `curse_count`: 施加诅咒卡数量，按 assets\csv_data\enemy_actions.csv 中数值参考设计
-  - `curse_card_id`: 施加诅咒卡ID，来源 assets\csv_data\all_cards\curse_cards.csv
+  - `card_count`: 强制给与卡的数量，按 assets\csv_data\enemy_actions.csv 中数值参考设计
+  - `card_id`: 强制给与卡的ID，来源 assets\csv_data\all_cards\curse_cards.csv
   - `summon_count`: 召唤数量，按 assets\csv_data\enemy_actions.csv 中数值参考设计
   - `summon_enemy_id`: 召唤敌人ID，来源 assets\csv_data\enemies.csv
   - `move_direction`: 移动方向；left,right
@@ -100,7 +100,7 @@ E025,黄巾渠帅,精英,步兵,...,A01→A00→B16→B01,...,"A01:damage=6;A00;
 - **EnemyData.gd**: 新增 `action_params_text` 和 `action_params` 字段
 - **EnemyManager.gd**: 新增 `action_params_json` 列解析逻辑
 - **EnemyAction.gd**: 新增参数覆盖应用逻辑
-- **ActionExecutor.gd**: 支持 `gold_steal`、`curse_count`、`summon_count`、`summon_enemy_id` 覆盖
+- **ActionExecutor.gd**: 支持 `gold_steal`、`card_steal`、`summon_count`、`summon_enemy_id`、`card_count`、`card_id` 覆盖
 - **enemies.csv**: 新增 `action_params_json` 列
 - **enemy_actions.csv**: 无变化（保持基础模板）
 
