@@ -64,3 +64,7 @@ TYPE_CAVALRY,骑兵,Cavalry,騎兵
 TYPE_ARCHER,弓兵,Archer,弓兵
 TYPE_STRATEGIST,谋士,Strategist,策士
 TYPE_SHIELD,盾兵,Shield,盾兵
+ENEMY_INTENT_NO_ACTION,无行动,No Action,行動なし
+ENEMY_INTENT_CHARGING,蓄力中...,Charging...,溜め中...
+ENEMY_INTENT_ATTACK_DAMAGE,攻击 %d点,Attack %d pts,攻撃 %dpts
+ENEMY_INTENT_CHARGING_PREVIEW,蓄力：%s → %s,Charging: %s → %s,溜め：%s → %s

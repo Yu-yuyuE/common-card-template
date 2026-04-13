@@ -1,6 +1,6 @@
 # Project Stage Analysis
 
-**Date**: 2026/04/10
+**Date**: 2026/04/13
 **Stage**: Pre-Production (explicitly set in production/stage.txt)
 **Stage Confidence**: PASS — clearly detected via stage.txt override
 
@@ -11,10 +11,10 @@
 | Category | Status | Details |
 |----------|--------|---------|
 | **Design** | 95% | 23 GDDs, 18/19 systems with complete GDDs (1 partial: card unlock) |
-| **Code** | 15% | 9 GDScript files in src/core (foundational systems only) |
+| **Code** | 25% | 34 GDScript files in src/ (core systems + gameplay systems) |
 | **Architecture** | 90% | 21 ADRs + architecture overview + traceability index |
-| **Production** | 80% | Sprint 1 plan, QA plan, gate check, epics with stories |
-| **Tests** | 20% | 7 test files (gdunit4 runner + 6 unit tests) |
+| **Production** | 90% | Sprint plans through Sprint 4, QA plans, gate checks, epics with stories |
+| **Tests** | 35% | 28 test files (unit tests + integration tests + manual evidence) |
 
 ---
 
@@ -27,13 +27,14 @@
 - Systems index shows clear dependency hierarchy (Foundation → Core → Feature → Meta)
 - Architecture ADRs cover all major systems
 
-### Code (Minimal ⚠️)
+### Code (Growing ⚠️)
 
-- Only 9 GDScript files implementing core systems:
-  - LocalizationManager, ResourceManager, StatusEffect, StatusManager
-  - BattleEntity, BattleManager, Card, CardData, CardManager
-- No gameplay logic implemented yet beyond data structures
-- Stage-appropriate for Pre-Production (design first, then implementation)
+- 34 GDScript files implementing core systems and gameplay:
+  - Core systems: ResourceManager, StatusManager, CardManager, BattleManager, LocalizationManager
+  - Gameplay systems: Enemy AI (EnemyAIBrain, ActionExecutor), Hero passives, Troop cards, Curse system, Terrain-weather
+  - UI components: EnemyIntentUI, EnemyView
+- Significant implementation progress since last review (9 → 34 files)
+- Core loop systems (F2, C1, C2, C3) are being actively developed
 
 ### Architecture (Strong ✅)
 
@@ -43,15 +44,17 @@
 
 ### Production (Strong ✅)
 
-- Active sprint (Sprint 1) with clear plan
+- Active sprint (Sprint 4) with clear plan focusing on Troop Card and Curse systems
 - 60+ story files across 10+ epics covering all major systems
-- QA plan and gate check documentation exist
+- QA plans, gate checks, and evidence documentation exist
+- Progress through Sprint 4 indicates active development
 
-### Tests (Early ⚠️)
+### Tests (Growing ⚠️)
 
-- Unit tests exist for battle system, resource manager, status manager
-- No integration tests yet
-- No visual/playtest evidence documented
+- 28 test files including unit tests, integration tests, and manual QA evidence
+- Test coverage for key systems: battle, resource management, status effects
+- Manual QA evidence for UI components (enemy intent UI)
+- Test infrastructure (GdUnit4) in place
 
 ---
 
@@ -65,22 +68,17 @@ No lore, faction details, or character bios in `design/narrative/`.
 ### 2. No level designs
 No maps or campaigns defined in `design/levels/`. 
 
-**Question**: Is the map/node system GDD sufficient, or do you need detailed level layouts?
+**Question**: Is the map/node system GDD sufficient, or do you need detailed level layouts for QA testing?
 
-### 3. Limited code implementation
-Only 9 source files for foundational systems. No actual gameplay logic (enemy AI, hero selection, battle resolution). 
-
-**Question**: This is expected for Pre-Production — is the plan to start implementation after all GDDs are done, or begin parallel implementation?
-
-### 4. One partial GDD
+### 3. One partial GDD
 Card unlock system has partial GDD status. 
 
 **Recommendation**: Prioritize completion before Production gate.
 
-### 5. No prototypes directory content
+### 4. No prototypes directory content
 No throwaway prototypes for mechanical validation. 
 
-**Question**: Did you validate the combat system mechanics through prototyping, or rely on design docs alone?
+**Note**: The project appears to have moved from design to implementation without throwaway prototypes. This is acceptable if the team is confident in the GDDs, but carries risk for complex systems.
 
 ---
 
@@ -90,25 +88,36 @@ No throwaway prototypes for mechanical validation.
 - Complete the card unlock system GDD
 - Resolve the partial GDD status before Production gate
 
-### Priority 2 (Pre-Production exit)
-- Validate combat mechanics via prototype (high-risk GDD marked in systems index)
-- Begin implementation of MVP core loop (F2→C1→C2→C3)
+### Priority 2 (Pre-Production continuation)
+- Complete Sprint 4: Implement Troop Card system (Lv1/Lv2 effects, terrain interactions, deck limits) and Curse system (all 5 stories)
+- Expand test coverage for newly implemented systems
+- Consider if integration tests need expansion beyond current scope
 
-### Priority 3 (Optional enhancements)
-- Add narrative docs if story-driven content planned
-- Add level designs if campaign structure needs definition
+### Priority 3 (Production readiness preparation)
+- Ensure all MVP systems (F2, C1, C2, C3) are fully implemented and tested
+- Validate cross-system dependencies through integration testing
+- Prepare for Horizontal Slice milestone to demonstrate playable prototype
 
 ---
 
 ## Summary
 
-This is a **well-structured Pre-Production project** with excellent design documentation coverage (95%) and clear architecture decisions. The gap is in code implementation, which is appropriate for the current stage. The main decision points are:
+This is a **well-structured Pre-Production project** that has transitioned into active implementation while maintaining strong design and architecture documentation. Significant progress since last review:
 
-1. **Card unlock GDD completion** — Resolve partial GDD before Production
-2. **Implementation timing** — Complete all GDDs first OR begin parallel implementation
-3. **Combat validation** — Consider prototyping high-complexity systems (C2 card battle)
+- **Code grew 278%**: 9 → 34 GDScript files
+- **Tests grew 300%**: 7 → 28 test files  
+- **Production maturity**: Now in Sprint 4 with multiple epics in progress
 
-The project is ready to exit Pre-Production once the card unlock GDD is completed and implementation begins.
+The project is on track for an MVP Horizontal Slice combining:
+- F2: Resource Management ✅
+- C1: Status Effects ✅  
+- C2: Card Battle ✅ (partial)
+- C3: Enemy System ✅ (partial)
+- D1: Terrain-Weather ✅
+- D2: Troop Cards 🔄 (in progress)
+- D3: Hero System ✅ (partial)
+
+The main remaining design gap is the **card unlock system GDD**, which should be prioritized before marking Pre-Production complete.
 
 ---
 
@@ -117,7 +126,7 @@ The project is ready to exit Pre-Production once the card unlock GDD is complete
 - Stage override: `production/stage.txt` (Pre-Production)
 - GDD count: Glob pattern `design/gdd/*.md` (23 files)
 - Systems index: `design/gdd/systems-index.md` (19 systems, 18 complete)
-- Source files: `src/**/*.gd` (9 files)
+- Source files: `src/**/*.gd` (34 files)
 - ADRs: `docs/architecture/*.md` (21 files)
 - Production artifacts: Glob `production/**/*.md` (60+ story/epic files)
-- Tests: `tests/**/*.gd` (7 files)
+- Tests: `tests/**/*.gd` (28 files)

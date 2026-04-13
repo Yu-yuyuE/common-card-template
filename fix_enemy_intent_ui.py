@@ -1,4 +1,4 @@
-## EnemyIntentUI.gd
+content = '''## EnemyIntentUI.gd
 ## 敌人意图UI组件（C3 - 敌人系统）
 ## 实现 Story 007: 敌人意图与状态UI绑定
 ## 依据 design/gdd/enemies-design.md
@@ -140,3 +140,9 @@ func _set_intent_icon(action_type: String) -> void:
 			intent_icon.modulate = Color.ORANGE
 		_:
 			intent_icon.modulate = Color.WHITE
+'''
+
+with open('src/ui/EnemyIntentUI.gd', 'w', encoding='utf-8') as f:
+    f.write(content)
+
+print("Fixed EnemyIntentUI.gd")
