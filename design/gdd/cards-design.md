@@ -42,16 +42,16 @@ _Status: Draft v3.2（武器·工事·装备参考库新增；卡牌素材库与
 
 在讨论卡牌变化机制前，需明确以下术语：
 
-| 术语         | 定义                                                                      | 示例场景                                           |
-| ------------ | ------------------------------------------------------------------------- | -------------------------------------------------- |
-| **本场战斗** | 指一次独立的战斗场景，从初始化到胜负判定结束。                            | 玩家在某个战斗节点与敌人作战的全过程。             |
-| **本场战役** | 指一位武将的完整战役旅程，包含3张树形小地图。                             | 曹操的"官渡之战"战役，包含3张小地图。              |
-| **整局游戏** | 指从选择武将开始到最终Boss战结束的完整游戏流程（Run-level，Roguelike层）。 | 玩家选择曹操，经历多个战役直到通关或失败。         |
-| **战役层**   | 指战役地图阶段的操作层，变更影响整场战役。                                | 在商店购买卡牌、在军营移除卡牌。                   |
-| **战斗层**   | 指战斗内的临时操作层，变更仅影响本场战斗。                                | 使用"使用后移除"卡牌、战斗中获得临时卡牌。         |
-| **永久卡牌** | 通过战役层获得/升级/净化的卡牌，持续存在于战役卡组中。                    | 在商店购买的"穿云箭"（整场战役可用）。             |
-| **临时卡牌** | 在战斗中通过效果获得的卡牌，仅在本场战斗内有效。                          | 装备效果生成的"临时护盾卡"（本场战斗后消失）。     |
-| **卡组快照** | 某时刻卡组状态的完整记录。                                                | 战斗开始时的卡组快照（用于战斗层变更的基准）。     |
+| 术语         | 定义                                                                       | 示例场景                                       |
+| ------------ | -------------------------------------------------------------------------- | ---------------------------------------------- |
+| **本场战斗** | 指一次独立的战斗场景，从初始化到胜负判定结束。                             | 玩家在某个战斗节点与敌人作战的全过程。         |
+| **本场战役** | 指一位武将的完整战役旅程，包含3张树形小地图。                              | 曹操的"官渡之战"战役，包含3张小地图。          |
+| **整局游戏** | 指从选择武将开始到最终Boss战结束的完整游戏流程（Run-level，Roguelike层）。 | 玩家选择曹操，经历多个战役直到通关或失败。     |
+| **战役层**   | 指战役地图阶段的操作层，变更影响整场战役。                                 | 在商店购买卡牌、在军营移除卡牌。               |
+| **战斗层**   | 指战斗内的临时操作层，变更仅影响本场战斗。                                 | 使用"使用后移除"卡牌、战斗中获得临时卡牌。     |
+| **永久卡牌** | 通过战役层获得/升级/净化的卡牌，持续存在于战役卡组中。                     | 在商店购买的"穿云箭"（整场战役可用）。         |
+| **临时卡牌** | 在战斗中通过效果获得的卡牌，仅在本场战斗内有效。                           | 装备效果生成的"临时护盾卡"（本场战斗后消失）。 |
+| **卡组快照** | 某时刻卡组状态的完整记录。                                                 | 战斗开始时的卡组快照（用于战斗层变更的基准）。 |
 
 ---
 
@@ -63,11 +63,11 @@ _Status: Draft v3.2（武器·工事·装备参考库新增；卡牌素材库与
 
 **定义**：地图阶段的卡牌获取、升级、删除，直接影响后续战斗的初始卡组，变更持续至本场战役结束。
 
-| 操作类型 | 途径                                                                 | 持久性         | 数据记录位置              |
-| -------- | -------------------------------------------------------------------- | -------------- | ------------------------- |
-| **获取** | 奇遇事件获得卡牌、商店购买、战斗胜利后的奖励                         | 整场战役       | `CampaignDeckSnapshot`    |
-| **删除** | 奇遇事件删除卡牌（支付金币/HP等）、军营中删除卡组                   | 整场战役       | `CampaignDeckSnapshot`    |
-| **升级** | 奇遇事件升级卡牌、商店升级                                           | 整场战役       | `CardUpgradeRecord`       |
+| 操作类型 | 途径                                              | 持久性   | 数据记录位置           |
+| -------- | ------------------------------------------------- | -------- | ---------------------- |
+| **获取** | 奇遇事件获得卡牌、商店购买、战斗胜利后的奖励      | 整场战役 | `CampaignDeckSnapshot` |
+| **删除** | 奇遇事件删除卡牌（支付金币/HP等）、军营中删除卡组 | 整场战役 | `CampaignDeckSnapshot` |
+| **升级** | 奇遇事件升级卡牌、商店升级                        | 整场战役 | `CardUpgradeRecord`    |
 
 **实现机制**：
 
@@ -450,6 +450,372 @@ B. **消耗卡（地图一次）**
 | ---------- | ---- | -------- | -------------------------------------------------------------------- | ---------- |
 | 白狼山突击 | 2    | —        | 对目标造成12点伤害+击退；若地形为雪地，额外对所有敌将施加2层虚弱     | 白狼山之战 |
 | 北境严寒   | 1    | —        | 将当前天气变为雪地效果（全体伤害-20%，灼烧层额外消减1层），持续2回合 | 辽东远征   |
+
+---
+
+## 卡牌行动参数系统
+
+### 1. 设计背景与目标
+
+**问题**：当前卡牌效果以文本描述存储（如"对目标造成6点伤害"），无法程序化执行，必须依赖人工解析。
+
+**目标**：参考 `enemies-design.md` 的敌人行动参数系统，为卡牌效果设计结构化的行动参数，实现可配置、可测试、可调试的效果执行。
+
+**参考**：`design/gdd/enemies-design.md` 第245-277行的行动参数覆盖机制。
+
+---
+
+### 2. 与敌人行动系统对比
+
+| 特性     | 敌人行动系统            | 卡牌行动系统         |
+| -------- | ----------------------- | -------------------- |
+| 模板定义 | `enemy_actions.csv`     | `card_actions.csv`   |
+| 参数覆盖 | `action_params_json` 列 | 嵌入卡牌数据效果列   |
+| 执行时机 | 敌人AI决策阶段          | 玩家打出卡牌时       |
+| 目标选择 | 固定(PLAYER/SELF/ALLY)  | 动态(玩家选择目标)   |
+| 条件支持 | 地形/天气修正           | 地形/天气 + 状态检测 |
+
+---
+
+### 3. 行动模板定义 (`card_actions.csv`)
+
+创建独立行动模板文件，统一管理所有可用的行动类型：
+
+| Action ID | 行动类型            | 必填参数          | 可选参数         | 描述               |
+| --------- | ------------------- | ----------------- | ---------------- | ------------------ |
+| CA01      | ATK_PHYSICAL        | damage: int       | target, piercing | 近战攻击           |
+| CA02      | ATK_RANGED          | damage: int       | target           | 远程攻击           |
+| CA03      | ATK_MAGICAL         | damage: int       | target           | 技能伤害           |
+| CA04      | HEAL                | heal: int         | target           | 恢复生命           |
+| CA05      | ADD_SHIELD          | shield: int       | target           | 获得护盾           |
+| CA06      | ADD_STATUS          | status_id, layers | target           | 施加状态效果       |
+| CA07      | REMOVE_STATUS       | status_id         | target           | 移除状态效果       |
+| CA08      | DRAW_CARDS          | count: int        | —                | 抽卡               |
+| CA09      | DISCARD_CARDS       | count: int        | —                | 弃卡               |
+| CA10      | GAIN_GOLD           | amount: int       | —                | 获得金币           |
+| CA11      | GAIN_PROVISIONS     | amount: int       | —                | 获得粮草           |
+| CA12      | GAIN_ACTION_POINTS  | amount: int       | —                | 获得行动点         |
+| CA13      | DEAL_DAMAGE_TO_ALL  | damage: int       | exclude_target   | 对所有敌人造成伤害 |
+| CA14      | HEAL_ALL            | heal: int         | —                | 恢复所有我方       |
+| CA15      | APPLY_BUFF          | buff_id, layers   | target           | 施加增益状态       |
+| CA16      | REMOVE_DEBUFF       | status_category   | target           | 移除减益状态       |
+| CA17      | STEAL_CARD          | count: int        | —                | 偷取敌方卡牌       |
+| CA18      | GAIN_TEMPORARY_CARD | card_id           | —                | 获得临时卡牌       |
+| CA19      | MODIFY_COST         | amount: int       | card_filter      | 修改卡牌费用       |
+| CA20      | MULTIPLY_EFFECT     | multiplier: float | —                | 放大后续效果       |
+
+**参数类型说明**：
+
+- `target`: SELF / ENEMY / RANDOM_ENEMY / ALL_ENEMIES / FRONT_ENEMY / CARD_IN_HAND
+- `piercing`: bool - 是否穿透护甲
+- `status_id`: 来源 `design/gdd/status-design.md`
+- `buff_id`: 来源 `design/gdd/status-design.md` 增益部分
+
+---
+
+### 4. 参数格式规范
+
+#### 4.1 基础格式
+
+**单行动卡牌**：
+
+```
+CA01:damage=6
+CA05:shield=10
+```
+
+**多行动卡牌**（用 `;` 分隔）：
+
+```
+CA01:damage=8;CA06:status_id=POISON,layers=2
+```
+
+#### 4.2 多目标指定
+
+使用 `&` 连接同一行动的多个参数：
+
+```
+CA01:damage=6&target=ENEMY
+CA04:heal=8&target=SELF
+```
+
+#### 4.3 参数覆盖（参考敌人系统）
+
+在 `all_cards.csv` 中，每个卡牌有两列效果定义：
+
+- `effect_lv1`: Lv1 等级效果
+- `effect_lv2`: Lv2 升级效果（可选）
+
+示例（对比当前格式）：
+
+```
+# 当前格式（文本描述）
+AC0001,赤手空拳,近战攻击,0/0,对目标造成6点伤害,对目标造成8点伤害
+
+# 新格式（结构化参数）
+AC0001,赤手空拳,近战攻击,0/0,CA01:damage=6,CA01:damage=8
+```
+
+---
+
+### 5. 条件参数语法
+
+支持基于战场状态的条件参数，使用 `IF()` 语法：
+
+#### 5.1 地形条件
+
+```
+CA01:IF(terrain=MOUNTAIN):damage=12;ELSE:damage=6
+```
+
+#### 5.2 天气条件
+
+```
+CA05:IF(weather=RAIN):shield=15;ELSE:shield=8
+```
+
+#### 5.3 状态条件
+
+```
+CA01:IF(target_has_status=POISON):damage=10;ELSE:damage=6
+```
+
+#### 5.4 复合条件
+
+```
+CA01:IF(terrain=MOUNTAIN&weather=CLEAR):damage=15;ELSE:damage=6
+```
+
+---
+
+### 6. 复杂效果模式
+
+#### 6.1 连击效果（多次执行）
+
+```
+CA01:damage=3&damage_count=3     # 3次伤害，每次3点
+```
+
+#### 6.2 范围效果
+
+```
+CA13:damage=5                    # 对所有敌人造成5点伤害
+```
+
+#### 6.3 抽卡后执行
+
+```
+CA08:count=2;CA01:damage=4&trigger=AFTER_DRAW
+```
+
+#### 6.4 临时卡牌获取
+
+```
+CA18:card_id=AC0105;duration=BATTLE    # 获得临时卡，持续本场战斗
+```
+
+---
+
+### 7. 执行器设计
+
+#### 7.1 CardActionExecutor 类
+
+```gdscript
+class_name CardActionExecutor
+extends RefCounted
+
+# 解析行动参数字符串
+func parse_action_string(action_str: String) -> Array[CardAction]:
+    pass
+
+# 解析条件参数
+func resolve_conditions(action: CardAction, context: BattleContext) -> CardAction:
+    pass
+
+# 执行单个行动
+func execute_action(action: CardAction, context: BattleContext) -> void:
+    pass
+
+# 执行卡牌所有效果
+func execute_card(card_data: CardData, context: BattleContext) -> Array[EffectEvent]:
+    pass
+```
+
+#### 7.2 数据结构
+
+```gdscript
+class_name CardAction
+var action_id: String          # CA01, CA02, etc.
+var params: Dictionary         # {damage: 6, target: ENEMY}
+var conditions: Array[Condition]  # IF条件列表
+var trigger: String            # IMMEDIATE, AFTER_DRAW, ON_CARD_PLAYED
+
+class_name Condition
+var field: String              # terrain, weather, target_status
+var operator: String           # =, !=, >, <
+var value: Variant
+var true_branch: Dictionary    # 条件为真时的参数覆盖
+var false_branch: Dictionary   # 条件为假时的参数覆盖（可选）
+```
+
+#### 7.3 上下文数据（BattleContext）
+
+```gdscript
+class_name BattleContext
+var current_terrain: String    # PLAINS, MOUNTAIN, FOREST, etc.
+var current_weather: String    # CLEAR, WIND, RAIN, FOG
+var caster: BattleEntity       # 打出卡牌的单位
+var target: BattleEntity       # 目标单位
+var hand_cards: Array[CardData] # 手牌列表（用于状态检测）
+var battle_state: BattleState # 当前战斗状态
+```
+
+---
+
+### 8. 与现有系统集成
+
+#### 8.1 卡牌升级系统（M5）兼容
+
+Lv2 效果在 `effect_lv2` 列定义，执行器自动根据卡牌等级选择对应参数：
+
+```
+# 升级前
+CA01:damage=6
+
+# 升级后
+CA01:damage=8;CA06:status_id=WOUND,layers=1
+```
+
+#### 8.2 状态系统（C1）集成
+
+- `CA06:ADD_STATUS` 使用 `status-design.md` 中定义的状态ID
+- 状态层数、持续回合由状态系统规则处理
+
+#### 8.3 地形天气系统（D1）集成
+
+- 执行器在解析条件时读取当前地形/天气
+- 条件参数在执行前完成解析
+
+#### 8.4 资源管理系统（F2）集成
+
+- `CA04:HEAL` 调用 `ResourceManager.apply_heal()`
+- `CA10/CA11/CA12` 调用 `ResourceManager.modify_resource()`
+
+---
+
+### 9. CSV 数据格式变化
+
+#### 9.1 新增 `card_actions.csv`
+
+```csv
+action_id,action_type,required_params,optional_params,description
+CA01,ATK_PHYSICAL,"damage:int","target, piercing",对目标造成物理伤害
+CA02,ATK_RANGED,"damage:int","target",对目标造成远程伤害
+CA03,ATK_MAGICAL,"damage:int","target",对目标造成法术伤害
+CA04,HEAL,"heal:int","target",恢复目标生命值
+CA05,ADD_SHIELD,"shield:int","target",为目标添加护盾
+...
+```
+
+#### 9.2 修改 `all_cards.csv`
+
+新增结构化效果列：
+
+| 列名 | 说明 | 示例 |
+|------|------|------|
+| card_action_str | 模板字符串形式的行动参数 | `CA01:damage=6` 或 `CA01:damage=target_status=any_debuff?9:6` |
+| card_action_func | 是否使用特殊处理函数 | `false` = 用模板字符串, `true` = 用 CardSpecialAction.gd |
+
+**使用规则**：
+- 简单效果：用模板字符串，`card_action_str` 填写参数，`card_action_func = false`
+- 复杂效果：留空 `card_action_str`，`card_action_func = true`，在 `CardSpecialAction.gd` 中定义处理函数
+
+**示例**：
+```
+# 简单效果（模板字符串）
+AC0001,赤手空拳,ATTACK,0/0,CA01:damage=6,false,对目标造成6点伤害
+
+# 复杂效果（特殊处理函数）
+AC0016,趁虚而入,ATTACK,0/0,,true,对目标造成6点伤害；若目标有负面状态，额外造成3点伤害
+```
+
+现有 `effect_description_lv1/lv2` 列保留作为玩家可读文本。
+
+---
+
+### 10. 示例卡牌重新设计
+
+#### 示例1：赤手空拳（AC0001）
+
+**CSV数据**：
+
+```
+card_id,card_name,card_type,cost,effect_lv1,effect_lv2,effect_description_lv1,effect_description_lv2
+AC0001,赤手空拳,ATTACK,0/0,CA01:damage=6,CA01:damage=8,对目标造成6点伤害,对目标造成8点伤害
+```
+
+**执行流程**：
+
+1. 解析 `CA01:damage=6`
+2. 确定目标（玩家选择）
+3. 调用 `DamageCalculator.calculate(6, PHYSICAL)`
+4. 应用伤害到目标
+
+#### 示例2：猛虎下山
+
+**CSV数据**：
+
+```
+AC0015,猛虎下山,ATTACK,2,CA01:damage=8;CA06:status_id=WOUND,layers=1,CA01:damage=10;CA06:status_id=WOUND,layers=2,对目标造成8点伤害并施加1层重伤,对目标造成10点伤害并施加2层重伤
+```
+
+**执行流程**：
+
+1. 解析第一个行动 `CA01:damage=8`
+2. 执行伤害
+3. 解析第二个行动 `CA06:status_id=WOUND,layers=1`
+4. 调用 `StatusManager.apply_status(WOUND, 1)`
+
+#### 示例3：山地作战
+
+**CSV数据**：
+
+```
+AC0030,山地作战,SKILL,2,CA01:IF(terrain=MOUNTAIN):damage=12;ELSE:damage=6,CA01:IF(terrain=MOUNTAIN):damage=15;ELSE:damage=8,若地形为山地则造成12点伤害,否则造成6点伤害,若地形为山地则造成15点伤害,否则造成8点伤害
+```
+
+**执行流程**：
+
+1. 解析条件 `IF(terrain=MOUNTAIN)`
+2. 查询当前地形
+3. 若为MOUNTAIN，解析 `damage=12`；否则解析 `damage=6`
+4. 执行伤害
+
+---
+
+### 11. 验收标准
+
+| AC        | 标准                                   | 验证方法                                 |
+| --------- | -------------------------------------- | ---------------------------------------- |
+| AC-CAS-01 | 基础攻击卡（CA01）正确造成指定数值伤害 | 单元测试：输入 damage=6，验证扣除6 HP    |
+| AC-CAS-02 | 状态施加卡（CA06）正确添加状态和层数   | 单元测试：施加 POISON×2，验证层数为2     |
+| AC-CAS-03 | 多行动卡牌按顺序执行所有效果           | 单元测试：执行 CA01+CA06，验证伤害和状态 |
+| AC-CAS-04 | 地形条件正确判断并应用对应参数         | 单元测试：MOUNTAIN地形触发 damage=12     |
+| AC-CAS-05 | 天气条件正确判断并应用对应参数         | 单元测试：RAIN天气触发 shield=15         |
+| AC-CAS-06 | Lv2效果在升级后正确加载                | 集成测试：升级后打出卡牌，验证Lv2效果    |
+| AC-CAS-07 | 资源修改正确反映到资源管理器           | 单元测试：GAIN_GOLD 验证金币增加         |
+| AC-CAS-08 | 执行器正确处理无效参数                 | 边界测试：输入错误 action_id 抛出异常    |
+
+---
+
+### 12. 技术债务与后续工作
+
+- **TODO**: 实现 `CardActionExecutor` 类
+- **TODO**: 创建 `card_actions.csv` 模板文件
+- **TODO**: 修改卡牌加载逻辑，解析结构化参数
+- **TODO**: 迁移现有卡牌效果到新格式（批量工具）
+- **TODO**: 设计复杂效果（如抽卡后触发）的触发器系统
+- **TODO**: 性能优化 - 条件解析缓存
 
 ---
 
@@ -1033,15 +1399,15 @@ TemporaryEffectModifier = 1.0
 8. 敌方免疫某类负面：施加失败但触发”施咒尝试”类被动。
 9. 同回合既净化（移出卡组）又利用负面：先移出卡组后计算”持有量”收益。
 10. 诅咒卡来源不明：日志需标明来源（事件/敌方/自加）。
-5. 升级卡被复制：复制体继承当前等级，但不额外触发升级次数。
-6. 使用后移除卡被回收效果影响：若文本未明确”可回收移除卡”，则不可被回收。
-7. 消耗卡在同图多战斗中：首次成功打出后锁定，直到切换下一张地图才解锁。
-8. **临时 + 常驻同时存在于一张卡**：不允许（互斥属性，设计时不得同时标记）。
-9. **X费卡行动点为0时打出**：X=0，效果以最低档结算（不为空效果）。
-10. **固定起始卡数量超过初始手牌上限（>5）**：随机取5张固定起始卡入手，剩余放回牌库。
-11. **运筹卡被对手效果强制弃置（如敌方”手牌弃置”类技能）**：被动效果立即终止，卡进入弃牌堆，不可触发”被丢弃时”效果（除非卡面文本明确注明）。
-12. **图鉴卡尚未解锁时出现在战斗奖励池**：系统检查玩家图鉴解锁状态，未解锁的卡不出现在奖励备选池中（战役内奖励池仅包含已解锁图鉴卡）。
-13. **十三州专属卡在非对应州地图中**：专属卡只能在对应州地图通关后加入图鉴；但一旦加入图鉴，玩家用任意武将打任意地图时均可在奖励池中获得。
+11. 升级卡被复制：复制体继承当前等级，但不额外触发升级次数。
+12. 使用后移除卡被回收效果影响：若文本未明确”可回收移除卡”，则不可被回收。
+13. 消耗卡在同图多战斗中：首次成功打出后锁定，直到切换下一张地图才解锁。
+14. **临时 + 常驻同时存在于一张卡**：不允许（互斥属性，设计时不得同时标记）。
+15. **X费卡行动点为0时打出**：X=0，效果以最低档结算（不为空效果）。
+16. **固定起始卡数量超过初始手牌上限（>5）**：随机取5张固定起始卡入手，剩余放回牌库。
+17. **运筹卡被对手效果强制弃置（如敌方”手牌弃置”类技能）**：被动效果立即终止，卡进入弃牌堆，不可触发”被丢弃时”效果（除非卡面文本明确注明）。
+18. **图鉴卡尚未解锁时出现在战斗奖励池**：系统检查玩家图鉴解锁状态，未解锁的卡不出现在奖励备选池中（战役内奖励池仅包含已解锁图鉴卡）。
+19. **十三州专属卡在非对应州地图中**：专属卡只能在对应州地图通关后加入图鉴；但一旦加入图鉴，玩家用任意武将打任意地图时均可在奖励池中获得。
 
 ---
 
@@ -1049,28 +1415,28 @@ TemporaryEffectModifier = 1.0
 
 ### 系统依赖
 
-| 系统                 | 方向 | 接口内容                                                                 |
-| -------------------- | ---- | ------------------------------------------------------------------------ |
+| 系统                 | 方向  | 接口内容                                                                 |
+| -------------------- | ----- | ------------------------------------------------------------------------ |
 | 卡牌战斗系统（C2）   | 读/写 | 战斗初始化时读取 `CampaignDeckSnapshot`；战斗中修改 `BattleDeckSnapshot` |
-| 卡牌升级系统（M5）   | 读   | 战役层升级由 M5 处理，更新 `CampaignDeckSnapshot` 中的卡牌等级           |
-| 存档持久化系统（F1） | 写   | `CampaignDeckSnapshot` 由 F1 持久化，跨战斗保存                         |
-| 敌人系统（C3）       | 写   | 敌人偷取卡牌时调用卡牌移除接口，记录在 `EnemyManager.stolen_cards`       |
-| 事件系统（M4）       | 写   | 奇遇事件获得/删除/升级卡牌时更新 `CampaignDeckSnapshot`                  |
-| 商店系统（M2）       | 写   | 商店购买/升级卡牌时更新 `CampaignDeckSnapshot`                           |
-| 军营系统（D6）       | 写   | 军营添加/删除卡牌时更新 `CampaignDeckSnapshot`                           |
+| 卡牌升级系统（M5）   | 读    | 战役层升级由 M5 处理，更新 `CampaignDeckSnapshot` 中的卡牌等级           |
+| 存档持久化系统（F1） | 写    | `CampaignDeckSnapshot` 由 F1 持久化，跨战斗保存                          |
+| 敌人系统（C3）       | 写    | 敌人偷取卡牌时调用卡牌移除接口，记录在 `EnemyManager.stolen_cards`       |
+| 事件系统（M4）       | 写    | 奇遇事件获得/删除/升级卡牌时更新 `CampaignDeckSnapshot`                  |
+| 商店系统（M2）       | 写    | 商店购买/升级卡牌时更新 `CampaignDeckSnapshot`                           |
+| 军营系统（D6）       | 写    | 军营添加/删除卡牌时更新 `CampaignDeckSnapshot`                           |
 
 ### 数据依赖
 
-| 文件                                     | 用途                                             |
-| ---------------------------------------- | ------------------------------------------------ |
-| `design/gdd/heroes-design.md`            | 武将被动与专属卡分离，协同触发需要本文档定义     |
-| `design/gdd/equipment-design.md`         | 装备效果可能触发临时卡牌或临时强化               |
-| `design/gdd/game-concept.md`             | 卡池架构、兵种卡规则来源                         |
-| `design/gdd/map-design.md`               | 地形/天气标签由地图系统提供                      |
-| `assets/data/hero_campaign_maps.csv`     | 武将战役地图来源                                 |
-| `assets/data/all_cards`                  | 本文档的结构化镜像，修改必须同步                 |
-| `src/core/card-system/CampaignDeck.gd`   | 战役层卡组快照实现（待实现）                     |
-| `src/core/card-system/BattleDeck.gd`     | 战斗层卡组快照实现（待实现）                     |
+| 文件                                   | 用途                                         |
+| -------------------------------------- | -------------------------------------------- |
+| `design/gdd/heroes-design.md`          | 武将被动与专属卡分离，协同触发需要本文档定义 |
+| `design/gdd/equipment-design.md`       | 装备效果可能触发临时卡牌或临时强化           |
+| `design/gdd/game-concept.md`           | 卡池架构、兵种卡规则来源                     |
+| `design/gdd/map-design.md`             | 地形/天气标签由地图系统提供                  |
+| `assets/data/hero_campaign_maps.csv`   | 武将战役地图来源                             |
+| `assets/data/all_cards`                | 本文档的结构化镜像，修改必须同步             |
+| `src/core/card-system/CampaignDeck.gd` | 战役层卡组快照实现（待实现）                 |
+| `src/core/card-system/BattleDeck.gd`   | 战斗层卡组快照实现（待实现）                 |
 
 ---
 
@@ -1135,16 +1501,16 @@ TemporaryEffectModifier = 1.0
 13. `EnemyManager.stolen_cards` 必须正确记录被偷取卡牌，用于特定武将技能（如司马懿）触发。
 14. 所有卡牌变化必须通过 `CampaignDeckSnapshot` 和 `BattleDeckSnapshot` 接口进行，禁止直接修改底层卡组数据。
 15. 游戏内必须提供"卡组状态查看"功能，显示当前战役层卡组与战斗层卡组的差异。
-5. 每种卡牌均支持且仅支持一次升级（Lv1→Lv2）。
-6. “使用后移除”卡在战斗内移除、局结束回卡组。
-7. “消耗卡”在单张地图内仅可成功使用一次，跨地图重置。
-8. **固定起始卡**：战斗开始时保证出现在起始手牌；若≥3张固定起始卡，随机取3张。
-9. **常驻卡**：回合结束时自动常驻在手牌，不可选；超过3张时自动丢弃最老的常驻卡。
-10. **临时卡**：回合结束若仍在手牌则自动移除，战斗结束也不加入卡组；不可被”常驻”属性阻止。
-11. **运筹卡**：在手牌时被动效果持续生效；从手牌离开（打出/被弃置）后效果立即终止。
-12. **X费卡**：投入X=0时产生最低档效果，不产生空效果；X值等于打出时剩余所有行动点，不可超出。
-13. **图鉴解锁**：已解锁的图鉴卡不出现在奖励池；十三州专属卡在对应州通关后加入图鉴，之后全武将全地图可获得。
-14. **卡牌特殊属性显示**：固定起始/常驻/移除/临时/运筹/X费在卡面有明确视觉标识（颜色标签或角标）。
+16. 每种卡牌均支持且仅支持一次升级（Lv1→Lv2）。
+17. “使用后移除”卡在战斗内移除、局结束回卡组。
+18. “消耗卡”在单张地图内仅可成功使用一次，跨地图重置。
+19. **固定起始卡**：战斗开始时保证出现在起始手牌；若≥3张固定起始卡，随机取3张。
+20. **常驻卡**：回合结束时自动常驻在手牌，不可选；超过3张时自动丢弃最老的常驻卡。
+21. **临时卡**：回合结束若仍在手牌则自动移除，战斗结束也不加入卡组；不可被”常驻”属性阻止。
+22. **运筹卡**：在手牌时被动效果持续生效；从手牌离开（打出/被弃置）后效果立即终止。
+23. **X费卡**：投入X=0时产生最低档效果，不产生空效果；X值等于打出时剩余所有行动点，不可超出。
+24. **图鉴解锁**：已解锁的图鉴卡不出现在奖励池；十三州专属卡在对应州通关后加入图鉴，之后全武将全地图可获得。
+25. **卡牌特殊属性显示**：固定起始/常驻/移除/临时/运筹/X费在卡面有明确视觉标识（颜色标签或角标）。
 
 ---
 
