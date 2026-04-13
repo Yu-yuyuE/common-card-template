@@ -6,7 +6,7 @@ with open(path, 'r', encoding='utf-8') as f:
 
 replacements = [
     (r'"怒气"', r'TranslationServer.translate("STATUS_FURY")'),
-    (r'"迅捷"', r'TranslationServer.translate("STATUS_AGILITY")'),
+    (r'"闪避"', r'TranslationServer.translate("STATUS_AGILITY")'),
     (r'"格挡"', r'TranslationServer.translate("STATUS_BLOCK")'),
     (r'"坚守"', r'TranslationServer.translate("STATUS_DEFEND")'),
     (r'"反击"', r'TranslationServer.translate("STATUS_COUNTER")'),
