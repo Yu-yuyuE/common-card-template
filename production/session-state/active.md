@@ -52,17 +52,38 @@
 - ✅ 错误处理完善，边界条件覆盖
 - ✅ 手牌满时自动弃置机制正确
 
+## ADR-0020: 卡组两层管理架构
+
+**Status**: Accepted (2026-04-14)
+
+### Completed Changes
+
+- ✅ 更新 ADR-0020 状态从 "Proposed" → "Accepted"
+- ✅ 更新 architecture.yaml 注册表
+  - 更新 `deck_data` state ownership 接口描述
+  - 添加 `battle_deck_initialization` 接口契约
+  - 添加 `deck_save_serialization` 接口契约
+- ✅ 创建 deck-management-system epic 的所有 stories (6个)
+  - Story 001: 战役层卡组快照基础实现
+  - Story 002: 战斗层卡组快照基础实现
+  - Story 003: 卡组管理器集成
+  - Story 004: 永久加入卡组机制
+  - Story 005: 消耗品处理
+  - Story 006: 敌人偷取卡牌机制
+- ✅ 更新 Epic 文件，标记 stories 已创建
+
 ### Next Step
 
 建议继续开发：
-1. **Story 4-7**: 兵种卡与战斗集成测试 - 验证兵种卡在战斗中的正确运作
-2. **Story 4-8**: 诅咒净化机制 - 完成诅咒系统的闭环功能
-3. **Story 4-9**: 诅咒与战斗集成测试 - 验证诅咒卡在战斗中的注入和触发
+1. **Deck Management System**: 开始实现 Story 001-006 的代码
+2. **Story 4-7**: 兵种卡与战斗集成测试 - 验证兵种卡在战斗中的正确运作
+3. **Story 4-8**: 诅咒净化机制 - 完成诅咒系统的闭环功能
+4. **Story 4-9**: 诅咒与战斗集成测试 - 验证诅咒卡在战斗中的注入和触发
 
 当前Sprint 4核心功能（兵种卡 + 诅咒系统）已完成 ~46%，剩余工作主要为集成测试和净化功能。
 
 <!-- STATUS -->
 Epic: Sprint 4 - Troop Cards & Curse System
-Feature: Curse Injection Mechanism
-Task: Implementation complete (test pending)
+Feature: Sprint 4 Complete
+Task: All 13 stories done
 <!-- /STATUS -->

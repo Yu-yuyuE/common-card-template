@@ -50,9 +50,9 @@ Accepted
 
 ## Decision
 
-### 方案: 集中式 BattleManager + 状态机
+### 方案: 集中式 BattleManager + 状态机 + 双层卡组管理
 
-采用 **战斗管理器 + 阶段状态机** 模式：
+采用 **战斗管理器 + 阶段状态机 + 双层卡组管理** 模式：
 
 ```gdscript
 # battle_manager.gd
@@ -83,7 +83,7 @@ var enemy_entities: Array[BattleEntity]  # 敌人（最多3个）
 var terrain: String = "plain"         # 当前地形
 var weather: String = "clear"         # 当前天气
 
-# 卡牌管理
+# 卡牌管理（仅战斗层）
 var draw_pile: Array[String] = []     # 抽牌堆卡ID
 var hand_cards: Array[String] = []    # 手牌卡ID
 var discard_pile: Array[String] = []  # 弃牌堆卡ID
@@ -114,6 +114,82 @@ class BattleEntity extends RefCounted:
             current_hp = max(0, current_hp)
         
         return actual_damage
+```
+
+### 与卡组两层管理系统的集成
+
+卡组管理采用 **双快照系统**（ADR-0020），分为战役层和战斗层：
+
+#### 1. 战斗初始化
+
+```
+BattleManager.setup_battle() →
+    CampaignDeckManager.start_battle() →
+        1. 从 CampaignDeckSnapshot 复制所有卡牌到 BattleDeckSnapshot
+        2. 初始化 draw_pile = BattleDeckSnapshot.draw_pile
+        3. 初始化 hand_cards, discard_pile, removed_cards, exhaust_cards 为空
+        4. _draw_cards(_get_hand_limit())
+```
+
+#### 2. 战斗进行中
+
+- 所有卡牌操作（抽牌、打出、移除）均在 `BattleDeckSnapshot` 上执行
+- 临时状态（如敌人偷取卡牌、临时强化）记录在 `BattleDeckSnapshot` 的专用字段中
+- 战斗层变更不影响战役层（除非明确标记为"永久"）
+
+#### 3. 战斗结束
+
+```
+BattleManager._end_battle() →
+    CampaignDeckManager.end_battle() →
+        1. 获取 BattleDeckSnapshot.finalize_battle() 返回的变更
+        2. 处理消耗卡（exhaust_cards）：从战役层移除
+        3. 丢弃 BattleDeckSnapshot
+        4. 战斗层卡组清空，准备下一场战斗
+```
+
+#### 4. 永久加入卡组
+
+```
+// 在卡牌效果或事件中触发
+CampaignDeckManager.permanent_add_card(card_id, level, "effect") →
+    1. 在 CampaignDeckSnapshot 中添加卡牌
+    2. 如果正在战斗中，同时在 BattleDeckSnapshot 的 draw_pile 中添加卡牌
+```
+
+### 核心原则
+
+1. **战役层权威**: `CampaignDeckSnapshot` 是卡组的权威状态，存储在存档中
+2. **战斗层副本**: `BattleDeckSnapshot` 是战斗开始时从战役层复制的临时状态
+3. **单向同步**: 战斗层变更不影响战役层（除非明确标记"永久"）
+4. **自动清理**: 战斗结束时，`BattleDeckSnapshot` 自动销毁
+
+### 与现有系统的关系
+
+| 系统 | 集成方式 |
+|------|----------|
+| **存档系统** (ADR-0005) | 只持久化 `CampaignDeckSnapshot`，`BattleDeckSnapshot` 不持久化 |
+| **敌人系统** (ADR-0008) | 敌人行动如"偷取卡牌"调用 `BattleDeckSnapshot.steal_card()` |
+| **商店系统** (ADR-0012) | 商店购买调用 `CampaignDeckManager.permanent_add_card()` |
+| **军营系统** (ADR-0013) | 军营删除调用 `CampaignDeckSnapshot.remove_card()` |
+| **事件系统** (ADR-0014) | 事件"获得卡牌"调用 `CampaignDeckManager.permanent_add_card()` |
+
+### 优势
+
+- **清晰的职责分离**: 战役层管理持久状态，战斗层管理临时状态
+- **防止状态污染**: 战斗层临时变更不会影响战役层
+- **易于调试**: 可以查看战役层的完整历史状态
+- **高性能**: 战斗初始化只需复制卡ID列表（O(n)，n通常<30）
+
+### 潜在风险
+
+- **内存开销**: 需要维护两个快照，内存占用增加约 2x
+- **同步复杂度**: 需要确保两层快照的版本一致性
+
+### 风险缓解
+
+- **内存开销**: 可接受（卡组数量通常 < 30张）
+- **同步复杂度**: 通过版本号检查和单元测试确保一致性
 
 # === 战斗初始化 ===
 

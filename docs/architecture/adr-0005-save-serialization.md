@@ -82,10 +82,14 @@ user://saves/
     "maxActionPoints": 4
   },
 
-  "deck": {
-    "drawPile": ["AC0001", "AC0002", "SC0001", ...],
-    "hand": ["AC0003", "TC0001"],
-    "discardPile": ["AC0004"]
+  "campaignDeck": {  // 战役层卡组快照（权威状态）
+    "version": 1,
+    "cards": {
+      "AC0001": {"level": 1, "special_attrs": [], "is_permanent": true, "source": "initial"},
+      "AC0002": {"level": 1, "special_attrs": [], "is_permanent": true, "source": "shop"},
+      "SC0001": {"level": 1, "special_attrs": [], "is_permanent": true, "source": "reward"},
+      "CC0001": {"level": 1, "special_attrs": [], "is_permanent": true, "source": "event"}
+    }
   },
 
   "hero": {
@@ -112,6 +116,19 @@ user://saves/
   "campaignEnded": false
 }
 ```
+
+> **重要变更**：原 `deck` 字段已替换为 `campaignDeck`，代表战役层卡组的权威状态。战斗层卡组（draw_pile, hand_cards, discard_pile, removed_cards, exhaust_cards）仅在战斗中临时存在，**不持久化**，战斗结束后从战役层快照重新初始化。
+
+> **设计依据**：ADR-0020 卡组两层管理架构
+
+> **持久化原则**：
+> - 战役层快照（campaignDeck）是唯一持久化状态
+> - 战斗层快照（临时卡组）是内存中的临时状态，不写入存档
+> - 消耗卡、永久加入卡等变更都反映在战役层快照中
+> - 战斗开始时，从战役层快照复制生成战斗层卡组
+> - 战斗结束时，战斗层卡组丢弃，仅将"消耗"的卡牌从战役层移除
+> - 所有卡牌状态（等级、特殊属性）都在战役层快照中记录
+> - 卡牌来源（initial/shop/event/reward）用于统计和成就系统
 
 #### Meta Save JSON 结构
 

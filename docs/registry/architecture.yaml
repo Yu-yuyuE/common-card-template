@@ -70,12 +70,13 @@ state_ownership:
     status: active
     owner_system: deck-management
     adr: docs/architecture/adr-0001-scene-management.md
-    interface: "DeckManager.get_deck() / add_card() / remove_card()"
+    interface: "CampaignDeckSnapshot (战役层权威) + BattleDeckSnapshot (战斗层副本); CampaignDeckManager.current_snapshot / start_battle() / permanent_add_card()"
     write_access: deck-management-only
     referenced_by:
       - docs/architecture/adr-0001-scene-management.md
+      - docs/architecture/adr-0020-deck-two-layer-management.md
     added: 2026-04-08
-    revised: ""
+    revised: "2026-04-14"
 
   - state: hero_data
     status: active
@@ -139,6 +140,34 @@ interfaces:
     referenced_by:
       - docs/architecture/adr-0002-system-communication.md
     added: 2026-04-08
+    revised: ""
+
+  - contract: battle_deck_initialization
+    status: active
+    pattern: direct_call
+    producer: deck-management
+    consumers:
+      - battle-system
+    adr: docs/architecture/adr-0020-deck-two-layer-management.md
+    signal_signature: "CampaignDeckManager.start_battle() → BattleDeckSnapshot.initialize_from_campaign(CampaignDeckSnapshot)"
+    referenced_by:
+      - docs/architecture/adr-0007-card-battle-system.md
+      - docs/architecture/adr-0020-deck-two-layer-management.md
+    added: 2026-04-14
+    revised: ""
+
+  - contract: deck_save_serialization
+    status: active
+    pattern: direct_call
+    producer: save-persistence
+    consumers:
+      - deck-management
+    adr: docs/architecture/adr-0020-deck-two-layer-management.md
+    signal_signature: "CampaignDeckManager.serialize() → Dictionary; CampaignDeckManager.deserialize(Dictionary)"
+    referenced_by:
+      - docs/architecture/adr-0005-save-serialization.md
+      - docs/architecture/adr-0020-deck-two-layer-management.md
+    added: 2026-04-14
     revised: ""
 
 # ─── PERFORMANCE BUDGETS ──────────────────────────────────────────────────────

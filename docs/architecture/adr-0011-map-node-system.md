@@ -292,6 +292,7 @@ func _is_map_completed() -> bool:
 | map-design.md (M1) | 节点类型 | NodeType 枚举定义 |
 | map-design.md (M1) | 前置依赖 | prerequisites 检查逻辑 |
 | map-design.md (M1) | 粮草消耗 | provisions_cost 配置 |
+| map-design.md (M1) | 战役层卡组管理 | 节点变更（商店购买、军营删除、事件获得）更新 CampaignDeckSnapshot |
 
 ## Validation Criteria
 - [ ] 节点正确显示可访问/锁定状态
@@ -299,8 +300,10 @@ func _is_map_completed() -> bool:
 - [ ] 粮草不足时无法导航
 - [ ] 访问状态正确保存到存档
 - [ ] BOSS击败后显示通关
+- [ ] 商店购买/军营删除/事件获得卡牌正确更新战役层卡组
 
 ## Related Decisions
 - ADR-0001: 场景管理策略 — 地图场景结构
 - ADR-0003: 资源变更通知机制 — 粮草消耗通知
 - ADR-0005: 存档序列化方案 — 地图进度保存
+- ADR-0020: 卡组两层管理架构 — 战役层卡组持久化

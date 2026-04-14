@@ -18,6 +18,7 @@ Engine: Godot 4.6.1
 | 状态效果系统 | Core | status-effects-system | status-design.md | Not yet created | Ready |
 | 卡牌战斗系统 | Core | card-battle-system | card-battle-system.md | Not yet created | Ready |
 | 敌人系统 | Core | enemy-system | enemies-design.md | Not yet created | Ready |
+| 卡组管理系统 | Core | deck-management-system | cards-design.md (§0-§1) | Not yet created | Ready |
 
 ## Feature Layer
 

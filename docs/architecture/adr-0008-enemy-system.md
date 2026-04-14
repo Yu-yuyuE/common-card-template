@@ -243,7 +243,7 @@ func _execute_special(enemy: EnemyData, action: Dictionary, bm: BattleManager) -
 
 # ⚠️ 已废弃：诅咒注入机制已删除
 # 原函数 `_deliver_curse()` 已移除
-# 诅咒卡现作为普通卡牌类型强制给与玩家，不再单列出注入
+# 诅咒卡现作为普通卡牌类型强制给与玩家，不再单独列出注入
 
 # === 敌人管理 ===
 
