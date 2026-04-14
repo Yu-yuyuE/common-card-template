@@ -83,7 +83,7 @@
 当前Sprint 4核心功能（兵种卡 + 诅咒系统）已完成 ~46%，剩余工作主要为集成测试和净化功能。
 
 <!-- STATUS -->
-Epic: Sprint 4 - Troop Cards & Curse System
-Feature: Sprint 4 Complete
-Task: All 13 stories done
+Epic: Sprint 5 - Card Battle System & Status Effects
+Feature: Sprint Planning
+Task: Sprint 5 plan ready, awaiting /qa-plan
 <!-- /STATUS -->

@@ -13,11 +13,16 @@ Manifest Version: 2026-04-09
 **Requirement**: TR-card-battle-system-006 (卡牌生命周期), TR-card-battle-system-009 (抽牌逻辑)
 *(Requirement text lives in `docs/architecture/tr-registry.yaml` — read fresh at review time)*
 
-**ADR Governing Implementation**: ADR-0007: 卡牌战斗系统架构
-**ADR Decision Summary**: 卡牌生命周期按抽牌堆→手牌→弃牌堆→移除区→消耗区管理。
+**GDD 精确引用**：
+- §3.4 回合流程 — "抽牌（补至手牌上限：默认5张，袁绍6张）"
+- §3.5 卡牌生命周期 — 五分区定义与卡牌流转规则（普通打出→弃牌堆、移除→战斗后回卡组、消耗→永久移除、溢出→弃牌堆）
+- F3 手牌抽取数量 — `DrawCount = max(0, HandLimit - CurrentHandSize)`；HandLimit 默认=5，袁绍=6
+
+**ADR Governing Implementation**: ADR-0007: 卡牌战斗系统架构（Status: Accepted）
+**ADR Decision Summary**: 卡牌生命周期按抽牌堆→手牌→弃牌堆→移除区→消耗区管理；五分区由 BattleManager 统一持有。
 
 **Engine**: Godot 4.6.1 | **Risk**: LOW
-**Engine Notes**: Array操作，涉及 shuffle()
+**Engine Notes**: Array 操作，涉及 shuffle()；Godot 4.x Array.shuffle() 为原地乱序，返回 void，不需要接收返回值（与 4.0 前行为一致，无后训练截止风险）
 
 **Control Manifest Rules (this layer)**:
 - Required: 卡牌必须按分区进行流转
@@ -27,13 +32,14 @@ Manifest Version: 2026-04-09
 
 ## Acceptance Criteria
 
-*From GDD `design/gdd/card-battle-system.md`, scoped to this story:*
+*From GDD `design/gdd/card-battle-system.md` §3.4/§3.5/F3，本故事范围内，无需打开 GDD 即可判断完成：*
 
-- [ ] 初始化5个 Array: `draw_pile`, `hand_cards`, `discard_pile`, `removed_cards`, `exhaust_cards`
-- [ ] 实现 `_draw_cards(count: int)` 方法
-- [ ] 手牌上限机制：默认上限为 5，若是武将"袁绍"(id: cao_sao 注意文档中四世三公写为cao_sao/yuan_shao需核实，假设 "yuan_shao") 则上限为 6。
-- [ ] 若抽牌时 `draw_pile` 为空，将 `discard_pile` 洗入 `draw_pile`（调用 shuffle）。若两者皆空，则安全跳过，不报错。
-- [ ] 手牌溢出机制：当通过被动/效果强制抽牌导致手牌超过上限时，超出部分直接进入弃牌堆。
+- [ ] **AC-1 五分区初始化**：战斗初始化后，对象持有5个 Array：`draw_pile`、`hand_cards`、`discard_pile`、`removed_cards`、`exhaust_cards`，每个均为非 null 的 Array 实例（初始可为空）。
+- [ ] **AC-2 补牌到上限**：`_draw_cards(count: int)` 从 `draw_pile` 取牌加入 `hand_cards`，实际抽取数量 = `min(count, draw_pile.size())`（单次牌堆充足时）。公式：`DrawCount = max(0, HandLimit - CurrentHandSize)`。
+- [ ] **AC-3 袁绍手牌上限**：当战斗实体 hero_id == `"yuan_shao"` 时，`_get_hand_limit()` 返回 6；其他所有武将返回 5。
+- [ ] **AC-4 抽牌堆为空时洗牌回补**：`draw_pile` 耗尽、`discard_pile` 非空时，`discard_pile` 全部移入 `draw_pile` 并执行 shuffle，`discard_pile` 清空，继续完成剩余抽牌请求。
+- [ ] **AC-5 双堆皆空时安全跳过**：`draw_pile` 与 `discard_pile` 均为空时，`_draw_cards(count)` 安全返回，不抛出异常，`hand_cards` 保持原状。
+- [ ] **AC-6 手牌溢出弃置**：通过被动或效果强制抽入导致 `hand_cards.size() > HandLimit` 时，超出部分（从末尾起）立即移入 `discard_pile`，最终 `hand_cards.size() == HandLimit`。
 
 ---
 
@@ -53,7 +59,13 @@ Manifest Version: 2026-04-09
 *Handled by neighbouring stories — do not implement here:*
 
 - 抽入"诅咒卡"立刻触发的逻辑（由诅咒系统D4联动，本故事仅预留检查点注释）。
-- 打出卡牌后的丢弃流程（在 Story 004 实现）。
+- 打出卡牌后的丢弃流程（在 Story 5-4 实现）。
+- 移除区/消耗区卡牌的战斗结束回收清算（在 Story 5-9 多阶段胜负判定中处理）。
+- 任何 UI 渲染、手牌视觉显示（在 Story 5-14 实现）。
+
+## Performance Notes
+
+手牌操作（Array pop_front / append / shuffle）每回合最多调用一次，卡牌数量上限约 30 张。复杂度 O(n)，n ≤ 30，对 16.6ms 帧预算无可测量影响。无性能约束需额外设计。
 
 ---
 
@@ -63,25 +75,30 @@ Manifest Version: 2026-04-09
 
 **[For Logic stories — automated test specs]:**
 
-- **AC-1**: 补满手牌上限
+- **AC-1 补满手牌上限**
   - Given: 武将非袁绍（上限5），手牌已有 2 张，抽牌堆有 10 张。
-  - When: 回合开始调用抽牌
-  - Then: 抽出 3 张牌，手牌达到 5 张。
+  - When: 回合开始调用 `_draw_cards(max(0, 5 - 2))` = `_draw_cards(3)`
+  - Then: 手牌达到 5 张，抽牌堆剩 7 张，各分区计数之和不变。
 
-- **AC-2**: 弃牌堆洗回
+- **AC-2 弃牌堆洗回**
   - Given: 手牌 0 张，抽牌堆 2 张，弃牌堆 5 张。
-  - When: 试图抽取 5 张牌。
-  - Then: 先抽出抽牌堆的 2 张，弃牌堆清空并洗入抽牌堆，再抽出 3 张。最终手牌 5 张，抽牌堆 2 张，弃牌堆 0 张。
+  - When: 试图抽取 5 张牌（`_draw_cards(5)`）。
+  - Then: 先抽出抽牌堆 2 张；触发洗牌：弃牌堆 5 张移入抽牌堆并 shuffle，弃牌堆清零；再抽 3 张。最终手牌 5 张，抽牌堆 2 张，弃牌堆 0 张。
 
-- **AC-3**: 牌库耗尽保护
+- **AC-3 牌库耗尽保护**
   - Given: 抽牌堆 1 张，弃牌堆 0 张，手牌 0 张。
-  - When: 试图抽取 5 张牌。
-  - Then: 抽出 1 张后结束循环，手牌为 1 张，不抛出异常。
+  - When: `_draw_cards(5)` 调用。
+  - Then: 抽出 1 张后安全结束，手牌 = 1 张，不抛出任何异常或错误。
 
-- **AC-4**: 袁绍上限特权
-  - Given: 玩家实体 ID = "yuan_shao"
-  - When: 获取手牌上限
-  - Then: 返回 6。
+- **AC-4 袁绍上限特权**
+  - Given: 战斗实体 hero_id = "yuan_shao"
+  - When: 调用 `_get_hand_limit()`
+  - Then: 返回 6（整数）。
+
+- **AC-5 手牌溢出弃置**
+  - Given: 手牌上限 5，当前手牌 5 张（已满）。
+  - When: 强制追加 2 张牌（模拟被动效果）触发溢出检查。
+  - Then: `hand_cards.size() == 5`，`discard_pile` 新增 2 张，总牌数守恒。
 
 ---
 
@@ -97,5 +114,5 @@ Manifest Version: 2026-04-09
 
 ## Dependencies
 
-- Depends on: Story 001, Story 002
-- Unlocks: Story 004 (出牌结算)
+- Depends on: 5-1（战斗数据结构与实体初始化）、5-2（战斗状态机与回合流程）
+- Unlocks: 5-4（出牌验证与卡牌结算框架）
