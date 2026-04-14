@@ -1,0 +1,26 @@
+action_id,action_type,required_params,optional_params,description
+CA01,ATK_PHYSICAL,"damage:int","target, piercing, attack_count",对目标造成物理伤害
+CA02,ATK_RANGED,"damage:int","target, attack_count",对目标造成远程伤害
+CA03,ATK_MAGICAL,"damage:int","target, attack_count",对目标造成技能/法术伤害
+CA04,HEAL,"heal:int","target, heal_num",恢复目标生命值
+CA05,ADD_SHIELD,"shield:int","target, shield_num",为目标添加护盾
+CA06,ADD_STATUS,"status_id, layers","target, status_count",为目标施加状态效果
+CA07,REMOVE_STATUS,"status_id","target",移除目标的状态效果
+CA08,DRAW_CARDS,"count:int","count",抽若干张卡牌到手牌
+CA09,DISCARD_CARDS,"count:int","count",弃置若干张卡牌
+CA10,GAIN_GOLD,"amount:int","amount",获得金币
+CA11,GAIN_PROVISIONS,"amount:int","amount",获得粮草
+CA12,GAIN_ACTION_POINTS,"amount:int","amount",获得行动点
+CA13,DEAL_DAMAGE_TO_ALL,"damage:int","exclude_target",对所有敌人造成伤害
+CA14,HEAL_ALL,"heal:int","heal_num",恢复所有我方单位的生命
+CA15,APPLY_BUFF,"buff_id, layers","target",为目标施加增益状态
+CA16,REMOVE_DEBUFF,"status_category","target",移除目标的减益状态
+CA17,STEAL_CARD,"count:int","count",偷取敌方卡牌
+CA18,GAIN_TEMPORARY_CARD,"card_id, duration","",获得临时卡牌
+CA19,MODIFY_COST,"amount:int, card_filter","",修改卡牌费用
+CA20,MULTIPLY_EFFECT,"multiplier:float","",放大后续效果
+CA21,DEAL_DAMAGE_TO_FRONT,"damage:int","damage_num",对前排敌人造成伤害
+CA22,GAIN_ARMOR,"armor:int","target",为目标增加护甲
+CA23,REDUCE_ARMOR,"armor:int","target",降低目标护甲
+CA24,FLIP_CARD,"card_id","",翻转一张卡牌（正面/背面）
+CA25,SUMMON_TROOP,"troop_id","",召唤兵种到战场
