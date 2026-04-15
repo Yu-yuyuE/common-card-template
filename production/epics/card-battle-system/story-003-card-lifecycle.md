@@ -108,7 +108,7 @@ Manifest Version: 2026-04-09
 **Required evidence**:
 - Logic: `tests/unit/battle_system/card_lifecycle_test.gd` — must exist and pass
 
-**Status**: [ ] Not yet created
+**Status**: [x] Created — 12 unit tests covering AC-1 through AC-6 + return_removed_cards_to_deck
 
 ---
 
