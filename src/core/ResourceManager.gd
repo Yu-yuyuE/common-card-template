@@ -337,3 +337,23 @@ func restore_hp(amount: int) -> int:
 	var current_hp = get_hp()
 	var actual_restore = min(amount, max_hp - current_hp)
 	return modify_resource(ResourceType.HP, actual_restore)
+
+
+# ---------------------------------------------------------------------------
+# 测试便捷初始化（不依赖 HeroManager 父节点）
+# ---------------------------------------------------------------------------
+
+## 直接初始化资源，无需父节点为 HeroManager。专供单元/集成测试使用。
+## 参数：
+##   max_hp            — 最大生命值（当前 HP 同时设为此值）
+##   base_ap           — 基础行动点上限（当前 AP 同时设为此值）
+##   armor_max_override — 护盾上限（默认 20）
+## 示例：
+##   var rm := ResourceManager.new()
+##   rm.init_hero(50, 4)
+func init_hero(max_hp: int, base_ap: int, armor_max_override: int = 20) -> void:
+	_init_resource(ResourceType.HP, max_hp, max_hp)
+	_init_resource(ResourceType.ARMOR, 0, armor_max_override)
+	_init_resource(ResourceType.PROVISIONS, FOOD_MAX, FOOD_MAX)
+	_init_resource(ResourceType.GOLD, 0, GOLD_MAX)
+	_init_resource(ResourceType.ACTION_POINTS, base_ap, base_ap)

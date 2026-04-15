@@ -14,21 +14,21 @@ stories:
     name: "卡牌战斗系统 - 战斗数据结构与实体初始化"
     file: "production/epics/card-battle-system/story-001-battle-entity-init.md"
     priority: must-have
-    status: ready-for-dev
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 0.5
     blocker: ""
-    completed: ""
+    completed: "2026-04-15"
 
   - id: "5-2"
     name: "卡牌战斗系统 - 战斗状态机与回合流程"
     file: "production/epics/card-battle-system/story-002-battle-state-machine.md"
     priority: must-have
-    status: ready-for-dev
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 1.0
     blocker: ""
-    completed: ""
+    completed: "2026-04-15"
 
   - id: "5-3"
     name: "卡牌战斗系统 - 卡牌生命周期与抽牌堆管理"
@@ -125,22 +125,22 @@ stories:
     name: "集成测试：C1+C2 状态效果与战斗联动"
     file: ""
     priority: should-have
-    status: backlog
+    status: done
     owner: "qa-tester"
     estimate_days: 0.5
-    blocker: "5-9, 5-11"
-    completed: ""
+    blocker: ""
+    completed: "2026-04-15"
 
   # Sprint 5 Nice to Have
   - id: "5-13"
     name: "状态效果系统 - 特殊交互规则（免疫/穿透/瘟疫）"
     file: "production/epics/status-effects-system/story-006-status-special-interactions.md"
     priority: nice-to-have
-    status: backlog
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 0.5
-    blocker: "5-10"
-    completed: ""
+    blocker: ""
+    completed: "2026-04-15"
 
   - id: "5-14"
     name: "卡牌战斗系统 - 战斗HUD与手牌UI绑定"
