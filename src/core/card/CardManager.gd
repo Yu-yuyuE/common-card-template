@@ -159,9 +159,31 @@ func exhaust_or_discard_played_card(card: Card) -> void:
 
 		# 此处也可以发射相应的 card_removed 等信号，视后续需求定
 
+## 强制加牌：被动技能或卡牌效果将一张牌直接加入手牌。
+## 若加入后超出手牌上限，超出部分（末尾）立即移入弃牌堆。
+## @param card: 要加入手牌的卡牌实例
+func force_add_card(card: Card) -> void:
+	hand_cards.append(card)
+	card_drawn.emit(card)
+	# TODO: D4 诅咒联动，检查 card_drawn 事件触发诅咒
+	_enforce_hand_limit()
+
+## 手牌溢出检查：超出上限的末尾牌移入弃牌堆
+func _enforce_hand_limit() -> void:
+	var limit := get_hand_limit()
+	while hand_cards.size() > limit:
+		var overflow: Card = hand_cards.pop_back()
+		discard_pile.append(overflow)
+		hand_full_discarded.emit(overflow)
+
 ## 洗牌：将弃牌堆移入抽牌堆并打乱
 func _shuffle_discard_to_draw() -> void:
 	draw_pile.append_array(discard_pile)
 	discard_pile.clear()
 	draw_pile.shuffle()
 	deck_shuffled.emit()
+
+## 战斗结束：将移除区的卡牌放回抽牌堆（胜利结算用）
+func return_removed_cards_to_deck() -> void:
+	draw_pile.append_array(removed_cards)
+	removed_cards.clear()

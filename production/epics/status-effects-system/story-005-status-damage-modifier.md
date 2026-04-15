@@ -2,7 +2,7 @@
 
 Epic: 状态效果系统
 Estimate: 1 day
-Status: Ready
+Status: Complete
 Layer: Core
 Type: Logic
 Manifest Version: 2026-04-09
@@ -99,7 +99,8 @@ Manifest Version: 2026-04-09
 **Required evidence**:
 - Logic: `tests/unit/status_system/status_damage_modifier_test.gd` — must exist and pass
 
-**Status**: [ ] Not yet created
+**Status**: [x] Created — tests/unit/status_system/status_damage_modifier_test.gd (14 unit tests)
+Interfaces added to StatusManager: calculate_damage_modifier(), calculate_incoming_damage(), calculate_incoming_damage_with_rng()
 
 ---
 

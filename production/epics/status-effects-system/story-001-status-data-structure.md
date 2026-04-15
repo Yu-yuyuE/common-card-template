@@ -2,7 +2,7 @@
 
 Epic: 状态效果系统
 Estimate: 1 day
-Status: Done
+Status: Complete
 Layer: Core
 Type: Logic
 Manifest Version: 2026-04-09
@@ -104,7 +104,12 @@ Manifest Version: 2026-04-09
 
 ---
 
-## Dependencies
+## Completion Notes
+**Completed**: 2026-04-15
+**Criteria**: 6/6 passing
+**Deviations**: ADVISORY — Test Evidence 指向 `status_data_structure_test.gd`，实际测试文件为 `status_manager_test.gd`（功能等价，内容更完整）。路径已在 smoke 报告中记录。
+**Test Evidence**: Logic: `tests/unit/status_system/status_manager_test.gd` (14 tests)
+**Code Review**: Skipped (lean mode)
 
 - Depends on: None
 - Unlocks: Story 002 (叠加与互斥规则)

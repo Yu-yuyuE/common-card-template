@@ -2,7 +2,7 @@
 
 Epic: 状态效果系统
 Estimate: 1 day
-Status: Ready
+Status: Complete
 Layer: Core
 Type: Logic
 Manifest Version: 2026-04-09
@@ -97,7 +97,7 @@ Manifest Version: 2026-04-09
 **Required evidence**:
 - Logic: `tests/unit/status_system/status_stacking_exclusive_test.gd` — must exist and pass
 
-**Status**: [ ] Not yet created
+**Status**: [x] Created — tests/unit/status_system/status_stacking_exclusive_test.gd (14 unit tests)
 
 ---
 

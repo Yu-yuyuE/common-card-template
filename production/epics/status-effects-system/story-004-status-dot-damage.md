@@ -2,7 +2,7 @@
 
 Epic: 状态效果系统
 Estimate: 1 day
-Status: Done
+Status: Complete
 Layer: Core
 Type: Logic
 Manifest Version: 2026-04-09
