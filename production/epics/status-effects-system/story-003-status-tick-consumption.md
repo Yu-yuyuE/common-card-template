@@ -88,7 +88,7 @@ Manifest Version: 2026-04-09
 **Required evidence**:
 - Logic: `tests/unit/status_system/status_tick_consumption_test.gd` — must exist and pass
 
-**Status**: [ ] Not yet created
+**Status**: [x] Created — tests/unit/status_system/status_tick_consumption_test.gd (10 unit tests)
 
 ---
 

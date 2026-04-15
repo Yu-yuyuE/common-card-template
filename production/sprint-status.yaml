@@ -34,92 +34,92 @@ stories:
     name: "卡牌战斗系统 - 卡牌生命周期与抽牌堆管理"
     file: "production/epics/card-battle-system/story-003-card-lifecycle.md"
     priority: must-have
-    status: ready-for-dev
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 0.5
     blocker: ""
-    completed: ""
+    completed: "2026-04-15"
 
   - id: "5-4"
     name: "卡牌战斗系统 - 出牌验证与卡牌结算框架"
     file: "production/epics/card-battle-system/story-004-play-card-framework.md"
     priority: must-have
-    status: ready-for-dev
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 1.0
     blocker: ""
-    completed: ""
+    completed: "2026-04-15"
 
   - id: "5-5"
     name: "卡牌战斗系统 - 伤害计算管线"
     file: "production/epics/card-battle-system/story-005-damage-pipeline.md"
     priority: must-have
-    status: ready-for-dev
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 0.5
     blocker: ""
-    completed: ""
+    completed: "2026-04-15"
 
   - id: "5-6"
     name: "状态效果系统 - 状态数据结构与基础增删改"
     file: "production/epics/status-effects-system/story-001-status-data-structure.md"
     priority: must-have
-    status: ready-for-dev
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 0.5
     blocker: ""
-    completed: ""
+    completed: "2026-04-15"
 
   - id: "5-7"
     name: "状态效果系统 - 状态叠加与互斥规则"
     file: "production/epics/status-effects-system/story-002-status-stacking-exclusive.md"
     priority: must-have
-    status: ready-for-dev
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 0.5
     blocker: ""
-    completed: ""
+    completed: "2026-04-15"
 
   - id: "5-8"
     name: "状态效果系统 - 回合结束结算机制"
     file: "production/epics/status-effects-system/story-003-status-tick-consumption.md"
     priority: must-have
-    status: ready-for-dev
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 0.5
     blocker: ""
-    completed: ""
+    completed: "2026-04-15"
 
   # Sprint 5 Should Have
   - id: "5-9"
     name: "卡牌战斗系统 - 多阶段战斗与胜负判定"
     file: "production/epics/card-battle-system/story-006-multi-phase-battle.md"
     priority: should-have
-    status: backlog
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 0.5
     blocker: ""
-    completed: ""
+    completed: "2026-04-15"
 
   - id: "5-10"
     name: "状态效果系统 - 状态持续伤害（DoT）"
     file: "production/epics/status-effects-system/story-004-status-dot-damage.md"
     priority: should-have
-    status: backlog
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 0.5
     blocker: ""
-    completed: ""
+    completed: "2026-04-15"
 
   - id: "5-11"
     name: "状态效果系统 - 状态伤害修正系数"
     file: "production/epics/status-effects-system/story-005-status-damage-modifier.md"
     priority: should-have
-    status: backlog
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 0.5
     blocker: ""
-    completed: ""
+    completed: "2026-04-15"
 
   - id: "5-12"
     name: "集成测试：C1+C2 状态效果与战斗联动"

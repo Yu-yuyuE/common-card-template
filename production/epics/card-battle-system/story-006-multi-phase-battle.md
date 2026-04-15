@@ -89,7 +89,7 @@ Manifest Version: 2026-04-09
 **Required evidence**:
 - Logic: `tests/unit/battle_system/multi_phase_battle_test.gd` — must exist and pass
 
-**Status**: [ ] Not yet created
+**Status**: [x] Created — tests/unit/battle_system/multi_phase_battle_test.gd (8 unit tests)
 
 ---
 

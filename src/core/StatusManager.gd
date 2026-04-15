@@ -359,6 +359,67 @@ func get_shield_multiplier() -> float:
 	return 1.0
 
 # ---------------------------------------------------------------------------
+# 伤害修正计算（Story 5-11：供战斗结算调用的高层接口）
+# ---------------------------------------------------------------------------
+
+## 计算攻击方经状态修正后的输出伤害。
+## 修正因子：怒气×1.25；虚弱×0.75。
+## 保底：非0结果最小为1（盲目闪避返回0由调用方处理）。
+##
+## 参数：
+##   base_damage — 基础伤害（应已经过地形/天气修正）
+## 返回：状态修正后的整数伤害（向下取整，最小 1）
+##
+## 示例：
+##   attacker_sm.calculate_damage_modifier(10)  # 怒气 → 12
+func calculate_damage_modifier(base_damage: int) -> int:
+	var mult := get_attack_damage_multiplier()
+	var result := int(float(base_damage) * mult)
+	return max(1, result)
+
+
+## 计算防守方经状态修正后的实际受到伤害。
+## 修正因子：坚守×0.75；破甲×1.25；恐惧+层数（加法，在乘法后）。
+## 盲目（BLIND）：50% 概率直接返回 0（闪避）。
+## 保底：非闪避结果最小为 1。
+##
+## 参数：
+##   incoming_damage — 传入伤害（应已经过地形/天气/攻击方修正）
+## 返回：实际伤害（闪避时为 0，其他情况最小 1）
+##
+## 示例：
+##   defender_sm.calculate_incoming_damage(10)  # 坚守+恐惧3 → 10
+func calculate_incoming_damage(incoming_damage: int) -> int:
+	# 盲目闪避：50% 概率直接返回 0
+	if has_status(StatusEffect.Type.BLIND):
+		if randf() < 0.5:
+			return 0
+
+	# 乘法修正（坚守/破甲）
+	var mult := get_incoming_damage_multiplier()
+	var result := int(float(incoming_damage) * mult)
+
+	# 加法修正（恐惧：+层数）
+	result += get_fear_bonus_damage()
+
+	return max(1, result)
+
+
+## 使用固定随机值计算受击方修正（供单元测试注入确定性 RNG 使用）。
+## 参数：
+##   incoming_damage — 传入伤害
+##   rng_value       — 0.0~1.0 的随机值（< 0.5 触发盲目闪避）
+## 返回：实际伤害
+func calculate_incoming_damage_with_rng(incoming_damage: int, rng_value: float) -> int:
+	if has_status(StatusEffect.Type.BLIND):
+		if rng_value < 0.5:
+			return 0
+	var mult := get_incoming_damage_multiplier()
+	var result := int(float(incoming_damage) * mult)
+	result += get_fear_bonus_damage()
+	return max(1, result)
+
+# ---------------------------------------------------------------------------
 # 内部工具方法
 # ---------------------------------------------------------------------------
 
