@@ -1,5 +1,5 @@
 action_id,action_type,required_params,optional_params,description
-CA01,ATK_PHYSICAL,"damage:int","target, piercing, attack_count",对目标造成物理伤害
+CA01,ATK_PHYSICAL,"damage:int","target, piercing, attack_count",对目标造成近战伤害
 CA02,ATK_RANGED,"damage:int","target, attack_count",对目标造成远程伤害
 CA03,ATK_MAGICAL,"damage:int","target, attack_count",对目标造成技能/法术伤害
 CA04,HEAL,"heal:int","target, heal_num",恢复目标生命值
