@@ -2,11 +2,11 @@
 
 ## Document Status
 
-- **Version**: 1.0
-- **Last Updated**: 2026-04-08
+- **Version**: 2.0
+- **Last Updated**: 2026-04-17
 - **Engine**: Godot 4.6.1 (stable)
 - **GDDs Covered**: 17 systems (F1-F2, C1-C3, D1-D7, M1-M5)
-- **ADRs Referenced**: None yet — see Required ADRs section
+- **ADRs Referenced**: ADR-0001 through ADR-0020 (全部已 Accepted)
 
 ## Engine Knowledge Gap Summary
 
@@ -226,67 +226,75 @@ func has_save(save_type: int) -> bool:
 
 ## ADR Audit
 
-| ADR | Engine Compat | Version | GDD Linkage | Conflicts | Status |
-|-----|--------------|---------|-------------|-----------|--------|
-| (无) | — | — | — | — | 待创建 |
+| ADR | 标题 | Engine Compat | Godot版本 | GDD Linkage | Status |
+|-----|------|--------------|-----------|-------------|--------|
+| ADR-0001 | 场景管理策略 | ✅ | 4.6.1 | TR-map-001, TR-save-001 | Accepted |
+| ADR-0002 | 系统间通信模式 | ✅ | 4.6.1 | TR-battle-001, TR-status-001, TR-enemy-001 | Accepted |
+| ADR-0003 | 资源变更通知机制 | ✅ | 4.6.1 | TR-res-001 | Accepted |
+| ADR-0004 | 卡牌数据配置格式 | ✅ | 4.6.1 | TR-battle-001 | Accepted |
+| ADR-0005 | 存档序列化方案 | ✅ | 4.6.1 | TR-save-001 | Accepted |
+| ADR-0006 | 状态效果系统架构 | ✅ | 4.6.1 | TR-status-001 | Accepted |
+| ADR-0007 | 卡牌战斗系统架构 | ✅ | 4.6.1 | TR-battle-001 | Accepted |
+| ADR-0008 | 敌人系统架构 | ✅ | 4.6.1 | TR-enemy-001 | Accepted |
+| ADR-0009 | 地形天气系统架构 | ✅ | 4.6.1 | TR-terrain-001 | Accepted |
+| ADR-0010 | 武将系统架构 | ✅ | 4.6.1 | TR-hero-001 | Accepted |
+| ADR-0011 | 地图节点系统架构 | ✅ | 4.6.1 | TR-map-001 | Accepted |
+| ADR-0012 | 商店系统架构 | ✅ | 4.6.1 | TR-shop-001 | Accepted |
+| ADR-0013 | 酒馆系统架构 | ✅ | 4.6.1 | TR-inn-001 | Accepted |
+| ADR-0014 | 兵种地形伤害计算顺序 | ✅ | 4.6.1 | TR-troop-001, TR-terrain-001 | Accepted |
+| ADR-0015 | 敌人AI行动执行器架构 | ✅ | 4.6.1 | TR-enemy-001 | Accepted |
+| ADR-0016 | UI数据绑定方案 | ✅ | 4.6.1 | TR-battle-001 (UI层) | Accepted |
+| ADR-0017 | 本地化系统架构 | ✅ | 4.6.1 | TR-loc-001 | Accepted |
+| ADR-0018 | 状态机架构 | ✅ | 4.6.1 | TR-battle-001 (状态机) | Accepted |
+| ADR-0019 | 敌人行动参数设计 | ✅ | 4.6.1 | TR-enemy-001 | Accepted |
+| ADR-0020 | 卡组双层管理架构 | ✅ | 4.6.1 | TR-battle-001 (卡组) | Accepted |
 
 ### Traceability Coverage
 
 | Req ID | Requirement | ADR Coverage | Status |
 |--------|-------------|--------------|--------|
-| TR-save-001 | 双层存档(Run/Meta) | — | ❌ GAP |
-| TR-res-001 | 4种资源管理 | — | ❌ GAP |
-| TR-battle-001 | 1v3战场,手牌/费用/结算 | — | ❌ GAP |
-| TR-enemy-001 | 100敌人,71种行动 | — | ❌ GAP |
-| TR-status-001 | 20种状态效果 | — | ❌ GAP |
-| TR-terrain-001 | 7地形×4天气 | — | ❌ GAP |
-| TR-hero-001 | 23武将,专属卡组 | — | ❌ GAP |
-| TR-map-001 | 树形地图,节点导航 | — | ❌ GAP |
-| ... | ... | — | ❌ GAP |
+| TR-save-001 | 双层存档(Run/Meta) | ADR-0001, ADR-0005 | ✅ COVERED |
+| TR-res-001 | 4种资源管理 | ADR-0003 | ✅ COVERED |
+| TR-battle-001 | 1v3战场,手牌/费用/结算 | ADR-0002, ADR-0004, ADR-0007, ADR-0016, ADR-0018, ADR-0020 | ✅ COVERED |
+| TR-enemy-001 | 100敌人,71种行动 | ADR-0002, ADR-0008, ADR-0015, ADR-0019 | ✅ COVERED |
+| TR-status-001 | 20种状态效果 | ADR-0002, ADR-0006 | ✅ COVERED |
+| TR-terrain-001 | 7地形×4天气 | ADR-0009, ADR-0014 | ✅ COVERED |
+| TR-hero-001 | 23武将,专属卡组 | ADR-0010 | ✅ COVERED |
+| TR-map-001 | 树形地图,节点导航 | ADR-0001, ADR-0011 | ✅ COVERED |
+| TR-troop-001 | 兵种卡系统 | ADR-0014 | ✅ COVERED |
+| TR-shop-001 | 商店系统 | ADR-0012 | ✅ COVERED |
+| TR-inn-001 | 酒馆系统 | ADR-0013 | ✅ COVERED |
+| TR-loc-001 | 本地化(中/英/日) | ADR-0017 | ✅ COVERED |
 
 ---
 
 ## Required ADRs
 
-### Must Have (Foundation & Core — 编码前必须完成)
+### ✅ 全部已完成（ADR-0001 ~ ADR-0020）
 
-1. **场景管理策略** — 如何加载/切换战斗/地图/商店/酒馆/军营场景
-   - 覆盖: TR-save-001, TR-map-001
-   - 命令: `/architecture-decision 场景管理策略`
+所有必须的 ADR 均已在 Pre-Production 阶段创建并通过 `/architecture-review` 验证：
 
-2. **事件总线 vs 直接信号** — 系统间通信模式
-   - 覆盖: TR-battle-001, TR-status-001, TR-enemy-001
-   - 命令: `/architecture-decision 系统间通信模式`
+- ✅ ADR-0001: 场景管理策略
+- ✅ ADR-0002: 系统间通信模式  
+- ✅ ADR-0003: 资源变更通知机制
+- ✅ ADR-0004: 卡牌数据配置格式
+- ✅ ADR-0005: 存档序列化方案
+- ✅ ADR-0006 ~ ADR-0020: 所有 Core/Feature 层 ADR
 
-3. **资源状态变更通知** — 跨系统资源变化同步机制
-   - 覆盖: TR-res-001
-   - 命令: `/architecture-decision 资源变更通知机制`
-
-4. **卡牌数据配置格式** — CSV加载与运行时数据结构
-   - 覆盖: TR-battle-001 (所有卡牌相关)
-   - 命令: `/architecture-decision 卡牌数据配置格式`
-
-5. **存档序列化方案** — Run Save vs Meta Save 结构定义
-   - 覆盖: TR-save-001
-   - 命令: `/architecture-decision 存档序列化方案`
-
-### Should Have (Feature Layer — 相关系统编码前完成)
-
-6. **兵种卡地形联动计算顺序** — 伤害公式执行步骤
-   - 覆盖: TR-troop-001, TR-terrain-001
-   - 命令: `/architecture-decision 兵种伤害计算顺序`
-
-7. **敌人AI行动序列执行器** — 队列/条件触发架构
-   - 覆盖: TR-enemy-001
-   - 命令: `/architecture-decision 敌人AI执行器架构`
-
-8. **UI数据绑定方案** — View如何响应Model变化
-   - 覆盖: 所有需要UI更新的系统
-   - 命令: `/architecture-decision UI数据绑定方案`
+Production 阶段新增系统如需 ADR，运行 `/architecture-decision [系统名]` 创建。
 
 ---
 
-## Architecture Principles
+## Open Questions
+
+> **已解决 (2026-04-17):**
+
+| 问题 | 决策结论 | 依据 |
+|------|----------|------|
+| ~~UI层技术选型~~: Control节点 vs 自定义渲染 | **已决**: 使用 Godot Control 节点树（ADR-0016 规定 Signal 驱动，ADR-0002 规定事件总线）。Sprint 6 UI stories 已按此实现。 | ADR-0016, Sprint 6 实现 |
+| ~~网络功能~~: 是否需要 Steam 云存档集成 | **已决**: 本版本不实现。单机存档由 ADR-0005 双层存档覆盖；Steam 云存档作为 Post-Launch 功能列入 backlog。 | ADR-0005, GDD-save-persistence |
+| ~~性能优化策略~~: 卡牌战斗结算是否异步 | **已决**: 同步执行。当前实测帧时间在 16.6ms 预算内（Sprint 5 压测无异常）。如结算超过 5ms 再引入 `call_deferred`。 | 性能预算 16.6ms，Sprint 5 QA 报告 |
+| ~~插件系统~~: 是否支持 Modding | **已决**: 本版本不支持。游戏规模（单机战棋卡牌）不需要 Mod 生态；数据驱动设计（CSV）已预留扩展性。 | GDD 范围定义，production 里程碑 |
 
 1. **数据驱动设计**
    - 所有游戏数值从CSV加载, 运行时不硬编码

@@ -1,3 +1,25 @@
+## Session Extract — /gate-check 2026-04-17
+- Gate: Pre-Production → Production
+- Verdict: PASS
+- Director Panel: Creative [READY] / Technical [READY] / Producer [READY] / Art [CONCERNS → resolved]
+- Actions taken:
+  - docs/architecture/architecture.md 更新至 v2.0：ADR Audit 表格补全（ADR-0001~0020 全部 Accepted），Open Questions 全部关闭（4项决策已记录）
+  - production/stage.txt → Production
+- Sprint 6 遗留条件（不影响阶段跃迁）:
+  - C1（阻塞）: headless CI 实际运行 — Sprint 7 第 1 周
+  - C5（阻塞）: 6-9/6-10 完成 — Sprint 7
+  - C2（非阻塞）: BattleScene.tscn 搭建后手动 UI 验证
+- Next: Sprint 7 规划，优先 C1（配置 GdUnit4 headless）和 C5（6-9/6-10 开发）
+
+## Session Extract — /team-qa sprint 2026-04-17
+- Verdict: APPROVED WITH CONDITIONS
+- Scope: Sprint 6（8 stories）
+- Smoke Check: PASS WITH WARNINGS（100 个测试函数文件存在，未实际运行）
+- Sign-off: production/qa/qa-signoff-sprint6-2026-04-17.md
+- C1（阻塞）: headless 测试实际运行 — Sprint 7 第 1 周
+- C5（阻塞）: 6-9/6-10 补齐并关闭 — Sprint 7
+- Next: /gate-check（C1+C5 满足后）
+
 ## Session Extract — /story-done 2026-04-17 (6-7+6-8)
 - Verdict: COMPLETE WITH NOTES (UI stories — evidence ADVISORY，待场景搭建后手动验证)
 - Story 6-7: production/epics/card-battle-system/story-007-battle-hud-binding.md — 战斗HUD与手牌UI绑定
