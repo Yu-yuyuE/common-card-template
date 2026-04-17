@@ -12,6 +12,10 @@ class_name CardData extends Resource
 @export var remove_after_use: bool = false # 打出后移入移除区 (Removed)
 @export var exhaust: bool = false          # 打出后移入消耗区 (Exhaust)
 
+# 卡牌伤害配置（数据驱动，按等级索引：[等级1伤害, 等级2伤害]）
+# 例：[6, 8] 表示等级 1 伤害为 6，等级 2 伤害为 8
+@export var damage_by_level: Array[int] = []
+
 # 卡牌行动参数系统（ADR-0020）
 @export var card_action_str: String = ""   # 模板字符串形式的行动参数
 @export var card_action_func: bool = false # 是否使用特殊处理函数（复杂效果用代码实现）

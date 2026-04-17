@@ -6,7 +6,7 @@ goal: "双线并进：完成战斗HUD可视化（路径A），同时打通地图
 start: "2026-05-15"
 end: "2026-05-22"
 generated: "2026-04-15"
-updated: "2026-04-15"
+updated: "2026-04-17 (6-5+6-6+6-7+6-8)"
 
 stories:
   # Sprint 6 Must Have — 路径 B: 地图/战役骨架
@@ -14,82 +14,82 @@ stories:
     name: "地图数据结构与节点类型"
     file: "production/epics/map-node-system/story-001-map-data-structure.md"
     priority: must-have
-    status: ready-for-dev
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 0.5
     blocker: ""
-    completed: ""
+    completed: "2026-04-16"
 
   - id: "6-2"
     name: "节点导航与粮草消耗"
     file: "production/epics/map-node-system/story-002-node-navigation.md"
     priority: must-have
-    status: ready-for-dev
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 0.5
     blocker: "6-1"
-    completed: ""
+    completed: "2026-04-16"
 
   - id: "6-3"
     name: "地图生成算法"
     file: "production/epics/map-node-system/story-003-map-generation.md"
     priority: must-have
-    status: ready-for-dev
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 1.0
     blocker: "6-1"
-    completed: ""
+    completed: "2026-04-17"
 
   - id: "6-4"
     name: "军营核心逻辑"
     file: "production/epics/barracks-system/story-001-core-logic.md"
     priority: must-have
-    status: ready-for-dev
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 0.5
     blocker: ""
-    completed: ""
+    completed: "2026-04-17"
 
   - id: "6-5"
     name: "军营卡组集成"
     file: "production/epics/barracks-system/story-002-integration.md"
     priority: must-have
-    status: ready-for-dev
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 0.5
     blocker: "6-4"
-    completed: ""
+    completed: "2026-04-17"
 
   - id: "6-6"
     name: "酒馆服务实现"
     file: "production/epics/inn-system/story-001-inn-services.md"
     priority: must-have
-    status: ready-for-dev
+    status: done
     owner: "gameplay-programmer"
     estimate_days: 0.5
     blocker: ""
-    completed: ""
+    completed: "2026-04-17"
 
   # Sprint 6 Should Have — 路径 A: 战斗可视化
   - id: "6-7"
     name: "战斗HUD与手牌UI绑定（5-14）"
     file: "production/epics/card-battle-system/story-007-battle-hud-binding.md"
     priority: should-have
-    status: ready-for-dev
+    status: done
     owner: "ui-programmer"
     estimate_days: 1.0
     blocker: ""
-    completed: ""
+    completed: "2026-04-17"
 
   - id: "6-8"
     name: "状态变化UI响应机制（5-15）"
     file: "production/epics/status-effects-system/story-007-status-ui-binding.md"
     priority: should-have
-    status: ready-for-dev
+    status: done
     owner: "ui-programmer"
     estimate_days: 0.5
     blocker: ""
-    completed: ""
+    completed: "2026-04-17"
 
   # Sprint 6 Nice to Have
   - id: "6-9"

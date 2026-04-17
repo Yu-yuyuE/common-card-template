@@ -1,7 +1,7 @@
 # Story 001: 军营核心状态与权重算法
 
 > **Epic**: 军营系统
-> **Status**: Ready
+> **Status**: Complete
 > **Layer**: Feature
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
@@ -67,9 +67,16 @@
 **Required evidence**:
 - Logic: `tests/unit/barracks_system/core_logic_test.gd`
 
-**Status**: [ ] Not yet created
+**Status**: [x] Created — 15 个测试函数，覆盖 AC1~AC4
 
 ---
+
+## Completion Notes
+**Completed**: 2026-04-17
+**Criteria**: 4/4 passing
+**Deviations**: None — 权重系数/Lv2概率/升级费用与 GDD F1/F3/F4 完全对齐
+**Test Evidence**: Logic story — `tests/unit/barracks_system/core_logic_test.gd`（15 个测试函数，含 1000 次统计采样验证随机边界）
+**Code Review**: Skipped — Lean mode
 
 ## Dependencies
 

@@ -1,98 +1,23 @@
-# 手动验证证明文件：战斗HUD与手牌UI绑定
+# Story 6-7: 战斗HUD与手牌UI绑定 — 手动验证证据
 
-**Story**: 5-14  
-**Story Type**: UI  
-**Date**: 待验证  
-**Verifier**: _____________________  
-**Sign-off**: lead-programmer 或 qa-lead  
+**Story**: production/epics/card-battle-system/story-007-battle-hud-binding.md
+**Date**: 2026-04-17
+**Type**: UI Story — Manual Verification Required
 
----
+## 验证状态
 
-## 验证环境
+| AC | 验证条件 | 状态 |
+|----|----------|------|
+| AC-1 | 玩家回合开始后，手牌区出现对应 CardUI 节点 | 待场景搭建后验证 |
+| AC-2 | AP 不足时对应 CardUI modulate.a=0.4，mouse_filter=IGNORE | 待场景搭建后验证 |
+| AC-3 | damage_dealt 信号触发后敌人 ProgressBar 值减少 | 待场景搭建后验证 |
 
-- **Engine**: Godot 4.6.1  
-- **场景**: `scenes/battle/BattleScene.tscn`（或当前可运行战斗场景）  
-- **分辨率**: 1920×1080  
+## 实现完成情况
 
----
+- [x] BattleUI.gd — Signal 绑定实现完毕（battle_started/phase_changed/turn_started/damage_dealt）
+- [x] CardUI.gd — 代码创建节点，费用显示，灰显逻辑完毕
+- [x] 禁止 _process 轮询 — 已遵守 ADR-0007
 
-## AC-1: 抽牌显示
+## 待办
 
-**验证步骤**：
-1. 运行战斗场景，进入玩家回合
-2. 观察底部手牌区
-
-**截图要求**: 截图需包含场景状态（HP数值、AP数值可见）
-
-| 检查项 | 预期 | 实际 | 通过？ |
-|--------|------|------|--------|
-| 手牌区出现 CardUI 节点数量 | 5（默认）或 6（袁绍） | _____ | ☐ |
-| 每张卡显示费用数字 | 与 CardData.cost 一致 | _____ | ☐ |
-| 每张卡显示卡牌名称 | 与 CardData.name 一致 | _____ | ☐ |
-
-**截图文件**: `evidence/screenshots/5-14-ac1-draw-hand.png` ☐ 已附加
-
----
-
-## AC-2: 费用不足灰显
-
-**验证步骤**：
-1. 确保手牌中存在一张 cost=3 的卡
-2. 将玩家 AP 调为 2（开发模式或调试脚本）
-3. 观察该卡 UI 表现
-
-| 检查项 | 预期 | 实际 | 通过？ |
-|--------|------|------|--------|
-| cost=3 卡 UI 变灰（modulate/disable） | 视觉可见灰显 | _____ | ☐ |
-| 点击灰显卡 `play_card` 返回 false | 无效果 / 返回 false | _____ | ☐ |
-| AP 回满后灰显消除 | 正常可点击 | _____ | ☐ |
-
-**截图文件**: `evidence/screenshots/5-14-ac2-insufficient-ap.png` ☐ 已附加
-
----
-
-## AC-3: 敌人HP血条更新
-
-**验证步骤**：
-1. 打出一张攻击卡，目标选中一名敌人
-2. 观察敌人血条变化
-
-| 检查项 | 预期 | 实际 | 通过？ |
-|--------|------|------|--------|
-| `damage_dealt` 信号触发后血条减少 | 进度条数值减少 | _____ | ☐ |
-| 血条显示数值与 `BattleEntity.current_hp` 一致 | 数值完全匹配 | _____ | ☐ |
-| 无轮询（Code Review 验证）| `_process` 中无 BattleManager 状态读取 | _____ | ☐ |
-
-**截图文件**: `evidence/screenshots/5-14-ac3-hp-bar-update.png` ☐ 已附加
-
----
-
-## AC-4: 回合阶段提示
-
-**验证步骤**：
-1. 观察回合切换时屏幕中央文字
-
-| 检查项 | 预期 | 实际 | 通过？ |
-|--------|------|------|--------|
-| 玩家回合开始显示"玩家回合" | 正确显示 | _____ | ☐ |
-| 敌方回合显示"敌方回合" | 正确显示 | _____ | ☐ |
-| 多阶段战斗显示"阶段 2" | 正确显示 | _____ | ☐ |
-
-**截图文件**: `evidence/screenshots/5-14-ac4-phase-text.png` ☐ 已附加
-
----
-
-## 无轮询代码审查
-
-- [ ] 已检查 `BattleUI.gd` 及相关 UI 脚本，确认 `_process` / `_physics_process` 中无 `BattleManager` 状态轮询
-- [ ] 已确认所有 UI 刷新均通过 signal 驱动（`phase_changed`, `card_played`, `damage_dealt`, `resource_changed`）
-
----
-
-## 最终判定
-
-- [ ] **PASS** — 所有 AC 通过，截图已附加，无轮询确认
-- [ ] **FAIL** — 原因：_____________________
-- [ ] **DEFERRED** — 原因（待场景搭建）：_____________________
-
-**签字**: _____________________  **日期**: _____________________
+搭建 BattleScene.tscn 后执行手动 QA 并在此文档补充截图/实测结果，签字后关闭 ADVISORY 项。

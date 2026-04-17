@@ -16,7 +16,7 @@ var curse_actions: CurseActions = null
 
 func _init() -> void:
 	melee_actions = MeleeAttackActions.new(self)
-	ranged_actions = RangedAttackActions.new(self)
+	ranged_actions = RangedAttackActions.new()
 	skill_actions = SkillActions.new()
 	troop_actions = TroopActions.new()
 	curse_actions = CurseActions.new()

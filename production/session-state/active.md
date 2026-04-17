@@ -1,3 +1,32 @@
+## Session Extract — /story-done 2026-04-17 (6-7+6-8)
+- Verdict: COMPLETE WITH NOTES (UI stories — evidence ADVISORY，待场景搭建后手动验证)
+- Story 6-7: production/epics/card-battle-system/story-007-battle-hud-binding.md — 战斗HUD与手牌UI绑定
+- Story 6-8: production/epics/status-effects-system/story-007-status-ui-binding.md — 状态变化UI响应机制
+- Files: src/ui/battle/BattleUI.gd, CardUI.gd, UnitStatusBar.gd, StatusIconUI.gd
+- Evidence: production/qa/evidence/battle-hud-binding-evidence.md, status-ui-binding-evidence.md
+- Deviations: 6-8 status_refreshed 不存在，用 status_applied 替代（等价）
+- Tech debt logged: None
+- Next recommended: /smoke-check sprint → /team-qa sprint → /gate-check
+
+## Session Extract — /story-done 2026-04-17 (6-5)
+- Verdict: COMPLETE
+- Story: production/epics/barracks-system/story-002-integration.md — 军营流转与全局系统集成
+- Tech debt logged: None
+- Next recommended: story-004-campaign-management.md（6-9，blocker 已解除）或 6-7/6-8 UI stories
+
+## Session Extract — /story-done 2026-04-17 (6-6)
+- Verdict: COMPLETE
+- Story: production/epics/inn-system/story-001-inn-services.md — 酒馆服务实现
+- Tech debt logged: None
+- Next recommended: story-002-integration.md（军营卡组集成，6-5）或 story-004-campaign-management.md（6-9，blocker 已解除）
+
+## Session Extract — /dev-story 2026-04-17 (6-6)
+- Story: production/epics/inn-system/story-001-inn-services.md — 酒馆服务实现
+- Files changed: src/core/inn-system/InnManager.gd, tests/unit/inn_system/inn_services_test.gd
+- Test written: tests/unit/inn_system/inn_services_test.gd（13 个测试函数，覆盖 AC1~AC5 全部标准）
+- Blockers: None
+- Next: /story-done production/epics/inn-system/story-001-inn-services.md
+
 ## Session Extract — 2026-04-15
 
 ### ✅ Sprint 5 全部逻辑/集成 Stories 完成
@@ -36,11 +65,56 @@
 1. 在 Godot 编辑器运行 tests/gdunit4_runner.gd 确认 ~108 个新测试通过
 2. 搭建 BattleScene.tscn 后完成 5-14/5-15 手动验证并签字
 
+## Session Extract — /story-done 2026-04-17 (6-4)
+- Verdict: COMPLETE
+- Story: production/epics/barracks-system/story-001-core-logic.md — 军营核心状态与权重算法
+- Tech debt logged: None
+- Next recommended: story-002-integration.md（军营卡组集成，6-5，阻塞已解除）或 inn story-001-inn-services.md（6-6）
+
+## Session Extract — /dev-story 2026-04-17
+- Story: production/epics/barracks-system/story-001-core-logic.md — 军营核心状态与权重算法
+- Files changed: src/core/barracks-system/BarracksManager.gd, tests/unit/barracks_system/core_logic_test.gd
+- Test written: tests/unit/barracks_system/core_logic_test.gd（15 个测试函数，覆盖 AC1~AC4）
+- Blockers: None
+- Next: /story-done production/epics/barracks-system/story-001-core-logic.md
+
+## Session Extract — /story-done 2026-04-17
+- Verdict: COMPLETE WITH NOTES
+- Story: production/epics/map-node-system/story-003-map-generation.md — 地图生成算法
+- Tech debt logged: None（ADVISORY position.y 层编码已记入 Completion Notes）
+- Next recommended: story-004-campaign-management.md 或 barracks story-001-core-logic.md（6-4）或 inn story-001-inn-services.md（6-6）
+
+## Session Extract — /dev-story 2026-04-17
+- Story: production/epics/map-node-system/story-003-map-generation.md — 地图生成算法
+- Files changed: src/core/map-system/MapGenerator.gd, tests/unit/map_system/map_generator_test.gd
+- Test written: tests/unit/map_system/map_generator_test.gd（11 个测试函数，覆盖 AC1~AC5 全部标准，100次统计采样）
+- Blockers: None
+- Next: /code-review src/core/map-system/MapGenerator.gd then /story-done production/epics/map-node-system/story-003-map-generation.md
+
 <!-- STATUS -->
-Epic: Sprint 5 - Card Battle System & Status Effects
-Feature: Sprint Complete
-Task: 所有逻辑/集成 stories 完成，等待 5-14/5-15 UI 手动验证
+Epic: map-node-system
+Feature: Story-003 完成，准备 Story-004 或 6-4/6-6
+Task: 6-1、6-2、6-3 已完成，可继续 6-4（军营核心）、6-6（酒馆服务）或 story-004（战役进度）
 <!-- /STATUS -->
+
+## Session Extract — /story-done 2026-04-16
+- Verdict: COMPLETE
+- Story: production/epics/map-node-system/story-002-node-navigation.md — 节点导航与粮草消耗
+- Tech debt logged: None
+- Next recommended: story-003-map-generation.md（地图生成算法，blocker 6-1 已解除）或 story-004-campaign-management.md
+
+## Session Extract — /dev-story 2026-04-16
+- Story: production/epics/map-node-system/story-002-node-navigation.md — 节点导航与粮草消耗
+- Files changed: src/core/map-system/MapNavigator.gd, tests/unit/map_system/map_navigator_test.gd
+- Test written: tests/unit/map_system/map_navigator_test.gd（15 个测试函数，覆盖 AC1~AC5）
+- Blockers: None
+- Next: /code-review src/core/map-system/MapNavigator.gd then /story-done production/epics/map-node-system/story-002-node-navigation.md
+
+## Session Extract — /story-done 2026-04-16
+- Verdict: COMPLETE WITH NOTES
+- Story: production/epics/map-node-system/story-001-map-data-structure.md — 地图数据结构与节点类型
+- Tech debt logged: None
+- Next recommended: story-002-node-navigation.md（节点导航与粮草消耗，blocker 6-1 已解除）
 - 新增: `src/core/curse-system/CurseInjectionSystem.gd`
 - 实现核心接口: `inject_curse_card()`
 - 支持所有5种注入来源和3种注入位置

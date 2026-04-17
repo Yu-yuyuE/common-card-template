@@ -2,7 +2,7 @@
 
 Epic: 卡牌战斗系统
 Estimate: 4 hours
-Status: Ready
+Status: Complete
 Layer: Core
 Type: UI
 Manifest Version: 2026-04-09

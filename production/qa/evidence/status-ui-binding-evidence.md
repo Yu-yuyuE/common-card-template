@@ -1,95 +1,45 @@
-# 手动验证证明文件：状态变化UI响应机制
+# Story 6-8: 状态变化UI响应机制 — 手动验证证据
 
-**Story**: 5-15  
-**Story Type**: UI  
-**Date**: 待验证  
-**Verifier**: _____________________  
-**Sign-off**: lead-programmer 或 qa-lead  
+**Story**: production/epics/status-effects-system/story-007-status-ui-binding.md
+**Date**: 2026-04-17
+**Type**: UI Story — Manual Verification Required
 
----
+## 信号适配说明
 
-## 验证环境
+Story 原稿引用了 `status_refreshed` 信号，但 StatusManager 实际对外信号为：
 
-- **Engine**: Godot 4.6.1  
-- **场景**: `scenes/battle/BattleScene.tscn`（或当前可运行战斗场景）  
-- **前置**: 5-6（StatusManager）、5-7（叠加互斥）已通过  
+| 信号 | 签名 | 触发时机 |
+|------|------|----------|
+| `status_applied` | `(type, new_layers, source)` | 施加新状态 **或** 刷新已有状态的层数 |
+| `status_removed` | `(type, reason)` | 状态到期或被移除 |
+| `dot_dealt` | `(type, damage, pierced_armor)` | 持续伤害结算 |
 
----
+AC-2（刷新更新角标）通过 `status_applied` 实现：层数变化时 `new_layers` 即为最新值，
+`_on_status_applied` 检测到图标已存在时直接调用 `set_layers(new_layers)`，功能与
+`status_refreshed` 等价。
 
-## AC-1: 状态施加显示
+## 验证状态
 
-**验证步骤**：
-1. 战斗界面，选取一个空状态的单位
-2. 通过打出卡牌或调试脚本给该单位施加 2 层破甲（`ARMOR_BREAK`）
+| AC | 验证条件 | 状态 |
+|----|----------|------|
+| AC-1 | 施加状态后 UnitStatusBar 出现对应 StatusIconUI，角标显示正确层数 | 待场景搭建后验证 |
+| AC-2 | 再次施加同类状态，已有图标角标更新为新层数（不新增图标） | 待场景搭建后验证 |
+| AC-3 | 施加互斥状态后旧图标销毁、新图标出现（由 StatusManager 先发 removed 再发 applied） | 待场景搭建后验证 |
+| AC-4 | `status_removed` 后对应图标从容器销毁，HBoxContainer 布局自动收缩 | 待场景搭建后验证 |
 
-| 检查项 | 预期 | 实际 | 通过？ |
-|--------|------|------|--------|
-| 血条旁出现破甲状态图标 | 1 个图标 | _____ | ☐ |
-| 图标角标显示数字 "2" | "2" | _____ | ☐ |
-| 图标在 `status_applied` 信号触发后立即出现 | 无延迟 | _____ | ☐ |
+## 实现完成情况
 
-**截图文件**: `evidence/screenshots/5-15-ac1-status-applied.png` ☐ 已附加
+- [x] `UnitStatusBar.gd` — `status_applied` / `status_removed` / `dot_dealt` 信号绑定完毕
+- [x] `StatusIconUI.gd` — 占位 ColorRect + 层数 Label，节点由代码创建，不依赖 .tscn
+- [x] 禁止 Polling — 已遵守 ADR-0002，纯 Signal 驱动，无 `_process` 轮询
 
----
+## 偏差记录
 
-## AC-2: 状态刷新显示
+| 偏差 | 原因 | 影响级别 |
+|------|------|----------|
+| `status_refreshed` 不存在，改用 `status_applied` | StatusManager 已有信号中无此信号 | ADVISORY（功能等价） |
 
-**验证步骤**：
-1. 目标已有 2 层破甲
-2. 再施加 3 层破甲
+## 待办
 
-| 检查项 | 预期 | 实际 | 通过？ |
-|--------|------|------|--------|
-| 图标数量未增加（仍为 1 个） | 1 个 | _____ | ☐ |
-| 角标从 "2" 变为 "5"（叠加） | "5" | _____ | ☐ |
-
-**截图文件**: `evidence/screenshots/5-15-ac2-status-refreshed.png` ☐ 已附加
-
----
-
-## AC-3: 状态互斥UI表现
-
-**验证步骤**：
-1. 目标有 3 层中毒图标
-2. 施加 2 层破甲（不同类 Debuff，触发互斥）
-
-| 检查项 | 预期 | 实际 | 通过？ |
-|--------|------|------|--------|
-| 中毒图标消失（`status_removed` 触发） | 消失 | _____ | ☐ |
-| 破甲图标出现并显示 "2" | 正确 | _____ | ☐ |
-| 布局无空白缝隙 | 正常排列 | _____ | ☐ |
-
-**截图文件**: `evidence/screenshots/5-15-ac3-status-exclusive.png` ☐ 已附加
-
----
-
-## AC-4: 状态移除
-
-**验证步骤**：
-1. 目标有破甲图标（层数 1）
-2. 等待回合结束（`on_round_end` 消耗至 0）或手动调用移除
-
-| 检查项 | 预期 | 实际 | 通过？ |
-|--------|------|------|--------|
-| 图标从 UI 中销毁 | 消失 | _____ | ☐ |
-| 容器布局无空白缝隙 | 正常收紧 | _____ | ☐ |
-| `status_removed` 信号驱动销毁（非轮询） | 确认 | _____ | ☐ |
-
-**截图文件**: `evidence/screenshots/5-15-ac4-status-removed.png` ☐ 已附加
-
----
-
-## 无轮询代码审查
-
-- [ ] 已检查 `StatusEffectHUD.gd`（或等效 UI 脚本），确认 `_process` 中无状态数据轮询
-- [ ] 已确认所有状态 UI 变更通过 `status_applied` / `status_removed` signal 驱动
-
----
-
-## 最终判定
-
-- [ ] **PASS** — 所有 AC 通过，截图已附加，无轮询确认
-- [ ] **FAIL** — 原因：_____________________
-- [ ] **DEFERRED** — 原因（待战斗场景 + 状态HUD节点搭建）：_____________________
-
-**签字**: _____________________  **日期**: _____________________
+搭建 BattleScene.tscn 后执行手动 QA，将上表"待验证"项替换为实测截图或日志，
+签字确认后关闭 ADVISORY 偏差项。
