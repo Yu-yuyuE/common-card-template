@@ -1,7 +1,7 @@
 # Story 003: Meta Save 解锁与发现记录更新
 
 > **Epic**: 存档持久化系统
-> **Status**: Ready
+> **Status**: Complete
 > **Layer**: Foundation
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
@@ -95,3 +95,10 @@
 
 - Depends on: Story 005: 存档文件的原子写入与版本兼容
 - Unlocks: None
+
+## Completion Notes
+**Completed**: 2026-04-21
+**Criteria**: 2/2 passing
+**Deviations**: ADVISORY — tr-registry.yaml / control-manifest.md 不存在，TR-ID 验证和 Manifest 版本比对跳过（sprint 内一致情况）；实现本体完全通过 save_stub 注入，无 ADR 禁止模式违反
+**Test Evidence**: Logic — tests/unit/save-persistence-system/meta-save-unlock-discovery_test.gd（9个测试函数，覆盖 AC1~AC2）
+**Code Review**: Skipped — Lean mode

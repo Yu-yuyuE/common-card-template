@@ -1,0 +1,208 @@
+# BattleScene.tscn
+# 战斗场景（完整 UI 结构）
+#
+# 节点结构：
+#   BattleScene (Control, BattleUI.gd)
+#   ├── Background (ColorRect)
+#   ├── EnvironmentZone (HBoxContainer) — 左上：地形天气 + 回合数
+#   │   ├── TerrainWeatherLabel (Label)
+#   │   └── RoundLabel (Label)
+#   ├── PhaseLabel (Label) — 顶部居中：当前战斗阶段
+#   ├─��� HeroZone (VBoxContainer) — 左侧中部：我方武将状态
+#   │   ├── HeroHpBar (ProgressBar)
+#   │   ├── HeroArmorLabel (Label)
+#   │   └── HeroCounterLabel (Label)
+#   ├── EnemyArea (HBoxContainer) — 中右：敌方区域（最多3名）
+#   │   ├── Enemy0Area / Enemy1Area / Enemy2Area (VBoxContainer)
+#   │   └── ...各含 NameLabel + HpBar
+#   ├── HandContainer (HBoxContainer) — 底部：手牌区
+#   └── APZone (HBoxContainer) — 左下角：行动点 + 抽/弃牌堆
+#       ├── APLabel (Label)
+#       ├── DrawPileLabel (Label)
+#       └── DiscardPileLabel (Label)
+#
+# ADR 对齐：ADR-0007（卡牌战斗系统），ADR-0001（主场景图层管理），ADR-0016（UI数据绑定）
+
+[gd_scene load_steps=2 format=3 uid="uid://battle_scene_001"]
+
+[ext_resource type="Script" path="res://src/ui/battle/BattleUI.gd" id="1_battleui"]
+
+[node name="BattleScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_battleui")
+hand_container_path = NodePath("HandContainer")
+phase_label_path = NodePath("PhaseLabel")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.15, 1)
+
+[node name="EnvironmentZone" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 420.0
+offset_top = 16.0
+offset_bottom = 52.0
+
+[node name="TerrainWeatherLabel" type="Label" parent="EnvironmentZone"]
+layout_mode = 2
+text = "⛰️-- / ☀️--"
+vertical_alignment = 1
+
+[node name="RoundLabel" type="Label" parent="EnvironmentZone"]
+layout_mode = 2
+text = "回合 1"
+vertical_alignment = 1
+
+[node name="PhaseLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 60.0
+grow_horizontal = 2
+text = "等待战斗开始..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeroZone" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 240.0
+offset_top = 120.0
+offset_bottom = 400.0
+grow_horizontal = 1
+
+[node name="HeroHpBar" type="ProgressBar" parent="HeroZone"]
+layout_mode = 2
+custom_minimum_size = Vector2(220, 24)
+max_value = 60.0
+value = 60.0
+show_percentage = true
+
+[node name="HeroArmorLabel" type="Label" parent="HeroZone"]
+layout_mode = 2
+text = "🛡️0"
+visible = false
+horizontal_alignment = 0
+
+[node name="HeroCounterLabel" type="Label" parent="HeroZone"]
+layout_mode = 2
+text = ""
+horizontal_alignment = 0
+
+[node name="EnemyArea" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -360.0
+offset_top = 100.0
+offset_right = 360.0
+offset_bottom = 320.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Enemy0Area" type="VBoxContainer" parent="EnemyArea"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 0)
+
+[node name="Enemy0NameLabel" type="Label" parent="EnemyArea/Enemy0Area"]
+layout_mode = 2
+text = "敌人 0"
+horizontal_alignment = 1
+
+[node name="Enemy0HpBar" type="ProgressBar" parent="EnemyArea/Enemy0Area"]
+layout_mode = 2
+custom_minimum_size = Vector2(180, 20)
+max_value = 100.0
+value = 100.0
+show_percentage = true
+
+[node name="Enemy1Area" type="VBoxContainer" parent="EnemyArea"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 0)
+
+[node name="Enemy1NameLabel" type="Label" parent="EnemyArea/Enemy1Area"]
+layout_mode = 2
+text = "敌人 1"
+horizontal_alignment = 1
+
+[node name="Enemy1HpBar" type="ProgressBar" parent="EnemyArea/Enemy1Area"]
+layout_mode = 2
+custom_minimum_size = Vector2(180, 20)
+max_value = 100.0
+value = 100.0
+show_percentage = true
+
+[node name="Enemy2Area" type="VBoxContainer" parent="EnemyArea"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 0)
+
+[node name="Enemy2NameLabel" type="Label" parent="EnemyArea/Enemy2Area"]
+layout_mode = 2
+text = "敌人 2"
+horizontal_alignment = 1
+
+[node name="Enemy2HpBar" type="ProgressBar" parent="EnemyArea/Enemy2Area"]
+layout_mode = 2
+custom_minimum_size = Vector2(180, 20)
+max_value = 100.0
+value = 100.0
+show_percentage = true
+
+[node name="HandContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="APZone" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_right = 240.0
+offset_top = -160.0
+offset_bottom = -4.0
+
+[node name="APLabel" type="Label" parent="APZone"]
+layout_mode = 2
+text = "AP: --"
+vertical_alignment = 1
+
+[node name="DrawPileLabel" type="Label" parent="APZone"]
+layout_mode = 2
+text = "🎴--"
+vertical_alignment = 1
+
+[node name="DiscardPileLabel" type="Label" parent="APZone"]
+layout_mode = 2
+text = "🗑️--"
+vertical_alignment = 1

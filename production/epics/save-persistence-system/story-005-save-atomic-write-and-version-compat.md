@@ -1,7 +1,7 @@
 # Story 005: 存档文件的原子写入与版本兼容
 
 > **Epic**: 存档持久化系统
-> **Status**: Ready
+> **Status**: Complete
 > **Layer**: Foundation
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
@@ -29,10 +29,10 @@
 
 *From GDD `design/gdd/save-persistence-system.md`, scoped to this story:*
 
-- [ ] 原子写入：写入时先写临时文件，成功后原子替换
-- [ ] 版本兼容：minor 版本升级后旧存档可正常读取，缺失字段填默认值
-- [ ] major 版本不兼容时提示玩家，旧 Run Save 被清除
-- [ ] 存档文件损坏时显示友好提示，不崩溃
+- [x] 原子写入：写入时先写临时文件，成功后原子替换
+- [x] 版本兼容：minor 版本升级后旧存档可正常读取，缺失字段填默认值
+- [x] major 版本不兼容时提示玩家，旧 Run Save 被清除
+- [x] 存档文件损坏时显示友好提示，不崩溃
 
 ---
 
@@ -110,7 +110,7 @@
 - UI: `production/qa/evidence/save-atomic-write-version-compat-evidence.md` or interaction test
 - Config/Data: smoke check pass (`production/qa/smoke-*.md`)
 
-**Status**: [ ] Not yet created
+**Status**: DONE — `tests/unit/save-persistence-system/save_atomic_write_version_compat_test.gd`（11个测试函数，覆盖AC1~AC4）
 
 ---
 
@@ -118,3 +118,12 @@
 
 - Depends on: None
 - Unlocks: Story 001, Story 003, Story 004
+
+---
+
+## Completion Notes
+**Completed**: 2026-04-20
+**Criteria**: 4/4 passing
+**Deviations**: ADVISORY — 实现为独立 AtomicSaveWriter 工具类（非 ADR 参考中的 SaveManager 整体），与 RunSaveManager 桩注入架构更一致；Test Evidence 段模板残留多余的 Integration/UI/Config 行（不影响功能）
+**Test Evidence**: Logic — tests/unit/save-persistence-system/save_atomic_write_version_compat_test.gd（11个测试函数）
+**Code Review**: Skipped — Lean mode

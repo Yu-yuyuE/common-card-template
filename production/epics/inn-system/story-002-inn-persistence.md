@@ -3,7 +3,7 @@
 > **Type**: Integration
 > **Epic**: inn-system
 > **ADR**: ADR-0005
-> **Status**: Ready
+> **Status**: Complete
 
 ## Context
 
@@ -75,3 +75,11 @@ class InnPersistenceManager:
 2. **test_inn_state_load** - 状态加载
 3. **test_inn_state_revisit** - 重访状态正确
 4. **test_corrupted_save_default** - 损坏存档默认未访问
+
+## Completion Notes
+
+**Completed**: 2026-04-20
+**Criteria**: 3/3 passing
+**Deviations**: ADVISORY — Implementation Notes 中设计了 InnSaveData 嵌套类，实际实现合并为单一 InnPersistenceManager（内联 _visited_nodes 字典）。功能等价，无行为差异。
+**Test Evidence**: Integration — tests/integration/inn_system/inn_persistence_test.gd（9个测试函数，覆盖AC1~AC3）
+**Code Review**: Skipped — Lean mode

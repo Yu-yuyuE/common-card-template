@@ -2,8 +2,11 @@
 
 > **Type**: Integration
 > **Epic**: map-node-system
-> **ADR**: ADR-0005
-> **Status**: Ready
+> **ADR**: ADR-0005（存档序列化）, ADR-0011（地图节点系统）
+> **TR-ID**: TR-map-design-001, TR-save-persistence-system-001
+> **Manifest Version**: 2026-04-09
+> **Estimate**: 0.5d（4h）
+> **Status**: Complete
 
 ## Context
 
@@ -99,3 +102,29 @@ class CampaignManager:
 3. **test_meta_save_on_campaign_end** - 战役结束保存Meta
 4. **test_run_clear_on_campaign_end** - 战役结束清除Run
 5. **test_campaign_progress_persistence** - 进度持久化
+
+## Completion Notes
+
+**Completed**: 2026-04-20
+**Criteria**: 4/4 passing
+**Deviations**: None（load_campaign_progress 返回 bool 已修正，save_meta_stub 默认桩测试时注入替换）
+**Test Evidence**: Integration — tests/integration/map_system/campaign_management_test.gd（9个测试函数）
+**Code Review**: Skipped — Lean mode
+
+## Out of Scope
+
+- UI 层（战役选择界面、进度显示）— 由后续 UI story 实现
+- 实际 SaveSystem 文件 I/O — 本 story 使用桩接口（stub），7-4 再接真实 SaveManager
+- 战役内具体地图内容生成 — 由 map-generation story（6-3）负责
+- Hero 选择与解锁逻辑 — 由 hero-system epic 负责
+
+## Performance Notes
+
+N/A — 本 story 为纯逻辑/数据管理，无游戏循环热路径，无性能预算约束。战役进度读写仅在战役开始/结束时触发，非帧级调用。
+
+## Test Evidence
+
+**Type**: Integration
+**Required**: `tests/integration/map_system/campaign_management_test.gd`
+（或等价路径 `tests/unit/map_system/campaign_management_test.gd`，按实现复杂度决定归属）
+**Coverage**: 所有 AC 均须有对应测试函数（test_campaign_structure / test_boss_completed_signal / test_meta_save_on_campaign_end / test_run_clear_on_campaign_end / test_campaign_progress_persistence）

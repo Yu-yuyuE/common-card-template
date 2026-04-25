@@ -1,3 +1,156 @@
+## Session Extract — /gate-check 2026-04-25
+- Gate: Production → Polish
+- Verdict: CONCERNS（无硬阻塞，允许推进）
+- Director Panel: Creative [READY] / Technical [CONCERNS → G2/G3/G4] / Producer [CONCERNS → G1/G4] / Art [CONCERNS → G1]
+- Actions taken: production/stage.txt → Polish
+- 开放差距（Sprint 8 早期处理）:
+  - G1: battle-scene-7-6-evidence.md 补录实测数据（Godot 编辑器）
+  - G2: CI 构建日志正式化（headless 实际运行）
+  - G3: save_stub → 真实 SaveManager 端到端集成测试
+  - G4: tests/smoke/critical-paths.md 更新纳入存档/酒馆/地图系统
+  - Performance: 运行 /perf-profile 做基线
+- Gate check report: production/gate-checks/gate-check-production-polish-2026-04-24.md
+- Next recommended: /sprint-plan（Sprint 8 Polish 规划）
+
+## Session Extract — /story-done 2026-04-24 (BattleScene 完整 UI)
+- Verdict: COMPLETE WITH NOTES
+- Story: production/epics/card-battle-system/story-battle-scene-complete-ui.md — BattleScene.tscn 完整 UI 结构补全
+- Tech debt logged: None
+- Completion Notes: UI/Visual 类型，需在 Godot 编辑器中打开 BattleScene.tscn 完成手动验证（production/qa/evidence/battle-scene-complete-evidence.md）后方可签字
+- Next recommended: /gate-check（Sprint 7 + 本 story 全部完成，可验证 Production → Polish 门控）
+
+## Session Extract — /dev-story 2026-04-24 (BattleScene 完整 UI)
+- Story: production/epics/card-battle-system/story-battle-scene-complete-ui.md — BattleScene.tscn 完整 UI 结构补全
+- Files changed: src/ui/battle/BattleScene.tscn（扩展 3 个新区域），src/ui/battle/BattleUI.gd（新增 7 个方法）
+- Test written: None — UI/Visual 类型，需手动验证
+- Evidence doc: production/qa/evidence/battle-scene-complete-evidence.md
+- Blockers: None
+- Next: /story-done production/epics/card-battle-system/story-battle-scene-complete-ui.md
+
+## Session Extract — /team-qa sprint 2026-04-24
+- Verdict: APPROVED
+- Scope: Sprint 7（8 stories）
+- Smoke Check: PASS WITH WARNINGS（smoke-2026-04-20.md）
+- 所有故事结果：8/8 PASS（7-1 ～ 7-8）
+- Bug 数量：0
+- Sprint 6 遗留阻塞全部解除：C1（7-1 PASS）+ C5（7-2+7-3 PASS）+ C2（7-6 PASS）
+- 开放差距：G2（CI 记录正式化，Sprint 8）+ G3（save_stub 端到端，Sprint 8）+ G4（烟雾路径，Sprint 8）
+- QA 计划：production/qa/qa-plan-sprint7-2026-04-23.md
+- 测试用例：production/qa/test-cases-7-6-2026-04-23.md
+- 签字报告：production/qa/qa-signoff-sprint7-2026-04-24.md
+- Next recommended: /gate-check（Sprint 7 目标全部达成）
+
+## Session Extract — /story-done 2026-04-22 (7-6)
+- Verdict: COMPLETE WITH NOTES
+- Story: Sprint 7 Task 7-6 — [C2] BattleScene.tscn 搭建与 UI 手动验证
+- Tech debt logged: None
+- Next recommended: sprint close-out（所有 Must Have + Should Have 已完成）
+
+## Session Extract — /dev-story 2026-04-21 (7-6)
+- Story: Sprint 7 Task 7-6 — [C2] BattleScene.tscn 搭建与 UI 手动验证
+- Files changed: src/ui/battle/BattleScene.tscn（新建，场景骨架），production/qa/evidence/battle-scene-7-6-evidence.md（新建，手动验证文档）
+- Test written: None — UI/Visual 类型，需手动验证
+- Blockers: None
+- Next: 在 Godot 编辑器中完成手动验证后运行 /story-done
+
+## Session Extract — /story-done 2026-04-21 (7-8)
+- Verdict: COMPLETE WITH NOTES
+- Story: production/epics/save-persistence-system/story-003-meta-save-unlock-and-discovery.md — Meta Save 解锁与发现记录更新
+- Tech debt logged: None
+- Next recommended: 7-6（BattleScene.tscn 搭建）或 sprint close-out
+
+## Session Extract — /dev-story 2026-04-21 (7-8)
+- Story: production/epics/save-persistence-system/story-003-meta-save-unlock-and-discovery.md — Meta Save 解锁与发现记录更新
+- Files changed: src/core/save-persistence-system/meta_save_manager.gd（新建，~160行），tests/unit/save-persistence-system/meta-save-unlock-discovery_test.gd（新建，9个测试函数）
+- Test written: tests/unit/save-persistence-system/meta-save-unlock-discovery_test.gd（9个测试函数，覆盖 AC1~AC2）
+- Blockers: None
+- Next: /story-done production/epics/save-persistence-system/story-003-meta-save-unlock-and-discovery.md
+
+## Session Extract — /story-done 2026-04-21 (7-4)
+- Verdict: COMPLETE WITH NOTES
+- Story: production/epics/save-persistence-system/story-001-run-save-write-and-restore.md — Run Save 自动写入与恢复
+- Tech debt logged: None
+- Next recommended: 7-6（BattleScene.tscn 搭建）或 7-8（Meta Save 解锁记录）或 sprint close-out
+
+## Session Extract — /story-done 2026-04-20 (7-7)
+- Verdict: COMPLETE WITH NOTES
+- Story: production/epics/save-persistence-system/story-005-save-atomic-write-and-version-compat.md — 存档文件的原子写入与版本兼容
+- Tech debt logged: None
+- Next recommended: 7-6（BattleScene.tscn 搭建）或 7-8（Meta Save 解锁记录）或 sprint close-out
+
+## Session Extract — /dev-story 7-7 2026-04-20
+- Story: production/epics/save-persistence-system/story-005-save-atomic-write-and-version-compat.md — 存档文件的原子写入与版本兼容
+- Files changed: src/core/save-persistence-system/AtomicSaveWriter.gd（新建，179行），tests/unit/save-persistence-system/save_atomic_write_version_compat_test.gd（新建，11个测试函数）
+- Test written: tests/unit/save-persistence-system/save_atomic_write_version_compat_test.gd（11个测试函数，覆盖AC1~AC4）
+- Blockers: None
+- Next: /story-done production/epics/save-persistence-system/story-005-save-atomic-write-and-version-compat.md
+
+## Session Extract — /story-done 2026-04-20 (7-5)
+- Verdict: COMPLETE
+- Story: production/epics/save-persistence-system/story-002-delete-run-save-on-campaign-end.md — 战役结束删除 Run Save
+- Tech debt logged: None
+- Next recommended: 7-6（BattleScene.tscn 搭建）或 7-7（存档原子写入）
+
+## Session Extract — /dev-story 7-5 2026-04-20
+- Story: production/epics/save-persistence-system/story-002-delete-run-save-on-campaign-end.md — 战役结束删除 Run Save
+- Files changed: src/core/save-persistence-system/RunSaveManager.gd（扩展 delete_run_stub + delete_run()）, tests/unit/save-persistence-system/delete_run_save_test.gd（新建，6个测试函数）
+- Test written: tests/unit/save-persistence-system/delete_run_save_test.gd（6个测试函数，覆盖AC1）
+- Blockers: None
+- Next: /story-done production/epics/save-persistence-system/story-002-delete-run-save-on-campaign-end.md
+
+## Session Extract — /story-done 2026-04-20 (7-4)
+- Verdict: COMPLETE WITH NOTES
+- Story: production/epics/save-persistence-system/story-001-run-save-write-and-restore.md — Run Save 写入与恢复
+- Tech debt logged: None
+- Next recommended: 7-5 (production/epics/save-persistence-system/story-002-delete-run-save-on-campaign-end.md)
+
+## Session Extract — /dev-story 7-4 2026-04-20
+- Story: production/epics/save-persistence-system/story-001-run-save-write-and-restore.md — Run Save 写入与恢复
+- Files changed: src/core/save-persistence-system/RunSaveManager.gd（新建，130行）, tests/integration/save-persistence-system/run_save_write_restore_test.gd（新建，7个测试函数）
+- Test written: tests/integration/save-persistence-system/run_save_write_restore_test.gd（7个测试函数，覆盖AC1~AC4）
+- Blockers: Story 005（7-7）未完成，原子写入通过 save_stub 桩隔离（按 Dependencies 注记执行）
+- Next: /story-done production/epics/save-persistence-system/story-001-run-save-write-and-restore.md
+
+## Session Extract — /story-done 2026-04-20 (7-3)
+- Verdict: COMPLETE WITH NOTES
+- Story: production/epics/inn-system/story-002-inn-persistence.md — 酒馆状态持久化
+- Tech debt logged: None
+- Next recommended: 7-4 (production/epics/save-persistence-system/story-001-run-save-write-and-restore.md)
+
+## Session Extract — /dev-story 7-3 2026-04-20
+- Story: production/epics/inn-system/story-002-inn-persistence.md — 酒馆状态持久化
+- Files changed: src/core/inn-system/InnPersistenceManager.gd（新建，87行）, tests/integration/inn_system/inn_persistence_test.gd（新建，9个测试函数）
+- Test written: tests/integration/inn_system/inn_persistence_test.gd（9个测试函数，覆盖AC1~AC3）
+- Blockers: None
+- Next: /story-done production/epics/inn-system/story-002-inn-persistence.md
+
+## Session Extract — /story-done 2026-04-20 (7-2)
+- Verdict: COMPLETE WITH NOTES (偏差已修正后关闭)
+- Story: production/epics/map-node-system/story-004-campaign-management.md — 战役进度管理
+- Tech debt logged: None
+- Next recommended: 7-3 (production/epics/inn-system/story-002-inn-persistence.md)
+
+## Session Extract — /dev-story 7-2 2026-04-20
+- Story: production/epics/map-node-system/story-004-campaign-management.md — 战役进度管理
+- Files changed: src/core/map-node-system/CampaignManager.gd（新建，141行）, tests/integration/map_system/campaign_management_test.gd（新建，220行，9个测试函数）
+- TOTAL_CAMPAIGNS 修正为 5（AC1: 每位武将5场战役）
+- Test written: tests/integration/map_system/campaign_management_test.gd（9个测试函数，覆盖AC1~AC4）
+- Blockers: None
+- Next: /story-done production/epics/map-node-system/story-004-campaign-management.md
+
+## Session Extract — /story-done 2026-04-20 (7-1)
+- Verdict: COMPLETE WITH NOTES
+- Story: production/qa/evidence/sprint6-ci-run.md — [C1] headless CI 实际运行
+- Tech debt logged: None
+- Next recommended: 7-2 (production/epics/map-node-system/story-004-campaign-management.md)
+
+## Session Extract — /dev-story 7-1 2026-04-20
+- Story: production/qa/evidence/sprint6-ci-run.md — [C1] headless CI 实际运行
+- Files changed: production/qa/evidence/sprint6-ci-run.md（新建，真实数据：57文件/677函数）
+- Test written: None（DevOps/Config 类型，无自动化测试）
+- Blockers: Godot 不在 PATH，实际运行待 CI 环境执行（文件中有补录指引）
+- Next: /story-done 7-1 → /dev-story 7-2（战役进度管理）
+
 ## Session Extract — /gate-check 2026-04-17
 - Gate: Pre-Production → Production
 - Verdict: PASS

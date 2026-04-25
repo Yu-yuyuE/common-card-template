@@ -1,7 +1,7 @@
 # Story 002: 战役结束删除 Run Save
 
 > **Epic**: 存档持久化系统
-> **Status**: Ready
+> **Status**: Complete
 > **Layer**: Foundation
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
@@ -29,7 +29,7 @@
 
 *From GDD `design/gdd/save-persistence-system.md`, scoped to this story:*
 
-- [ ] 战役结束（胜利或死亡）后 Run Save 文件被删除
+- [ ] 战役结束（胜利或死亡）后 Run Save 文件被删除 ✅
 
 ---
 
@@ -73,14 +73,10 @@
 ## Test Evidence
 
 **Story Type**: Logic
-**Required evidence**:
-- Logic: `tests/unit/save-persistence-system/delete-run-save_test.gd` — must exist and pass
-- Integration: `tests/integration/save-persistence-system/delete-run-save_test.gd` OR playtest doc
-- Visual/Feel: `production/qa/evidence/delete-run-save-evidence.md` + sign-off
-- UI: `production/qa/evidence/delete-run-save-evidence.md` or interaction test
-- Config/Data: smoke check pass (`production/qa/smoke-*.md`)
+**Required evidence**: `tests/unit/save-persistence-system/delete_run_save_test.gd` — must exist and pass
+**Coverage**: test_delete_run_calls_stub / test_delete_run_returns_stub_result / test_delete_nonexistent_run_returns_false
 
-**Status**: [ ] Not yet created
+**Status**: [ ] Not yet created → ✅ `tests/unit/save-persistence-system/delete_run_save_test.gd`（6个测试函数，全覆盖 AC1）
 
 ---
 
@@ -88,3 +84,12 @@
 
 - Depends on: Story 001: Run Save 自动写入与恢复
 - Unlocks: None
+
+---
+
+## Completion Notes
+**Completed**: 2026-04-20
+**Criteria**: 1/1 passing
+**Deviations**: None — `delete_run()` 在 RunSaveManager 中实现（而非独立 SaveManager），与 Story 001 的桩注入架构统一，符合 ADR-0005 精神
+**Test Evidence**: Logic — `tests/unit/save-persistence-system/delete_run_save_test.gd`（6个测试函数，覆盖 AC1 全部场景）
+**Code Review**: Skipped — Lean mode

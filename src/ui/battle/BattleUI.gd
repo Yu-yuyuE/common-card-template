@@ -4,9 +4,12 @@
 ## - 相位提示标签刷新
 ## - 手牌区 CardUI 节点的实例化与销毁
 ## - 敌人血条（ProgressBar）的数值更新
+## - 我方武将状态（HP、护盾、专属计数器）
+## - 行动点与抽/弃牌堆数量显示
+## - 全局环境（地形天气、回合数）
 ##
 ## 遵守 ADR-0007：禁止在 _process 中轮询战斗状态，
-## 所有状态变更均由信号回调驱动。
+## 所有状态变更均由信号回调驱动（ADR-0016 Signal驱动绑定）。
 class_name BattleUI extends Control
 
 ## 绑定的 BattleManager 实例（由外部在 _ready 后赋值，勿直接修改）
@@ -89,7 +92,7 @@ func _on_damage_dealt(target_id: String, amount: int) -> void:
 		bar.value = max(bar.value - amount, 0)
 
 # ---------------------------------------------------------------------------
-# 公开接口
+# 公开接口（现有）
 # ---------------------------------------------------------------------------
 
 ## 刷新手牌显示。
@@ -111,6 +114,85 @@ func refresh_hand(card_ids: Array[String], current_ap: int) -> void:
 ## 应在战斗开始、敌人节点创建完毕后由外部调用。
 func register_enemy_hp_bar(enemy_id: String, hp_bar: ProgressBar) -> void:
 	_enemy_hp_bars[enemy_id] = hp_bar
+
+# ---------------------------------------------------------------------------
+# 公开接口（新增 — 我方武将状态区）
+# ---------------------------------------------------------------------------
+
+## 更新我方武将 HP 血条。
+## current: 当前 HP 值；max_val: HP 上限
+func update_hero_hp(current: int, max_val: int) -> void:
+	var bar := get_node_or_null("HeroZone/HeroHpBar") as ProgressBar
+	if bar == null:
+		return
+	bar.max_value = float(max_val)
+	bar.value = float(clamp(current, 0, max_val))
+
+## 更新我方武将护盾数值。
+## armor <= 0 时隐藏标签；armor > 0 时显示 "🛡️{armor}"。
+func update_hero_armor(armor: int) -> void:
+	var label := get_node_or_null("HeroZone/HeroArmorLabel") as Label
+	if label == null:
+		return
+	if armor <= 0:
+		label.visible = false
+	else:
+		label.text = "🛡️%d" % armor
+		label.visible = true
+
+## 更新我方武将专属计数器文本（如"隐忍x3"）。
+## text 为空字符串时隐藏标签。
+func update_hero_counter(text: String) -> void:
+	var label := get_node_or_null("HeroZone/HeroCounterLabel") as Label
+	if label == null:
+		return
+	label.text = text
+
+# ---------------------------------------------------------------------------
+# 公开接口（新增 — 费用与战局资源区）
+# ---------------------------------------------------------------------------
+
+## 更新行动点（AP）显示，并同步刷新手牌灰显状态。
+## current: 当前 AP；max_val: AP 上限
+func update_ap(current: int, max_val: int) -> void:
+	_current_ap = current
+	var label := get_node_or_null("APZone/APLabel") as Label
+	if label != null:
+		label.text = "AP: %d/%d" % [current, max_val]
+	# 同步刷新所有手牌灰显
+	for node in _card_uis:
+		if is_instance_valid(node) and node is CardUI:
+			(node as CardUI).setup(node.card_id, _current_ap)
+
+## 更新抽牌堆与弃牌堆数量显示。
+## draw: 抽牌堆剩余数量；discard: 弃牌堆数量
+func update_pile_counts(draw: int, discard: int) -> void:
+	var draw_label := get_node_or_null("APZone/DrawPileLabel") as Label
+	if draw_label != null:
+		draw_label.text = "🎴%d" % draw
+	var discard_label := get_node_or_null("APZone/DiscardPileLabel") as Label
+	if discard_label != null:
+		discard_label.text = "🗑️%d" % discard
+
+# ---------------------------------------------------------------------------
+# 公开接口（新增 — 全局环境区）
+# ---------------------------------------------------------------------------
+
+## 更新地形天气显示标签。
+## terrain: 地形名称（如"山地"）；weather: 天气名称（如"晴天"）
+func update_terrain_weather(terrain: String, weather: String) -> void:
+	var label := get_node_or_null("EnvironmentZone/TerrainWeatherLabel") as Label
+	if label == null:
+		return
+	label.text = "%s / %s" % [terrain, weather]
+
+## 更新回合计数器显示。
+## round_num: 当前回合数（从 1 开始）
+func update_round(round_num: int) -> void:
+	var label := get_node_or_null("EnvironmentZone/RoundLabel") as Label
+	if label == null:
+		return
+	label.text = "回合 %d" % round_num
 
 # ---------------------------------------------------------------------------
 # 内部工具（私有）

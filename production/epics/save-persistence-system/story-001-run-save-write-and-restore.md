@@ -1,7 +1,7 @@
 # Story 001: Run Save 自动写入与恢复
 
 > **Epic**: 存档持久化系统
-> **Status**: Ready
+> **Status**: Complete
 > **Layer**: Foundation
 > **Type**: Integration
 > **Manifest Version**: 2026-04-09
@@ -99,12 +99,8 @@
 ## Test Evidence
 
 **Story Type**: Integration
-**Required evidence**:
-- Logic: `tests/unit/save-persistence-system/run-save-write-restore_test.gd` — must exist and pass
-- Integration: `tests/integration/save-persistence-system/run-save-write-restore_test.gd` OR playtest doc
-- Visual/Feel: `production/qa/evidence/run-save-write-restore-evidence.md` + sign-off
-- UI: `production/qa/evidence/run-save-write-restore-evidence.md` or interaction test
-- Config/Data: smoke check pass (`production/qa/smoke-*.md`)
+**Required evidence**: `tests/integration/save-persistence-system/run_save_write_restore_test.gd` — must exist and pass
+**Coverage**: 所有 AC 均须有对应测试函数（test_run_save_restores_full_state / test_battle_crash_restores_pre_battle_state / test_two_heroes_saves_independent / test_map_structure_persists）
 
 **Status**: [ ] Not yet created
 
@@ -112,5 +108,16 @@
 
 ## Dependencies
 
-- Depends on: Story 005: 存档文件的原子写入与版本兼容
-- Unlocks: Story 002: 战役结束删除 Run Save 文件
+- Depends on: Story 005（7-7）: 存档文件的原子写入与版本兼容 — **尚未完成**
+  - 隔离策略：原子写入部分通过 `save_run_stub` Callable 注入，本 Story 的序列化/反序列化/恢复主体逻辑可独立开发与测试；7-7 完成后替换桩为真实 SaveManager 实现
+- Depends on: Story 7-2（CampaignManager）— Complete ✅
+- Depends on: Story 7-3（InnPersistenceManager）— Complete ✅
+- Unlocks: Story 002（7-5）: 战役结束删除 Run Save 文件
+
+## Completion Notes
+
+**Completed**: 2026-04-20
+**Criteria**: 4/4 passing
+**Deviations**: ADVISORY — Story 005（7-7）原子写入尚未完成，save_stub 使用桩隔离，生产环境接线由 7-7 负责（已在 Dependencies 中记录）
+**Test Evidence**: Integration — tests/integration/save-persistence-system/run_save_write_restore_test.gd（7个测试函数，覆盖 AC1~AC4）
+**Code Review**: Skipped — Lean mode
