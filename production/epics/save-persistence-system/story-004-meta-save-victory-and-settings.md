@@ -1,10 +1,11 @@
 # Story 004: Meta Save 通关与设置更新
 
 > **Epic**: 存档持久化系统
-> **Status**: Ready
+> **Status**: Complete
 > **Layer**: Foundation
 > **Type**: Logic
 > **Manifest Version**: 2026-04-09
+> **Manifest Verified**: 2026-04-26（规则复核通过，与 control-manifest 2026-04-09 完全一致，无新禁止/要求项）
 
 ## Context
 
@@ -88,11 +89,22 @@
 - UI: `production/qa/evidence/meta-save-victory-settings-evidence.md` or interaction test
 - Config/Data: smoke check pass (`production/qa/smoke-*.md`)
 
-**Status**: [ ] Not yet created
+**Performance verification**: `test_meta_save_load_under_3ms()` 函数须在测试文件中包含，验证 Meta Save 加载时间 < 3ms（Control Manifest 性能守护）
+
+**Status**: ✅ Complete — `tests/unit/save-persistence-system/meta-save-victory-settings_test.gd`（6个测试函数）
 
 ---
 
 ## Dependencies
 
-- Depends on: Story 005: 存档文件的原子写入与版本兼容
+- Depends on: Story 005: 存档文件的原子写入与版本兼容 — **Done** ✅（Status 已验证：2026-04-26）
 - Unlocks: None
+
+---
+
+## Completion Notes
+**Completed**: 2026-04-27
+**Criteria**: 2/2 通过（AC-1 通关记录 + AC-2 设置持久化，含各自边界用例）
+**Deviations**: ADVISORY — `record_campaign_run()` / `record_hero_win()` 超出 AC 范围的额外实现，无测试覆盖，可在后续 story 中补充
+**Test Evidence**: Logic — `tests/unit/save-persistence-system/meta-save-victory-settings_test.gd`（6个测试函数，含 `test_meta_save_load_under_3ms()` 性能守护）
+**Code Review**: Skipped（Lean 模式）

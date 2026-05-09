@@ -358,6 +358,36 @@ func get_shield_multiplier() -> float:
 		return 0.5
 	return 1.0
 
+
+## 计算流血状态修正后的实际治疗量（Story 8-7 / AC-1）。
+## 修正因子：流血(BLEEDING) × 0.5，向下取整。
+## 无状态时返回原值。
+##
+## 参数：
+##   base_heal — 基础治疗量（正整数）
+## 返回：修正后的治疗量（向下取整）
+##
+## 示例：
+##   sm.apply(StatusEffect.Type.BLEEDING, 1)
+##   sm.calculate_heal_modifier(10)  # → 5
+func calculate_heal_modifier(base_heal: int) -> int:
+	return int(float(base_heal) * get_healing_multiplier())
+
+
+## 计算生锈状态修正后的实际护盾量（Story 8-7 / AC-2）。
+## 修正因子：生锈(RUSTY) × 0.5，向下取整。
+## 无状态时返回原值。
+##
+## 参数：
+##   base_shield — 基础护盾量（正整数）
+## 返回：修正后的护盾量（向下取整）
+##
+## 示例：
+##   sm.apply(StatusEffect.Type.RUSTY, 1)
+##   sm.calculate_shield_modifier(10)  # → 5
+func calculate_shield_modifier(base_shield: int) -> int:
+	return int(float(base_shield) * get_shield_multiplier())
+
 # ---------------------------------------------------------------------------
 # 伤害修正计算（Story 5-11：供战斗结算调用的高层接口）
 # ---------------------------------------------------------------------------

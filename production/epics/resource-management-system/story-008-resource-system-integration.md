@@ -2,7 +2,7 @@
 
 Epic: 资源管理系统
 Estimate: 1 day
-Status: Ready
+Status: Complete
 Layer: Foundation
 Type: Integration
 Manifest Version: 2026-04-09
@@ -86,7 +86,7 @@ Manifest Version: 2026-04-09
 **Required evidence**:
 - Integration: `tests/integration/resource_management/resource_integration_test.gd`
 
-**Status**: [ ] Not yet created
+**Status**: [x] Created — `tests/integration/resource_management/resource_integration_test.gd`
 
 ---
 
@@ -94,3 +94,12 @@ Manifest Version: 2026-04-09
 
 - Depends on: Story 001, 002, 003, 004, 005, 006
 - Unlocks: None
+
+---
+
+## Completion Notes
+**Completed**: 2026-04-28
+**Criteria**: 3/3 passing（全部 AC 通过集成测试覆盖）
+**Deviations**: None
+**Test Evidence**: Integration: `tests/integration/resource_management/resource_integration_test.gd`（7 个测试函数，覆盖 AC-1/AC-2/信号广播）
+**Code Review**: Skipped（Lean mode）

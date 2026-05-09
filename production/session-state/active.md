@@ -1,3 +1,134 @@
+## Session Extract — /sprint-plan 2026-04-30 (Sprint 9)
+- Sprint: 9（Polish 阶段第 2 Sprint）
+- Goal: 解决 Polish → Release gate check 的 5 个阻塞项，建立发布准备度基线
+- Must Have (5): 9-1(Localization外部化) / 9-2(性能基线) / 9-3(Accessibility定义) / 9-4(CI Headless验证) / 9-5(Release Checklist)
+- Should Have (3): 9-6(Difficulty Curve) / 9-7(AP离散图标) / 9-8(G1证明文件)
+- Nice to Have (2): 9-9(Changelog) / 9-10(Playtest#4)
+- Files: production/sprints/sprint-9.md（新建）, production/sprint-status.yaml（更新）
+- QA Plan: 未创建 — 需在实施前运行 /qa-plan sprint
+- Next recommended: /qa-plan sprint → /story-readiness 9-1 → /dev-story 9-1
+
+## Session Extract — /gate-check 2026-04-30
+- Gate: Polish → Release
+- Verdict: FAIL（5 个 Blocker 未解决）
+- Director Panel: Creative [CONCERNS] / Technical [CONCERNS] / Producer [CONCERNS] / Art [CONCERNS]
+- Blockers: (1) Localization 未外部化 (2) 性能基线缺失 (3) Release checklist 未完成 (4) Accessibility 未定义 (5) CI headless 未验证
+- Gate report: production/gate-checks/gate-check-polish-release-2026-04-30.md
+- Next recommended: Sprint 9 规划（解决 5 个阻塞项）→ 重新 /gate-check
+
+## Session Extract — /team-qa sprint 2026-04-30
+- Verdict: APPROVED WITH CONDITIONS
+- Scope: Sprint 8（9 stories）
+- Smoke Check: PASS WITH WARNINGS
+- QA Sign-off: production/qa/qa-signoff-sprint8-2026-04-30.md
+- Bug: 0
+- Next recommended: /gate-check
+
+## Session Extract — /smoke-check sprint 2026-04-29
+- Verdict: PASS WITH WARNINGS
+- Report: production/qa/smoke-2026-04-29.md
+- Notes: 自动化 NOT RUN in-session；性能未检查
+
+## Session Extract — /story-done 2026-04-28 (8-7)
+- Verdict: COMPLETE WITH NOTES
+- Story: production/epics/status-effects-system/story-008-heal-shield-modifier.md — heal-shield 修正器
+- Tech debt logged: None（ADVISORY: Story 文档写 RUST，枚举为 RUSTY，已按代码实现）
+- Next recommended: Sprint 8 全部 Should Have 完成 → /smoke-check sprint → /team-qa sprint → /gate-check
+
+## Session Extract — /story-done 2026-04-28 (8-6)
+- Verdict: COMPLETE
+- Story: production/epics/resource-management-system/story-008-resource-system-integration.md — 资源系统集成测试
+- Tech debt logged: None
+- Next recommended: 8-7 heal-shield 修正器（最后一个 Should Have）
+
+## Session Extract — /story-done 2026-04-28 (8-5)
+- Verdict: COMPLETE WITH NOTES
+- Story: production/epics/resource-management-system/story-007-resource-ui-binding.md — 资源管理 UI 绑定
+- Tech debt logged: None（ADVISORY: AC-3 离散图标延期，需场景层补齐）
+- Next recommended: 8-6 资源系统集成测试（depends on 8-5，现在解锁）
+
+## Session Extract — /dev-story 2026-04-28 (8-5)
+- Story: production/epics/resource-management-system/story-007-resource-ui-binding.md — 资源管理 UI 绑定
+- Files changed: src/ui/ResourceHUD.gd（扩展：AC-2护盾蓝色/AC-4粮草变色/AC-5HP归零信号），production/qa/evidence/resource-ui-binding-evidence.md（新建）
+- Test written: None — UI 类型，手动证明文件代替
+- Blockers: None（AC-3 离散图标DEFERRED）
+- Next: /dev-story production/epics/resource-management-system/story-008-resource-system-integration.md（8-6）
+
+
+- Verdict: COMPLETE WITH NOTES
+- Story: production/epics/save-persistence-system/story-001-run-save-write-and-restore.md — G3: SaveManager 端到端集成
+- Tech debt logged: None（原 Advisory 实质已消除：save_manager_e2e_test.gd 补录了真实接线证明）
+- Next recommended: Sprint 8 全部 Must Have 完成 → /smoke-check sprint → /team-qa sprint
+
+## Session Extract — /dev-story 2026-04-28 (8-2)
+- Story: production/epics/save-persistence-system/story-001-run-save-write-and-restore.md — G3: SaveManager 端到端集成
+- Files changed: tests/integration/save-persistence-system/save_manager_e2e_test.gd（新建，7个测试函数）
+- Test written: tests/integration/save-persistence-system/save_manager_e2e_test.gd（7个测试函数，AC1-AC7，真实 AtomicSaveWriter 接线）
+- Blockers: None
+- Next: /story-done production/epics/save-persistence-system/story-001-run-save-write-and-restore.md（8-2 关闭用）
+
+## Session Extract — /story-done 2026-04-27 (8-3)
+- Verdict: COMPLETE WITH NOTES
+- Story: tests/smoke/critical-paths.md — G4: Smoke 关键路径更新（含 7-9 酒馆路径修正）
+- Tech debt logged: None（ADVISORY: 性能路径 21-23 须在 CI/profiler 下执行，属 8-9 范围）
+- Next recommended: 8-2 G3 SaveManager 端到端集成（must-have，唯一未完成 must-have）
+
+## Session Extract — /dev-story 2026-04-27 (8-3)
+- Story: tests/smoke/critical-paths.md — G4: Smoke 关键路径更新
+- Files changed: tests/smoke/critical-paths.md（重写，用真实系统内容替换占位符，新增路径 4-23，覆盖存档/酒馆/地图/Meta Save）
+- Test written: None — Config/Data 类型
+- Blockers: None
+- Next: /story-done tests/smoke/critical-paths.md
+
+## Session Extract — /story-done 2026-04-27 (8-1)
+- Verdict: COMPLETE WITH NOTES
+- Story: production/qa/evidence/sprint8-ci-run.md — G2: CI 构建日志正式化
+- Tech debt logged: None（ADVISORY: 实际 headless 运行待 CI 环境补录）
+- Next recommended: 8-2 G3 SaveManager 端到端集成，或 8-3 G4 Smoke 关键路径（8-1 完成后解锁）
+
+## Session Extract — /dev-story 2026-04-27 (8-1)
+- Story: production/qa/evidence/sprint8-ci-run.md — G2: CI 构建日志正式化
+- Files changed: production/qa/evidence/sprint8-ci-run.md（新建，64文件/734函数真实计数，含 CI 运行指南）
+- Test written: None — Config/DevOps 类型，无自动化测试
+- Blockers: Godot 不在 PATH，实际运行待 CI 环境执行（文件中有补录指引）
+- Next: /story-done production/qa/evidence/sprint8-ci-run.md
+
+## Session Extract — /story-done 2026-04-27 (8-4)
+- Verdict: COMPLETE WITH NOTES
+- Story: production/epics/save-persistence-system/story-004-meta-save-victory-and-settings.md — Meta Save 通关与设置更新
+- Tech debt logged: None（ADVISORY: record_campaign_run/record_hero_win 无专项测试，可后续补充）
+- Next recommended: Sprint 8 Must Have 全部完成，可运行 /smoke-check sprint → /team-qa sprint
+
+## Session Extract — /dev-story 2026-04-26 (8-4)
+- Story: production/epics/save-persistence-system/story-004-meta-save-victory-and-settings.md — Meta Save 通关与设置更新
+- Files changed:
+  - src/core/save-persistence-system/meta_save_manager.gd（扩展：新增 record_campaign_victory / record_campaign_run / record_hero_win / update_setting / _ensure_hero_record，添加 VALID_SETTING_KEYS 常量）
+  - tests/unit/save-persistence-system/meta-save-victory-settings_test.gd（新建，6个测试函数，覆盖 AC-1/AC-2 及原子性/性能守护）
+- Test written: tests/unit/save-persistence-system/meta-save-victory-settings_test.gd（6个测试函数）
+- Blockers: None
+- Next: /story-done production/epics/save-persistence-system/story-004-meta-save-victory-and-settings.md
+
+## Session Extract — /qa-plan sprint 2026-04-25 (Sprint 8)
+- QA Plan: production/qa/qa-plan-sprint8-2026-04-25.md
+- Scope: 9 stories（8-1～8-9）
+- 自动化测试文件（需创建）:
+  - tests/integration/save-persistence-system/save_manager_e2e_test.gd（8-2，~7函数）
+  - tests/unit/save-persistence-system/meta-save-victory-settings_test.gd（8-4，~6函数）
+  - tests/integration/resource_management/resource_integration_test.gd（8-6，~6函数）
+  - tests/unit/status_system/status_heal_shield_modifier_test.gd（8-7，~7函数）
+- 手动验证证明文件（需创建）: sprint8-ci-run.md / resource-ui-binding-evidence.md / battle-scene-7-6-evidence.md / baseline-sprint8.md
+- Next recommended: /story-readiness 8-1 → /dev-story 8-1
+
+## Session Extract — /sprint-plan 2026-04-25 (Sprint 8)
+- Sprint: 8（Polish 阶段第 1 Sprint）
+- Goal: 端到端整合 + 补齐 G1-G4 + 建立质量基线
+- Must Have (4): 8-1(G2 CI日志) / 8-2(G3 SaveManager端到端) / 8-3(G4 关键路径) / 8-4(Meta Save 胜利)
+- Should Have (3): 8-5(资源UI绑定) / 8-6(资源集成测试) / 8-7(heal-shield修正器)
+- Nice to Have (2): 8-8(G1 证明文件) / 8-9(性能基线)
+- Files: production/sprints/sprint-8.md（新建）, production/sprint-status.yaml（更新）
+- QA Plan: 未创建 — 需在实施前运行 /qa-plan sprint
+- Next recommended: /qa-plan sprint → /story-readiness 8-1 → /dev-story 8-1
+
 ## Session Extract — /gate-check 2026-04-25
 - Gate: Production → Polish
 - Verdict: CONCERNS（无硬阻塞，允许推进）

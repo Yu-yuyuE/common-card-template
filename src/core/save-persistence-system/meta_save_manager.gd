@@ -1,17 +1,20 @@
-## MetaSaveManager — Meta Save 解锁与发现记录管理器
+## MetaSaveManager — Meta Save 解锁、通关记录与设置管理器
 ##
 ## 负责管理持久化的 Meta Save 数据，包括：
 ##   - 已解锁卡牌（按类别分组）
 ##   - 已解锁装备
 ##   - 事件图鉴发现记录
 ##   - 装备图鉴发现记录
+##   - 武将通关战役记录（completedCampaigns，幂等追加）
+##   - 武将战役次数 / 胜利次数统计
+##   - 游戏设置（音量等，立即原子写入）
 ##
 ## 所有写入操作均为幂等：同一 ID 多次解锁/发现，只记录一次。
 ## 内部维护缓存字典 _meta_cache，避免频繁 I/O。
 ## 通过注入 save_stub / load_stub / has_save_stub 与存储层完全解耦。
 ##
 ## 职责边界：
-##   - 仅管理 Meta Save 逻辑（解锁/发现/默认骨架）
+##   - 仅管理 Meta Save 逻辑（解锁/发现/通关/设置/默认骨架）
 ##   - 不负责文件 I/O（由注入的 save_stub/load_stub 实现）
 ##   - 不管理 Run Save（RunSaveManager 负责）
 ##
@@ -40,6 +43,11 @@ const CURRENT_VERSION: String = "1.0.0"
 
 ## 有效卡牌类别列表
 const VALID_CARD_CATEGORIES: Array[String] = ["attack", "skill", "troop", "curse"]
+
+## 有效设置键列表（对应 settings 字典中的合法字段）
+const VALID_SETTING_KEYS: Array[String] = [
+	"masterVolume", "musicVolume", "sfxVolume", "fullscreen", "language"
+]
 
 # ============================================================
 # 依赖注入桩
@@ -158,6 +166,71 @@ func has_meta_save() -> bool:
 	return has_save_stub.call()
 
 # ============================================================
+# 通关记录 — heroRecords
+# ============================================================
+
+## 记录武将通关指定战役章节，写入 heroRecords[hero_id].completedCampaigns。
+## 操作为幂等：同一 campaign_id 多次调用只记录一次（符合 GDD AC5）。
+## 若该武将无记录则自动初始化默认骨架。
+## [br][param hero_id] 武将唯一 ID（如 "cao_cao"）
+## [br][param campaign_id] 战役章节 ID（如 "wei_2"）
+## [br][return] true 表示写入成功；false 表示 save_stub 失败
+func record_campaign_victory(hero_id: String, campaign_id: String) -> bool:
+	var meta: Dictionary = _ensure_cache()
+	var hero_rec: Dictionary = _ensure_hero_record(meta, hero_id)
+	var completed: Array = hero_rec["completedCampaigns"]
+
+	# 幂等：已存在则跳过
+	if campaign_id in completed:
+		return true
+
+	completed.append(campaign_id)
+	return _persist(meta)
+
+
+## 增加武将的战役运行次数（totalRuns +1）。
+## 战役失败或胜利后均可调用（每次发起一次战役即计数一次）。
+## [br][param hero_id] 武将唯一 ID
+## [br][return] true 表示写入成功；false 表示 save_stub 失败
+func record_campaign_run(hero_id: String) -> bool:
+	var meta: Dictionary = _ensure_cache()
+	var hero_rec: Dictionary = _ensure_hero_record(meta, hero_id)
+	hero_rec["totalRuns"] = hero_rec.get("totalRuns", 0) + 1
+	return _persist(meta)
+
+
+## 增加武将的首通胜利次数（totalWins +1）。
+## 仅在武将首次或再次通关所有 5 张地图时调用。
+## [br][param hero_id] 武将唯一 ID
+## [br][return] true 表示写入成功；false 表示 save_stub 失败
+func record_hero_win(hero_id: String) -> bool:
+	var meta: Dictionary = _ensure_cache()
+	var hero_rec: Dictionary = _ensure_hero_record(meta, hero_id)
+	hero_rec["totalWins"] = hero_rec.get("totalWins", 0) + 1
+	return _persist(meta)
+
+# ============================================================
+# 设置更新 — settings
+# ============================================================
+
+## 更新指定设置项并立即原子写入（符合 GDD AC7）。
+## 合法键列表：masterVolume / musicVolume / sfxVolume / fullscreen / language
+## 传入不合法 key 时返回 false，不修改任何数据。
+## [br][param key] 设置键名
+## [br][param value] 设置值（类型需与默认值相符）
+## [br][return] true 表示写入成功；false 表示 key 无效或 save_stub 失败
+func update_setting(key: String, value: Variant) -> bool:
+	if not key in VALID_SETTING_KEYS:
+		push_error("MetaSaveManager: 无效的设置键 '%s'，合法值：%s" % [
+			key, VALID_SETTING_KEYS
+		])
+		return false
+
+	var meta: Dictionary = _ensure_cache()
+	meta["settings"][key] = value
+	return _persist(meta)
+
+# ============================================================
 # 私有辅助
 # ============================================================
 
@@ -226,3 +299,19 @@ func _fill_missing_fields(raw: Dictionary) -> Dictionary:
 		if not result.has(key):
 			result[key] = defaults[key]
 	return result
+
+
+## 获取或初始化指定武将的 heroRecord 字典。
+## 若 heroRecords 中无该武将，则自动插入含默认字段的骨架。
+## 返回的字典是 meta["heroRecords"][hero_id] 的引用，修改直接反映到缓存。
+## [br][param meta] 已初始化的 Meta Save 缓存字典
+## [br][param hero_id] 武将唯一 ID
+## [br][return] 该武将的 heroRecord 字典（引用）
+func _ensure_hero_record(meta: Dictionary, hero_id: String) -> Dictionary:
+	if not meta["heroRecords"].has(hero_id):
+		meta["heroRecords"][hero_id] = {
+			"completedCampaigns": [],
+			"totalRuns": 0,
+			"totalWins": 0,
+		}
+	return meta["heroRecords"][hero_id]

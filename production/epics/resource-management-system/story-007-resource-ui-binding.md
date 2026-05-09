@@ -2,7 +2,7 @@
 
 Epic: 资源管理系统
 Estimate: 1 day
-Status: Ready
+Status: Complete
 Layer: Foundation
 Type: UI
 Manifest Version: 2026-04-09
@@ -147,7 +147,7 @@ Manifest Version: 2026-04-09
 **Required evidence**:
 - UI: `production/qa/evidence/resource-ui-binding-evidence.md` 或交互测试
 
-**Status**: [ ] Not yet created
+**Status**: [x] Created — `production/qa/evidence/resource-ui-binding-evidence.md`
 
 ---
 
@@ -155,3 +155,12 @@ Manifest Version: 2026-04-09
 
 - Depends on: Story 002（resource_changed信号触发）
 - Unlocks: 无（UI层是最终消费者）
+
+---
+
+## Completion Notes
+**Completed**: 2026-04-28
+**Criteria**: 4/5 passing（AC-3 DEFERRED — ��散图标需场景层支持）
+**Deviations**: ADVISORY — AC-3 行动点离散图标延期，当前文本格式 "AP: %d/%d" 可用；建议后续 UI Polish story 补齐
+**Test Evidence**: UI: `production/qa/evidence/resource-ui-binding-evidence.md`（代码审查 + 边界条件验证）
+**Code Review**: Skipped（Lean mode）

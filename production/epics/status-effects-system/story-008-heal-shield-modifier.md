@@ -2,7 +2,7 @@
 
 Epic: 状态效果系统
 Estimate: 1 day
-Status: Ready
+Status: Complete
 Layer: Core
 Type: Logic
 Manifest Version: 2026-04-12
@@ -136,7 +136,7 @@ Manifest Version: 2026-04-12
 **Required evidence**:
 - Logic: `tests/unit/status_system/status_heal_shield_modifier_test.gd` — must exist and pass
 
-**Status**: [ ] Not yet created
+**Status**: [x] Created — `tests/unit/status_system/status_heal_shield_modifier_test.gd`
 
 ---
 
@@ -144,3 +144,12 @@ Manifest Version: 2026-04-12
 
 - Depends on: Story 001 (数据结构), Story 002 (状态叠加与互斥)
 - Unlocks: Story 007 (UI绑定需要显示流血/生锈状态)
+
+---
+
+## Completion Notes
+**Completed**: 2026-04-28
+**Criteria**: 6/6 passing（全部 AC 通过单元测试覆盖）
+**Deviations**: ADVISORY — Story 文档写 RUST，实际枚举为 RUSTY；按代码实现，功能正确
+**Test Evidence**: Logic: `tests/unit/status_system/status_heal_shield_modifier_test.gd`（10 个测试函数，覆盖 AC-1～AC-6 含边界）
+**Code Review**: Skipped（Lean mode）

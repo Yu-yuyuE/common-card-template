@@ -1,22 +1,41 @@
 ## ResourceHUD.gd
-## 资源状态显示 HUD（UI 层 — Story 4-13）
+## 资源状态显示 HUD（UI 层 — Story 4-13 / Story 8-5）
 ##
 ## 职责：订阅 ResourceManager 信号，实时显示 HP / 护盾 / 粮草 / 金币 / 行动点。
 ##       不修改任何游戏状态，仅只读查询 ResourceManager。
+##
+## Story 8-5 新增：
+##   - 护盾标签蓝色高亮（AC-2）
+##   - 粮草低于 PROVISIONS_WARNING_THRESHOLD 时红色警示（AC-4）
+##   - HP 归零时发出 battle_defeat_ui_requested 信号（AC-5）
 ##
 ## 使用方式：
 ##   $ResourceHUD.setup(resource_manager)
 ##
 ## 场景搭建时，根节点下需要以下子节点（Label）：
 ##   $HPLabel          — "HP: 45/80"
-##   $ArmorLabel       — "护盾: 12"（护盾为 0 时自动隐藏）
-##   $ProvisionsLabel  — "粮草: 120"
+##   $ArmorLabel       — "护盾: 12"（护盾为 0 时自动隐藏，护盾 > 0 时蓝色）
+##   $ProvisionsLabel  — "粮草: 120"（低于 30 时红色警示）
 ##   $GoldLabel        — "金币: 35"
 ##   $APLabel          — "AP: 2/3"
 ##
 ## 设计文档：design/gdd/resource-management-system.md
 
 class_name ResourceHUD extends Control
+
+# ---------------------------------------------------------------------------
+# 常量
+# ---------------------------------------------------------------------------
+
+## 粮草低于此值时显示红色警示（AC-4）
+const PROVISIONS_WARNING_THRESHOLD: int = 30
+
+# ---------------------------------------------------------------------------
+# 信号
+# ---------------------------------------------------------------------------
+
+## HP 归零时发射，通知场景层显示战斗失败 UI（AC-5）
+signal battle_defeat_ui_requested()
 
 # ---------------------------------------------------------------------------
 # 子节点引用（占位符路径，.tscn 中按此名称创建 Label）
@@ -57,6 +76,8 @@ func setup(manager: ResourceManager) -> void:
 	assert(manager != null, "ResourceHUD.setup: manager 不能为 null")
 	_resource_manager = manager
 	_resource_manager.resource_changed.connect(_on_resource_changed)
+	# AC-5：订阅 hp_depleted 信号，HP 归零时请求显示战斗失败 UI
+	_resource_manager.hp_depleted.connect(_on_hp_depleted)
 	refresh_all()
 
 
@@ -81,6 +102,8 @@ func teardown() -> void:
 	if _resource_manager != null:
 		if _resource_manager.resource_changed.is_connected(_on_resource_changed):
 			_resource_manager.resource_changed.disconnect(_on_resource_changed)
+		if _resource_manager.hp_depleted.is_connected(_on_hp_depleted):
+			_resource_manager.hp_depleted.disconnect(_on_hp_depleted)
 		_resource_manager = null
 
 # ---------------------------------------------------------------------------
@@ -101,6 +124,12 @@ func _on_resource_changed(resource_type: int, _old_value: int, _new_value: int, 
 		ResourceManager.ResourceType.ACTION_POINTS:
 			_refresh_ap()
 
+
+## HP 归零时由 ResourceManager.hp_depleted 触发。
+## 发出 battle_defeat_ui_requested 信号，通知场景层显示战斗失败提示（AC-5）。
+func _on_hp_depleted() -> void:
+	battle_defeat_ui_requested.emit()
+
 # ---------------------------------------------------------------------------
 # 私有刷新函数
 # ---------------------------------------------------------------------------
@@ -117,7 +146,7 @@ func _refresh_hp() -> void:
 	_hp_label.text = fmt % [current, max_val]
 
 
-## 刷新护盾显示：格式 "护盾: 12"（护盾为 0 时隐藏行）
+## 刷新护盾显示：格式 "护盾: 12"（护盾为 0 时隐藏；护盾 > 0 时蓝色 — AC-2）
 func _refresh_armor() -> void:
 	if _armor_label == null:
 		return
@@ -130,9 +159,11 @@ func _refresh_armor() -> void:
 		if fmt == "LABEL_ARMOR":
 			fmt = "护盾: %d"
 		_armor_label.text = fmt % [current]
+		# AC-2：护盾有值时使用蓝色区分（独立颜色）
+		_armor_label.modulate = Color.CORNFLOWER_BLUE
 
 
-## 刷新粮草显示：格式 "粮草: 120"
+## 刷新粮草显示：格式 "粮草: 120"（低于 PROVISIONS_WARNING_THRESHOLD 时红色警示 — AC-4）
 func _refresh_provisions() -> void:
 	if _provisions_label == null:
 		return
@@ -141,6 +172,11 @@ func _refresh_provisions() -> void:
 	if fmt == "LABEL_PROVISIONS":
 		fmt = "粮草: %d"
 	_provisions_label.text = fmt % [current]
+	# AC-4：粮草低于阈值时红色警示，否则恢复白色
+	if current < PROVISIONS_WARNING_THRESHOLD:
+		_provisions_label.modulate = Color.RED
+	else:
+		_provisions_label.modulate = Color.WHITE
 
 
 ## 刷新金币显示：格式 "金币: 35"
